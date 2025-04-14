@@ -3,10 +3,86 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vista="clr-namespace:CineVerCliente.Vista"
+        xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista"
         xmlns:local="clr-namespace:CineVerCliente"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="{StaticResource Negro}" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"
+               Source="/Assets/logo-cinever.png" 
+               Height="40" 
+               Margin="10"
+               VerticalAlignment="Center"/>
+
+                <Button Grid.Column="2" Content="Promociones" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="3" Content="Empleados" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="4" Content="Socios" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="5" Content="Reportes" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="6" Content="Dulcería" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="7" Content="Boletos" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="8" Content="Funciones" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="9" Content="Películas" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+
+                <Button Grid.Column="10" Content="Cerrar sesión" Margin="0"
+                Style="{StaticResource BotonMenu}" 
+                VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <ContentControl Content="{Binding VistaActualModelo}" Grid.Row="1"/>
+
     </Grid>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarSucursalModeloVista}">
+            <vista:AgregarSucursalDatos/>
+        </DataTemplate>
+    </Window.Resources>
 </Window>

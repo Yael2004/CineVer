@@ -55,6 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ModeloVista\AgregarSucursalModeloVista.cs" />
+    <Compile Include="ModeloVista\BaseModeloVista.cs" />
+    <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
+    <Compile Include="Vista\AgregarSucursalDatos.xaml.cs">
+      <DependentUpon>AgregarSucursalDatos.xaml</DependentUpon>
+    </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +77,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vista\AgregarSucursalDatos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -101,9 +111,7 @@
   <ItemGroup>
     <Folder Include="Assets\Imagenes\Iconos\" />
     <Folder Include="Helpers\" />
-    <Folder Include="ModeloVista\" />
     <Folder Include="Modelo\" />
-    <Folder Include="Vista\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Imagenes\Fondos\Fondo_Sucursal.png" />
