@@ -94,5 +94,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="ModeloVista\" />
+    <Folder Include="Modelo\" />
+    <Folder Include="Vista\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
