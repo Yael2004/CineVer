@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CineVerServicios\CineVerServicios.csproj">
+      <Project>{17a0277f-7605-469a-b30f-7a9d4a0ab260}</Project>
+      <Name>CineVerServicios</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

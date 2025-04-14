@@ -55,6 +55,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CineVerEntidades\CineVerEntidades.csproj">
+      <Project>{fc5379ab-0857-4a60-8dbf-1979af174d1a}</Project>
+      <Name>CineVerEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CineVerServidor\CineVerServidor.csproj">
+      <Project>{8d69fe73-43e3-4782-b195-dd1d1d2e4c2c}</Project>
+      <Name>CineVerServidor</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
