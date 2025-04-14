@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Assets\Estilos\Estilos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,11 +99,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <Folder Include="Assets\Imagenes\Iconos\" />
     <Folder Include="Helpers\" />
     <Folder Include="ModeloVista\" />
     <Folder Include="Modelo\" />
     <Folder Include="Vista\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\Fondo_Sucursal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\Fondo_VentaBoletos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
