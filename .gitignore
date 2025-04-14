@@ -1,0 +1,26 @@
+# VS directories
+.vs/
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# VS Code directories
+.vscode/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# SonarQube
+.sonarqube/
+**/.sonarqube/
+
+#Assemblies
+**/AssemblyInfo.cs
