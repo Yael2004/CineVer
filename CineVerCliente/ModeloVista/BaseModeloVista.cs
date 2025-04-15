@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace CineVerCliente.ModeloVista
 {
-    public abstract class BaseModeloVista
+    public abstract class BaseModeloVista : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler CambiarPropiedad;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string nombrePropiedad = null)
         {
-            CambiarPropiedad?.Invoke(this, new PropertyChangedEventArgs(nombrePropiedad));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nombrePropiedad));
         }
     }
 }

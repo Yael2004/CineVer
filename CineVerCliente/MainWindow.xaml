@@ -66,9 +66,10 @@
                 Style="{StaticResource BotonMenu}" 
                 VerticalAlignment="Center"/>
 
-                <Button Grid.Column="9" Content="Películas" Margin="0"
+                <Button Grid.Column="9" Content="Sucursales" Margin="0"
                 Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Command="{Binding AgregarSucursalComando}"/>
 
                 <Button Grid.Column="10" Content="Cerrar sesión" Margin="0"
                 Style="{StaticResource BotonMenu}" 
@@ -85,4 +86,8 @@
             <vista:AgregarSucursalDatos/>
         </DataTemplate>
     </Window.Resources>
+
+    <Window.DataContext>
+        <vistaModelo:MainWindowModeloVista/>
+    </Window.DataContext>
 </Window>

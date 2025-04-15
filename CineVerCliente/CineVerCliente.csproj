@@ -57,6 +57,8 @@
     </ApplicationDefinition>
     <Compile Include="ModeloVista\AgregarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
+    <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
+    <Compile Include="ModeloVista\ComandoModeloVista.cs" />
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
     <Compile Include="Vista\AgregarSucursalDatos.xaml.cs">
       <DependentUpon>AgregarSucursalDatos.xaml</DependentUpon>
