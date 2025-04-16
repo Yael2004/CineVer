@@ -82,8 +82,12 @@
     </Grid>
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type vistaModelo:AgregarSucursalModeloVista}">
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarSucursalDatosModeloVista}">
             <vista:AgregarSucursalDatos/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarSucursalSalasModeloVista}">
+            <vista:AgregarSucursalSalas/>
         </DataTemplate>
     </Window.Resources>
 

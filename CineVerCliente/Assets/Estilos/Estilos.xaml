@@ -17,6 +17,16 @@
                 ImageSource="/Assets/Imagenes/Fondos/Fondo_VentaBoletos.png"
                 Stretch="UniformToFill"/>
 
+    <Style x:Key="TextoMensajes" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,5,0,0"/>
+    </Style>
+
     <Style x:Key="Textbox" TargetType="TextBox">
         <Setter Property="Height" Value="35"/>
         <Setter Property="Background" Value="White"/>
@@ -105,10 +115,6 @@
     </Style>
 
     <Style x:Key="BotonConfirmarNaranja" TargetType="Button">
-        <Setter Property="Width" Value="168"/>
-        <Setter Property="Height" Value="62"/>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="12"/>
         <Setter Property="Background" Value="#FF7315"/>
         <Setter Property="BorderBrush" Value="#232020"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -164,6 +170,33 @@
         </Setter>
     </Style>
 
+    <Style x:Key="BotonNegro" TargetType="Button">
+        <Setter Property="Background" Value="#232020"/>
+        <Setter Property="BorderBrush" Value="#232020"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="8"
+                        SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="BotonMenu" TargetType="Button">
         <Setter Property="Width" Value="100"/>
         <Setter Property="Height" Value="62"/>
@@ -194,5 +227,20 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="RectanguloAmarillo" TargetType="Rectangle">
+        <Setter Property="Width" Value="400"/>
+        <Setter Property="Height" Value="200"/>
+        <Setter Property="Fill" Value="#E6A000"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <Style x:Key="TextoCamposVacio" TargetType="Label">
+        <Setter Property="Content" Value="Campo Vacío"/>
+        <Setter Property="Foreground" Value="#EC221F"/>
+        <Setter Property="FontSize" Value="8"/>
+    </Style>
+
 
 </ResourceDictionary>
