@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CineVerServicios", "CineVer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pruebas", "Pruebas\Pruebas.csproj", "{3FF26463-8E90-469A-861D-2163CB04AD68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilidades", "Utilidades\Utilidades.csproj", "{C7B59D8E-746A-4DEF-B3C4-DD92D6C4E982}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3FF26463-8E90-469A-861D-2163CB04AD68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FF26463-8E90-469A-861D-2163CB04AD68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FF26463-8E90-469A-861D-2163CB04AD68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B59D8E-746A-4DEF-B3C4-DD92D6C4E982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B59D8E-746A-4DEF-B3C4-DD92D6C4E982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B59D8E-746A-4DEF-B3C4-DD92D6C4E982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B59D8E-746A-4DEF-B3C4-DD92D6C4E982}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
