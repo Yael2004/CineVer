@@ -141,10 +141,6 @@
     </Style>
 
     <Style x:Key="BotonCancelar" TargetType="Button">
-        <Setter Property="Width" Value="168"/>
-        <Setter Property="Height" Value="62"/>
-        <Setter Property="Margin" Value="0"/>
-        <Setter Property="Padding" Value="12"/>
         <Setter Property="Background" Value="#EC221F"/>
         <Setter Property="BorderBrush" Value="#232020"/>
         <Setter Property="BorderThickness" Value="1"/>

@@ -55,12 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarSucursalDatosModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalSalasModeloVista.cs" />
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoModeloVista.cs" />
+    <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Vista\AgregarSucursalDatos.xaml.cs">
@@ -68,6 +70,12 @@
     </Compile>
     <Compile Include="Vista\AgregarSucursalSalas.xaml.cs">
       <DependentUpon>AgregarSucursalSalas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EditarSucursal.xaml.cs">
+      <DependentUpon>EditarSucursal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\NotificacionExito.xaml.cs">
+      <DependentUpon>NotificacionExito.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
@@ -90,6 +98,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\AgregarSucursalSalas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\EditarSucursal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\NotificacionExito.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

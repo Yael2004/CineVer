@@ -9,6 +9,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Assets/Estilos/Estilos.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+        
+            <DropShadowEffect x:Key="DropShadow" BlurRadius="10" ShadowDepth="0" Color="Black" Opacity="0.5"/>
         </ResourceDictionary>
+
     </Application.Resources>
 </Application>

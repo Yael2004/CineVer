@@ -69,7 +69,7 @@
                 <Button Grid.Column="9" Content="Sucursales" Margin="0"
                 Style="{StaticResource BotonMenu}" 
                 VerticalAlignment="Center"
-                Command="{Binding AgregarSucursalComando}"/>
+                Command="{Binding SucursalComando}"/>
 
                 <Button Grid.Column="10" Content="Cerrar sesión" Margin="0"
                 Style="{StaticResource BotonMenu}" 
@@ -79,6 +79,14 @@
 
         <ContentControl Content="{Binding VistaActualModelo}" Grid.Row="1"/>
 
+        <Grid x:Name="RootGrid" Grid.Row="1" Panel.ZIndex="1">
+
+            <Grid x:Name="NotiPanel"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Right"
+                  IsHitTestVisible="False" />
+        </Grid>
+        
     </Grid>
 
     <Window.Resources>
@@ -88,6 +96,10 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:AgregarSucursalSalasModeloVista}">
             <vista:AgregarSucursalSalas/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:EditarSucursalModeloVista}">
+            <vista:EditarSucursal/>
         </DataTemplate>
     </Window.Resources>
 

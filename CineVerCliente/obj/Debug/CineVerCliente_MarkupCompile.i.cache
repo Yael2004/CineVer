@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\yaela\Desktop\Universidad\Semestres\Sexto\Software\CineVer\CineVerCliente\App.xaml
-42082758353
+6-298817529
 
-162145602831
+20-1344364013
 13-38814620
-Assets\Estilos\Estilos.xaml;MainWindow.xaml;Vista\AgregarSucursalDatos.xaml;Vista\AgregarSucursalSalas.xaml;
+Assets\Estilos\Estilos.xaml;MainWindow.xaml;Vista\AgregarSucursalDatos.xaml;Vista\AgregarSucursalSalas.xaml;Vista\EditarSucursal.xaml;Vista\NotificacionExito.xaml;
 
-False
+True
 
