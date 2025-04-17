@@ -21,6 +21,3 @@ packages/
 # SonarQube
 .sonarqube/
 **/.sonarqube/
-
-#Assemblies
-**/AssemblyInfo.cs
