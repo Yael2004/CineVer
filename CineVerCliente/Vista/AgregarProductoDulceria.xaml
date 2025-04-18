@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="CineVerCliente.Vista.AgregarProductoDulceria"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" d:DataContext="{d:DesignInstance Type=vistaModelo:AgregarProductoDulceriaModeloVista}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <Viewbox Stretch="Fill">
+            <Grid>
+                <Grid Background="{StaticResource Blanco}"/>
+                <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,106"/>
+
+                <Grid Margin="0,0,108,72">
+                    <Grid Background="{StaticResource Negro}" Margin="54,81,-54,-81">
+                        <Label Content="Agregar inventario"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Foreground="White" Margin="0,10,0,546"/>
+
+                        <Rectangle
+                            Fill="LightGray" Margin="64,81,64,479"/>
+
+                        <Label
+                            Content="    Imagen                  Nombre                 Costo unitario      Precio a la venta unitario      Inventario"
+                            Foreground="Black" Margin="99,85,105,483"/>
+
+                        <ScrollViewer Margin="64,120,64,146"/>
+
+                        <Button 
+                            Height="50"
+                            Content="Confirmar cambios" 
+                            Margin="64,490,509,54"
+                            Style="{StaticResource BotonConfirmarNaranja}"/>
+
+                        <Button 
+                            Height="50"
+                            Content="Agregar nuevo producto" 
+                            Margin="299,490,275,54"
+                            Style="{StaticResource BotonConfirmarNaranja}"/>
+
+                        <Button 
+                            Height="50"
+                            Content="Cancelar operacion" 
+                            Style="{StaticResource BotonCancelar}"
+                            Margin="548,490,64,54"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>
