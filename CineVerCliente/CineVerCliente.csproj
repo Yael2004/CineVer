@@ -62,8 +62,12 @@
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoModeloVista.cs" />
+    <Compile Include="ModeloVista\ConsultarEmpleadosModeloVista.cs" />
     <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
+    <Compile Include="ModeloVista\ModificarEmpleadoModeloVista.cs" />
+    <Compile Include="ModeloVista\RegistrarEmpleadoModeloVista.cs" />
+    <Compile Include="Modelo\EmpleadoConsultado.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Vista\AgregarSucursalDatos.xaml.cs">
       <DependentUpon>AgregarSucursalDatos.xaml</DependentUpon>
@@ -71,11 +75,20 @@
     <Compile Include="Vista\AgregarSucursalSalas.xaml.cs">
       <DependentUpon>AgregarSucursalSalas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\ConsultarEmpleados.xaml.cs">
+      <DependentUpon>ConsultarEmpleados.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\EditarSucursal.xaml.cs">
       <DependentUpon>EditarSucursal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\ModificarEmpleado.xaml.cs">
+      <DependentUpon>ModificarEmpleado.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\NotificacionExito.xaml.cs">
       <DependentUpon>NotificacionExito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistrarEmpleado.xaml.cs">
+      <DependentUpon>RegistrarEmpleado.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
@@ -101,11 +114,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\ConsultarEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\EditarSucursal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\ModificarEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\NotificacionExito.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\RegistrarEmpleado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

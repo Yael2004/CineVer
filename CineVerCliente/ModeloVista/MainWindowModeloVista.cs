@@ -15,6 +15,7 @@ namespace CineVerCliente.ModeloVista
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
         public ICommand SucursalComando {  get; }
+        public ICommand EmpleadoComando { get; }
 
         public object VistaActualModelo
         {
@@ -30,6 +31,7 @@ namespace CineVerCliente.ModeloVista
         {
             _mainWindowModeloVista = this;
             SucursalComando = new ComandoModeloVista(EditarSucursal);
+            EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
         }
 
         public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
@@ -45,6 +47,21 @@ namespace CineVerCliente.ModeloVista
         private void EditarSucursal(object obj)
         {
             CambiarModeloVista(new EditarSucursalModeloVista(_mainWindowModeloVista));
+        }
+
+        private void RegistrarEmpleado(object obj)
+        {
+            CambiarModeloVista(new RegistrarEmpleadoModeloVista(_mainWindowModeloVista));
+        }
+
+        private void ModificarEmpleado(object obj)
+        {
+            CambiarModeloVista(new ModificarEmpleadoModeloVista(_mainWindowModeloVista));
+        }
+
+        private void ConsultarEmpleados(object obj)
+        {
+            CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
         }
     }
 }

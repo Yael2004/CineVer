@@ -44,7 +44,8 @@
 
                 <Button Grid.Column="3" Content="Empleados" Margin="0"
                 Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Command="{Binding EmpleadoComando}"/>
 
                 <Button Grid.Column="4" Content="Socios" Margin="0"
                 Style="{StaticResource BotonMenu}" 
@@ -100,6 +101,18 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:EditarSucursalModeloVista}">
             <vista:EditarSucursal/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:RegistrarEmpleadoModeloVista}">
+            <vista:RegistrarEmpleado/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ModificarEmpleadoModeloVista}">
+            <vista:ModificarEmpleado/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarEmpleadosModeloVista}">
+            <vista:ConsultarEmpleados/>
         </DataTemplate>
     </Window.Resources>
 
