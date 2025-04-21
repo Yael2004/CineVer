@@ -30,9 +30,10 @@
 
                         <Button 
                             Height="50"
-                            Content="Confirmar cambios" 
+                            Content="Confirmar orden" 
                             Margin="64,490,509,54"
-                            Style="{StaticResource BotonConfirmarNaranja}"/>
+                            Style="{StaticResource BotonConfirmarNaranja}"
+                            Command="{Binding MostrarMensajeConfirmarCambiosComando}"/>
 
                         <Button 
                             Height="50"
@@ -64,6 +65,25 @@
                                 Content="Cancelar"
                                 Style="{StaticResource BotonNegro}"
                                 Command="{Binding CancelarCancelacionComando}"/>
+                        </Grid>
+
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeConfirmarCambio}">
+                            <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                               Height="200"
+                               Margin="0,0,0,0"/>           
+
+                            <Button Margin="74,126,215,37" 
+                                Content="Aceptar"
+                                Style="{StaticResource BotonConfirmarBlanco}"
+                                Command="{Binding ConfirmarCambioComando}"/>
+
+                            <TextBlock Text="¿Está seguro de realizar esta operación?"
+                                Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
+
+                            <Button Margin="218,126,71,37" 
+                                Content="Cancelar"
+                                Style="{StaticResource BotonNegro}"
+                                Command="{Binding CancelarCambioComando}"/>
                         </Grid>
                     </Grid>
                 </Grid>

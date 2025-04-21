@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerCliente.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,14 +17,17 @@ namespace CineVerCliente.ModeloVista
         private float _precioVentaUnitario;
         private byte[] _imagenProducto;
         private Visibility _mostrarMensajeCancelarOperacion = Visibility.Collapsed;
+        private Visibility _mostrarMensajeConfirmarCambio = Visibility.Collapsed;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
-        public ICommand ConfirmarCambiosComando { get; }
         public ICommand AgregarNuevoProductoComando { get; }
         public ICommand CancelarComando { get; }
         public ICommand ConfirmarCancelacionComando { get; }
         public ICommand CancelarCancelacionComando { get; }
+        public ICommand MostrarMensajeConfirmarCambiosComando { get; }
+        public ICommand ConfirmarCambioComando { get; }
+        public ICommand CancelarCambioComando { get; }
 
         public string NombreProducto
         {
@@ -85,18 +89,31 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public Visibility MostrarMensajeConfirmarCambio
+        {
+            get { return _mostrarMensajeConfirmarCambio; }
+            set
+            {
+                _mostrarMensajeConfirmarCambio = value;
+                OnPropertyChanged(nameof(MostrarMensajeConfirmarCambio));
+            }
+        }
+
         public AgregarProductoDulceriaModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
-            ConfirmarCambiosComando = new ComandoModeloVista(ConfirmarCambios);
+            ConfirmarCambioComando = new ComandoModeloVista(ConfirmarCambio);
+            CancelarCambioComando = new ComandoModeloVista(CancelarCambio);
             AgregarNuevoProductoComando = new ComandoModeloVista(AgregarNuevoProducto);
             CancelarComando = new ComandoModeloVista(CancelarOperacion);
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
+            MostrarMensajeConfirmarCambiosComando = new ComandoModeloVista(ConfirmarInventario);
         }
 
-        private void ConfirmarCambios(object obj)
+        public void ConfirmarInventario(object obj)
         {
+            MostrarMensajeConfirmarCambio = Visibility.Visible;
         }
 
         private void AgregarNuevoProducto(object obj)
@@ -117,5 +134,18 @@ namespace CineVerCliente.ModeloVista
         {
             MostrarMensajeCancelarOperacion = Visibility.Collapsed;
         }
+
+        private void ConfirmarCambio(object obj)
+        {
+            MostrarMensajeConfirmarCambio = Visibility.Collapsed;
+            Notificacion.Mostrar("Cantidad registrada correctamente en el inventario");
+        }
+
+        private void CancelarCambio(object obj)
+        {
+            MostrarMensajeConfirmarCambio = Visibility.Collapsed;
+        }
+
+
     }
 }

@@ -57,7 +57,8 @@
 
                 <Button Grid.Column="6" Content="Dulcería" Margin="0"
                 Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Command="{Binding AgregarProductoDulceriaComando}"/>
 
                 <Button Grid.Column="7" Content="Boletos" Margin="0"
                 Style="{StaticResource BotonMenu}" 
@@ -113,6 +114,10 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:ConsultarEmpleadosModeloVista}">
             <vista:ConsultarEmpleados/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarProductoDulceriaModeloVista}">
+            <vista:AgregarProductoDulceria/>
         </DataTemplate>
     </Window.Resources>
 
