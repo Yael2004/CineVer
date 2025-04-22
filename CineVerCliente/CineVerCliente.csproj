@@ -77,6 +77,7 @@
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
     <Compile Include="ModeloVista\ModificarEmpleadoModeloVista.cs" />
     <Compile Include="ModeloVista\RealizarPagoModeloVista.cs" />
+    <Compile Include="ModeloVista\RealizarCorteCajaModeloVista.cs" />
     <Compile Include="ModeloVista\RegistrarEmpleadoModeloVista.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
@@ -106,6 +107,9 @@
     </Compile>
     <Compile Include="Vista\NotificacionExito.xaml.cs">
       <DependentUpon>NotificacionExito.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RealizarCorteCaja.xaml.cs">
+      <DependentUpon>RealizarCorteCaja.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\RegistrarEmpleado.xaml.cs">
       <DependentUpon>RegistrarEmpleado.xaml</DependentUpon>
@@ -159,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\NotificacionExito.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\RealizarCorteCaja.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,6 +237,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\Fondo_CorteCaja.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

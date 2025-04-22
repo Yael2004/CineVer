@@ -75,7 +75,8 @@
 
                 <Button Grid.Column="10" Content="Cerrar sesión" Margin="0"
                 Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Command="{Binding CorteCaja}"/>
             </Grid>
         </Border>
 
@@ -122,6 +123,10 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:AgregarNuevoProductoDulceriaModeloVista}">
             <vista:AgregarNuevoProductoDulceria/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:RealizarCorteCajaModeloVista}">
+            <vista:RealizarCorteCaja/>
         </DataTemplate>
     </Window.Resources>
 

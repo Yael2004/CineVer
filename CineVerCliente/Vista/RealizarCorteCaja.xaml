@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="CineVerCliente.Vista.RealizarCorteCaja"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CineVerCliente.Vista"
+             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" 
+             d:DataContext="{d:DesignInstance Type=vistaModelo:RealizarCorteCajaModeloVista}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <Viewbox Stretch="Fill">
+            <Grid Visibility="{Binding VerSegundaVista}">
+                <Grid Background="{StaticResource Blanco}"/>
+                <Grid Background="{StaticResource Fondo_CorteCaja}" Margin="0,0,0,106"/>
+
+                <Grid>
+                    <Rectangle
+                         Fill="{StaticResource Negro}"
+                         Width="600"
+                         Height="501"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,99,0,0">
+
+                    </Rectangle>
+
+                    <Label Content="Corte de caja"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Foreground="White" Margin="0,105,0,451"/>
+
+                    <Label Content="Efectivo Esperado"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="230,184,0,372"/>
+
+                    <Label Content="Efectivo en caja"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="432,184,0,372"/>
+
+                    <Label Content="Diferencia de efectivo"
+                            HorizontalAlignment="Left"
+                            FontSize="18"
+                            Foreground="White" Margin="591,184,0,372"/>
+
+                    <Label Content="Venta de boletos"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="237,303,0,253"/>
+
+                    <Label Content="Venta de dulcería"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="420,303,0,253"/>
+
+                    <Label Content="Ventas totales"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="615,303,0,253"/>
+
+                    <Label Content="Gastos"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="278,418,0,138"/>
+
+                    <Label Content="Ganancias"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="449,418,0,138"/>
+
+                    <Label Content="Inicio del siguiente día"
+                            HorizontalAlignment="Left"
+                            FontSize="18"
+                            Foreground="White" Margin="589,418,0,138"/>
+
+                    <TextBox x:Name="EfectivoEsperado"
+                            Style="{StaticResource Textbox}" 
+                            Margin="230,228,585,337"
+                            Text="{Binding EfectivoEsperado, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="EfectivoCaja"
+                            Style="{StaticResource Textbox}" 
+                            Margin="415,228,399,337"
+                            Text="{Binding EfectivoCaja, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="DiferenciaEfectivo"
+                            Style="{StaticResource Textbox}" 
+                            Margin="598,228,218,337"
+                            Text="{Binding DiferenciaEfectivo, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="VentaBoletos"
+                            Style="{StaticResource Textbox}" 
+                            Margin="230,347,585,218"
+                            Text="{Binding VentaBoletos, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="VentaDulceria"
+                            Style="{StaticResource Textbox}" 
+                            Margin="415,347,399,218"
+                            Text="{Binding VentaDulceria, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="VentasTotales"
+                            Style="{StaticResource Textbox}" 
+                            Margin="598,347,218,218"
+                            Text="{Binding VentasTotales, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="Gastos"
+                            Style="{StaticResource Textbox}" 
+                            Margin="230,462,585,103"
+                            Text="{Binding Gastos, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="Ganancias"
+                            Style="{StaticResource Textbox}" 
+                            Margin="415,462,399,103"
+                            Text="{Binding Ganancias, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox x:Name="InicioSiguienteDia"
+                            Style="{StaticResource Textbox}" 
+                            Margin="598,462,218,103"
+                            Text="{Binding InicioSiguienteDiaTexto, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Button Content="Salir"
+                            Style="{StaticResource BotonConfirmarAmarillo}" 
+                            Margin="419,544,419,10"
+                            Command="{Binding SalirComando}"/>
+
+                    <Label x:Name="InicioSiguienteDiaCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="599,497,326,79" Visibility="{Binding InicioSiguienteDiaCampoVacio}"/>
+                </Grid>
+
+                <Grid Visibility="{Binding VerPrimeraVista}">
+                    <Rectangle
+                         Fill="{StaticResource Negro}"
+                         Width="600"
+                         Height="501"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,99,0,0">
+
+                    </Rectangle>
+
+                    <Label Content="Corte de caja"
+                        HorizontalAlignment="Center"
+                        FontSize="20"
+                        Foreground="White" Margin="0,105,0,451"/>
+
+                    <TextBox x:Name="MontoFinalDia"
+                        Style="{StaticResource Textbox}" 
+                        Margin="354,350,354,216"
+                        Text="{Binding MontoFinalDiaTexto, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Label Content="Monto al final del día"
+                            HorizontalAlignment="Center"
+                            FontSize="18"
+                            Foreground="White" Margin="0,300,0,256"/>
+
+                    <Label x:Name="MontoFinalDiaCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="354,390,571,186" Visibility="{Binding MontoFinalDiaCampoVacio}"/>
+
+
+                    <Button Content="Calcular corte"
+                            Style="{StaticResource BotonConfirmarAmarillo}" 
+                            Margin="310,497,527,57"
+                            Command="{Binding CalcularCorteComando}"/>
+
+                    <Button Content="Regresar"
+                            Style="{StaticResource BotonConfirmarBlanco}" 
+                            Margin="520,497,318,57"
+                            Command="{Binding RegresarComando}"/>
+                </Grid>
+
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeConfirmar}">
+                    <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                               Height="200"
+                               Margin="0,0,0,0"/>
+
+                    <Button Margin="74,153,215,10" 
+                            Content="Aceptar"
+                            Style="{StaticResource BotonConfirmarBlanco}"
+                            Command="{Binding AceptarComando}"/>
+
+                    <TextBlock Text="Esta acción no se podrá modificar, ¿está seguro de continuar?"
+                            Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,36,0,0" VerticalAlignment="Top"/>
+
+                    <Button Margin="218,153,71,10" 
+                            Content="Cancelar"
+                            Style="{StaticResource BotonNegro}"
+                            Command="{Binding CancelarComando}"/>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

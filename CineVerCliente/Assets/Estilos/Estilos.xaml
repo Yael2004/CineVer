@@ -17,6 +17,10 @@
                 ImageSource="/Assets/Imagenes/Fondos/Fondo_VentaBoletos.png"
                 Stretch="UniformToFill"/>
 
+    <ImageBrush x:Key="Fondo_CorteCaja"
+                ImageSource="/Assets/Imagenes/Fondos/Fondo_CorteCaja.png"
+                Stretch="UniformToFill"/>
+
     <Style x:Key="TextoMensajes" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="20"/>
