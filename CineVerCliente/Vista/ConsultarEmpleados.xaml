@@ -44,7 +44,8 @@
                                     Source="" 
                                     Grid.Column="0"/> Buscar como poner imagenes-->
 
-                                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <StackPanel Grid.Column="1" 
+                                        VerticalAlignment="Center">
                                         <TextBlock Text="{Binding Nombre}" FontWeight="Bold"/>
                                     </StackPanel>
 

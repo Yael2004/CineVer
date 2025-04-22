@@ -56,7 +56,7 @@ namespace CineVerCliente.ModeloVista
             {
                 new EmpleadoConsultado { Nombre = "Goku", Matricula = "CNVX2985637" },
                 new EmpleadoConsultado { Nombre = "Vegeta", Matricula = "CNVX2876509" },
-                new EmpleadoConsultado { Nombre = "Gohan", Matricula = "CNVX2946527" },
+                new EmpleadoConsultado { Nombre = "Goku", Matricula = "CNVX2946527" },
             };
 
             ElementosFiltrados = new ObservableCollection<EmpleadoConsultado>(_todosLosElementos);

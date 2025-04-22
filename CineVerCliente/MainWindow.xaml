@@ -141,6 +141,14 @@
         <DataTemplate DataType="{x:Type vistaModelo:ObtenerEstadisticasModeloVista}">
             <vista:ObtenerEstadisticas/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:RegistrarSocioModeloVista}">
+            <vista:RegistrarSocio/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ModificarSocioModeloVista}">
+            <vista:ModificarSocio/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>
