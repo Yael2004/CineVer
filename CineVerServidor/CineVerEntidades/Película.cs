@@ -27,6 +27,7 @@ namespace CineVerEntidades
         public string sinopsis { get; set; }
         public string director { get; set; }
         public Nullable<int> idSucursal { get; set; }
+        public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ActorEnPelicula> ActorEnPelicula { get; set; }

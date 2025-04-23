@@ -29,7 +29,7 @@ namespace CineVerEntidades
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Boleto> Boleto { get; set; }
-        public virtual Película Película { get; set; }
         public virtual Sala Sala { get; set; }
+        public virtual Película Película { get; set; }
     }
 }
