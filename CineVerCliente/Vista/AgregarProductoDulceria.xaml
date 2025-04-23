@@ -39,7 +39,8 @@
                             Height="50"
                             Content="Agregar nuevo producto" 
                             Margin="299,490,275,54"
-                            Style="{StaticResource BotonConfirmarNaranja}"/>
+                            Style="{StaticResource BotonConfirmarNaranja}"
+                            Command="{Binding AgregarNuevoProductoComando}"/>
 
                         <Button 
                             Height="50"

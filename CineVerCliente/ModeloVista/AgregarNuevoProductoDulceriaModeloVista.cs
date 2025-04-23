@@ -1,5 +1,4 @@
-﻿using CineVerCliente.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +8,7 @@ using System.Windows.Input;
 
 namespace CineVerCliente.ModeloVista
 {
-    public class AgregarProductoDulceriaModeloVista : BaseModeloVista
+    public class AgregarNuevoProductoDulceriaModeloVista : BaseModeloVista
     {
         private string _nombreProducto;
         private int _cantidadInventario;
@@ -17,17 +16,16 @@ namespace CineVerCliente.ModeloVista
         private float _precioVentaUnitario;
         private byte[] _imagenProducto;
         private Visibility _mostrarMensajeCancelarOperacion = Visibility.Collapsed;
-        private Visibility _mostrarMensajeConfirmarCambio = Visibility.Collapsed;
+        private Visibility _mostrarMensajeConfirmarProducto = Visibility.Collapsed;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
         public ICommand AgregarNuevoProductoComando { get; }
-        public ICommand CancelarComando { get; }
+        public ICommand AceptarNuevoProdctoComando { get; }
+        public ICommand CancelarNuevoProductoComando { get; }
+        public ICommand CancelarOperacionComando { get; }
         public ICommand ConfirmarCancelacionComando { get; }
         public ICommand CancelarCancelacionComando { get; }
-        public ICommand MostrarMensajeConfirmarCambiosComando { get; }
-        public ICommand ConfirmarCambioComando { get; }
-        public ICommand CancelarCambioComando { get; }
 
         public string NombreProducto
         {
@@ -85,40 +83,45 @@ namespace CineVerCliente.ModeloVista
             set
             {
                 _mostrarMensajeCancelarOperacion = value;
-                OnPropertyChanged(nameof(MostrarMensajeCancelarOperacion));
+                OnPropertyChanged();
             }
         }
 
-        public Visibility MostrarMensajeConfirmarCambio
+        public Visibility MostrarMensajeConfirmarProducto
         {
-            get { return _mostrarMensajeConfirmarCambio; }
+            get { return _mostrarMensajeConfirmarProducto; }
             set
             {
-                _mostrarMensajeConfirmarCambio = value;
-                OnPropertyChanged(nameof(MostrarMensajeConfirmarCambio));
+                _mostrarMensajeConfirmarProducto = value;
+                OnPropertyChanged();
             }
         }
 
-        public AgregarProductoDulceriaModeloVista(MainWindowModeloVista mainWindowModeloVista)
+        public AgregarNuevoProductoDulceriaModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
-            ConfirmarCambioComando = new ComandoModeloVista(ConfirmarCambio);
-            CancelarCambioComando = new ComandoModeloVista(CancelarCambio);
+
             AgregarNuevoProductoComando = new ComandoModeloVista(AgregarNuevoProducto);
-            CancelarComando = new ComandoModeloVista(CancelarOperacion);
+            AceptarNuevoProdctoComando = new ComandoModeloVista(AceptarNuevoProducto);
+            CancelarNuevoProductoComando = new ComandoModeloVista(CancelarNuevoProducto);
+            CancelarOperacionComando = new ComandoModeloVista(CancelarOperacion);
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
-            MostrarMensajeConfirmarCambiosComando = new ComandoModeloVista(ConfirmarInventario);
-        }
-
-        public void ConfirmarInventario(object obj)
-        {
-            MostrarMensajeConfirmarCambio = Visibility.Visible;
         }
 
         private void AgregarNuevoProducto(object obj)
         {
-            _mainWindowModeloVista.CambiarModeloVista(new AgregarNuevoProductoDulceriaModeloVista(_mainWindowModeloVista));
+            MostrarMensajeConfirmarProducto = Visibility.Visible;
+        }
+
+        private void AceptarNuevoProducto(object obj)
+        {
+            MostrarMensajeConfirmarProducto = Visibility.Collapsed;
+        }
+
+        private void CancelarNuevoProducto(object obj)
+        {
+            MostrarMensajeConfirmarProducto = Visibility.Collapsed;
         }
 
         private void CancelarOperacion(object obj)
@@ -134,31 +137,6 @@ namespace CineVerCliente.ModeloVista
         private void CancelarCancelacion(object obj)
         {
             MostrarMensajeCancelarOperacion = Visibility.Collapsed;
-        }
-
-        private void ConfirmarCambio(object obj)
-        {
-            MostrarMensajeConfirmarCambio = Visibility.Collapsed;
-            Notificacion.Mostrar("Cantidad registrada correctamente en el inventario");
-        }
-
-        private void CancelarCambio(object obj)
-        {
-            MostrarMensajeConfirmarCambio = Visibility.Collapsed;
-        }
-
-        private void MostrarMensajeServicio()
-        {
-            try
-            {
-                var cliente = new DulceriaServicio.DulceriaServicioClient();
-                var mensaje = cliente.AgregarProductoDulceria();
-                Notificacion.Mostrar(mensaje);
-            }
-            catch (Exception ex)
-            {
-                Notificacion.Mostrar(ex.Message);
-            }
         }
     }
 }
