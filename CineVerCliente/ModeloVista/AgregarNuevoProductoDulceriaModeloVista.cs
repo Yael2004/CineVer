@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerCliente.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,7 @@ namespace CineVerCliente.ModeloVista
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
         public ICommand AgregarNuevoProductoComando { get; }
-        public ICommand AceptarNuevoProdctoComando { get; }
+        public ICommand AceptarNuevoProductoComando { get; }
         public ICommand CancelarNuevoProductoComando { get; }
         public ICommand CancelarOperacionComando { get; }
         public ICommand ConfirmarCancelacionComando { get; }
@@ -102,7 +103,7 @@ namespace CineVerCliente.ModeloVista
             _mainWindowModeloVista = mainWindowModeloVista;
 
             AgregarNuevoProductoComando = new ComandoModeloVista(AgregarNuevoProducto);
-            AceptarNuevoProdctoComando = new ComandoModeloVista(AceptarNuevoProducto);
+            AceptarNuevoProductoComando = new ComandoModeloVista(AceptarNuevoProducto);
             CancelarNuevoProductoComando = new ComandoModeloVista(CancelarNuevoProducto);
             CancelarOperacionComando = new ComandoModeloVista(CancelarOperacion);
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
@@ -117,6 +118,7 @@ namespace CineVerCliente.ModeloVista
         private void AceptarNuevoProducto(object obj)
         {
             MostrarMensajeConfirmarProducto = Visibility.Collapsed;
+            Notificacion.Mostrar("Pago realizado correctamente");
         }
 
         private void CancelarNuevoProducto(object obj)

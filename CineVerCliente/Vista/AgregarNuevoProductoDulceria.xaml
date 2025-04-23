@@ -23,7 +23,8 @@
                         Height="50"
                         Content="Agregar nuevo producto" 
                         Margin="171,490,404,54"
-                        Style="{StaticResource BotonConfirmarNaranja}"/>
+                        Style="{StaticResource BotonConfirmarNaranja}"
+                        Command="{Binding AgregarNuevoProductoComando}"/>
 
                         <Button 
                         Height="50"
@@ -73,7 +74,7 @@
                             Style="{StaticResource BotonConfirmarBlanco}"
                             Command="{Binding ConfirmarCancelacionComando}"/>
 
-                            <TextBlock Text="¿Está seguro de realizar esta operación?"
+                            <TextBlock Text="¿Está seguro de cancelar el pago?"
                             Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
 
                             <Button Margin="218,126,71,37" 
@@ -90,9 +91,9 @@
                             <Button Margin="74,126,215,37" 
                             Content="Aceptar"
                             Style="{StaticResource BotonConfirmarBlanco}"
-                            Command="{Binding AceptarNuevoProdctoComando}"/>
+                            Command="{Binding AceptarNuevoProductoComando}"/>
 
-                            <TextBlock Text="¿Está seguro de realizar esta operación?"
+                            <TextBlock Text="¿Está seguro de realizar el pago?"
                             Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
 
                             <Button Margin="218,126,71,37" 

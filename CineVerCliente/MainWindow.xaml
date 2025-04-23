@@ -119,6 +119,10 @@
         <DataTemplate DataType="{x:Type vistaModelo:AgregarProductoDulceriaModeloVista}">
             <vista:AgregarProductoDulceria/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarNuevoProductoDulceriaModeloVista}">
+            <vista:AgregarNuevoProductoDulceria/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>
