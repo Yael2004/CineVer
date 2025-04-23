@@ -109,6 +109,8 @@ namespace CineVerCliente.ModeloVista
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
             MostrarMensajeConfirmarCambiosComando = new ComandoModeloVista(ConfirmarInventario);
+
+            MostrarMensajeServicio();
         }
 
         public void ConfirmarInventario(object obj)
@@ -146,6 +148,18 @@ namespace CineVerCliente.ModeloVista
             MostrarMensajeConfirmarCambio = Visibility.Collapsed;
         }
 
-
+        private void MostrarMensajeServicio()
+        {
+            try
+            {
+                var cliente = new DulceriaServicio.DulceriaServicioClient();
+                var mensaje = cliente.AgregarProductoDulceria();
+                Notificacion.Mostrar(mensaje);
+            }
+            catch (Exception ex)
+            {
+                Notificacion.Mostrar(ex.Message);
+            }
+        }
     }
 }

@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\DulceriaServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarProductoDulceriaModeloVista.cs" />
@@ -161,6 +168,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\DulceriaServicio\DulceriaServicio.wsdl" />
+    <None Include="Connected Services\DulceriaServicio\DulceriaServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DulceriaServicio\DulceriaServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -177,6 +191,27 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Imagenes\Fondos\Fondo_VentaBoletos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DulceriaServicio\DulceriaServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DulceriaServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DulceriaServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\DulceriaServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
