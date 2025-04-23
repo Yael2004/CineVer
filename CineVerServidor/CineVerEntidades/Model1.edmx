@@ -1,0 +1,1478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CineVerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="idActor" />
+          </Key>
+          <Property Name="idActor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreActor" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ActorEnPelicula">
+          <Key>
+            <PropertyRef Name="idActorEnPelicula" />
+          </Key>
+          <Property Name="idPelicula" Type="int" />
+          <Property Name="idActor" Type="int" />
+          <Property Name="idActorEnPelicula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Asiento">
+          <Key>
+            <PropertyRef Name="idAsiento" />
+          </Key>
+          <Property Name="idFila" Type="int" />
+          <Property Name="letraColumna" Type="varchar" MaxLength="1" />
+          <Property Name="idAsiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Boleto">
+          <Key>
+            <PropertyRef Name="idBoleto" />
+          </Key>
+          <Property Name="idBoleto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idFuncion" Type="int" />
+          <Property Name="idAsiento" Type="int" />
+          <Property Name="idVenta" Type="int" />
+        </EntityType>
+        <EntityType Name="CorteCaja">
+          <Key>
+            <PropertyRef Name="idCorteCaja" />
+          </Key>
+          <Property Name="idCorteCaja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="efectivoEsperado" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="efectivoCaja" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="diferenciaEfectivo" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="ventaTotal" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="gastos" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="ganancias" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="inicioDia" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="CuentaFidelidad">
+          <Key>
+            <PropertyRef Name="idCuenta" />
+          </Key>
+          <Property Name="idCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSocio" Type="int" />
+          <Property Name="puntos" Type="decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="60" />
+          <Property Name="nss" Type="varchar" MaxLength="11" />
+          <Property Name="rol" Type="varchar" MaxLength="30" />
+          <Property Name="fechaDeNacimiento" Type="date" />
+          <Property Name="sexo" Type="varchar" MaxLength="1" />
+          <Property Name="numeroTelefono" Type="varchar" MaxLength="13" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="50" />
+          <Property Name="calle" Type="varchar" MaxLength="80" />
+          <Property Name="numeroDeCasa" Type="varchar" MaxLength="10" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="5" />
+          <Property Name="rfc" Type="varchar" MaxLength="13" />
+          <Property Name="matriculaEmpleado" Type="varchar" MaxLength="15" />
+          <Property Name="idSucursal" Type="int" />
+        </EntityType>
+        <EntityType Name="Fila">
+          <Key>
+            <PropertyRef Name="idFila" />
+          </Key>
+          <Property Name="idFila" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="númeroFila" Type="int" />
+          <Property Name="idSala" Type="int" />
+          <Property Name="numeroAsientos" Type="int" />
+        </EntityType>
+        <EntityType Name="Función">
+          <Key>
+            <PropertyRef Name="idFuncion" />
+          </Key>
+          <Property Name="idFuncion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSala" Type="int" />
+          <Property Name="idPelicula" Type="int" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="horaInicio" Type="time" Precision="7" />
+          <Property Name="precioBoleto" Type="decimal" Precision="3" Scale="2" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="idGasto" />
+          </Key>
+          <Property Name="idGasto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="monto" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="motivo" Type="varchar" MaxLength="400" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="idEmpleado" Type="int" />
+        </EntityType>
+        <EntityType Name="Película">
+          <Key>
+            <PropertyRef Name="idPelicula" />
+          </Key>
+          <Property Name="idPelicula" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="genero" Type="varchar" MaxLength="30" />
+          <Property Name="duracion" Type="time" Precision="7" />
+          <Property Name="sinopsis" Type="varchar" MaxLength="500" />
+          <Property Name="director" Type="varchar" MaxLength="80" />
+          <Property Name="idSucursal" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductoDulceria">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="cantidadInventario" Type="int" />
+          <Property Name="costoUnitario" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="precioVenta" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="imagen" Type="varbinary" MaxLength="8000" />
+          <Property Name="idSucursal" Type="int" />
+        </EntityType>
+        <EntityType Name="Promocion">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+          </Key>
+          <Property Name="idPromocion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipo" Type="varchar" MaxLength="30" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="producto" Type="varchar" MaxLength="50" />
+          <Property Name="numeroProductosNecesarios" Type="int" />
+          <Property Name="numeroProductosPagar" Type="int" />
+          <Property Name="lunesAplica" Type="bit" />
+          <Property Name="martesAplica" Type="bit" />
+          <Property Name="miercolesAplica" Type="bit" />
+          <Property Name="juevesAplica" Type="bit" />
+          <Property Name="viernesAplica" Type="bit" />
+          <Property Name="sabadoAplica" Type="bit" />
+          <Property Name="domingoAplica" Type="bit" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="idSala" />
+          </Key>
+          <Property Name="idSala" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numeroFilas" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="30" />
+          <Property Name="descripcion" Type="varchar" MaxLength="400" />
+          <Property Name="estadoSala" Type="varchar" MaxLength="15" />
+          <Property Name="idSucursal" Type="int" />
+        </EntityType>
+        <EntityType Name="Socio">
+          <Key>
+            <PropertyRef Name="idSocio" />
+          </Key>
+          <Property Name="idSocio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="folio" Type="varchar" MaxLength="16" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="60" />
+          <Property Name="fechaNacimiento" Type="date" />
+          <Property Name="Sexo" Type="varchar" MaxLength="1" />
+          <Property Name="numeroTelefono" Type="varchar" MaxLength="13" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="50" />
+          <Property Name="calle" Type="varchar" MaxLength="80" />
+          <Property Name="numeroCasa" Type="varchar" MaxLength="10" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" />
+          <Property Name="estado" Type="varchar" MaxLength="30" />
+          <Property Name="ciudad" Type="varchar" MaxLength="40" />
+          <Property Name="calle" Type="varchar" MaxLength="80" />
+          <Property Name="numeroEnLaCalle" Type="varchar" MaxLength="10" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="5" />
+          <Property Name="horaApertura" Type="time" Precision="7" />
+          <Property Name="horaCierre" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEmpleado" Type="int" />
+          <Property Name="idSocio" Type="int" />
+          <Property Name="idSucursal" Type="int" />
+          <Property Name="total" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="metodoPago" Type="varchar" MaxLength="30" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="tipoVenta" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="VentaEnDulceria">
+          <Key>
+            <PropertyRef Name="idVentaDulceria" />
+          </Key>
+          <Property Name="idVenta" Type="int" />
+          <Property Name="idProductoDulceria" Type="int" />
+          <Property Name="cantidad" Type="int" />
+          <Property Name="idVentaDulceria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ActorEnPelicula_Actor">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="0..1" />
+          <End Role="ActorEnPelicula" Type="Self.ActorEnPelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="idActor" />
+            </Principal>
+            <Dependent Role="ActorEnPelicula">
+              <PropertyRef Name="idActor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActorEnPelicula_Película">
+          <End Role="Película" Type="Self.Película" Multiplicity="0..1" />
+          <End Role="ActorEnPelicula" Type="Self.ActorEnPelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Película">
+              <PropertyRef Name="idPelicula" />
+            </Principal>
+            <Dependent Role="ActorEnPelicula">
+              <PropertyRef Name="idPelicula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asiento_Fila">
+          <End Role="Fila" Type="Self.Fila" Multiplicity="0..1" />
+          <End Role="Asiento" Type="Self.Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fila">
+              <PropertyRef Name="idFila" />
+            </Principal>
+            <Dependent Role="Asiento">
+              <PropertyRef Name="idFila" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Asiento">
+          <End Role="Asiento" Type="Self.Asiento" Multiplicity="0..1" />
+          <End Role="Boleto" Type="Self.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiento">
+              <PropertyRef Name="idAsiento" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idAsiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Función">
+          <End Role="Función" Type="Self.Función" Multiplicity="0..1" />
+          <End Role="Boleto" Type="Self.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Función">
+              <PropertyRef Name="idFuncion" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idFuncion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="Boleto" Type="Self.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CorteCaja_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="CorteCaja" Type="Self.CorteCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="CorteCaja">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentaFidelidad_Socio">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="0..1" />
+          <End Role="CuentaFidelidad" Type="Self.CuentaFidelidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="idSocio" />
+            </Principal>
+            <Dependent Role="CuentaFidelidad">
+              <PropertyRef Name="idSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fila_Sala">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Fila" Type="Self.Fila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="idSala" />
+            </Principal>
+            <Dependent Role="Fila">
+              <PropertyRef Name="idSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Función_Película">
+          <End Role="Película" Type="Self.Película" Multiplicity="0..1" />
+          <End Role="Función" Type="Self.Función" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Película">
+              <PropertyRef Name="idPelicula" />
+            </Principal>
+            <Dependent Role="Función">
+              <PropertyRef Name="idPelicula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Función_Sala">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Función" Type="Self.Función" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="idSala" />
+            </Principal>
+            <Dependent Role="Función">
+              <PropertyRef Name="idSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Película_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Película" Type="Self.Película" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Película">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductoDulceria_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="ProductoDulceria" Type="Self.ProductoDulceria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="ProductoDulceria">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promocion_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Promocion" Type="Self.Promocion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Promocion">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sala_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Socio">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="idSocio" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentaEnDulceria_ProductoDulceria">
+          <End Role="ProductoDulceria" Type="Self.ProductoDulceria" Multiplicity="0..1" />
+          <End Role="VentaEnDulceria" Type="Self.VentaEnDulceria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductoDulceria">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="VentaEnDulceria">
+              <PropertyRef Name="idProductoDulceria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CineVerModelStoreContainer">
+          <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActorEnPelicula" EntityType="Self.ActorEnPelicula" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asiento" EntityType="Self.Asiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Boleto" EntityType="Self.Boleto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CorteCaja" EntityType="Self.CorteCaja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentaFidelidad" EntityType="Self.CuentaFidelidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fila" EntityType="Self.Fila" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Función" EntityType="Self.Función" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gasto" EntityType="Self.Gasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Película" EntityType="Self.Película" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductoDulceria" EntityType="Self.ProductoDulceria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promocion" EntityType="Self.Promocion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Socio" EntityType="Self.Socio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VentaEnDulceria" EntityType="Self.VentaEnDulceria" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActorEnPelicula_Actor" Association="Self.FK_ActorEnPelicula_Actor">
+            <End Role="Actor" EntitySet="Actor" />
+            <End Role="ActorEnPelicula" EntitySet="ActorEnPelicula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActorEnPelicula_Película" Association="Self.FK_ActorEnPelicula_Película">
+            <End Role="Película" EntitySet="Película" />
+            <End Role="ActorEnPelicula" EntitySet="ActorEnPelicula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asiento_Fila" Association="Self.FK_Asiento_Fila">
+            <End Role="Fila" EntitySet="Fila" />
+            <End Role="Asiento" EntitySet="Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Asiento" Association="Self.FK_Boleto_Asiento">
+            <End Role="Asiento" EntitySet="Asiento" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Función" Association="Self.FK_Boleto_Función">
+            <End Role="Función" EntitySet="Función" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Venta" Association="Self.FK_Boleto_Venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CorteCaja_Sucursal" Association="Self.FK_CorteCaja_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="CorteCaja" EntitySet="CorteCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentaFidelidad_Socio" Association="Self.FK_CuentaFidelidad_Socio">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="CuentaFidelidad" EntitySet="CuentaFidelidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Sucursal" Association="Self.FK_Empleado_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fila_Sala" Association="Self.FK_Fila_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Fila" EntitySet="Fila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Función_Película" Association="Self.FK_Función_Película">
+            <End Role="Película" EntitySet="Película" />
+            <End Role="Función" EntitySet="Función" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Función_Sala" Association="Self.FK_Función_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Función" EntitySet="Función" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Empleado" Association="Self.FK_Gasto_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Sucursal" Association="Self.FK_Gasto_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Película_Sucursal" Association="Self.FK_Película_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Película" EntitySet="Película" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductoDulceria_Sucursal" Association="Self.FK_ProductoDulceria_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="ProductoDulceria" EntitySet="ProductoDulceria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promocion_Sucursal" Association="Self.FK_Promocion_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Promocion" EntitySet="Promocion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sala_Sucursal" Association="Self.FK_Sala_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Empleado" Association="Self.FK_Venta_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Socio" Association="Self.FK_Venta_Socio">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Sucursal" Association="Self.FK_Venta_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentaEnDulceria_ProductoDulceria" Association="Self.FK_VentaEnDulceria_ProductoDulceria">
+            <End Role="ProductoDulceria" EntitySet="ProductoDulceria" />
+            <End Role="VentaEnDulceria" EntitySet="VentaEnDulceria" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CineVerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="idActor" />
+          </Key>
+          <Property Name="idActor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreActor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ActorEnPelicula" Relationship="Self.FK_ActorEnPelicula_Actor" FromRole="Actor" ToRole="ActorEnPelicula" />
+        </EntityType>
+        <EntityType Name="ActorEnPelicula">
+          <Key>
+            <PropertyRef Name="idActorEnPelicula" />
+          </Key>
+          <Property Name="idPelicula" Type="Int32" />
+          <Property Name="idActor" Type="Int32" />
+          <Property Name="idActorEnPelicula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Actor" Relationship="Self.FK_ActorEnPelicula_Actor" FromRole="ActorEnPelicula" ToRole="Actor" />
+          <NavigationProperty Name="Película" Relationship="Self.FK_ActorEnPelicula_Película" FromRole="ActorEnPelicula" ToRole="Película" />
+        </EntityType>
+        <EntityType Name="Asiento">
+          <Key>
+            <PropertyRef Name="idAsiento" />
+          </Key>
+          <Property Name="idFila" Type="Int32" />
+          <Property Name="letraColumna" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="idAsiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Fila" Relationship="Self.FK_Asiento_Fila" FromRole="Asiento" ToRole="Fila" />
+          <NavigationProperty Name="Boleto" Relationship="Self.FK_Boleto_Asiento" FromRole="Asiento" ToRole="Boleto" />
+        </EntityType>
+        <EntityType Name="Boleto">
+          <Key>
+            <PropertyRef Name="idBoleto" />
+          </Key>
+          <Property Name="idBoleto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idFuncion" Type="Int32" />
+          <Property Name="idAsiento" Type="Int32" />
+          <Property Name="idVenta" Type="Int32" />
+          <NavigationProperty Name="Asiento" Relationship="Self.FK_Boleto_Asiento" FromRole="Boleto" ToRole="Asiento" />
+          <NavigationProperty Name="Función" Relationship="Self.FK_Boleto_Función" FromRole="Boleto" ToRole="Función" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Boleto_Venta" FromRole="Boleto" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="CorteCaja">
+          <Key>
+            <PropertyRef Name="idCorteCaja" />
+          </Key>
+          <Property Name="idCorteCaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="efectivoEsperado" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="efectivoCaja" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="diferenciaEfectivo" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="ventaTotal" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="gastos" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="ganancias" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="inicioDia" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_CorteCaja_Sucursal" FromRole="CorteCaja" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="CuentaFidelidad">
+          <Key>
+            <PropertyRef Name="idCuenta" />
+          </Key>
+          <Property Name="idCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSocio" Type="Int32" />
+          <Property Name="puntos" Type="Decimal" Precision="4" Scale="2" />
+          <NavigationProperty Name="Socio" Relationship="Self.FK_CuentaFidelidad_Socio" FromRole="CuentaFidelidad" ToRole="Socio" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="idEmpleado" />
+          </Key>
+          <Property Name="idEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="nss" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="rol" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fechaDeNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="numeroTelefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="numeroDeCasa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="matriculaEmpleado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="idSucursal" Type="Int32" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Empleado_Sucursal" FromRole="Empleado" ToRole="Sucursal" />
+          <NavigationProperty Name="Gasto" Relationship="Self.FK_Gasto_Empleado" FromRole="Empleado" ToRole="Gasto" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Empleado" FromRole="Empleado" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Fila">
+          <Key>
+            <PropertyRef Name="idFila" />
+          </Key>
+          <Property Name="idFila" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="númeroFila" Type="Int32" />
+          <Property Name="idSala" Type="Int32" />
+          <Property Name="numeroAsientos" Type="Int32" />
+          <NavigationProperty Name="Asiento" Relationship="Self.FK_Asiento_Fila" FromRole="Fila" ToRole="Asiento" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK_Fila_Sala" FromRole="Fila" ToRole="Sala" />
+        </EntityType>
+        <EntityType Name="Función">
+          <Key>
+            <PropertyRef Name="idFuncion" />
+          </Key>
+          <Property Name="idFuncion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSala" Type="Int32" />
+          <Property Name="idPelicula" Type="Int32" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="horaInicio" Type="Time" Precision="7" />
+          <Property Name="precioBoleto" Type="Decimal" Precision="3" Scale="2" />
+          <NavigationProperty Name="Boleto" Relationship="Self.FK_Boleto_Función" FromRole="Función" ToRole="Boleto" />
+          <NavigationProperty Name="Película" Relationship="Self.FK_Función_Película" FromRole="Función" ToRole="Película" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK_Función_Sala" FromRole="Función" ToRole="Sala" />
+        </EntityType>
+        <EntityType Name="Gasto">
+          <Key>
+            <PropertyRef Name="idGasto" />
+          </Key>
+          <Property Name="idGasto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="monto" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="motivo" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Gasto_Empleado" FromRole="Gasto" ToRole="Empleado" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Gasto_Sucursal" FromRole="Gasto" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="Película">
+          <Key>
+            <PropertyRef Name="idPelicula" />
+          </Key>
+          <Property Name="idPelicula" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="genero" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="duracion" Type="Time" Precision="7" />
+          <Property Name="sinopsis" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="director" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="idSucursal" Type="Int32" />
+          <NavigationProperty Name="ActorEnPelicula" Relationship="Self.FK_ActorEnPelicula_Película" FromRole="Película" ToRole="ActorEnPelicula" />
+          <NavigationProperty Name="Función" Relationship="Self.FK_Función_Película" FromRole="Película" ToRole="Función" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Película_Sucursal" FromRole="Película" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="ProductoDulceria">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidadInventario" Type="Int32" />
+          <Property Name="costoUnitario" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="precioVenta" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="false" />
+          <Property Name="idSucursal" Type="Int32" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_ProductoDulceria_Sucursal" FromRole="ProductoDulceria" ToRole="Sucursal" />
+          <NavigationProperty Name="VentaEnDulceria" Relationship="Self.FK_VentaEnDulceria_ProductoDulceria" FromRole="ProductoDulceria" ToRole="VentaEnDulceria" />
+        </EntityType>
+        <EntityType Name="Promocion">
+          <Key>
+            <PropertyRef Name="idPromocion" />
+          </Key>
+          <Property Name="idPromocion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numeroProductosNecesarios" Type="Int32" />
+          <Property Name="numeroProductosPagar" Type="Int32" />
+          <Property Name="lunesAplica" Type="Boolean" />
+          <Property Name="martesAplica" Type="Boolean" />
+          <Property Name="miercolesAplica" Type="Boolean" />
+          <Property Name="juevesAplica" Type="Boolean" />
+          <Property Name="viernesAplica" Type="Boolean" />
+          <Property Name="sabadoAplica" Type="Boolean" />
+          <Property Name="domingoAplica" Type="Boolean" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Promocion_Sucursal" FromRole="Promocion" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="idSala" />
+          </Key>
+          <Property Name="idSala" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numeroFilas" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="estadoSala" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="idSucursal" Type="Int32" />
+          <NavigationProperty Name="Fila" Relationship="Self.FK_Fila_Sala" FromRole="Sala" ToRole="Fila" />
+          <NavigationProperty Name="Función" Relationship="Self.FK_Función_Sala" FromRole="Sala" ToRole="Función" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Sala_Sucursal" FromRole="Sala" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="Socio">
+          <Key>
+            <PropertyRef Name="idSocio" />
+          </Key>
+          <Property Name="idSocio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="folio" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="numeroTelefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="numeroCasa" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CuentaFidelidad" Relationship="Self.FK_CuentaFidelidad_Socio" FromRole="Socio" ToRole="CuentaFidelidad" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Socio" FromRole="Socio" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Sucursal">
+          <Key>
+            <PropertyRef Name="idSucursal" />
+          </Key>
+          <Property Name="idSucursal" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ciudad" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="numeroEnLaCalle" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="horaApertura" Type="Time" Precision="7" />
+          <Property Name="horaCierre" Type="Time" Precision="7" />
+          <NavigationProperty Name="CorteCaja" Relationship="Self.FK_CorteCaja_Sucursal" FromRole="Sucursal" ToRole="CorteCaja" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Empleado_Sucursal" FromRole="Sucursal" ToRole="Empleado" />
+          <NavigationProperty Name="Gasto" Relationship="Self.FK_Gasto_Sucursal" FromRole="Sucursal" ToRole="Gasto" />
+          <NavigationProperty Name="Película" Relationship="Self.FK_Película_Sucursal" FromRole="Sucursal" ToRole="Película" />
+          <NavigationProperty Name="ProductoDulceria" Relationship="Self.FK_ProductoDulceria_Sucursal" FromRole="Sucursal" ToRole="ProductoDulceria" />
+          <NavigationProperty Name="Promocion" Relationship="Self.FK_Promocion_Sucursal" FromRole="Sucursal" ToRole="Promocion" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK_Sala_Sucursal" FromRole="Sucursal" ToRole="Sala" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Sucursal" FromRole="Sucursal" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="idVenta" />
+          </Key>
+          <Property Name="idVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEmpleado" Type="Int32" />
+          <Property Name="idSocio" Type="Int32" />
+          <Property Name="idSucursal" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="metodoPago" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="tipoVenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Boleto" Relationship="Self.FK_Boleto_Venta" FromRole="Venta" ToRole="Boleto" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Venta_Empleado" FromRole="Venta" ToRole="Empleado" />
+          <NavigationProperty Name="Socio" Relationship="Self.FK_Venta_Socio" FromRole="Venta" ToRole="Socio" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_Venta_Sucursal" FromRole="Venta" ToRole="Sucursal" />
+        </EntityType>
+        <EntityType Name="VentaEnDulceria">
+          <Key>
+            <PropertyRef Name="idVentaDulceria" />
+          </Key>
+          <Property Name="idVenta" Type="Int32" />
+          <Property Name="idProductoDulceria" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
+          <Property Name="idVentaDulceria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ProductoDulceria" Relationship="Self.FK_VentaEnDulceria_ProductoDulceria" FromRole="VentaEnDulceria" ToRole="ProductoDulceria" />
+        </EntityType>
+        <Association Name="FK_ActorEnPelicula_Actor">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="0..1" />
+          <End Role="ActorEnPelicula" Type="Self.ActorEnPelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="idActor" />
+            </Principal>
+            <Dependent Role="ActorEnPelicula">
+              <PropertyRef Name="idActor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActorEnPelicula_Película">
+          <End Role="Película" Type="Self.Película" Multiplicity="0..1" />
+          <End Role="ActorEnPelicula" Type="Self.ActorEnPelicula" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Película">
+              <PropertyRef Name="idPelicula" />
+            </Principal>
+            <Dependent Role="ActorEnPelicula">
+              <PropertyRef Name="idPelicula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asiento_Fila">
+          <End Role="Fila" Type="Self.Fila" Multiplicity="0..1" />
+          <End Role="Asiento" Type="Self.Asiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fila">
+              <PropertyRef Name="idFila" />
+            </Principal>
+            <Dependent Role="Asiento">
+              <PropertyRef Name="idFila" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Asiento">
+          <End Role="Asiento" Type="Self.Asiento" Multiplicity="0..1" />
+          <End Role="Boleto" Type="Self.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiento">
+              <PropertyRef Name="idAsiento" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idAsiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Función">
+          <End Role="Función" Type="Self.Función" Multiplicity="0..1" />
+          <End Role="Boleto" Type="Self.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Función">
+              <PropertyRef Name="idFuncion" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idFuncion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Boleto_Venta">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="Boleto" Type="Self.Boleto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="idVenta" />
+            </Principal>
+            <Dependent Role="Boleto">
+              <PropertyRef Name="idVenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CorteCaja_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="CorteCaja" Type="Self.CorteCaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="CorteCaja">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentaFidelidad_Socio">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="0..1" />
+          <End Role="CuentaFidelidad" Type="Self.CuentaFidelidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="idSocio" />
+            </Principal>
+            <Dependent Role="CuentaFidelidad">
+              <PropertyRef Name="idSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleado_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="idEmpleado" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fila_Sala">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Fila" Type="Self.Fila" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="idSala" />
+            </Principal>
+            <Dependent Role="Fila">
+              <PropertyRef Name="idSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Función_Película">
+          <End Role="Película" Type="Self.Película" Multiplicity="0..1" />
+          <End Role="Función" Type="Self.Función" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Película">
+              <PropertyRef Name="idPelicula" />
+            </Principal>
+            <Dependent Role="Función">
+              <PropertyRef Name="idPelicula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Función_Sala">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Función" Type="Self.Función" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="idSala" />
+            </Principal>
+            <Dependent Role="Función">
+              <PropertyRef Name="idSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gasto_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Gasto" Type="Self.Gasto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Gasto">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Película_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Película" Type="Self.Película" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Película">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductoDulceria_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="ProductoDulceria" Type="Self.ProductoDulceria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="ProductoDulceria">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VentaEnDulceria_ProductoDulceria">
+          <End Role="ProductoDulceria" Type="Self.ProductoDulceria" Multiplicity="0..1" />
+          <End Role="VentaEnDulceria" Type="Self.VentaEnDulceria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductoDulceria">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="VentaEnDulceria">
+              <PropertyRef Name="idProductoDulceria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promocion_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Promocion" Type="Self.Promocion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Promocion">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sala_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Sala">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Socio">
+          <End Role="Socio" Type="Self.Socio" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Socio">
+              <PropertyRef Name="idSocio" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idSocio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Venta_Sucursal">
+          <End Role="Sucursal" Type="Self.Sucursal" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursal">
+              <PropertyRef Name="idSucursal" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="idSucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CineVerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actor" EntityType="Self.Actor" />
+          <EntitySet Name="ActorEnPelicula" EntityType="Self.ActorEnPelicula" />
+          <EntitySet Name="Asiento" EntityType="Self.Asiento" />
+          <EntitySet Name="Boleto" EntityType="Self.Boleto" />
+          <EntitySet Name="CorteCaja" EntityType="Self.CorteCaja" />
+          <EntitySet Name="CuentaFidelidad" EntityType="Self.CuentaFidelidad" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Fila" EntityType="Self.Fila" />
+          <EntitySet Name="Función" EntityType="Self.Función" />
+          <EntitySet Name="Gasto" EntityType="Self.Gasto" />
+          <EntitySet Name="Película" EntityType="Self.Película" />
+          <EntitySet Name="ProductoDulceria" EntityType="Self.ProductoDulceria" />
+          <EntitySet Name="Promocion" EntityType="Self.Promocion" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" />
+          <EntitySet Name="Socio" EntityType="Self.Socio" />
+          <EntitySet Name="Sucursal" EntityType="Self.Sucursal" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <EntitySet Name="VentaEnDulceria" EntityType="Self.VentaEnDulceria" />
+          <AssociationSet Name="FK_ActorEnPelicula_Actor" Association="Self.FK_ActorEnPelicula_Actor">
+            <End Role="Actor" EntitySet="Actor" />
+            <End Role="ActorEnPelicula" EntitySet="ActorEnPelicula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActorEnPelicula_Película" Association="Self.FK_ActorEnPelicula_Película">
+            <End Role="Película" EntitySet="Película" />
+            <End Role="ActorEnPelicula" EntitySet="ActorEnPelicula" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asiento_Fila" Association="Self.FK_Asiento_Fila">
+            <End Role="Fila" EntitySet="Fila" />
+            <End Role="Asiento" EntitySet="Asiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Asiento" Association="Self.FK_Boleto_Asiento">
+            <End Role="Asiento" EntitySet="Asiento" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Función" Association="Self.FK_Boleto_Función">
+            <End Role="Función" EntitySet="Función" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Boleto_Venta" Association="Self.FK_Boleto_Venta">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="Boleto" EntitySet="Boleto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CorteCaja_Sucursal" Association="Self.FK_CorteCaja_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="CorteCaja" EntitySet="CorteCaja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentaFidelidad_Socio" Association="Self.FK_CuentaFidelidad_Socio">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="CuentaFidelidad" EntitySet="CuentaFidelidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleado_Sucursal" Association="Self.FK_Empleado_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Empleado" Association="Self.FK_Gasto_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Empleado" Association="Self.FK_Venta_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fila_Sala" Association="Self.FK_Fila_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Fila" EntitySet="Fila" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Función_Película" Association="Self.FK_Función_Película">
+            <End Role="Película" EntitySet="Película" />
+            <End Role="Función" EntitySet="Función" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Función_Sala" Association="Self.FK_Función_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Función" EntitySet="Función" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gasto_Sucursal" Association="Self.FK_Gasto_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Gasto" EntitySet="Gasto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Película_Sucursal" Association="Self.FK_Película_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Película" EntitySet="Película" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductoDulceria_Sucursal" Association="Self.FK_ProductoDulceria_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="ProductoDulceria" EntitySet="ProductoDulceria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VentaEnDulceria_ProductoDulceria" Association="Self.FK_VentaEnDulceria_ProductoDulceria">
+            <End Role="ProductoDulceria" EntitySet="ProductoDulceria" />
+            <End Role="VentaEnDulceria" EntitySet="VentaEnDulceria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promocion_Sucursal" Association="Self.FK_Promocion_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Promocion" EntitySet="Promocion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sala_Sucursal" Association="Self.FK_Sala_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Socio" Association="Self.FK_Venta_Socio">
+            <End Role="Socio" EntitySet="Socio" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Venta_Sucursal" Association="Self.FK_Venta_Sucursal">
+            <End Role="Sucursal" EntitySet="Sucursal" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CineVerModelStoreContainer" CdmEntityContainer="CineVerEntities">
+          <EntitySetMapping Name="Actor">
+            <EntityTypeMapping TypeName="CineVerModel.Actor">
+              <MappingFragment StoreEntitySet="Actor">
+                <ScalarProperty Name="idActor" ColumnName="idActor" />
+                <ScalarProperty Name="nombreActor" ColumnName="nombreActor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActorEnPelicula">
+            <EntityTypeMapping TypeName="CineVerModel.ActorEnPelicula">
+              <MappingFragment StoreEntitySet="ActorEnPelicula">
+                <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
+                <ScalarProperty Name="idActor" ColumnName="idActor" />
+                <ScalarProperty Name="idActorEnPelicula" ColumnName="idActorEnPelicula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asiento">
+            <EntityTypeMapping TypeName="CineVerModel.Asiento">
+              <MappingFragment StoreEntitySet="Asiento">
+                <ScalarProperty Name="idFila" ColumnName="idFila" />
+                <ScalarProperty Name="letraColumna" ColumnName="letraColumna" />
+                <ScalarProperty Name="idAsiento" ColumnName="idAsiento" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Boleto">
+            <EntityTypeMapping TypeName="CineVerModel.Boleto">
+              <MappingFragment StoreEntitySet="Boleto">
+                <ScalarProperty Name="idBoleto" ColumnName="idBoleto" />
+                <ScalarProperty Name="idFuncion" ColumnName="idFuncion" />
+                <ScalarProperty Name="idAsiento" ColumnName="idAsiento" />
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CorteCaja">
+            <EntityTypeMapping TypeName="CineVerModel.CorteCaja">
+              <MappingFragment StoreEntitySet="CorteCaja">
+                <ScalarProperty Name="idCorteCaja" ColumnName="idCorteCaja" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="efectivoEsperado" ColumnName="efectivoEsperado" />
+                <ScalarProperty Name="efectivoCaja" ColumnName="efectivoCaja" />
+                <ScalarProperty Name="diferenciaEfectivo" ColumnName="diferenciaEfectivo" />
+                <ScalarProperty Name="ventaTotal" ColumnName="ventaTotal" />
+                <ScalarProperty Name="gastos" ColumnName="gastos" />
+                <ScalarProperty Name="ganancias" ColumnName="ganancias" />
+                <ScalarProperty Name="inicioDia" ColumnName="inicioDia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentaFidelidad">
+            <EntityTypeMapping TypeName="CineVerModel.CuentaFidelidad">
+              <MappingFragment StoreEntitySet="CuentaFidelidad">
+                <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="puntos" ColumnName="puntos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="CineVerModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nss" ColumnName="nss" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="fechaDeNacimiento" ColumnName="fechaDeNacimiento" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="numeroTelefono" ColumnName="numeroTelefono" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numeroDeCasa" ColumnName="numeroDeCasa" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="matriculaEmpleado" ColumnName="matriculaEmpleado" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fila">
+            <EntityTypeMapping TypeName="CineVerModel.Fila">
+              <MappingFragment StoreEntitySet="Fila">
+                <ScalarProperty Name="idFila" ColumnName="idFila" />
+                <ScalarProperty Name="númeroFila" ColumnName="númeroFila" />
+                <ScalarProperty Name="idSala" ColumnName="idSala" />
+                <ScalarProperty Name="numeroAsientos" ColumnName="numeroAsientos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Función">
+            <EntityTypeMapping TypeName="CineVerModel.Función">
+              <MappingFragment StoreEntitySet="Función">
+                <ScalarProperty Name="idFuncion" ColumnName="idFuncion" />
+                <ScalarProperty Name="idSala" ColumnName="idSala" />
+                <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+                <ScalarProperty Name="precioBoleto" ColumnName="precioBoleto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gasto">
+            <EntityTypeMapping TypeName="CineVerModel.Gasto">
+              <MappingFragment StoreEntitySet="Gasto">
+                <ScalarProperty Name="idGasto" ColumnName="idGasto" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="motivo" ColumnName="motivo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Película">
+            <EntityTypeMapping TypeName="CineVerModel.Película">
+              <MappingFragment StoreEntitySet="Película">
+                <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
+                <ScalarProperty Name="sinopsis" ColumnName="sinopsis" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductoDulceria">
+            <EntityTypeMapping TypeName="CineVerModel.ProductoDulceria">
+              <MappingFragment StoreEntitySet="ProductoDulceria">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cantidadInventario" ColumnName="cantidadInventario" />
+                <ScalarProperty Name="costoUnitario" ColumnName="costoUnitario" />
+                <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promocion">
+            <EntityTypeMapping TypeName="CineVerModel.Promocion">
+              <MappingFragment StoreEntitySet="Promocion">
+                <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="producto" ColumnName="producto" />
+                <ScalarProperty Name="numeroProductosNecesarios" ColumnName="numeroProductosNecesarios" />
+                <ScalarProperty Name="numeroProductosPagar" ColumnName="numeroProductosPagar" />
+                <ScalarProperty Name="lunesAplica" ColumnName="lunesAplica" />
+                <ScalarProperty Name="martesAplica" ColumnName="martesAplica" />
+                <ScalarProperty Name="miercolesAplica" ColumnName="miercolesAplica" />
+                <ScalarProperty Name="juevesAplica" ColumnName="juevesAplica" />
+                <ScalarProperty Name="viernesAplica" ColumnName="viernesAplica" />
+                <ScalarProperty Name="sabadoAplica" ColumnName="sabadoAplica" />
+                <ScalarProperty Name="domingoAplica" ColumnName="domingoAplica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sala">
+            <EntityTypeMapping TypeName="CineVerModel.Sala">
+              <MappingFragment StoreEntitySet="Sala">
+                <ScalarProperty Name="idSala" ColumnName="idSala" />
+                <ScalarProperty Name="numeroFilas" ColumnName="numeroFilas" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estadoSala" ColumnName="estadoSala" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Socio">
+            <EntityTypeMapping TypeName="CineVerModel.Socio">
+              <MappingFragment StoreEntitySet="Socio">
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="folio" ColumnName="folio" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="numeroTelefono" ColumnName="numeroTelefono" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numeroCasa" ColumnName="numeroCasa" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sucursal">
+            <EntityTypeMapping TypeName="CineVerModel.Sucursal">
+              <MappingFragment StoreEntitySet="Sucursal">
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numeroEnLaCalle" ColumnName="numeroEnLaCalle" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="horaApertura" ColumnName="horaApertura" />
+                <ScalarProperty Name="horaCierre" ColumnName="horaCierre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="CineVerModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+                <ScalarProperty Name="idSocio" ColumnName="idSocio" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="metodoPago" ColumnName="metodoPago" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="tipoVenta" ColumnName="tipoVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VentaEnDulceria">
+            <EntityTypeMapping TypeName="CineVerModel.VentaEnDulceria">
+              <MappingFragment StoreEntitySet="VentaEnDulceria">
+                <ScalarProperty Name="idVenta" ColumnName="idVenta" />
+                <ScalarProperty Name="idProductoDulceria" ColumnName="idProductoDulceria" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idVentaDulceria" ColumnName="idVentaDulceria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
