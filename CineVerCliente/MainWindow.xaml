@@ -128,6 +128,14 @@
         <DataTemplate DataType="{x:Type vistaModelo:RealizarCorteCajaModeloVista}">
             <vista:RealizarCorteCaja/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarProductoDulceriaModeloVista}">
+            <vista:AgregarProductoDulceria/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarSucursalesModeloVista}">
+            <vista:ConsultarSucursales/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

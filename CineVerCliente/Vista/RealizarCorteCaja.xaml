@@ -134,8 +134,7 @@
                          Width="600"
                          Height="501"
                          HorizontalAlignment="Center"
-                         VerticalAlignment="Top"
-                         Margin="0,99,0,0">
+                         VerticalAlignment="Bottom">
 
                     </Rectangle>
 

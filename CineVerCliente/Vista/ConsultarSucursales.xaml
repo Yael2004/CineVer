@@ -1,0 +1,88 @@
+﻿<UserControl x:Class="CineVerCliente.Vista.ConsultarSucursales"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CineVerCliente.Vista"
+             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista"
+             d:DataContext="{d:DesignInstance Type=vistaModelo:ConsultarSucursalesModeloVista}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid>
+        <Viewbox Stretch="Fill">
+            <Grid Width="1000" Height="600">
+                <Grid Background="{StaticResource Blanco}"/>
+                <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,106"/>
+
+                <Grid Background="{StaticResource Negro}"
+                        Height="501"
+                        Width="600"
+                        VerticalAlignment="Bottom">
+
+                    <Label Content="Gestionar sucursales"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" 
+                            Margin="210,10,0,450"/>
+
+                    <ListBox Grid.Row="0" ItemsSource="{Binding Sucursales}" 
+                                 Background="Transparent" Margin="0,81,0,57">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Label Content="{Binding Nombre}" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+
+                                    <Border BorderBrush="White" BorderThickness="2" Margin="20">
+                                        <Grid>
+                                            <Label Content="{Binding Estado}" Foreground="White"/>
+                                            <Label Content="{Binding Ciudad}" Foreground="White" Margin="0,20,0,0"/>
+                                            <Label Content="{Binding CodigoPostal}" Foreground="White" Margin="0,40,0,0"/>
+                                        </Grid>
+                                    </Border>
+
+                                    <Button Content="Editar"
+                                            Background="Transparent"
+                                            VerticalAlignment="Center" HorizontalAlignment="Right"
+                                            Command="{Binding DataContext.EditarSucursalComando, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"/>
+
+                                    <Button Content="Eliminar"
+                                            Background="Transparent"
+                                            VerticalAlignment="Center" HorizontalAlignment="Right"
+                                            Command="{Binding DataContext.EliminarSucursalComando, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListBox>
+
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" 
+                          Height="200" Width="400" 
+                          Visibility="{Binding MostrarMensajeConfirmacion}"
+                          Style="{StaticResource GridAmarillo}">
+
+                        <Button Margin="74,153,215,10" 
+                                Content="Aceptar"
+                                Style="{StaticResource BotonConfirmarBlanco}"
+                                Command="{Binding AceptarComando}"/>
+
+                        <TextBlock Text="¿Está seguro de cerrar esta sucursal? La acción no se podrá revertir"
+                                   Style="{StaticResource TextoMensajes}" 
+                                   Height="64" Width="400" 
+                                   Margin="0,36,0,0" 
+                                   VerticalAlignment="Top"/>
+
+                        <Button Margin="218,153,71,10" 
+                                Content="Cancelar"
+                                Style="{StaticResource BotonNegro}"
+                                Command="{Binding CancelarComando}"/>
+                    </Grid>
+
+                    <Button Content="Agregar sucursal"
+                            Style="{StaticResource BotonConfirmarAmarillo}"
+                            Command="{Binding AgregarSucursalComando}" Margin="213,456,213,10"/>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

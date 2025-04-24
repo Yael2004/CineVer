@@ -32,7 +32,7 @@ namespace CineVerCliente.ModeloVista
         public MainWindowModeloVista()
         {
             _mainWindowModeloVista = this;
-            SucursalComando = new ComandoModeloVista(EditarSucursal);
+            SucursalComando = new ComandoModeloVista(Sucursales);
             EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
             AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);
             CorteCaja = new ComandoModeloVista(RealizarCorteCaja);
@@ -41,6 +41,11 @@ namespace CineVerCliente.ModeloVista
         public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
         {
             VistaActualModelo = nuevoModeloVista;
+        }
+
+        public void Sucursales(object obj)
+        {
+            CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
         }
 
         private void AgregarSucursal(object obj)
