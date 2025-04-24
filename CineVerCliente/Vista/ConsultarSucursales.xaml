@@ -25,33 +25,56 @@
                             Foreground="White" 
                             Margin="210,10,0,450"/>
 
-                    <ListBox Grid.Row="0" ItemsSource="{Binding Sucursales}" 
-                                 Background="Transparent" Margin="0,81,0,57">
+                    <ListBox ItemsSource="{Binding Sucursales}" 
+                             Background="Transparent" Margin="0,81,0,57"
+                             HorizontalAlignment="Center"
+                             BorderThickness="0"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Label Content="{Binding Nombre}" FontSize="16" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="10" Margin="10" Padding="10" Background="#222">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
 
-                                    <Border BorderBrush="White" BorderThickness="2" Margin="20">
-                                        <Grid>
-                                            <Label Content="{Binding Estado}" Foreground="White"/>
-                                            <Label Content="{Binding Ciudad}" Foreground="White" Margin="0,20,0,0"/>
-                                            <Label Content="{Binding CodigoPostal}" Foreground="White" Margin="0,40,0,0"/>
-                                        </Grid>
-                                    </Border>
+                                        <Image Source="ruta/de/tu/icono.png" Width="40" Height="40" Margin="10" Grid.Column="0"/>
 
-                                    <Button Content="Editar"
-                                            Background="Transparent"
-                                            VerticalAlignment="Center" HorizontalAlignment="Right"
-                                            Command="{Binding DataContext.EditarSucursalComando, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            CommandParameter="{Binding}"/>
+                                        <TextBlock Text="{Binding Nombre}" 
+                                                   FontSize="16" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="White"
+                                                   Grid.Column="0"
+                                                   VerticalAlignment="Center"/>
+                                        
+                                        <StackPanel Grid.Column="1" Margin="20,0" VerticalAlignment="Center">
+                                            <TextBlock Text="Estado: {Binding Estado}" Foreground="White"/>
+                                            <TextBlock Text="Ciudad: {Binding Ciudad}" Foreground="White"/>
+                                            <TextBlock Text="CP: {Binding CodigoPostal}" Foreground="White"/>
+                                        </StackPanel>
 
-                                    <Button Content="Eliminar"
-                                            Background="Transparent"
-                                            VerticalAlignment="Center" HorizontalAlignment="Right"
-                                            Command="{Binding DataContext.EliminarSucursalComando, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            CommandParameter="{Binding}"/>
-                                </StackPanel>
+                                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                            <Button Width="30" Height="30" Margin="5"
+                                                    Command="{Binding DataContext.EditarSucursalComando, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    BorderThickness="0"
+                                                    Style="{StaticResource BotonPlano}">
+
+                                                <Image Source="{StaticResource Icono_Editar}"/>
+                                            </Button>
+
+                                            <Button Width="30" Height="30" Margin="5"
+                                                    Command="{Binding DataContext.EliminarSucursalComando, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    BorderThickness="0"
+                                                    Style="{StaticResource BotonPlano}">
+                                                <Image Source="{StaticResource Icono_Eliminar}"/>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ListBox>

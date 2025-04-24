@@ -21,6 +21,12 @@
                 ImageSource="/Assets/Imagenes/Fondos/Fondo_CorteCaja.png"
                 Stretch="UniformToFill"/>
 
+    <BitmapImage x:Key="Icono_Editar"
+                UriSource="pack://application:,,,/Assets/Imagenes/Iconos/Icono_Editar.png"/>
+
+    <BitmapImage x:Key="Icono_Eliminar"
+                UriSource="pack://application:,,,/Assets/Imagenes/Iconos/Icono_Eliminar.png"/>
+
     <Style x:Key="TextoMensajes" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="20"/>
@@ -273,6 +279,32 @@
         <Setter Property="Background" Value="{StaticResource Amarillo}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <Style x:Key="BotonPlano" TargetType="Button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Effect">
+                    <Setter.Value>
+                        <DropShadowEffect Color="White" BlurRadius="5" ShadowDepth="0" Opacity="0.2"/>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
 

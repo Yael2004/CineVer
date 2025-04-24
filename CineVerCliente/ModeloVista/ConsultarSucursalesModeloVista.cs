@@ -44,7 +44,10 @@ namespace CineVerCliente.ModeloVista
             {
                 new SucursalConsultada { Nombre = "Sucursal 1", Estado = "Estado 1", Ciudad = "Ciudad 1", CodigoPostal = "12345" },
                 new SucursalConsultada { Nombre = "Sucursal 2", Estado = "Estado 2", Ciudad = "Ciudad 2", CodigoPostal = "67890" },
-                new SucursalConsultada { Nombre = "Sucursal 3", Estado = "Estado 3", Ciudad = "Ciudad 3", CodigoPostal = "54321" }
+                new SucursalConsultada { Nombre = "Sucursal 3", Estado = "Estado 3", Ciudad = "Ciudad 3", CodigoPostal = "54321" },
+                new SucursalConsultada { Nombre = "Sucursal 4", Estado = "Estado 4", Ciudad = "Ciudad 4", CodigoPostal = "09876" },
+                new SucursalConsultada { Nombre = "Sucursal 5", Estado = "Estado 5", Ciudad = "Ciudad 5", CodigoPostal = "13579" },
+                new SucursalConsultada { Nombre = "Sucursal 6", Estado = "Estado 6", Ciudad = "Ciudad 6", CodigoPostal = "24680" }
             };
         }
 

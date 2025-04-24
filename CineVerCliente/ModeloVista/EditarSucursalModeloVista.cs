@@ -226,8 +226,7 @@ namespace CineVerCliente.ModeloVista
         {
             if (ValidarCampos())
             {
-                _mainWindowModeloVista.CambiarModeloVista(new AgregarSucursalSalasModeloVista(_mainWindowModeloVista));
-
+                Notificacion.Mostrar("La información de la sucursal se actualizó con éxito", 4000);
             }
         }
 
@@ -238,7 +237,8 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarConfirmacion(object obj)
         {
-            Notificacion.Mostrar("La información de la sucursal se actualizó con éxito", 4000);
+            MostrarMensajeConfirmacion = Visibility.Collapsed;
+            _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
         }
 
         private void CancelarConfirmacion(object obj)
