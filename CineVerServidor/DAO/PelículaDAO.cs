@@ -176,7 +176,8 @@ namespace DAO
             {
                 try
                 {
-                    List <Película> listaPeliculas = 
+                    List <Película> listaPeliculas = entities.Película.Where(e=>e.nombre.Equals(nombre)&&e.idSucursal == idSucursal).ToList();
+                    return Result<List<Película>>.Exito(listaPeliculas);
                 }
                 catch (DbEntityValidationException ex)
                 {
