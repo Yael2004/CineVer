@@ -18,6 +18,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand EmpleadoComando { get; }
         public ICommand AgregarProductoDulceriaComando { get; }
         public ICommand CorteCaja { get; }
+        public ICommand DevolverBoletoComando { get; }
 
         public object VistaActualModelo
         {
@@ -36,6 +37,7 @@ namespace CineVerCliente.ModeloVista
             EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
             AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);
             CorteCaja = new ComandoModeloVista(RealizarCorteCaja);
+            DevolverBoletoComando = new ComandoModeloVista(DevolverBoleto);
         }
 
         public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
@@ -81,6 +83,11 @@ namespace CineVerCliente.ModeloVista
         private void RealizarCorteCaja(object obj)
         {
             CambiarModeloVista(new RealizarCorteCajaModeloVista(_mainWindowModeloVista));
+        }
+
+        private void DevolverBoleto(object obj)
+        {
+            CambiarModeloVista(new DevolverBoletoModeloVista(_mainWindowModeloVista));
         }
     }
 }

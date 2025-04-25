@@ -62,7 +62,8 @@
 
                 <Button Grid.Column="7" Content="Boletos" Margin="0"
                 Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Command="{Binding DevolverBoletoComando}"/>
 
                 <Button Grid.Column="8" Content="Funciones" Margin="0"
                 Style="{StaticResource BotonMenu}" 
@@ -129,12 +130,12 @@
             <vista:RealizarCorteCaja/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vistaModelo:AgregarProductoDulceriaModeloVista}">
-            <vista:AgregarProductoDulceria/>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type vistaModelo:ConsultarSucursalesModeloVista}">
             <vista:ConsultarSucursales/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:DevolverBoletoModeloVista}">
+            <vista:DevolverBoleto/>
         </DataTemplate>
     </Window.Resources>
 

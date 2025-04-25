@@ -13,12 +13,12 @@
                 ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Sucursal.png"
                 Stretch="UniformToFill"/>
 
-    <ImageBrush x:Key="Fondo_VentaBoletos"
-                ImageSource="/Assets/Imagenes/Fondos/Fondo_VentaBoletos.png"
+    <ImageBrush x:Key="Fondo_Boleto"
+                ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Boleto.png"
                 Stretch="UniformToFill"/>
 
     <ImageBrush x:Key="Fondo_CorteCaja"
-                ImageSource="/Assets/Imagenes/Fondos/Fondo_CorteCaja.png"
+                ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_CorteCaja.png"
                 Stretch="UniformToFill"/>
 
     <BitmapImage x:Key="Icono_Editar"

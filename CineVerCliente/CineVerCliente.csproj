@@ -74,6 +74,7 @@
     <Compile Include="ModeloVista\ComandoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarEmpleadosModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSucursalesModeloVista.cs" />
+    <Compile Include="ModeloVista\DevolverBoletoModeloVista.cs" />
     <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
     <Compile Include="ModeloVista\ModificarEmpleadoModeloVista.cs" />
@@ -103,6 +104,9 @@
     </Compile>
     <Compile Include="Vista\ConsultarSucursales.xaml.cs">
       <DependentUpon>ConsultarSucursales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\DevolverBoleto.xaml.cs">
+      <DependentUpon>DevolverBoleto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\EditarSucursal.xaml.cs">
       <DependentUpon>EditarSucursal.xaml</DependentUpon>
@@ -160,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarSucursales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\DevolverBoleto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -224,7 +232,7 @@
     <Resource Include="Assets\Imagenes\Fondos\Fondo_Sucursal.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Imagenes\Fondos\Fondo_VentaBoletos.png" />
+    <Resource Include="Assets\Imagenes\Fondos\Fondo_Boleto.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
