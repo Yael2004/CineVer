@@ -66,6 +66,7 @@
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarNuevoProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarProductoDulceriaModeloVista.cs" />
+    <Compile Include="ModeloVista\AgregarPromocionModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalDatosModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalSalasModeloVista.cs" />
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
@@ -84,6 +85,9 @@
     </Compile>
     <Compile Include="Vista\AgregarProductoDulceria.xaml.cs">
       <DependentUpon>AgregarProductoDulceria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AgregarPromocion.xaml.cs">
+      <DependentUpon>AgregarPromocion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\AgregarSucursalDatos.xaml.cs">
       <DependentUpon>AgregarSucursalDatos.xaml</DependentUpon>
@@ -127,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\AgregarProductoDulceria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\AgregarPromocion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
