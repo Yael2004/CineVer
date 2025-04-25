@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using CineVerEntidades;
+using CineVerServicios.DTO;
 
 namespace CineVerServicios.Interfaces
 {
@@ -12,9 +13,9 @@ namespace CineVerServicios.Interfaces
     public interface IPelículaServicio
     {
         [OperationContract]
-        Task<List<Película>> ObtenerListaPeliculas(int idSucursal);
+        Task<ListaPeliculasDTO> ObtenerListaPeliculas(int idSucursal);
         [OperationContract]
-        Task<List<Película>> ObtenerPeliculasPorNombre();
+        Task<ListaPeliculasDTO> ObtenerPeliculasPorNombre();
         [OperationContract]
         Task<int> ObtenerIdPelicula(string nombre, string director);
 

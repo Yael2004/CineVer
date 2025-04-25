@@ -6,22 +6,32 @@ using System.Threading.Tasks;
 using DAO;
 using CineVerEntidades;
 using Utilidades;
+using CineVerServicios.DTO;
 
 namespace CineVerServicios.Lógica
 {
     internal class GestorPelícula
     {
         private PelículaDAO peliculaDAO = new PelículaDAO();
-        public Result<List<Película>> ObtenerPeliculasSucursal(int idSucursal)
+        public Result<ListaPeliculasDTO> ObtenerPeliculasSucursal(int idSucursal)
         {
             var result = peliculaDAO.ObtenerPeliculasPorSucursal(idSucursal);
             if (!result.EsExitoso)
             {
-                return Result<List<Película>>.Fallo(result.Error);
+                return Result<ListaPeliculasDTO>.Fallo(result.Error);
             }
             else
             {
-                return result;
+                var listaPeliculas = new ListaPeliculasDTO();
+                foreach (var pelicula in result.Valor)
+                {
+                    var peliculaDTO = new PeliculaDTOs
+                    {
+                        Nombre = pelicula.nombre
+                    };
+                    listaPeliculas.Peliculas.Add(peliculaDTO);
+                }
+                return Result<ListaPeliculasDTO>.Exito(listaPeliculas);
             }
         }
     }

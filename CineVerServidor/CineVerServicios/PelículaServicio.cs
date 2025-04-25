@@ -1,4 +1,5 @@
 ﻿using CineVerEntidades;
+using CineVerServicios.DTO;
 using CineVerServicios.Interfaces;
 using CineVerServicios.Lógica;
 using System;
@@ -11,26 +12,30 @@ namespace CineVerServicios
 {
     public class PelículaServicio : IPelículaServicio
     {
-        GestorPelícula gestorPelicula = new GestorPelícula();
+        private GestorPelícula _gestorPelicula = new GestorPelícula();
         public Task<int> ObtenerIdPelicula(string nombre, string director)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Película>> ObtenerListaPeliculas(int idSucursal)
+        public Task<ListaPeliculasDTO> ObtenerListaPeliculas(int idSucursal)
         {
-            var resultado = gestorPelicula.ObtenerPeliculasSucursal(idSucursal);
+            var resultado = _gestorPelicula.ObtenerPeliculasSucursal(idSucursal);
             if (resultado.EsExitoso)
             {
-                return 
+                return Task.FromResult(resultado.Valor);
             }
             else
             {
-
+                return Task.FromResult(new ListaPeliculasDTO
+                {
+                    Peliculas = new List<PeliculaDTOs>(),
+                    Result = new ResultDTO(false, resultado.Error)
+                });
             }
         }
 
-        public Task<List<Película>> ObtenerPeliculasPorNombre()
+        public Task<ListaPeliculasDTO> ObtenerPeliculasPorNombre()
         {
             throw new NotImplementedException();
         }
