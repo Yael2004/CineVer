@@ -81,6 +81,7 @@
     <Compile Include="ModeloVista\AgregarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalSalasModeloVista.cs" />
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
+    <Compile Include="ModeloVista\CantidadMermaModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarEmpleadosModeloVista.cs" />
@@ -99,8 +100,10 @@
     <Compile Include="ModeloVista\RegistrarEmpleadoModeloVista.cs" />
     <Compile Include="ModeloVista\RegistrarGastoModeloVista.cs" />
     <Compile Include="ModeloVista\RegistrarSocioModeloVista.cs" />
+    <Compile Include="ModeloVista\ReportarMermaProductoModeloVista.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
     <Compile Include="Modelo\SocioConsultado.cs" />
+    <Compile Include="Modelo\ProductoDulceria.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Modelo\VentaDetalle.cs" />
     <Compile Include="Vista\AgregarNuevoProductoDulceria.xaml.cs">
@@ -118,6 +121,9 @@
     </Compile>
     <Compile Include="Vista\AgregarSucursalSalas.xaml.cs">
       <DependentUpon>AgregarSucursalSalas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\CantidadMerma.xaml.cs">
+      <DependentUpon>CantidadMerma.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\ConsultarEmpleados.xaml.cs">
       <DependentUpon>ConsultarEmpleados.xaml</DependentUpon>
@@ -164,6 +170,9 @@
     <Compile Include="Vista\RegistrarSocio.xaml.cs">
       <DependentUpon>RegistrarSocio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\ReportarMermaProductoModeloVista.xaml.cs">
+      <DependentUpon>ReportarMermaProductoModeloVista.xaml</DependentUpon>
+    </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -197,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\AgregarSucursalSalas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\CantidadMerma.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -257,6 +270,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\RegistrarSocio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ReportarMermaProductoModeloVista.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
