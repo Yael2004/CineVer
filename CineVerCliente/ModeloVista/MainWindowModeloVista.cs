@@ -39,7 +39,7 @@ namespace CineVerCliente.ModeloVista
             CorteCaja = new ComandoModeloVista(RealizarCorteCaja);
             DevolverBoletoComando = new ComandoModeloVista(DevolverBoleto);
             SucursalComando = new ComandoModeloVista(EditarSucursal);
-            EmpleadoComando = new ComandoModeloVista(ModificarSocio);
+            EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
         }
 
         public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
