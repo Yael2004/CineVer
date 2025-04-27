@@ -26,12 +26,12 @@ namespace CineVerCliente.ModeloVista
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return _puedeEjecutarse == null || _puedeEjecutarse((T)parameter);
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _ejecutar((T)parameter);
         }
     }
 }

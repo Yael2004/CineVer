@@ -19,7 +19,8 @@
                         Width="800"
                         Height="500"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Bottom">
+                        VerticalAlignment="Bottom"
+                        Visibility="{Binding MostrarGrafica}">
 
                     <Label Content="Estadísticas de ventas"
                            Foreground="{StaticResource Blanco}"
@@ -50,7 +51,7 @@
 
                     <Label Content="Año" Foreground="{StaticResource Blanco}" Margin="582,33,184,439"/>
 
-                    <lvc:CartesianChart Series="{Binding Coleccion}" Margin="0,144,0,0">
+                    <lvc:CartesianChart Series="{Binding Coleccion}" DataClickCommand="{Binding MesClicComando}" Margin="0,144,0,0">
                         <lvc:CartesianChart.AxisX>
                             <lvc:Axis Title="Meses" Labels="{Binding Meses}" LabelsRotation="90">
                                 <lvc:Axis.Separator>
@@ -63,6 +64,48 @@
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
 
+                </Grid>
+
+                <Grid  Background="{StaticResource Negro}"
+                        Width="800"
+                        Height="500"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Visibility="{Binding MostrarTabla}">
+                    <StackPanel>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                            <Button Content="Regresar" Width="100" Height="30" Margin="0,0,20,0"
+                                    Command="{Binding RegresarComando}"/>
+                            <TextBlock Text="{Binding NombreMes}" FontSize="24" Foreground="White" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                            <TextBlock Text="Año:" Foreground="White" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBox Text="{Binding Anio}" Width="70" Height="25" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <DataGrid ItemsSource="{Binding Ventas}" 
+                                  AutoGenerateColumns="False"
+                                  HeadersVisibility="Column"
+                                  GridLinesVisibility="All"
+                                  CanUserAddRows="False"
+                                  Background="#FFEB9C00"
+                                  Foreground="Black"
+                                  FontSize="16"
+                                  RowHeight="35"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Center"
+                                  ColumnHeaderHeight="40" Height="458">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Día" Binding="{Binding Dia}" Width="Auto" />
+                                <DataGridTextColumn Header="Tipo" Binding="{Binding Tipo}" Width="Auto"/>
+                                <DataGridTextColumn Header="Inicio del día" Binding="{Binding InicioDia, StringFormat=C}" Width="*" />
+                                <DataGridTextColumn Header="Fin del día" Binding="{Binding FinDia, StringFormat=C}" Width="*" />
+                                <DataGridTextColumn Header="Ventas" Binding="{Binding VentasTotales, StringFormat=C}" Width="*" />
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </StackPanel>
                 </Grid>
             </Grid>
         </Viewbox>

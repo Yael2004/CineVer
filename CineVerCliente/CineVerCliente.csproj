@@ -90,6 +90,7 @@
     <Compile Include="ModeloVista\RegistrarEmpleadoModeloVista.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
+    <Compile Include="Modelo\VentaDetalle.cs" />
     <Compile Include="Vista\AgregarNuevoProductoDulceria.xaml.cs">
       <DependentUpon>AgregarNuevoProductoDulceria.xaml</DependentUpon>
     </Compile>
