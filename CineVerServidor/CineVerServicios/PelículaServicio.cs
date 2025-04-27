@@ -13,9 +13,57 @@ namespace CineVerServicios
     public class PelículaServicio : IPelículaServicio
     {
         private GestorPelícula _gestorPelicula = new GestorPelícula();
+
+        public Task<string> AgregarPelicula(PeliculaDTOs pelicula)
+        {
+            var resultado = _gestorPelicula.AgregarPelicula(pelicula);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(resultado.Error);
+            }
+        }
+
+        public Task<string> EditarPelicula(PeliculaDTOs peliculaEditada, PeliculaDTOs peliculaOriginal)
+        {
+            var resultado = _gestorPelicula.EditarPelicula(peliculaEditada,peliculaOriginal);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(resultado.Error);
+            }
+        }
+
+        public Task<string> EliminarPelicula(PeliculaDTOs pelicula)
+        {
+            var resultado = _gestorPelicula.EliminarPelicula(pelicula);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(resultado.Error);
+            }
+        }
+
         public Task<int> ObtenerIdPelicula(string nombre, string director)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorPelicula.ObtenerIdPelicula(nombre, director);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(-1);
+            }
         }
 
         public Task<ListaPeliculasDTO> ObtenerListaPeliculas(int idSucursal)
@@ -35,9 +83,22 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ListaPeliculasDTO> ObtenerPeliculasPorNombre()
+
+        public Task<ListaPeliculasDTO> ObtenerPeliculasPorNombre(int idSucursal, string nombre)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorPelicula.ObtenerListaPeliculasPorNombre(idSucursal,nombre);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(new ListaPeliculasDTO
+                {
+                    Peliculas = new List<PeliculaDTOs>(),
+                    Result = new ResultDTO(false, resultado.Error)
+                });
+            }
         }
     }
 }

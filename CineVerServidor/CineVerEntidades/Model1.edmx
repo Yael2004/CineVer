@@ -152,6 +152,7 @@
           <Property Name="viernesAplica" Type="bit" />
           <Property Name="sabadoAplica" Type="bit" />
           <Property Name="domingoAplica" Type="bit" />
+          <Property Name="nombre" Type="varchar" MaxLength="80" />
         </EntityType>
         <EntityType Name="Sala">
           <Key>
@@ -750,6 +751,7 @@
           <Property Name="sabadoAplica" Type="Boolean" />
           <Property Name="domingoAplica" Type="Boolean" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_Promocion_Sucursal" FromRole="Promocion" ToRole="Sucursal" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Sala">
           <Key>
@@ -1357,6 +1359,7 @@
           <EntitySetMapping Name="Promocion">
             <EntityTypeMapping TypeName="CineVerModel.Promocion">
               <MappingFragment StoreEntitySet="Promocion">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />

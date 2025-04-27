@@ -27,6 +27,7 @@ namespace CineVerEntidades
         public Nullable<bool> viernesAplica { get; set; }
         public Nullable<bool> sabadoAplica { get; set; }
         public Nullable<bool> domingoAplica { get; set; }
+        public string nombre { get; set; }
     
         public virtual Sucursal Sucursal { get; set; }
     }
