@@ -137,6 +137,10 @@
         <DataTemplate DataType="{x:Type vistaModelo:DevolverBoletoModeloVista}">
             <vista:DevolverBoleto/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ObtenerEstadisticasModeloVista}">
+            <vista:ObtenerEstadisticas/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>
