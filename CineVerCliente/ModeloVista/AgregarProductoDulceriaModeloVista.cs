@@ -1,6 +1,8 @@
 ﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +13,7 @@ namespace CineVerCliente.ModeloVista
 {
     public class AgregarProductoDulceriaModeloVista : BaseModeloVista
     {
-        private string _nombreProducto;
-        private int _cantidadInventario;
-        private float _costoUnitario;
-        private float _precioVentaUnitario;
-        private byte[] _imagenProducto;
+        public ObservableCollection<ProductoDulceria> Productos { get; set; }
         private Visibility _mostrarMensajeCancelarOperacion = Visibility.Collapsed;
         private Visibility _mostrarMensajeConfirmarCambio = Visibility.Collapsed;
 
@@ -28,56 +26,6 @@ namespace CineVerCliente.ModeloVista
         public ICommand MostrarMensajeConfirmarCambiosComando { get; }
         public ICommand ConfirmarCambioComando { get; }
         public ICommand CancelarCambioComando { get; }
-
-        public string NombreProducto
-        {
-            get { return _nombreProducto; }
-            set
-            {
-                _nombreProducto = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public int CantidadInventario
-        {
-            get { return _cantidadInventario; }
-            set
-            {
-                _cantidadInventario = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public float CostoUnitario
-        {
-            get { return _costoUnitario; }
-            set
-            {
-                _costoUnitario = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public float PrecioVentaUnitario
-        {
-            get { return _precioVentaUnitario; }
-            set
-            {
-                _precioVentaUnitario = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public byte[] ImagenProducto
-        {
-            get { return _imagenProducto; }
-            set
-            {
-                _imagenProducto = value;
-                OnPropertyChanged();
-            }
-        }
 
         public Visibility MostrarMensajeCancelarOperacion
         {
@@ -102,6 +50,7 @@ namespace CineVerCliente.ModeloVista
         public AgregarProductoDulceriaModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
+            InicializarListaProductos();
             ConfirmarCambioComando = new ComandoModeloVista(ConfirmarCambio);
             CancelarCambioComando = new ComandoModeloVista(CancelarCambio);
             AgregarNuevoProductoComando = new ComandoModeloVista(AgregarNuevoProducto);
@@ -145,6 +94,34 @@ namespace CineVerCliente.ModeloVista
         private void CancelarCambio(object obj)
         {
             MostrarMensajeConfirmarCambio = Visibility.Collapsed;
+        }
+
+        private void InicializarListaProductos()
+        {
+            Productos = new ObservableCollection<ProductoDulceria>
+            {
+                new ProductoDulceria
+                {
+                    Nombre = "Palomitas",
+                    CostoUnitario = "20",
+                    PrecioVentaUnitario = "35",
+                    CantidadInventario = "15"
+                },
+                new ProductoDulceria
+                {
+                    Nombre = "Refresco",
+                    CostoUnitario = "10",
+                    PrecioVentaUnitario = "25",
+                    CantidadInventario = "20"
+                },
+                new ProductoDulceria
+                {
+                    Nombre = "Dulces",
+                    CostoUnitario = "5",
+                    PrecioVentaUnitario = "15",
+                    CantidadInventario = "30"
+                },
+            };
         }
 
         private void MostrarMensajeServicio()

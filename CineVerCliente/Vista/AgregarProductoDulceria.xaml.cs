@@ -24,5 +24,25 @@ namespace CineVerCliente.Vista
         {
             InitializeComponent();
         }
+
+        private void SoloNumeros(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !EsNumero(e.Text);
+        }
+
+        private bool EsNumero(string texto)
+        {
+            return int.TryParse(texto, out _);
+        }
+
+        private void ValidarInventarioVacio(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "0";
+            }
+        }
+
     }
 }
