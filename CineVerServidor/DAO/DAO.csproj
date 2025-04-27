@@ -60,6 +60,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="PelículaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalaDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CineVerEntidades\CineVerEntidades.csproj">

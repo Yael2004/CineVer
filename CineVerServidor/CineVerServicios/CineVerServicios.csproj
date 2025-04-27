@@ -60,14 +60,19 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
+    <Compile Include="DTO\ListaSalaDTO.cs" />
     <Compile Include="DTO\PeliculaDTO.cs" />
     <Compile Include="DTO\ResultDTO.cs" />
+    <Compile Include="DTO\SalaDTO.cs" />
     <Compile Include="DulceriaServicio.cs" />
     <Compile Include="Interfaces\IDulceriaServicio.cs" />
     <Compile Include="Interfaces\IPelículaServicio.cs" />
+    <Compile Include="Interfaces\ISalaServicio.cs" />
     <Compile Include="Lógica\GestorPelícula.cs" />
+    <Compile Include="Lógica\GestorSala.cs" />
     <Compile Include="PelículaServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalaServicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
