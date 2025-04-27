@@ -77,7 +77,21 @@ namespace CineVerCliente.ModeloVista
                     CostoUnitario = "20",
                     PrecioVentaUnitario = "35",
                     CantidadInventario = "15"
-                }
+                },
+                new ProductoDulceria
+                {
+                    Nombre = "Refresco",
+                    CostoUnitario = "10",
+                    PrecioVentaUnitario = "25",
+                    CantidadInventario = "20"
+                },
+                new ProductoDulceria
+                {
+                    Nombre = "Dulces",
+                    CostoUnitario = "5",
+                    PrecioVentaUnitario = "15",
+                    CantidadInventario = "30"
+                },
             };
         }
     }

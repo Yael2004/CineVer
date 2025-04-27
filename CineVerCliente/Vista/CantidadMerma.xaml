@@ -15,35 +15,95 @@
                 <Grid Margin="0,0,108,72">
                     <Grid Background="{StaticResource Negro}" Margin="133,72,10,-72">
                         <Label Content="Cantidad de merma"
-                    HorizontalAlignment="Center"
-                    FontSize="20"
-                    Foreground="White" Margin="0,10,0,546"/>
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Foreground="White" Margin="0,10,0,546"/>
+
+                        <Image Margin="112,181,471,248">
+
+                        </Image>
+
+                        <Label Content="{Binding Nombre}" 
+                               Margin="370,147,67,399"
+                               FontSize="20"
+                               Foreground="White"/>
+                        <Label Content="{Binding CantidadInventario}" 
+                               Margin="496,220,55,326"
+                               Foreground="White"/>
+                        <Label Content="Cantidad inventario:" 
+                               Margin="370,220,183,326"
+                               Foreground="White"/>
+                        <Label Content="{Binding CostoUnitario}" 
+                               Margin="496,330,55,216"
+                               Foreground="White"/>
+                        <Label Content="Costo unitario:" 
+                               Margin="400,275,153,271"
+                               Foreground="White"/>
+                        <Label Content="{Binding PrecioVentaUnitario}" 
+                               Margin="496,277,55,269"
+                               Foreground="White"/>
+                        <Label Content="Precio a la venta unitario:" 
+                               Margin="346,328,205,218"
+                               Foreground="White"/>
+                        <Label Content="Cantidad de merma" 
+                               Margin="372,382,258,180"
+                               Foreground="White"/>
+                        <TextBox Height="20" Width="50" Margin="499,388,196,186"
+                                 Text="{Binding CantidadMerma, UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="SoloNumerosTextBox_PreviewTextInput"/>
 
                         <Button 
-                    Height="50"
-                    Content="Cancelar operacion" 
-                    Style="{StaticResource BotonCancelar}"
-                    Margin="476,500,137,44"
-                    Command="{Binding CancelarComando}"/>
+                            Height="50"
+                            Content="Cancelar operacion" 
+                            Style="{StaticResource BotonCancelar}"
+                            Margin="442,494,172,50"
+                            Command="{Binding CancelarComando}"/>
+
+                        <Button 
+                            Height="50"
+                            Content="Aceptar" 
+                            Style="{StaticResource BotonConfirmarNaranja}"
+                            Margin="171,494,442,50"
+                            Command="{Binding ConfirmarComando}"/>
+                        
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeAceptarOperacion}">
+                            <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                               Height="200"
+                               Margin="0,0,0,0"/>
+
+                            <Button Margin="74,126,215,37" 
+                                Content="Aceptar"
+                                Style="{StaticResource BotonConfirmarBlanco}"
+                                Command="{Binding ConfirmarConfirmacionComando}"/>
+
+                            <TextBlock Text="¿Está seguro de realizar esta operación?"
+                                Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
+
+                            <Button Margin="218,126,71,37" 
+                                Content="Cancelar"
+                                Style="{StaticResource BotonNegro}"
+                                Command="{Binding CancelarConfirmacionComando}"/>
+                        </Grid>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}"
-                       Height="200"
-                       Margin="0,0,0,0"/>
+                               Height="200"
+                               Margin="0,0,0,0"/>
 
                             <Button Margin="74,126,215,37" 
-                        Content="Aceptar"
-                        Style="{StaticResource BotonConfirmarBlanco}"
-                        Command="{Binding ConfirmarCancelacionComando}"/>
+                                Content="Aceptar"
+                                Style="{StaticResource BotonConfirmarBlanco}"
+                                Command="{Binding ConfirmarCancelacionComando}"/>
 
-                            <TextBlock Text="¿Está seguro de realizar esta operación?"
-                        Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
+                            <TextBlock Text="¿Está seguro de cancelar esta operación?"
+                                Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
 
                             <Button Margin="218,126,71,37" 
-                        Content="Cancelar"
-                        Style="{StaticResource BotonNegro}"
-                        Command="{Binding CancelarCancelacionComando}"/>
+                                Content="Cancelar"
+                                Style="{StaticResource BotonNegro}"
+                                Command="{Binding CancelarCancelacionComando}"/>
                         </Grid>
+                        
                     </Grid>
                 </Grid>
             </Grid>
