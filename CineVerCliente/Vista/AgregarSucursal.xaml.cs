@@ -18,9 +18,9 @@ namespace CineVerCliente.Vista
     /// <summary>
     /// Lógica de interacción para AgregarSucursalDatos.xaml
     /// </summary>
-    public partial class AgregarSucursalDatos : UserControl
+    public partial class AgregarSucursal : UserControl
     {
-        public AgregarSucursalDatos()
+        public AgregarSucursal()
         {
             InitializeComponent();
         }

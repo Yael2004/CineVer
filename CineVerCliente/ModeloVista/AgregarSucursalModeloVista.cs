@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Modelo;
+﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using CineVerCliente.Vista;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,14 @@ using System.Windows.Input;
 
 namespace CineVerCliente.ModeloVista
 {
-    public class AgregarSucursalDatosModeloVista : BaseModeloVista
+    public class AgregarSucursalModeloVista : BaseModeloVista
     {
         private string _nombreSucursal;
         private string _codigoPostal;
         private string _estado;
         private string _ciudad;
         private string _calle;
-        private int _numero;
+        private string _numero;
         private TimeSpan _horaApertura;
         private TimeSpan _horaCierre;
 
@@ -31,12 +32,19 @@ namespace CineVerCliente.ModeloVista
         private Visibility _calleCampoVacio;
         private Visibility _numeroCampoVacio;
         private Visibility _horaAperturaCampoVacio;
-        private Visibility _horaCierreCampoVacio;
+        private Visibility _horaCierreCampoVacio;   
+        private Visibility _mostrarMensajeConfirmar;
+        private Visibility _verPrimeraVista;
+        private Visibility _verSegundaVista;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
         public ICommand SiguienteComando { get; }
-        public ICommand RegresarComand { get; }
+        public ICommand SalirComando { get; }
+        public ICommand RegresarComando { get; }
+        public ICommand CancelarComando { get; }
+        public ICommand ContinuarComando { get; }
+        public ICommand AceptarComando { get; }
 
         public string NombreSucursal
         {
@@ -88,7 +96,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public int Numero
+        public string Numero
         {
             get { return _numero; }
             set
@@ -198,10 +206,48 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public AgregarSucursalDatosModeloVista(MainWindowModeloVista mainWindowModeloVista)
+        public Visibility MostrarMensajeConfirmar
+        {
+            get { return _mostrarMensajeConfirmar; }
+            set
+            {
+                _mostrarMensajeConfirmar = value;
+                OnPropertyChanged(nameof(MostrarMensajeConfirmar));
+            }
+        }
+
+        public Visibility VerPrimeraVista
+        {
+            get { return _verPrimeraVista; }
+            set
+            {
+                _verPrimeraVista = value;
+                OnPropertyChanged(nameof(VerPrimeraVista));
+            }
+        }
+
+        public Visibility VerSegundaVista
+        {
+            get { return _verSegundaVista; }
+            set
+            {
+                _verSegundaVista = value;
+                OnPropertyChanged(nameof(VerSegundaVista));
+            }
+        }
+
+        public AgregarSucursalModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
             SiguienteComando = new ComandoModeloVista(Siguiente);
+            RegresarComando = new ComandoModeloVista(Regresar);
+            ContinuarComando = new ComandoModeloVista(Continuar);
+            CancelarComando = new ComandoModeloVista(Cancelar);
+            SalirComando = new ComandoModeloVista(Salir);
+            AceptarComando = new ComandoModeloVista(GuardarSucursal);
+
+            VerPrimeraVista = Visibility.Visible;
+            VerSegundaVista = Visibility.Collapsed;
 
             OcultarCamposVacios();
         }
@@ -210,14 +256,68 @@ namespace CineVerCliente.ModeloVista
         {
             if (ValidarCampos())
             {
-                _mainWindowModeloVista.CambiarModeloVista(new AgregarSucursalSalasModeloVista(_mainWindowModeloVista));
-
+                VerPrimeraVista = Visibility.Collapsed;
+                VerSegundaVista = Visibility.Visible;
             }
         }
 
-        private void GuardarSucursal()
+        private void GuardarSucursal(object obj)
         {
-            var sucursal = new Sucursal();
+            try
+            {
+                var cliente = new SucursalServicio.SucursalServicioClient();
+                var sucursal = new SucursalServicio.SucursalDTO
+                {
+                    Nombre = NombreSucursal,
+                    CodigoPostal = CodigoPostal,
+                    Estado = Estado,
+                    Ciudad = Ciudad,
+                    Calle = Calle,
+                    NumeroEnLaCalle = Numero,
+                    HoraApertura = HoraApertura,
+                    HoraCierre = HoraCierre
+                };
+
+                var resultado = cliente.GuardarSucursal(sucursal);
+
+                if (resultado.EsExitoso)
+                {
+                    MostrarMensajeConfirmar = Visibility.Collapsed;
+                    Notificacion.Mostrar("Sucursal guardada correctamente");
+                    _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
+                }
+                else
+                {
+                    MostrarMensajeConfirmar = Visibility.Collapsed;
+                    Notificacion.Mostrar("Error al guardar la sucursal");
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensajeConfirmar = Visibility.Collapsed;
+                Notificacion.Mostrar("Error al conectar con el servicio: " + ex.Message);
+            }
+        }
+
+        private void Regresar(object obj)
+        {
+            VerPrimeraVista = Visibility.Visible;
+            VerSegundaVista = Visibility.Collapsed;
+        }
+
+        private void Salir(object obj)
+        {
+            _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
+        }
+
+        private void Continuar(object obj)
+        {
+            MostrarMensajeConfirmar = Visibility.Visible;
+        }
+
+        private void Cancelar(object obj)
+        {
+            MostrarMensajeConfirmar = Visibility.Collapsed;
         }
 
         private bool ValidarCampos()
@@ -302,7 +402,7 @@ namespace CineVerCliente.ModeloVista
 
         private bool ValidarNumero()
         {
-            if (string.IsNullOrEmpty(Numero.ToString()))
+            if (string.IsNullOrEmpty(Numero))
             {
                 NumeroCampoVacio = Visibility.Visible;
                 return false;

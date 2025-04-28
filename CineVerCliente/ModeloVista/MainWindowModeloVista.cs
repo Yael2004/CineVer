@@ -52,7 +52,7 @@ namespace CineVerCliente.ModeloVista
 
         private void AgregarSucursal(object obj)
         {
-            CambiarModeloVista(new AgregarSucursalDatosModeloVista(_mainWindowModeloVista));
+            CambiarModeloVista(new AgregarSucursalModeloVista(_mainWindowModeloVista));
         }
 
         private void EditarSucursal(object obj)

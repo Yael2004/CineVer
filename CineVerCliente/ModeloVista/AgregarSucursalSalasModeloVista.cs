@@ -40,7 +40,7 @@ namespace CineVerCliente.ModeloVista
 
         private void Regresar(object obj)
         {
-            _mainWindowModeloVista.CambiarModeloVista(new AgregarSucursalDatosModeloVista(_mainWindowModeloVista));
+            _mainWindowModeloVista.CambiarModeloVista(new AgregarSucursalModeloVista(_mainWindowModeloVista));
         }
 
         private void Continuar(object obj)

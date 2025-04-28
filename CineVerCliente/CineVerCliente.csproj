@@ -68,12 +68,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\SucursalServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarNuevoProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarPromocionModeloVista.cs" />
-    <Compile Include="ModeloVista\AgregarSucursalDatosModeloVista.cs" />
+    <Compile Include="ModeloVista\AgregarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalSalasModeloVista.cs" />
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
@@ -101,8 +106,8 @@
     <Compile Include="Vista\AgregarPromocion.xaml.cs">
       <DependentUpon>AgregarPromocion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\AgregarSucursalDatos.xaml.cs">
-      <DependentUpon>AgregarSucursalDatos.xaml</DependentUpon>
+    <Compile Include="Vista\AgregarSucursal.xaml.cs">
+      <DependentUpon>AgregarSucursal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\AgregarSucursalSalas.xaml.cs">
       <DependentUpon>AgregarSucursalSalas.xaml</DependentUpon>
@@ -162,7 +167,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\AgregarSucursalDatos.xaml">
+    <Page Include="Vista\AgregarSucursal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +237,22 @@
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaSucursalesDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ResultDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SucursalServicio\SucursalServicio.wsdl" />
+    <None Include="Connected Services\SucursalServicio\SucursalServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SucursalServicio\SucursalServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SucursalServicio\SucursalServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -255,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
+    <WCFMetadataStorage Include="Connected Services\SucursalServicio\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio.disco" />
@@ -276,6 +298,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Imagenes\Iconos\Icono_Eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SucursalServicio\SucursalServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SucursalServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SucursalServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SucursalServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
