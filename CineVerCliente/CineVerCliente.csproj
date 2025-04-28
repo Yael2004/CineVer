@@ -88,6 +88,8 @@
     <Compile Include="ModeloVista\ConsultarSucursalesModeloVista.cs" />
     <Compile Include="ModeloVista\DevolverBoletoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSociosModeloVista.cs" />
+    <Compile Include="ModeloVista\EditarDetallesProductoModeloVista.cs" />
+    <Compile Include="ModeloVista\EditarProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\EditarPromocionModeloVista.cs" />
     <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\IniciarSesionModeloVista.cs" />
@@ -136,6 +138,12 @@
     </Compile>
     <Compile Include="Vista\ConsultarSocios.xaml.cs">
       <DependentUpon>ConsultarSocios.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EditarDetallesProducto.xaml.cs">
+      <DependentUpon>EditarDetallesProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EditarProductoDulceria.xaml.cs">
+      <DependentUpon>EditarProductoDulceria.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\EditarPromocion.xaml.cs">
       <DependentUpon>EditarPromocion.xaml</DependentUpon>
@@ -226,6 +234,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarSocios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\EditarDetallesProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\EditarProductoDulceria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
