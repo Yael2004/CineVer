@@ -1,0 +1,147 @@
+﻿using CineVerEntidades;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Utilidades;
+
+namespace DAO
+{
+    public class SucursalDAO
+    {
+        public SucursalDAO() { }
+
+        public Result<List<Sucursal>> ObtenerSucursales()
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var sucursales = entities.Sucursal.ToList();
+                    if (sucursales.Count == 0)
+                    {
+                        return Result<List<Sucursal>>.Fallo("No hay sucursales registradas");
+                    }
+                    return Result<List<Sucursal>>.Exito(sucursales);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<List<Sucursal>>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<List<Sucursal>>.Fallo(sqlEx.Message);
+                }
+            }
+        }
+
+        public Result<bool> ExisteSucursal(string nombreSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var sucursal = entities.Sucursal.Where(e => e.nombre.Equals(nombreSucursal)).FirstOrDefault();
+                    if (sucursal != null)
+                    {
+                        return Result<bool>.Exito(true);
+                    }
+                    else
+                    {
+                        return Result<bool>.Exito(false);
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<bool>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<bool>.Fallo(sqlEx.Message);
+                }
+            }
+        }
+
+        public Result<string> AgregarSucursal(Sucursal sucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    entities.Sucursal.Add(sucursal);
+                    entities.SaveChanges();
+                    return Result<string>.Exito("Sucursal agregada correctamente");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<string>.Fallo(sqlEx.Message);
+                }
+            }
+        }
+
+        public Result<string> ActualizarSucursal(Sucursal sucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var sucursalExistente = entities.Sucursal.Find(sucursal.idSucursal);
+                    if (sucursalExistente != null)
+                    {
+                        sucursalExistente.nombre = sucursal.nombre;
+                        entities.SaveChanges();
+                        return Result<string>.Exito("Sucursal modificada correctamente");
+                    }
+                    else
+                    {
+                        return Result<string>.Fallo("Sucursal no encontrada");
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<string>.Fallo(sqlEx.Message);
+                }
+            }
+        }
+
+        public Result<string> CerrarSucursal(int idSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var sucursal = entities.Sucursal.Find(idSucursal);
+                    if (sucursal != null)
+                    {
+                        entities.Sucursal.Remove(sucursal);
+                        entities.SaveChanges();
+                        return Result<string>.Exito("Sucursal eliminada correctamente");
+                    }
+                    else
+                    {
+                        return Result<string>.Fallo("Sucursal no encontrada");
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<string>.Fallo(sqlEx.Message);
+                }
+            }
+        }
+    }
+}
