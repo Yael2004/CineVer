@@ -1,30 +1,29 @@
 ﻿using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
-using CineVerCliente.Vista;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
+using System.Windows;
 
 namespace CineVerCliente.ModeloVista
 {
-    public class ConsultarEmpleadosModeloVista : BaseModeloVista
+    class ConsultarSociosModeloVista : BaseModeloVista
     {
         private string _textoBusqueda;
         private string _textoInhabilitar;
-        private string _textoDetallesEmpleado;
+        private string _textoDetallesSocio;
 
         private Visibility _sinResultados = Visibility.Collapsed;
-        private Visibility _mostrarEmpleados = Visibility.Visible;
+        private Visibility _mostrarSocios = Visibility.Visible;
         private Visibility _mostrarMensajeInhabilitar = Visibility.Collapsed;
-        private Visibility _mostrarDetallesEmpleado = Visibility.Collapsed;
+        private Visibility _mostrarDetallesSocio = Visibility.Collapsed;
 
-        private ObservableCollection<EmpleadoConsultado> _todosLosElementos;
-        private ObservableCollection<EmpleadoConsultado> _elementosFiltrados;
+        private ObservableCollection<SocioConsultado> _todosLosElementos;
+        private ObservableCollection<SocioConsultado> _elementosFiltrados;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
@@ -56,12 +55,12 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public string TextoDetallesEmpleado
+        public string TextoDetallesSocio
         {
-            get { return _textoDetallesEmpleado; }
+            get { return _textoDetallesSocio; }
             set
             {
-                _textoDetallesEmpleado = value;
+                _textoDetallesSocio = value;
                 OnPropertyChanged();
             }
         }
@@ -76,12 +75,12 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public Visibility MostrarEmpleados
+        public Visibility MostrarSocios
         {
-            get { return _mostrarEmpleados; }
+            get { return _mostrarSocios; }
             set
             {
-                _mostrarEmpleados = value;
+                _mostrarSocios = value;
                 OnPropertyChanged();
             }
         }
@@ -96,17 +95,17 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public Visibility MostrarDetallesEmpleado
+        public Visibility MostrarDetallesSocio
         {
-            get { return _mostrarDetallesEmpleado; }
+            get { return _mostrarDetallesSocio; }
             set
             {
-                _mostrarDetallesEmpleado = value;
+                _mostrarDetallesSocio = value;
                 OnPropertyChanged();
             }
         }
 
-        public ObservableCollection<EmpleadoConsultado> TodosLosElementos
+        public ObservableCollection<SocioConsultado> TodosLosElementos
         {
             get { return _todosLosElementos; }
             set
@@ -116,7 +115,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public ObservableCollection<EmpleadoConsultado> ElementosFiltrados
+        public ObservableCollection<SocioConsultado> ElementosFiltrados
         {
             get { return _elementosFiltrados; }
             set
@@ -126,7 +125,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public ConsultarEmpleadosModeloVista(MainWindowModeloVista mainWindowModeloVista)
+        public ConsultarSociosModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
             VerDetallesComando = new ComandoModeloVista(VerDetalles);
@@ -137,29 +136,29 @@ namespace CineVerCliente.ModeloVista
             CerrarDetallesComando = new ComandoModeloVista(CerrarDetalles);
             byte[] foto = new byte[0];
             byte[] byteItems = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
-            _todosLosElementos = new ObservableCollection<EmpleadoConsultado>
+            _todosLosElementos = new ObservableCollection<SocioConsultado>
             {
-                new EmpleadoConsultado { Nombre = "Gabriel", Apellidos = "Armas Viveros", Matricula = "CNVX2985637", Foto = foto},
-                new EmpleadoConsultado { Nombre = "Yael Alfredo", Apellidos = "Salazar Aguilar", Matricula = "CNVX2876509", Foto = foto},
-                new EmpleadoConsultado { Nombre = "Daniela", Apellidos = "Luna Landa", Matricula = "CNVX2946527", Foto = foto},
-                new EmpleadoConsultado { Nombre = "Maria Antonieta", Apellidos = "Hernandez Torres", Matricula = "CNVX2746527", Foto = foto},
-                new EmpleadoConsultado { Nombre = "Sofia", Apellidos = "Suarez Juan", Matricula = "CNVX2746527", Foto = foto},
+                new SocioConsultado { Nombre = "Gabriel", Apellidos = "Armas Viveros", Folio = "SCNVX298563", Foto = foto, PuntosSocio = 20},
+                new SocioConsultado { Nombre = "Yael Alfredo", Apellidos = "Salazar Aguilar", Folio = "SCNVX287650", Foto = foto, PuntosSocio = 109},
+                new SocioConsultado { Nombre = "Daniela", Apellidos = "Luna Landa", Folio = "SCNVX294652", Foto = foto, PuntosSocio = 67},
+                new SocioConsultado { Nombre = "Maria Antonieta", Apellidos = "Hernandez Torres", Folio = "SCNVX274652", Foto = foto, PuntosSocio = 12},
+                new SocioConsultado { Nombre = "Sofia", Apellidos = "Suarez Juan", Folio = "SCNVX274652", Foto = foto, PuntosSocio = 87},
             };
 
-            ElementosFiltrados = new ObservableCollection<EmpleadoConsultado>(_todosLosElementos);
+            ElementosFiltrados = new ObservableCollection<SocioConsultado>(_todosLosElementos);
         }
 
         private void VerDetalles(object obj)
         {
-            if(obj == null)
+            if (obj == null)
             {
-                Notificacion.Mostrar("No se ha seleccionado un empleado", 4000);
+                Notificacion.Mostrar("No se ha seleccionado un socio", 4000);
             }
             else
             {
-                TextoDetallesEmpleado = "Nombre: " + ((EmpleadoConsultado)obj).Nombre + "\nApellidos: " + ((EmpleadoConsultado)obj).Apellidos 
-                    + "\nMatricula: " + ((EmpleadoConsultado)obj).Matricula;
-                MostrarDetallesEmpleado = Visibility.Visible;
+                TextoDetallesSocio = "Nombre: " + ((SocioConsultado)obj).Nombre + "\nApellidos: " + ((SocioConsultado)obj).Apellidos
+                    + "\nFolio de socio: " + ((SocioConsultado)obj).Folio + "\nPuntos de socio: " + ((SocioConsultado)obj).PuntosSocio;
+                MostrarDetallesSocio = Visibility.Visible;
             }
         }
 
@@ -173,12 +172,12 @@ namespace CineVerCliente.ModeloVista
         {
             if (obj == null)
             {
-                Notificacion.Mostrar("No se ha seleccionado un empleado", 4000);
+                Notificacion.Mostrar("No se ha seleccionado un socio", 4000);
             }
             else
             {
-                string mensaje = "¿Está seguro de que desea inhabilitar la cuenta del empleado " +
-                    ((EmpleadoConsultado)obj).Nombre + " " + ((EmpleadoConsultado)obj).Apellidos + "?";
+                string mensaje = "¿Está seguro de que desea inhabilitar la cuenta del socio " +
+                    ((SocioConsultado)obj).Nombre + " " + ((SocioConsultado)obj).Apellidos + "?";
                 TextoInhabilitar = mensaje;
                 MostrarMensajeInhabilitar = Visibility.Visible;
             }
@@ -196,18 +195,18 @@ namespace CineVerCliente.ModeloVista
 
         private void CerrarDetalles(object obj)
         {
-            MostrarDetallesEmpleado = Visibility.Collapsed;
+            MostrarDetallesSocio = Visibility.Collapsed;
         }
 
         private void FiltrarElementos()
         {
             if (string.IsNullOrWhiteSpace(TextoBusqueda))
             {
-                ElementosFiltrados = new ObservableCollection<EmpleadoConsultado>(_todosLosElementos);
-                if (MostrarEmpleados == Visibility.Collapsed)
+                ElementosFiltrados = new ObservableCollection<SocioConsultado>(_todosLosElementos);
+                if (MostrarSocios == Visibility.Collapsed)
                 {
                     SinResultados = Visibility.Collapsed;
-                    MostrarEmpleados = Visibility.Visible;
+                    MostrarSocios = Visibility.Visible;
                 }
             }
             else if (TextoBusqueda.Length < 4)
@@ -215,19 +214,19 @@ namespace CineVerCliente.ModeloVista
                 var filtrados = _todosLosElementos
                     .Where(empleado => empleado.Nombre.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
                         empleado.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
-                        empleado.Matricula.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
+                        empleado.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
 
-                ElementosFiltrados = new ObservableCollection<EmpleadoConsultado>(filtrados);
+                ElementosFiltrados = new ObservableCollection<SocioConsultado>(filtrados);
 
                 if (ElementosFiltrados.Count == 0)
                 {
-                    MostrarEmpleados = Visibility.Collapsed;
+                    MostrarSocios = Visibility.Collapsed;
                     SinResultados = Visibility.Visible;
                 }
                 else
                 {
                     SinResultados = Visibility.Collapsed;
-                    MostrarEmpleados = Visibility.Visible;
+                    MostrarSocios = Visibility.Visible;
                 }
             }
             else
@@ -235,19 +234,19 @@ namespace CineVerCliente.ModeloVista
                 var filtrados = _todosLosElementos
                     .Where(empleado => empleado.Nombre.ToLower().Contains(TextoBusqueda.ToLower()) ||
                         empleado.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
-                        empleado.Matricula.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
+                        empleado.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
 
-                ElementosFiltrados = new ObservableCollection<EmpleadoConsultado>(filtrados);
+                ElementosFiltrados = new ObservableCollection<SocioConsultado>(filtrados);
 
                 if (ElementosFiltrados.Count == 0)
                 {
-                    MostrarEmpleados = Visibility.Collapsed;
+                    MostrarSocios = Visibility.Collapsed;
                     SinResultados = Visibility.Visible;
                 }
                 else
                 {
                     SinResultados = Visibility.Collapsed;
-                    MostrarEmpleados = Visibility.Visible;
+                    MostrarSocios = Visibility.Visible;
                 }
             }
         }

@@ -149,6 +149,10 @@
         <DataTemplate DataType="{x:Type vistaModelo:ModificarSocioModeloVista}">
             <vista:ModificarSocio/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarSociosModeloVista}">
+            <vista:ConsultarSocios/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

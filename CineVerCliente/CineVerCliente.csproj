@@ -86,6 +86,7 @@
     <Compile Include="ModeloVista\ConsultarEmpleadosModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSucursalesModeloVista.cs" />
     <Compile Include="ModeloVista\DevolverBoletoModeloVista.cs" />
+    <Compile Include="ModeloVista\ConsultarSociosModeloVista.cs" />
     <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
     <Compile Include="ModeloVista\ModificarEmpleadoModeloVista.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ModeloVista\RegistrarEmpleadoModeloVista.cs" />
     <Compile Include="ModeloVista\RegistrarSocioModeloVista.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
+    <Compile Include="Modelo\SocioConsultado.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Modelo\VentaDetalle.cs" />
     <Compile Include="Vista\AgregarNuevoProductoDulceria.xaml.cs">
@@ -122,6 +124,9 @@
     </Compile>
     <Compile Include="Vista\DevolverBoleto.xaml.cs">
       <DependentUpon>DevolverBoleto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ConsultarSocios.xaml.cs">
+      <DependentUpon>ConsultarSocios.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\EditarSucursal.xaml.cs">
       <DependentUpon>EditarSucursal.xaml</DependentUpon>
@@ -192,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\DevolverBoleto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ConsultarSocios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
