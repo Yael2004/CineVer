@@ -86,18 +86,27 @@ namespace DAO
             }
         }
 
-        public Result<string> ActualizarSucursal(Sucursal sucursal)
+        public Result<string> ActualizarSucursal(int idSucursal, Sucursal sucursal)
         {
             using (CineVerEntities entities = new CineVerEntities())
             {
                 try
                 {
-                    var sucursalExistente = entities.Sucursal.Find(sucursal.idSucursal);
+                    var sucursalExistente = entities.Sucursal.Find(idSucursal);
                     if (sucursalExistente != null)
                     {
                         sucursalExistente.nombre = sucursal.nombre;
+                        sucursalExistente.estado = sucursal.estado;
+                        sucursalExistente.ciudad = sucursal.ciudad;
+                        sucursalExistente.calle = sucursal.calle;
+                        sucursalExistente.numeroEnLaCalle = sucursal.numeroEnLaCalle;
+                        sucursalExistente.codigoPostal = sucursal.codigoPostal;
+                        sucursalExistente.horaApertura = sucursal.horaApertura;
+                        sucursalExistente.horaCierre = sucursal.horaCierre;
+                        
                         entities.SaveChanges();
-                        return Result<string>.Exito("Sucursal modificada correctamente");
+
+                        return Result<string>.Exito("Sucursal actualizada correctamente");
                     }
                     else
                     {

@@ -71,5 +71,45 @@ namespace CineVerServicios.Lógica
                 return Result<ListaSucursalesDTO>.Exito(listaSucursales);
             }
         }
+
+        public Result<string> CerrarSucursal(int sucursalId)
+        {
+            var resultado = sucursalDAO.CerrarSucursal(sucursalId);
+
+            if (!resultado.EsExitoso)
+            {
+                return Result<string>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<string>.Exito("Sucursal cerrada correctamente");
+            }
+        }
+
+        public Result<string> ActualizarSucursal(int idSucursal, SucursalDTO sucursalDTO)
+        {
+            var sucursal = new Sucursal
+            {
+                nombre = sucursalDTO.Nombre,
+                estado = sucursalDTO.Estado,
+                ciudad = sucursalDTO.Ciudad,
+                calle = sucursalDTO.Calle,
+                numeroEnLaCalle = sucursalDTO.NumeroEnLaCalle,
+                codigoPostal = sucursalDTO.CodigoPostal,
+                horaApertura = sucursalDTO.HoraApertura,
+                horaCierre = sucursalDTO.HoraCierre
+            };
+
+            var resultado = sucursalDAO.ActualizarSucursal(idSucursal, sucursal);
+
+            if (!resultado.EsExitoso)
+            {
+                return Result<string>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<string>.Exito("Sucursal actualizada correctamente");
+            }
+        }
     }
 }

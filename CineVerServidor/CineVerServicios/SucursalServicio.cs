@@ -15,12 +15,30 @@ namespace CineVerServicios
         private GestorSucursal _gestorSucursal = new GestorSucursal();
         public Task<ResultDTO> ActualizarSucursal(int idSucursal, SucursalDTO sucursalDTO)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorSucursal.ActualizarSucursal(idSucursal, sucursalDTO);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
         }
 
         public Task<ResultDTO> CerrarSucursal(int idSucursal)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorSucursal.CerrarSucursal(idSucursal);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
         }
 
         public Task<ResultDTO> GuardarSucursal(SucursalDTO sucursalDTO)

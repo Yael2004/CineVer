@@ -17,7 +17,7 @@ namespace CineVerCliente.ModeloVista
         private string _estado;
         private string _ciudad;
         private string _calle;
-        private int _numero;
+        private string _numero;
         private TimeSpan _horaApertura;
         private TimeSpan _horaCierre;
 
@@ -90,7 +90,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public int Numero
+        public string Numero
         {
             get { return _numero; }
             set
@@ -224,9 +224,36 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarEdicion(object obj)
         {
-            if (ValidarCampos())
+            if (obj is SucursalConsultada sucursal)
             {
-                Notificacion.Mostrar("La información de la sucursal se actualizó con éxito", 4000);
+                var cliente = new SucursalServicio.SucursalServicioClient();
+
+                if (ValidarCampos())
+                {
+                    var sucursalEditada = new SucursalServicio.SucursalDTO
+                    {
+                        Nombre = NombreSucursal,
+                        CodigoPostal = CodigoPostal,
+                        Estado = Estado,
+                        Ciudad = Ciudad,
+                        Calle = Calle,
+                        NumeroEnLaCalle = Numero,
+                        HoraApertura = HoraApertura,
+                        HoraCierre = HoraCierre
+                    };
+
+                    var resultado = cliente.ActualizarSucursal(sucursal.IdSucursal, sucursalEditada);
+
+                    if (resultado.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Sucursal actualizada con éxito");
+                    }
+                    else
+                    {
+
+                    }
+                        _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
+                }
             }
         }
 
@@ -246,7 +273,7 @@ namespace CineVerCliente.ModeloVista
             MostrarMensajeConfirmacion = Visibility.Collapsed;
         }
 
-        private void GuardarSucursal()
+        private void ActualizarSucursal(object obj)
         {
             var sucursal = new Sucursal();
         }
