@@ -88,6 +88,7 @@
     <Compile Include="ModeloVista\DevolverBoletoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSociosModeloVista.cs" />
     <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
+    <Compile Include="ModeloVista\IniciarSesionModeloVista.cs" />
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
     <Compile Include="ModeloVista\ModificarEmpleadoModeloVista.cs" />
     <Compile Include="ModeloVista\ObtenerEstadisticasModeloVista.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="ModeloVista\RealizarCorteCajaModeloVista.cs" />
     <Compile Include="ModeloVista\ModificarSocioModeloVista.cs" />
     <Compile Include="ModeloVista\RegistrarEmpleadoModeloVista.cs" />
+    <Compile Include="ModeloVista\RegistrarGastoModeloVista.cs" />
     <Compile Include="ModeloVista\RegistrarSocioModeloVista.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
     <Compile Include="Modelo\SocioConsultado.cs" />
@@ -131,6 +133,9 @@
     <Compile Include="Vista\EditarSucursal.xaml.cs">
       <DependentUpon>EditarSucursal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\IniciarSesion.xaml.cs">
+      <DependentUpon>IniciarSesion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\ModificarEmpleado.xaml.cs">
       <DependentUpon>ModificarEmpleado.xaml</DependentUpon>
     </Compile>
@@ -148,6 +153,9 @@
     </Compile>
     <Compile Include="Vista\RegistrarEmpleado.xaml.cs">
       <DependentUpon>RegistrarEmpleado.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\RegistrarGasto.xaml.cs">
+      <DependentUpon>RegistrarGasto.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\RegistrarSocio.xaml.cs">
       <DependentUpon>RegistrarSocio.xaml</DependentUpon>
@@ -208,6 +216,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vista\IniciarSesion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\ModificarEmpleado.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\RegistrarEmpleado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\RegistrarGasto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

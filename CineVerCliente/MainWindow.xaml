@@ -153,6 +153,14 @@
         <DataTemplate DataType="{x:Type vistaModelo:ConsultarSociosModeloVista}">
             <vista:ConsultarSocios/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:RegistrarGastoModeloVista}">
+            <vista:RegistrarGasto/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:IniciarSesionModeloVista}">
+            <vista:IniciarSesion/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

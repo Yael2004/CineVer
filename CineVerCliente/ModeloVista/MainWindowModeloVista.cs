@@ -39,7 +39,7 @@ namespace CineVerCliente.ModeloVista
             CorteCaja = new ComandoModeloVista(RealizarCorteCaja);
             DevolverBoletoComando = new ComandoModeloVista(DevolverBoleto);
             SucursalComando = new ComandoModeloVista(EditarSucursal);
-            EmpleadoComando = new ComandoModeloVista(ConsultarSocios);
+            EmpleadoComando = new ComandoModeloVista(IniciarSesion);
         }
 
         public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
@@ -105,6 +105,16 @@ namespace CineVerCliente.ModeloVista
         private void ConsultarSocios(object obj)
         {
             CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
+        }
+
+        private void RegistrarGasto(object obj)
+        {
+            CambiarModeloVista(new RegistrarGastoModeloVista(_mainWindowModeloVista));
+        }
+
+        private void IniciarSesion(object obj)
+        {
+            CambiarModeloVista(new IniciarSesionModeloVista(_mainWindowModeloVista));
         }
     }
 }
