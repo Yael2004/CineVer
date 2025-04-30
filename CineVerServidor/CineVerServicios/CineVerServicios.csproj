@@ -58,16 +58,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsientoServicio.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="DTO\AsientoDTO.cs" />
+    <Compile Include="DTO\FilaDTO.cs" />
+    <Compile Include="DTO\ListaAsientosDTO.cs" />
+    <Compile Include="DTO\ListaFilasDTO.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
     <Compile Include="DTO\ListaSalaDTO.cs" />
     <Compile Include="DTO\PeliculaDTO.cs" />
     <Compile Include="DTO\ResultDTO.cs" />
     <Compile Include="DTO\SalaDTO.cs" />
     <Compile Include="DulceriaServicio.cs" />
+    <Compile Include="FilaServicio.cs" />
+    <Compile Include="Interfaces\IAsientoServicio.cs" />
     <Compile Include="Interfaces\IDulceriaServicio.cs" />
+    <Compile Include="Interfaces\IFilaServicio.cs" />
     <Compile Include="Interfaces\IPelículaServicio.cs" />
     <Compile Include="Interfaces\ISalaServicio.cs" />
+    <Compile Include="Lógica\GestorAsiento.cs" />
+    <Compile Include="Lógica\GestorFila.cs" />
     <Compile Include="Lógica\GestorPelícula.cs" />
     <Compile Include="Lógica\GestorSala.cs" />
     <Compile Include="PelículaServicio.cs" />

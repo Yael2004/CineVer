@@ -1,6 +1,7 @@
 ﻿using CineVerServicios.DTO;
 using CineVerServicios.Interfaces;
 using CineVerServicios.Lógica;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace CineVerServicios
 {
-    internal class SalaServicio : ISalaServicio
+    public class AsientoServicio : IAsientoServicio
     {
-        private GestorSala gestorSala = new GestorSala();
-        public Task<string> AgregarSala(SalaDTO sala)
+        private GestorAsiento gestorAsiento = new GestorAsiento();
+        public Task<string> AgregarAsiento(AsientoDTO asientoDTO)
         {
-            var result = gestorSala.AgregarSala(sala);
+            var result = gestorAsiento.AgregarAsiento(asientoDTO);
             if (result.EsExitoso)
             {
                 return Task.FromResult(result.Valor);
@@ -25,9 +26,9 @@ namespace CineVerServicios
             }
         }
 
-        public Task<string> EditarSala(SalaDTO salaEditada, SalaDTO salaOriginal)
+        public Task<string> EditarAsiento(AsientoDTO asientoEditado, AsientoDTO asientoOriginal)
         {
-            var result = gestorSala.EditarSala(salaEditada, salaOriginal);
+            var result = gestorAsiento.EditarAsiento(asientoEditado,asientoOriginal);
             if (result.EsExitoso)
             {
                 return Task.FromResult(result.Valor);
@@ -38,9 +39,9 @@ namespace CineVerServicios
             }
         }
 
-        public Task<string> EliminarSala(SalaDTO sala)
+        public Task<string> EliminarAsiento(AsientoDTO asiento)
         {
-            var result = gestorSala.EliminarSala(sala);
+            var result = gestorAsiento.EliminarAsiento(asiento);
             if (result.EsExitoso)
             {
                 return Task.FromResult(result.Valor);
@@ -51,9 +52,9 @@ namespace CineVerServicios
             }
         }
 
-        public Task<int> ObtenerIdSala(int idSucursal, string nombre)
+        public Task<int> ObtenerIdAsiento(string letraColumna, int idFila)
         {
-            var result = gestorSala.ObtenerIdSala(idSucursal, nombre);
+            var result = gestorAsiento.ObtenerIDAsiento(letraColumna,idFila);
             if (result.EsExitoso)
             {
                 return Task.FromResult(result.Valor);
@@ -64,19 +65,19 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ListaSalaDTO> ObtenerSalasPorSucursal(int idSucursal)
+        public Task<ListaAsientosDTO> ObtenerListaAsientosPorFila(int idFila)
         {
-            var salas = gestorSala.ObtenerListaSalasPorSucursal(idSucursal);
-            if (salas.EsExitoso)
+            var result = gestorAsiento.ObtenerAsientosPorFila(idFila);
+            if (result.EsExitoso)
             {
-                return Task.FromResult(salas.Valor);
+                return Task.FromResult(result.Valor);
             }
             else
             {
-                return Task.FromResult(new ListaSalaDTO
+                return Task.FromResult(new ListaAsientosDTO
                 {
-                    Salas = new List<SalaDTO>(),
-                    Result = new ResultDTO(false, salas.Error)
+                    Asientos = new List<AsientoDTO>(),
+                    Result = new ResultDTO(false,result.Error)
                 });
             }
         }

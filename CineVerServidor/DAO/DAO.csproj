@@ -57,7 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsientoDAO.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="FilaDAO.cs" />
+    <Compile Include="FuncionDAO.cs" />
     <Compile Include="PelículaDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalaDAO.cs" />
