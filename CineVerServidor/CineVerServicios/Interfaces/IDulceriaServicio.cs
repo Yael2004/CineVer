@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerServicios.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,6 +12,21 @@ namespace CineVerServicios.Interfaces
     public interface IDulceriaServicio
     {
         [OperationContract]
-        string AgregarProductoDulceria();
+        Task<ListaProductosDulceriaDTO> ObtenerProductosDulceria();
+
+        [OperationContract]
+        Task<ResultDTO> AgregarInventario(Dictionary<int, int> inventario);
+
+        [OperationContract]
+        Task<ResultDTO> AgregarProductoDulceria(ProductoDulceriaDTO producto);
+
+        [OperationContract]
+        Task<ResultDTO> ObtenerProductoDulceria(int idProducto);
+
+        [OperationContract]
+        Task<ResultDTO> ActualizarProductoDulceria(ProductoDulceriaDTO producto);
+
+        [OperationContract]
+        Task<ResultDTO> ReportarMerma(int idProducto, int cantidadMerma);
     }
 }
