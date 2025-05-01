@@ -13,18 +13,17 @@ namespace CineVerServicios.DTO
         [DataMember]
         public List<ProductoDulceriaDTO> Productos { get; set; }
         [DataMember]
-        public int TotalProductos { get; set; }
+        public ResultDTO ResultDTO { get; set; }
 
         public ListaProductosDulceriaDTO()
         {
             Productos = new List<ProductoDulceriaDTO>();
-            TotalProductos = 0;
         }
 
-        public ListaProductosDulceriaDTO(List<ProductoDulceriaDTO> productos)
+        public ListaProductosDulceriaDTO(List<ProductoDulceriaDTO> productos, ResultDTO resultDTO)
         {
             Productos = productos;
-            TotalProductos = productos.Count;
+            ResultDTO = resultDTO;
         }
     }
 }

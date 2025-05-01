@@ -64,6 +64,7 @@
     <Compile Include="DTO\ListaProductosDulceriaDTO.cs" />
     <Compile Include="DTO\PeliculaDTO.cs" />
     <Compile Include="DTO\ProductoDulceriaDTO.cs" />
+    <Compile Include="DTO\ProductoDulceriaResponseDTO.cs" />
     <Compile Include="DTO\ResultDTO.cs" />
     <Compile Include="DTO\SucursalDTO.cs" />
     <Compile Include="DulceriaServicio.cs" />

@@ -6,40 +6,63 @@ using System.Text;
 using System.Threading.Tasks;
 using CineVerServicios.DTO;
 using CineVerServicios.Interfaces;
+using CineVerServicios.Lógica;
+using Utilidades;
 
 namespace CineVerServicios
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class DulceriaServicio : IDulceriaServicio
     {
-        public Task<ResultDTO> ActualizarProductoDulceria(ProductoDulceriaDTO producto)
+        public async Task<ResultDTO> ActualizarProductoDulceria(ProductoDulceriaDTO producto)
         {
-            throw new NotImplementedException();
+            var resultado = await GestorDulceria.ActualizarProductoDulceria(producto);
+            return resultado;
         }
 
-        public Task<ResultDTO> AgregarInventario(Dictionary<int, int> inventario)
+        public async Task<ResultDTO> AgregarInventario(Dictionary<int, int> inventario)
         {
-            throw new NotImplementedException();
+            var resultado = await GestorDulceria.AgregarInventario(inventario);
+            return resultado;
         }
 
-        public Task<ResultDTO> AgregarProductoDulceria(ProductoDulceriaDTO producto)
+        public async Task<ResultDTO> AgregarProductoDulceria(ProductoDulceriaDTO producto)
         {
-            throw new NotImplementedException();
+            var resultado = await GestorDulceria.AgregarProductoDulceria(producto);
+            return resultado;
         }
 
-        public Task<ResultDTO> ObtenerProductoDulceria(int idProducto)
+        public async Task<ProductoDulceriaResponseDTO> ObtenerProductoDulceria(int idProducto)
         {
-            throw new NotImplementedException();
+            var resultado = await GestorDulceria.ObtenerProductoDulceria(idProducto);
+
+            if (resultado.EsExitoso)
+            {
+                return new ProductoDulceriaResponseDTO
+                {
+                    Producto = resultado.Valor,
+                    ResultDTO = ResultDTO.Exito()
+                };
+            }
+            else
+            {
+                return new ProductoDulceriaResponseDTO
+                {
+                    ResultDTO = ResultDTO.Fallo(resultado.Error)
+                };
+            }
         }
 
-        public Task<ListaProductosDulceriaDTO> ObtenerProductosDulceria()
+        public async Task<ListaProductosDulceriaDTO> ObtenerProductosDulceria()
         {
-            throw new NotImplementedException();
+            var resultado = await GestorDulceria.ObtenerProductosDulceria();
+            return resultado;
         }
 
-        public Task<ResultDTO> ReportarMerma(int idProducto, int cantidadMerma)
+        public async Task<ResultDTO> ReportarMerma(int idProducto, int cantidadMerma)
         {
-            throw new NotImplementedException();
+            var resultado = await GestorDulceria.ReportarMerma(idProducto, cantidadMerma);
+            return resultado;
         }
     }
 }

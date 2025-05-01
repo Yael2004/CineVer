@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Utilidades;
 
 namespace CineVerServicios.Interfaces
 {
@@ -21,7 +22,7 @@ namespace CineVerServicios.Interfaces
         Task<ResultDTO> AgregarProductoDulceria(ProductoDulceriaDTO producto);
 
         [OperationContract]
-        Task<ResultDTO> ObtenerProductoDulceria(int idProducto);
+        Task<ProductoDulceriaResponseDTO> ObtenerProductoDulceria(int idProducto);
 
         [OperationContract]
         Task<ResultDTO> ActualizarProductoDulceria(ProductoDulceriaDTO producto);

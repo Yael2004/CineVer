@@ -1,37 +1,144 @@
-﻿using CineVerServicios.DTO;
+﻿using CineVerEntidades;
+using CineVerServicios.DTO;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utilidades;
 
 namespace CineVerServicios.Lógica
 {
     public class GestorDulceria
     {
-        public void AgregarProductoDulceria(ProductoDulceriaDTO producto)
+        private static ProductoDulceriaDAO productoDulceriaDAO = new ProductoDulceriaDAO();
+
+        public static Task<ResultDTO> AgregarProductoDulceria(ProductoDulceriaDTO producto)
         {
-            // Lógica para agregar un producto a la dulcería
+            ProductoDulceria productoDulceria = new ProductoDulceria
+            {
+                nombre = producto.Nombre,
+                cantidadInventario = producto.CantidadInventario,
+                costoUnitario = producto.CostoUnitario,
+                precioVenta = producto.PrecioVentaUnitario,
+                imagen = producto.Imagen,
+                idSucursal = producto.IdSucursal
+            };
+
+            var resultado = productoDulceriaDAO.AgregarProductoDulceria(productoDulceria);
+            if (resultado.EsExitoso == true)
+            {
+                return Task.FromResult(ResultDTO.Exito());
+            }
+            else
+            {
+                return Task.FromResult(ResultDTO.Fallo(resultado.Error));
+            }
         }
 
-        public void ActualizarProductoDulceria(ProductoDulceriaDTO producto)
+        public static Task<ResultDTO> ActualizarProductoDulceria(ProductoDulceriaDTO producto)
         {
-            // Lógica para actualizar un producto en la dulcería
+            ProductoDulceria productoDulceria = new ProductoDulceria
+            {
+                nombre = producto.Nombre,
+                cantidadInventario = producto.CantidadInventario,
+                costoUnitario = producto.CostoUnitario,
+                precioVenta = producto.PrecioVentaUnitario,
+                imagen = producto.Imagen,
+                idSucursal = producto.IdSucursal
+            };
+
+            var resultado = productoDulceriaDAO.ActualizarProductoDulceria(productoDulceria);
+            if (resultado.EsExitoso == true)
+            {
+                return Task.FromResult(ResultDTO.Exito());
+            }
+            else
+            {
+                return Task.FromResult(ResultDTO.Fallo(resultado.Error));
+            }
         }
 
-        public void ObtenerProductoDulceria(int idProducto)
+        public static Task<Result<ProductoDulceriaDTO>> ObtenerProductoDulceria(int idProducto)
         {
-            // Lógica para obtener un producto de la dulcería por su ID
+            var resultado = productoDulceriaDAO.ObtenerProductoDulceria(idProducto);
+            if (resultado.EsExitoso == true)
+            {
+                ProductoDulceriaDTO productoDulceriaDTO = new ProductoDulceriaDTO
+                {
+                    IdProducto = resultado.Valor.idProducto,
+                    Nombre = resultado.Valor.nombre,
+                    CantidadInventario = resultado.Valor.cantidadInventario ?? 0,
+                    CostoUnitario = resultado.Valor.costoUnitario ?? 0,
+                    PrecioVentaUnitario = resultado.Valor.precioVenta ?? 0,
+                    Imagen = resultado.Valor.imagen,
+                    IdSucursal = resultado.Valor.idSucursal ?? 0
+                };
+                return Task.FromResult(Result<ProductoDulceriaDTO>.Exito(productoDulceriaDTO));
+            }
+            else
+            {
+                return Task.FromResult(Result<ProductoDulceriaDTO>.Fallo("No se encontró el producto con el ID especificado."));
+            }
         }
 
-        public void ObtenerProductosDulceria()
+        public static Task<ListaProductosDulceriaDTO> ObtenerProductosDulceria()
         {
-            // Lógica para obtener todos los productos de la dulcería
+            var resultado = productoDulceriaDAO.ObtenerListaProductosDulceria();
+            if (resultado.EsExitoso == true)
+            {
+                ListaProductosDulceriaDTO listaProductosDulceriaDTO = new ListaProductosDulceriaDTO
+                {
+                    Productos = resultado.Valor.Select(p => new ProductoDulceriaDTO
+                    {
+                        IdProducto = p.idProducto,
+                        Nombre = p.nombre,
+                        CantidadInventario = p.cantidadInventario ?? 0,
+                        CostoUnitario = p.costoUnitario ?? 0,
+                        PrecioVentaUnitario = p.precioVenta ?? 0,
+                        Imagen = p.imagen,
+                        IdSucursal = p.idSucursal ?? 0
+                    }).ToList(),
+
+                    ResultDTO = ResultDTO.Exito()
+                };
+                return Task.FromResult(listaProductosDulceriaDTO);
+            }
+            else
+            {
+                return Task.FromResult(new ListaProductosDulceriaDTO
+                {
+                    Productos = new List<ProductoDulceriaDTO>(),
+                    ResultDTO = ResultDTO.Fallo(resultado.Error)
+                });
+            }
         }
 
-        public void ReportarMerma(int idProducto, int cantidadMerma)
+        public static Task<ResultDTO> ReportarMerma(int idProducto, int cantidadMerma)
         {
-            // Lógica para reportar una merma de un producto en la dulcería
+            var resultado = productoDulceriaDAO.ReportarMerma(idProducto, cantidadMerma);
+            if (resultado.EsExitoso == true)
+            {
+                return Task.FromResult(ResultDTO.Exito());
+            }
+            else
+            {
+                return Task.FromResult(ResultDTO.Fallo(resultado.Error));
+            }
+        }
+
+        public static Task<ResultDTO> AgregarInventario(Dictionary<int, int> inventario)
+        {
+            var resultado = productoDulceriaDAO.AgregarInventario(inventario);
+            if (resultado.EsExitoso == true)
+            {
+                return Task.FromResult(ResultDTO.Exito());
+            }
+            else
+            {
+                return Task.FromResult(ResultDTO.Fallo(resultado.Error));
+            }
         }
     }
 }

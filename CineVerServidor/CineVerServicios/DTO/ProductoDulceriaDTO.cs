@@ -23,12 +23,14 @@ namespace CineVerServicios.DTO
         public decimal PrecioVentaUnitario { get; set; }
         [DataMember]
         public byte[] Imagen { get; set; }
+        [DataMember]
+        public int IdSucursal { get; set; }
 
         public ProductoDulceriaDTO()
         {
         }
 
-        public ProductoDulceriaDTO(int idProducto, string nombre, int cantidadInventario, decimal costoUnitario, decimal precioVentaUnitario, byte[] imagen)
+        public ProductoDulceriaDTO(int idProducto, string nombre, int cantidadInventario, decimal costoUnitario, decimal precioVentaUnitario, byte[] imagen, int idSucursal)
         {
             IdProducto = idProducto;
             Nombre = nombre;
@@ -36,6 +38,7 @@ namespace CineVerServicios.DTO
             CostoUnitario = costoUnitario;
             PrecioVentaUnitario = precioVentaUnitario;
             Imagen = imagen;
+            IdSucursal = idSucursal;
         }
 
     }
