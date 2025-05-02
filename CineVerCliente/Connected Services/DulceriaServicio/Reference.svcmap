@@ -22,10 +22,12 @@
     <MetadataSource Address="http://localhost:2020/DulceriaServicio" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DulceriaServicio.disco" MetadataType="Disco" ID="1159d041-77a8-4241-8958-70455c14f693" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?disco" />
-    <MetadataFile FileName="DulceriaServicio.xsd" MetadataType="Schema" ID="05504743-f047-4007-8894-9c4b58f6b451" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?xsd=xsd0" />
-    <MetadataFile FileName="DulceriaServicio1.xsd" MetadataType="Schema" ID="bb5187f6-f132-4dd8-9e33-5f6e5a4a26c8" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?xsd=xsd1" />
     <MetadataFile FileName="DulceriaServicio.wsdl" MetadataType="Wsdl" ID="eacb7b8b-c9c7-41f1-98ca-47f471e399cb" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?wsdl" />
+    <MetadataFile FileName="DulceriaServicio.disco" MetadataType="Disco" ID="1159d041-77a8-4241-8958-70455c14f693" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?disco" />
+    <MetadataFile FileName="DulceriaServicio2.xsd" MetadataType="Schema" ID="26772394-093c-4b46-a70b-5e27bbf6f820" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?xsd=xsd3" />
+    <MetadataFile FileName="DulceriaServicio21.xsd" MetadataType="Schema" ID="4c586e41-7f3e-496c-8546-2ae50285c84a" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?xsd=xsd2" />
+    <MetadataFile FileName="DulceriaServicio1.xsd" MetadataType="Schema" ID="bb5187f6-f132-4dd8-9e33-5f6e5a4a26c8" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?xsd=xsd1" />
+    <MetadataFile FileName="DulceriaServicio.xsd" MetadataType="Schema" ID="05504743-f047-4007-8894-9c4b58f6b451" SourceId="1" SourceUrl="http://localhost:2020/DulceriaServicio?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

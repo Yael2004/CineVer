@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Helpers;
+﻿using CineVerCliente.DulceriaServicio;
+using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace CineVerCliente.ModeloVista
         private Visibility _mostrarMensajeConfirmarCambio = Visibility.Collapsed;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
+        private DulceriaServicioClient DulceriaServicioCliente;
 
         public ICommand AgregarNuevoProductoComando { get; }
         public ICommand CancelarComando { get; }
@@ -50,7 +52,6 @@ namespace CineVerCliente.ModeloVista
         public AgregarProductoDulceriaModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
-            InicializarListaProductos();
             ConfirmarCambioComando = new ComandoModeloVista(ConfirmarCambio);
             CancelarCambioComando = new ComandoModeloVista(CancelarCambio);
             AgregarNuevoProductoComando = new ComandoModeloVista(AgregarNuevoProducto);
@@ -58,6 +59,9 @@ namespace CineVerCliente.ModeloVista
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
             MostrarMensajeConfirmarCambiosComando = new ComandoModeloVista(ConfirmarInventario);
+            DulceriaServicioCliente = new DulceriaServicioClient();
+            Productos = new ObservableCollection<ProductoDulceria>();
+            InicializarListaProductos();
         }
 
         public void ConfirmarInventario(object obj)
@@ -87,8 +91,34 @@ namespace CineVerCliente.ModeloVista
 
         private void ConfirmarCambio(object obj)
         {
+            Dictionary<int, int> idProductoInventario = new Dictionary<int, int>();
+
+            foreach (var producto in Productos)
+            {
+                if (int.TryParse(producto.CantidadInventario, out int cantidad))
+                {
+                    idProductoInventario.Add(producto.Id, cantidad);
+                }
+            }
+
+            try 
+            {
+                var respuesta = DulceriaServicioCliente.AgregarInventario(idProductoInventario);
+                if (respuesta != null && respuesta.EsExitoso)
+                {
+                    Notificacion.Mostrar("Inventario actualizado correctamente");
+                }
+                else
+                {
+                    Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                }
+            } 
+            catch (Exception) 
+            { 
+                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+            }
+
             MostrarMensajeConfirmarCambio = Visibility.Collapsed;
-            Notificacion.Mostrar("Cantidad registrada correctamente en el inventario");
         }
 
         private void CancelarCambio(object obj)
@@ -98,43 +128,27 @@ namespace CineVerCliente.ModeloVista
 
         private void InicializarListaProductos()
         {
-            Productos = new ObservableCollection<ProductoDulceria>
-            {
-                new ProductoDulceria
-                {
-                    Nombre = "Palomitas",
-                    CostoUnitario = "20",
-                    PrecioVentaUnitario = "35",
-                    CantidadInventario = "15"
-                },
-                new ProductoDulceria
-                {
-                    Nombre = "Refresco",
-                    CostoUnitario = "10",
-                    PrecioVentaUnitario = "25",
-                    CantidadInventario = "20"
-                },
-                new ProductoDulceria
-                {
-                    Nombre = "Dulces",
-                    CostoUnitario = "5",
-                    PrecioVentaUnitario = "15",
-                    CantidadInventario = "30"
-                },
-            };
-        }
-
-        private void MostrarMensajeServicio()
-        {
             try
             {
-                var cliente = new DulceriaServicio.DulceriaServicioClient();
-                var mensaje = cliente.AgregarProductoDulceria();
-                Notificacion.Mostrar(mensaje);
-            }
-            catch (Exception ex)
-            {
-                Notificacion.Mostrar(ex.Message);
+                var productos = DulceriaServicioCliente.ObtenerProductosDulceria();
+                if (productos != null)
+                {
+                    foreach (var producto in productos.Productos)
+                    {
+                        Productos.Add(new ProductoDulceria
+                        {
+                            Id = producto.IdProducto,
+                            Nombre = producto.Nombre,
+                            CostoUnitario = producto.CostoUnitario.ToString(),
+                            PrecioVentaUnitario = producto.PrecioVentaUnitario.ToString(),
+                            CantidadInventario = producto.CantidadInventario.ToString()
+                        });
+                    }
+                }
+            } 
+            catch (Exception) 
+            { 
+                Notificacion.Mostrar("Ha ocurrido un error inesperado");
             }
         }
     }

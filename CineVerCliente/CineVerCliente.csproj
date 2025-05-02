@@ -312,11 +312,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\DulceriaServicio\CineVerCliente.DulceriaServicio.ListaProductosDulceriaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DulceriaServicio\CineVerCliente.DulceriaServicio.ProductoDulceriaResponseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\DulceriaServicio\CineVerCliente.DulceriaServicio.ResultDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio.wsdl" />
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DulceriaServicio\DulceriaServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\DulceriaServicio\DulceriaServicio21.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaSucursalesDTO.datasource">

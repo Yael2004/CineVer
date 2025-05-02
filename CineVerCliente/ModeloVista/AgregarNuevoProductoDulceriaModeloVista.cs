@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Helpers;
+﻿using CineVerCliente.DulceriaServicio;
+using CineVerCliente.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace CineVerCliente.ModeloVista
         private Visibility _mostrarMensajeConfirmarProducto = Visibility.Collapsed;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
+        private DulceriaServicioClient DulceriaServicioCliente;
 
         public ICommand AgregarNuevoProductoComando { get; }
         public ICommand AceptarNuevoProductoComando { get; }
@@ -101,7 +103,7 @@ namespace CineVerCliente.ModeloVista
         public AgregarNuevoProductoDulceriaModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
-
+            DulceriaServicioCliente = new DulceriaServicioClient(); 
             AgregarNuevoProductoComando = new ComandoModeloVista(AgregarNuevoProducto);
             AceptarNuevoProductoComando = new ComandoModeloVista(AceptarNuevoProducto);
             CancelarNuevoProductoComando = new ComandoModeloVista(CancelarNuevoProducto);
@@ -117,8 +119,34 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarNuevoProducto(object obj)
         {
+            try
+            {
+                ProductoDulceriaDTO nuevoProducto = new ProductoDulceriaDTO
+                {
+                    Nombre = NombreProducto,
+                    CantidadInventario = CantidadInventario,
+                    CostoUnitario = (decimal)CostoUnitario,
+                    PrecioVentaUnitario = (decimal)PrecioVentaUnitario,
+                    //Imagen = ImagenProducto
+                };
+                var resultado = DulceriaServicioCliente.AgregarProductoDulceria(nuevoProducto);
+                if (resultado.EsExitoso)
+                {
+                    Notificacion.Mostrar("Producto agregado exitosamente.");
+                    _mainWindowModeloVista.CambiarModeloVista(new AgregarProductoDulceriaModeloVista(_mainWindowModeloVista));
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al agregar el producto.");
+                }
+            } 
+            catch (Exception ex)
+            {
+                Notificacion.Mostrar("Error al agregar el producto: " + ex.Message);
+                return;
+            }
+
             MostrarMensajeConfirmarProducto = Visibility.Collapsed;
-            Notificacion.Mostrar("Pago realizado correctamente");
         }
 
         private void CancelarNuevoProducto(object obj)
@@ -134,6 +162,7 @@ namespace CineVerCliente.ModeloVista
         private void ConfirmarCancelacion(object obj)
         {
             MostrarMensajeCancelarOperacion = Visibility.Collapsed;
+            _mainWindowModeloVista.CambiarModeloVista(new AgregarProductoDulceriaModeloVista(_mainWindowModeloVista));
         }
 
         private void CancelarCancelacion(object obj)

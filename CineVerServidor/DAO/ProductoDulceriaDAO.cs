@@ -36,6 +36,10 @@ namespace DAO
                 {
                     return Result<List<ProductoDulceria>>.Fallo(sqlEx.Message);
                 }
+                catch (Exception ex)
+                {
+                    return Result<List<ProductoDulceria>>.Fallo(ex.Message);
+                }
             }
         }
 
@@ -64,6 +68,10 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
             }
         }
 
@@ -84,6 +92,10 @@ namespace DAO
                 catch (SqlException sqlEx)
                 {
                     return Result<string>.Fallo(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
                 }
             }
         }
@@ -108,6 +120,10 @@ namespace DAO
                 catch (SqlException sqlEx)
                 {
                     return Result<ProductoDulceria>.Fallo(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return Result<ProductoDulceria>.Fallo(ex.Message);
                 }
             }
         }
@@ -135,6 +151,10 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
             }
         }
 
@@ -160,6 +180,10 @@ namespace DAO
                 catch (SqlException sqlEx)
                 {
                     return Result<string>.Fallo(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
                 }
             }
         }

@@ -8,6 +8,7 @@ namespace CineVerCliente.Modelo
 {
     public class ProductoDulceria
     {
+        public int Id { get; set; }
         private string _costoUnitario;
         public string CostoUnitario
         {

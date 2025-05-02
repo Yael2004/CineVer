@@ -33,25 +33,122 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:2020/DulceriaServicio?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:2020/DulceriaServicio?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:2020/DulceriaServicio?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" />
+      <xsd:import schemaLocation="http://localhost:2020/DulceriaServicio?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IDulceriaServicio_ObtenerProductosDulceria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerProductosDulceria" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ObtenerProductosDulceria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerProductosDulceriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_AgregarInventario_InputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarInventario" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_AgregarInventario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AgregarInventarioResponse" />
+  </wsdl:message>
   <wsdl:message name="IDulceriaServicio_AgregarProductoDulceria_InputMessage">
     <wsdl:part name="parameters" element="tns:AgregarProductoDulceria" />
   </wsdl:message>
   <wsdl:message name="IDulceriaServicio_AgregarProductoDulceria_OutputMessage">
     <wsdl:part name="parameters" element="tns:AgregarProductoDulceriaResponse" />
   </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ObtenerProductoDulceria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerProductoDulceria" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ObtenerProductoDulceria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerProductoDulceriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ActualizarProductoDulceria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarProductoDulceria" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ActualizarProductoDulceria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarProductoDulceriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ReportarMerma_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportarMerma" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ReportarMerma_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportarMermaResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDulceriaServicio">
+    <wsdl:operation name="ObtenerProductosDulceria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/ObtenerProductosDulceria" message="tns:IDulceriaServicio_ObtenerProductosDulceria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/ObtenerProductosDulceriaResponse" message="tns:IDulceriaServicio_ObtenerProductosDulceria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarInventario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/AgregarInventario" message="tns:IDulceriaServicio_AgregarInventario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/AgregarInventarioResponse" message="tns:IDulceriaServicio_AgregarInventario_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="AgregarProductoDulceria">
       <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/AgregarProductoDulceria" message="tns:IDulceriaServicio_AgregarProductoDulceria_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/AgregarProductoDulceriaResponse" message="tns:IDulceriaServicio_AgregarProductoDulceria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerProductoDulceria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/ObtenerProductoDulceria" message="tns:IDulceriaServicio_ObtenerProductoDulceria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/ObtenerProductoDulceriaResponse" message="tns:IDulceriaServicio_ObtenerProductoDulceria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarProductoDulceria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/ActualizarProductoDulceria" message="tns:IDulceriaServicio_ActualizarProductoDulceria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/ActualizarProductoDulceriaResponse" message="tns:IDulceriaServicio_ActualizarProductoDulceria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportarMerma">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/ReportarMerma" message="tns:IDulceriaServicio_ReportarMerma_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/ReportarMermaResponse" message="tns:IDulceriaServicio_ReportarMerma_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IDulceriaServicio" type="tns:IDulceriaServicio">
     <wsp:PolicyReference URI="#NetTcpBinding_IDulceriaServicio_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ObtenerProductosDulceria">
+      <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/ObtenerProductosDulceria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarInventario">
+      <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/AgregarInventario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="AgregarProductoDulceria">
       <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/AgregarProductoDulceria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerProductoDulceria">
+      <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/ObtenerProductoDulceria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarProductoDulceria">
+      <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/ActualizarProductoDulceria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportarMerma">
+      <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/ReportarMerma" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
