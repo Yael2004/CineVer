@@ -62,8 +62,10 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DTO\AsientoDTO.cs" />
     <Compile Include="DTO\FilaDTO.cs" />
+    <Compile Include="DTO\FuncionDTO.cs" />
     <Compile Include="DTO\ListaAsientosDTO.cs" />
     <Compile Include="DTO\ListaFilasDTO.cs" />
+    <Compile Include="DTO\ListaFuncionesDTO.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
     <Compile Include="DTO\ListaSalaDTO.cs" />
     <Compile Include="DTO\PeliculaDTO.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="Interfaces\ISalaServicio.cs" />
     <Compile Include="Lógica\GestorAsiento.cs" />
     <Compile Include="Lógica\GestorFila.cs" />
+    <Compile Include="Lógica\GestorFuncion.cs" />
     <Compile Include="Lógica\GestorPelícula.cs" />
     <Compile Include="Lógica\GestorSala.cs" />
     <Compile Include="PelículaServicio.cs" />
