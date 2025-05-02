@@ -20,11 +20,11 @@ namespace CineVerEntidades
             this.CorteCaja = new HashSet<CorteCaja>();
             this.Empleado = new HashSet<Empleado>();
             this.Gasto = new HashSet<Gasto>();
+            this.Película = new HashSet<Película>();
             this.ProductoDulceria = new HashSet<ProductoDulceria>();
             this.Promocion = new HashSet<Promocion>();
             this.Sala = new HashSet<Sala>();
             this.Venta = new HashSet<Venta>();
-            this.Película = new HashSet<Película>();
         }
     
         public int idSucursal { get; set; }
@@ -36,6 +36,7 @@ namespace CineVerEntidades
         public string codigoPostal { get; set; }
         public Nullable<System.TimeSpan> horaApertura { get; set; }
         public Nullable<System.TimeSpan> horaCierre { get; set; }
+        public string estadoSucursal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CorteCaja> CorteCaja { get; set; }
@@ -44,6 +45,8 @@ namespace CineVerEntidades
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Gasto> Gasto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Película> Película { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductoDulceria> ProductoDulceria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Promocion> Promocion { get; set; }
@@ -51,7 +54,5 @@ namespace CineVerEntidades
         public virtual ICollection<Sala> Sala { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Venta> Venta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Película> Película { get; set; }
     }
 }

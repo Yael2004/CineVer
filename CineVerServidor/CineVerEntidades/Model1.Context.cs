@@ -35,6 +35,7 @@ namespace CineVerEntidades
         public virtual DbSet<Fila> Fila { get; set; }
         public virtual DbSet<Función> Función { get; set; }
         public virtual DbSet<Gasto> Gasto { get; set; }
+        public virtual DbSet<Película> Película { get; set; }
         public virtual DbSet<ProductoDulceria> ProductoDulceria { get; set; }
         public virtual DbSet<Promocion> Promocion { get; set; }
         public virtual DbSet<Sala> Sala { get; set; }
@@ -42,6 +43,5 @@ namespace CineVerEntidades
         public virtual DbSet<Sucursal> Sucursal { get; set; }
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaEnDulceria> VentaEnDulceria { get; set; }
-        public virtual DbSet<Película> Película { get; set; }
     }
 }

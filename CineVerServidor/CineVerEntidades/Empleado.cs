@@ -36,6 +36,8 @@ namespace CineVerEntidades
         public string rfc { get; set; }
         public string matriculaEmpleado { get; set; }
         public Nullable<int> idSucursal { get; set; }
+        public byte[] foto { get; set; }
+        public Nullable<bool> contratado { get; set; }
     
         public virtual Sucursal Sucursal { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
