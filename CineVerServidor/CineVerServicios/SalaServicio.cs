@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CineVerServicios
 {
-    internal class SalaServicio : ISalaServicio
+    public class SalaServicio : ISalaServicio
     {
         private GestorSala gestorSala = new GestorSala();
         public Task<string> AgregarSala(SalaDTO sala)
