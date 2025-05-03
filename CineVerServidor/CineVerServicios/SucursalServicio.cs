@@ -57,7 +57,19 @@ namespace CineVerServicios
 
         public Task<ListaSucursalesDTO> ObtenerSucursales()
         {
-            throw new NotImplementedException();
+            var resultado = _gestorSucursal.ObtenerSucursales();
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(new ListaSucursalesDTO
+                {
+                    Result = new ResultDTO(false, resultado.Error)
+                });
+            }
         }
     }
 }

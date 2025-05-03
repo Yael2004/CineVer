@@ -63,7 +63,7 @@
                 <Button Grid.Column="7" Content="Boletos" Margin="0"
                 Style="{StaticResource BotonMenu}" 
                 VerticalAlignment="Center"
-                Command="{Binding DevolverBoletoComando}"/>
+                Command="{Binding BoletoComando}"/>
 
                 <Button Grid.Column="8" Content="Funciones" Margin="0"
                 Style="{StaticResource BotonMenu}" 
@@ -176,6 +176,10 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:CantidadMermaModeloVista}">
             <vista:CantidadMerma/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:VenderBoletoModeloVista}">
+            <vista:VenderBoleto/>
         </DataTemplate>
     </Window.Resources>
 

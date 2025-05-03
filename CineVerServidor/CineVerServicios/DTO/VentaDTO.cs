@@ -21,7 +21,7 @@ namespace CineVerServicios.DTO
 
         [DataMember]
         public int IdSucursal { get; set; }
-
+        
         [DataMember]
         public decimal Total { get; set; }
 
@@ -32,6 +32,6 @@ namespace CineVerServicios.DTO
         public DateTime Fecha { get; set; }
 
         [DataMember]
-        public string TipoVenta { get; set; }
+        public string TIpoVenta { get; set; }
     }
 }

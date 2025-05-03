@@ -63,6 +63,7 @@
     <Compile Include="PromocionDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SucursalDAO.cs" />
+    <Compile Include="VentaDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CineVerEntidades\CineVerEntidades.csproj">

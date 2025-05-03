@@ -144,5 +144,23 @@ namespace CineVerCliente.ModeloVista
         {
             MostrarMensajeConfirmacion = Visibility.Collapsed;
         }
+
+        private async void CargarSucursales()
+        {
+            var cliente = new SucursalServicio.SucursalServicioClient();
+            var respuesta = await cliente.ObtenerSucursalesAsync();
+
+            Sucursales = new ObservableCollection<SucursalConsultada>();
+            foreach (var sucursal in respuesta.Sucursales)
+            {
+                Sucursales.Add(new SucursalConsultada
+                {
+                    Nombre = sucursal.Nombre,
+                    Estado = sucursal.Estado,
+                    Ciudad = sucursal.Ciudad,
+                    CodigoPostal = sucursal.CodigoPostal
+                });
+            }
+        }
     }
 }

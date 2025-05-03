@@ -27,6 +27,9 @@
     <BitmapImage x:Key="Icono_Eliminar"
                 UriSource="pack://application:,,,/Assets/Imagenes/Iconos/Icono_Eliminar.png"/>
 
+    <BitmapImage x:Key="Icono_Asiento"
+                UriSource="pack://application:,,,/Assets/Imagenes/Iconos/Icono_Asiento.png"/>
+
     <Style x:Key="TextoMensajes" TargetType="TextBlock">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="20"/>
@@ -270,6 +273,12 @@
     <Style x:Key="TextoCamposVacio" TargetType="Label">
         <Setter Property="Content" Value="Campo Vacío"/>
         <Setter Property="Foreground" Value="#EC221F"/>
+        <Setter Property="FontSize" Value="8"/>
+    </Style>
+
+    <Style x:Key="TextoCamposVacioAmarillo" TargetType="Label">
+        <Setter Property="Content" Value="Campo Vacío"/>
+        <Setter Property="Foreground" Value="{StaticResource Amarillo}"/>
         <Setter Property="FontSize" Value="8"/>
     </Style>
 

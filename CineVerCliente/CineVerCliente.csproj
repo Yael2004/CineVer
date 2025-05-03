@@ -73,6 +73,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EstadoAColorConvertidor.cs" />
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarNuevoProductoDulceriaModeloVista.cs" />
@@ -103,6 +104,8 @@
     <Compile Include="ModeloVista\RegistrarGastoModeloVista.cs" />
     <Compile Include="ModeloVista\RegistrarSocioModeloVista.cs" />
     <Compile Include="ModeloVista\ReportarMermaProductoModeloVista.cs" />
+    <Compile Include="ModeloVista\VenderBoletoModeloVista.cs" />
+    <Compile Include="Modelo\Asiento.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
     <Compile Include="Modelo\SocioConsultado.cs" />
     <Compile Include="Modelo\ProductoDulceria.cs" />
@@ -180,6 +183,9 @@
     </Compile>
     <Compile Include="Vista\ReportarMermaProductoModeloVista.xaml.cs">
       <DependentUpon>ReportarMermaProductoModeloVista.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\VenderBoleto.xaml.cs">
+      <DependentUpon>VenderBoleto.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
@@ -290,6 +296,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ReportarMermaProductoModeloVista.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\VenderBoleto.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -410,6 +420,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\Icono_Asiento.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,211 @@
+﻿<UserControl x:Class="CineVerCliente.Vista.VenderBoleto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CineVerCliente.Vista"
+             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" d:DataContext="{d:DesignInstance Type=vistaModelo:VenderBoletoModeloVista}"
+             mc:Ignorable="d" 
+             xmlns:helper="clr-namespace:CineVerCliente.Helpers"
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <UserControl.Resources>
+        <helper:EstadoAColorConvertidor x:Key="EstadoAColorConvertidor"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Viewbox Stretch="Fill">
+            <Grid Height="600" Width="1000">
+                <Grid Background="{StaticResource Blanco}"/>
+                <Grid Background="{StaticResource Fondo_Boleto}" Margin="0,0,0,106"/>
+
+                <Grid Background="{StaticResource Negro}"
+                        Width="600"
+                        Height="450"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom">
+
+                    <Label Content="Vender Boleto"
+                           Foreground="{StaticResource Blanco}"
+                           FontSize="20"
+                           HorizontalAlignment="Center" Margin="0,6,0,408"/>
+
+                    <Label Content="Nombre Pelicula"
+                           Foreground="{StaticResource Blanco}" 
+                           Margin="343,66,0,349"
+                           FontSize="15"
+                           HorizontalAlignment="Left"/>
+
+                    <Label Content="Fecha:"
+                           Foreground="{StaticResource Blanco}" 
+                           Margin="343,102,0,313"
+                           FontSize="15"
+                           HorizontalAlignment="Left"/>
+
+                    <Label Content="Sala:"
+                           Foreground="{StaticResource Blanco}" 
+                           Margin="343,135,0,280"
+                           FontSize="15"
+                           HorizontalAlignment="Left"/>
+
+                    <Label Content="Hora:"
+                           Foreground="{StaticResource Blanco}" 
+                           Margin="343,165,0,250"
+                           FontSize="15"
+                           HorizontalAlignment="Left"/>
+
+                    <Label Content="Fecha Funcion"
+                           Foreground="{StaticResource Blanco}" 
+                           Margin="391,102,0,313"
+                           FontSize="15"
+                           HorizontalAlignment="Left"/>
+
+                    <Label Content="Numero Sala"
+                           Foreground="{StaticResource Blanco}" 
+                           Margin="383,135,0,280"
+                           FontSize="15"
+                           HorizontalAlignment="Left"/>
+
+                    <Label Content="Hora"
+                        Foreground="{StaticResource Blanco}" 
+                        Margin="394,165,0,250"
+                        FontSize="15"
+                        HorizontalAlignment="Left"/>
+
+                    <Image Source="/Assets/Imagenes/Fondos/Fondo_Boleto.png"
+                            Width="250"
+                            Height="176"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Margin="30,50,0,0"/>
+
+                    <ItemsControl ItemsSource="{Binding LetrasColumnas}" Margin="18,231,169,196">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="1" Columns="8"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding}" 
+                                       FontWeight="Bold" 
+                                       Foreground="White" 
+                                       HorizontalContentAlignment="Center"
+                                       VerticalContentAlignment="Center"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <ItemsControl ItemsSource="{Binding Asientos}" Margin="30,253,169,6">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="5" Columns="8"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding DataContext.ElegirAsientoComando, RelativeSource={RelativeSource AncestorType=UserControl}}" 
+                                        CommandParameter="{Binding}"
+                                        Margin="2"
+                                        Background="{Binding Estado, Converter={StaticResource EstadoAColorConvertidor}}">
+                                    <Image Source="{StaticResource Icono_Asiento}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <Button Style="{StaticResource BotonConfirmarNaranja}"
+                            Content="Aceptar"
+                            Height="40"
+                            Width="100" Margin="468,328,32,82"
+                            Command="{Binding AceptarAsientosComando}"/>
+
+                    <Button Style="{StaticResource BotonConfirmarBlanco}"
+                        Content="Regresar"
+                        Height="40"
+                        Width="100" Margin="468,388,32,22"/>
+
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           Height="250" Width="400" 
+                           Visibility="{Binding MostrarMensajeAgregarSocio}"
+                           Panel.ZIndex="1">
+
+                        <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                               Height="250"
+                               Margin="0,0,0,0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+
+                        <Label Content="Número de cuenta"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top" Margin="10,79,0,0"/>
+
+                        <TextBox Style="{StaticResource Textbox}" 
+                                 Margin="141,74,10,141"
+                                 Text="{Binding NumeroCuenta, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Button Height="30"
+                            Width="100"
+                            Content="Aceptar"
+                            Style="{StaticResource BotonConfirmarBlanco}"
+                            Command="{Binding AceptarCuentaComando}" Margin="65,125,235,45"/>
+
+                        <TextBlock Text="Agregar cuenta de socio"
+                                Style="{StaticResource TextoMensajes}" 
+                                Height="38" Width="400"
+                                VerticalAlignment="Top" Margin="0,11,0,0"/>
+
+                        <Button Height="30"
+                            Width="100"
+                            Content="Crear cuenta"
+                            Style="{StaticResource BotonNegro}"
+                            Command="{Binding CrearCuentaComando}" Margin="238,125,62,45"/>
+
+                        <Button Height="30"
+                            Content="Comprar como invitado"
+                            Style="{StaticResource BotonConfirmarNaranja}"
+                            Command="{Binding ComprarComoInvitadoComando}"
+                            HorizontalAlignment="Center" Margin="0,201,0,19" Width="206"/>
+
+                        <Label Content="Campo Vacío" Style="{StaticResource TextoCamposVacio}"
+                               Height="20" Margin="141,109,194,121"
+                               Visibility="{Binding MostrarNumeroCampoVacio}"/>
+
+                        <Label Content="La cuenta no existe, inténtelo con otra" Style="{StaticResource TextoCamposVacio}"
+                               Height="20" Margin="141,109,112,121"
+                               Visibility="{Binding MostrarCuentaNoExiste}"/>
+                    </Grid>
+
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" 
+                           Height="250" Width="400" 
+                           Visibility="{Binding MostrarMensajeTotalPagar}"
+                           Panel.ZIndex="1">
+
+                        <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                                   Height="250"
+                                   Margin="0,0,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="{Binding MensajeTotalPagar}"
+                               HorizontalAlignment="Center" Width="286" 
+                               Margin="0,34,0,156"
+                               Style="{StaticResource TextoMensajes}"/>
+
+                        <Button Height="30"
+                                Content="Proceder al pago"
+                                Style="{StaticResource BotonConfirmarBlanco}"
+                                Command="{Binding ProcederPagoComando}" Margin="65,160,200,60"/>
+
+
+                        <Button Height="30"
+                                Content="Cancelar"
+                                Style="{StaticResource BotonNegro}"
+                                Command="{Binding CancelarPagoComando}" Margin="222,160,43,60"/>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>
