@@ -13,54 +13,59 @@
                 <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,106"/>
 
                 <Grid Margin="50,240,50,0">
-                    <Grid Background="{StaticResource Negro}" Margin="30,-151,29,0">
+                    <Grid Background="{StaticResource Negro}" Margin="30,-226,29,0">
                     </Grid>
                 </Grid>
 
                 <Label Content="Rol"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="292,130,638,572"/>
+                    Margin="291,49,639,653"/>
 
                 <Label Content="Nombre"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="247,180,637,523"/>
+                    Margin="247,100,637,603"/>
 
-                <Label Content="Apeliidos"
+                <Label Content="Apellidos"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="238,230,639,473"/>
+                    Margin="239,160,638,543"/>
 
                 <Label Content="Fecha de nacimiento"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="137,281,638,422"/>
+                    Margin="140,217,635,486"/>
 
                 <Label Content="Sexo"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="277,330,636,373"/>
+                    Margin="278,258,635,445"/>
 
                 <Label Content="Número de teléfono"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="140,377,635,326"/>
+                    Margin="140,304,635,399"/>
 
                 <Label Content="Correo eletrónico"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="165,426,637,277"/>
+                    Margin="167,360,635,343"/>
 
                 <Label Content="Calle"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="278,477,637,226"/>
+                    Margin="278,416,637,287"/>
 
                 <Label Content="Número de casa"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="178,531,637,172"/>
+                    Margin="178,472,637,231"/>
+
+                <Label Content="Código postal"
+                    FontSize="20"
+                    Foreground="White" 
+                    Margin="194,530,630,172"/>
 
                 <Label Content="RFC"
                     FontSize="20"
@@ -72,14 +77,31 @@
                     Foreground="White" 
                     Margin="286,632,632,71"/>
 
-                <Label Content="Registrar Empleado"
-                    HorizontalAlignment="Center"
+                <Label Content="Foto de empleado"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="0,91,0,608"/>
+                    Margin="161,697,638,6"/>
+
+                <Button Content="Subir foto"
+                    Style="{StaticResource BotonConfirmarBlanco}" 
+                    Margin="369,694,501,10"
+                    Command="{Binding SubirFotoComando}"/>
+
+                <Label x:Name="FotoValida"
+                    Content="Foto válida"
+                    FontSize="10"
+                    Foreground="LawnGreen" 
+                    Margin="475,694,405,34"
+                    Visibility="{Binding FotoValida}"/>
+
+                <Label Content="Registrar Empleado"
+                    HorizontalAlignment="Left"
+                    FontSize="20"
+                    Foreground="White" 
+                    Margin="396,10,0,689"/>
 
                 <ComboBox Name="Roles" HorizontalAlignment="Left" 
-                    Margin="369,142,0,0" 
+                    Margin="369,61,0,0" 
                     VerticalAlignment="Top" 
                     Width="200"
                     ItemsSource="{Binding ListaRoles}" 
@@ -87,22 +109,22 @@
 
                 <TextBox Name="Nombre"
                     Style="{StaticResource Textbox}" 
-                    Margin="369,182,175,525"
+                    Margin="369,107,175,610"
                     MaxLength="60"
                     Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Apellidos"
                     Style="{StaticResource Textbox}" 
-                    Margin="369,236,175,479"
+                    Margin="369,167,175,550"
                     MaxLength="60"
                     Text="{Binding Apellidos, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <DatePicker Name="FechaNacimiento"
                     SelectedDate="{Binding FechaNacimiento, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="369,296,426,415"/>
+                    Margin="369,221,426,490"/>
 
                 <ComboBox Name="Sexo" HorizontalAlignment="Left"
-                    Margin="369,336,175,379"
+                    Margin="369,266,0,0"
                     VerticalAlignment="Top" 
                     Width="120"
                     ItemsSource="{Binding ListaSexos}"
@@ -110,27 +132,33 @@
 
                 <TextBox Name="Telefono"
                     Style="{StaticResource Textbox}"
-                    Margin="369,382,175,325"
+                    Margin="369,311,175,406"
                     MaxLength="60"
                     Text="{Binding NumeroTelefono, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Correo"
                     Style="{StaticResource Textbox}" 
-                    Margin="369,435,175,280"
+                    Margin="369,367,175,350"
                     MaxLength="60"
                     Text="{Binding CorreoElectronico, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Calle"
                     Style="{StaticResource Textbox}" 
-                    Margin="369,486,175,229"
+                    Margin="369,423,175,294"
                     MaxLength="60"
                     Text="{Binding Calle, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="NumeroCasa"
                     Style="{StaticResource Textbox}" 
-                    Margin="369,537,175,178"
+                    Margin="369,479,175,238"
                     MaxLength="60"
                     Text="{Binding NumeroCasa, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBox Name="CodigoPostal"
+                    Style="{StaticResource Textbox}" 
+                    Margin="369,533,175,184"
+                    MaxLength="60"
+                    Text="{Binding CodigoPostal, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="RFC"
                     Style="{StaticResource Textbox}" 
@@ -146,12 +174,12 @@
 
                 <Button Content="Cancelar"
                     Style="{StaticResource BotonCancelar}" 
-                    Margin="581,694,289,10"
+                    Margin="776,694,94,10"
                     Command="{Binding CancelarComando}"/>
 
                 <Button Content="Registrar"
                     Style="{StaticResource BotonConfirmarNaranja}" 
-                    Margin="289,694,581,10"
+                    Margin="653,694,219,10"
                     Command="{Binding RegistrarComando}"/>
 
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" 
@@ -181,48 +209,53 @@
 
                 <Label x:Name="RolCampoVacio" 
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="366,165,546,565" 
+                    Margin="369,87,543,643" 
                     Visibility="{Binding RolCampoVacio}"/>
 
                 <Label x:Name="NombreCampoVacio" 
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="367,218,545,511"
+                    Margin="367,144,545,585"
                     Visibility="{Binding NombreCampoVacio}"/>
 
                 <Label x:Name="ApellidosCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="367,274,544,455" 
+                    Margin="367,201,544,528" 
                     Visibility="{Binding ApellidosCampoVacio}"/>
 
                 <Label x:Name="FechaCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="366,319,545,410" 
+                    Margin="366,244,545,485" 
                     Visibility="{Binding FechaNacimientoCampoVacio}"/>
 
                 <Label x:Name="SexoCampoVacio"
                     Style="{StaticResource TextoCamposVacio}"
-                    Margin="365,369,548,361"
+                    Margin="365,289,548,441"
                     Visibility="{Binding SexoCampoVacio}"/>
 
                 <Label x:Name="TelefonoCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="365,419,548,310" 
+                    Margin="365,344,548,385" 
                     Visibility="{Binding NumeroTelefonoCampoVacio}"/>
 
                 <Label x:Name="CorreoCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="365,468,547,261" 
+                    Margin="365,400,547,329" 
                     Visibility="{Binding CorreoElectronicoCampoVacio}"/>
 
                 <Label x:Name="CalleCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="365,521,548,209" 
+                    Margin="365,457,548,273" 
                     Visibility="{Binding CalleCampoVacio}"/>
 
                 <Label x:Name="NumeroCasaCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="364,572,547,157" 
+                    Margin="364,513,547,216" 
                     Visibility="{Binding NumeroCasaCampoVacio}"/>
+
+                <Label x:Name="CodigoPostalCampoVacio"
+                       Style="{StaticResource TextoCamposVacio}"
+                       Margin="366,568,545,161"
+                       Visibility="{Binding CodigoPostalCampoVacio}"/>
 
                 <Label x:Name="RFCCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
@@ -233,6 +266,11 @@
                     Style="{StaticResource TextoCamposVacio}" 
                     Margin="365,668,548,62" 
                     Visibility="{Binding NSSCampoVacio}"/>
+
+                <Label x:Name="FotoCampoVacio"
+                    Style="{StaticResource TextoCamposVacio}" 
+                    Margin="475,718,438,12" 
+                    Visibility="{Binding FotoCampoVacio}"/>
 
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" 
                     Height="204" Width="400" 

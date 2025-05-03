@@ -1,4 +1,6 @@
-﻿using CineVerCliente.Helpers;
+﻿using CineVerCliente.EmpleadoServicio;
+using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,15 +18,17 @@ namespace CineVerCliente.ModeloVista
         private string _rol;
         private string _nombre;
         private string _apellidos;
-        private string _fechaNacimiento;
+        private DateTime _fechaNacimiento;
         private ObservableCollection<string> listaSexos = new ObservableCollection<string>();
         private string _sexo;
         private string _numeroTelefono;
         private string _correoElectronico;
         private string _calle;
-        private int _numeroCasa;
+        private string _numeroCasa;
+        private string _codigoPostal;
         private string _rfc;
         private string _nss;
+        private byte[] _foto;
 
         private Visibility _rolCampoVacio;
         private Visibility _nombreCampoVacio;
@@ -35,14 +39,18 @@ namespace CineVerCliente.ModeloVista
         private Visibility _correoElectronicoCampoVacio;
         private Visibility _calleCampoVacio;
         private Visibility _numeroCasaCampoVacio;
+        private Visibility _codigoPostalCampoVacio;
         private Visibility _rfcCampoVacio;
         private Visibility _nssCampoVacio;
+        private Visibility _fotoValida;
+        private Visibility _fotoCampoVacio;
 
         private Visibility _mostrarMensajeConfirmacion = Visibility.Collapsed;
         private Visibility _mostrarMensajeCancelacion = Visibility.Collapsed;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
+        public ICommand SubirFotoComando { get; }
         public ICommand RegistrarComando { get; }
         public ICommand CancelarComando { get; }
         public ICommand AceptarConfirmarcionComando { get; }
@@ -90,7 +98,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public string FechaNacimiento
+        public DateTime FechaNacimiento
         {
             get { return _fechaNacimiento; }
             set
@@ -150,12 +158,22 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public int NumeroCasa
+        public string NumeroCasa
         {
             get { return _numeroCasa; }
             set
             {
                 _numeroCasa = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string CodigoPostal
+        {
+            get { return _codigoPostal; }
+            set
+            {
+                _codigoPostal = value;
                 OnPropertyChanged();
             }
         }
@@ -176,6 +194,16 @@ namespace CineVerCliente.ModeloVista
             set
             {
                 _nss = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public byte[] Foto
+        {
+            get { return _foto; }
+            set
+            {
+                _foto = value;
                 OnPropertyChanged();
             }
         }
@@ -270,6 +298,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public Visibility CodigoPostalCampoVacio
+        {
+            get { return _codigoPostalCampoVacio; }
+            set
+            {
+                _codigoPostalCampoVacio = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Visibility RFCCampoVacio
         {
             get { return _rfcCampoVacio; }
@@ -286,6 +324,26 @@ namespace CineVerCliente.ModeloVista
             set
             {
                 _nssCampoVacio = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility FotoValida
+        {
+            get { return _fotoValida; }
+            set
+            {
+                _fotoValida = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility FotoCampoVacio
+        {
+            get { return _fotoCampoVacio; }
+            set
+            {
+                _fotoCampoVacio = value;
                 OnPropertyChanged();
             }
         }
@@ -318,6 +376,7 @@ namespace CineVerCliente.ModeloVista
             ListaRoles.Add("Empleado operativo");
             listaSexos.Add("Masculino");
             listaSexos.Add("Femenino");
+            SubirFotoComando = new ComandoModeloVista(SubirFoto);
             RegistrarComando = new ComandoModeloVista(Registrar);
             CancelarComando = new ComandoModeloVista(Cancelar);
             AceptarConfirmarcionComando = new ComandoModeloVista(AceptarConfirmacion);
@@ -326,6 +385,20 @@ namespace CineVerCliente.ModeloVista
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
 
             OcultarCampos();
+        }
+
+        private void SubirFoto(object obj)
+        {
+            var dialogo = new Microsoft.Win32.OpenFileDialog
+            {
+                Filter = "Archivos de imagen (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png"
+            };
+            if (dialogo.ShowDialog() == true)
+            {
+                Foto = System.IO.File.ReadAllBytes(dialogo.FileName);
+                FotoCampoVacio = Visibility.Collapsed;
+                FotoValida = Visibility.Visible;
+            }
         }
 
         private void Registrar(object obj)
@@ -343,6 +416,28 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarConfirmacion(object obj)
         {
+            var cliente = new EmpleadoServicio.EmpleadoServicioClient();
+
+            var empleado = new EmpleadoDTO
+            {
+                Nombres = _nombre,
+                Apellidos = _apellidos,
+                Nss = _nss,
+                Rol = _rol,
+                FechaNacimiento = _fechaNacimiento,
+                Sexo = _sexo,
+                NumeroTelefono = _numeroTelefono,
+                Correo = _correoElectronico,
+                Calle = _calle,
+                NumeroCasa = _numeroCasa,
+                CodigoPostal = _codigoPostal,
+                RFC = _rfc,
+                //Aqui falta foto
+                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
+            };
+
+            cliente.RegistrarEmpleado(empleado);
+
             Notificacion.Mostrar("Empleado registrado con éxito", 4000);
         }
 
@@ -374,8 +469,10 @@ namespace CineVerCliente.ModeloVista
             valido &= ValidarCorreoElectronico();
             valido &= ValidarCalle();
             valido &= ValidarNumeroCasa();
+            valido &= ValidarCodigoPostal();
             valido &= ValidarRFC();
             valido &= ValidarNSS();
+            valido &= ValidarFoto();
 
             if (valido)
             {
@@ -485,13 +582,24 @@ namespace CineVerCliente.ModeloVista
 
         private bool ValidarNumeroCasa()
         {
-            if (NumeroCasa <= 0)
+            if (string.IsNullOrEmpty(NumeroCasa))
             {
                 NumeroCasaCampoVacio = Visibility.Visible;
                 return false;
             }
 
             NumeroCasaCampoVacio = Visibility.Collapsed;
+            return true;
+        }
+
+        private bool ValidarCodigoPostal()
+        {
+            if (string.IsNullOrEmpty(CodigoPostal))
+            {
+                CodigoPostalCampoVacio = Visibility.Visible;
+                return false;
+            }
+            CodigoPostalCampoVacio = Visibility.Collapsed;
             return true;
         }
 
@@ -518,6 +626,20 @@ namespace CineVerCliente.ModeloVista
             return true;
         }
 
+        private bool ValidarFoto()
+        {
+            if (Foto == null)
+            {
+                FotoCampoVacio = Visibility.Visible;
+                return false;
+            }
+            else
+            {
+                FotoCampoVacio = Visibility.Collapsed;
+                return true;
+            }
+        }
+
         private void OcultarCampos()
         {
             RolCampoVacio = Visibility.Collapsed;
@@ -529,8 +651,11 @@ namespace CineVerCliente.ModeloVista
             CorreoElectronicoCampoVacio = Visibility.Collapsed;
             CalleCampoVacio = Visibility.Collapsed;
             NumeroCasaCampoVacio = Visibility.Collapsed;
+            CodigoPostalCampoVacio = Visibility.Collapsed;
             RFCCampoVacio = Visibility.Collapsed;
             NSSCampoVacio = Visibility.Collapsed;
+            FotoValida = Visibility.Collapsed;
+            FotoCampoVacio = Visibility.Collapsed;
         }
     }
 }
