@@ -105,26 +105,31 @@ namespace CineVerServicios.Lógica
             }
             else
             {
-                var empleadosDTO = resultado.Valor.Select(e => new EmpleadoDTO
+                var listaEmpleados = new ListaEmpleadosDTO();
 
+                foreach (var empleado in resultado.Valor)
                 {
-                    IdEmpleado = e.idEmpleado,
-                    Nombres = e.nombre,
-                    Apellidos = e.apellido,
-                    Nss = e.nss,
-                    Rol = e.rol,
-                    FechaNacimiento = e.fechaDeNacimiento ?? DateTime.MinValue,
-                    Sexo = e.sexo,
-                    NumeroTelefono = e.numeroTelefono,
-                    Correo = e.correoElectronico,
-                    Calle = e.calle,
-                    NumeroCasa = e.numeroDeCasa,
-                    CodigoPostal = e.codigoPostal,
-                    RFC = e.rfc,
-                    Matricula = e.matriculaEmpleado,
-                    IdSucursal = (int)e.idSucursal
-                }).ToList();
-                return Result<List<EmpleadoDTO>>.Exito(empleadosDTO);
+                    var empleadoDTO = new EmpleadoDTO
+                    {
+                        IdEmpleado = empleado.idEmpleado,
+                        Nombres = empleado.nombre,
+                        Apellidos = empleado.apellido,
+                        Nss = empleado.nss,
+                        Rol = empleado.rol,
+                        FechaNacimiento = (DateTime)empleado.fechaDeNacimiento,
+                        Sexo = empleado.sexo,
+                        NumeroTelefono = empleado.numeroTelefono,
+                        Correo = empleado.correoElectronico,
+                        Calle = empleado.calle,
+                        NumeroCasa = empleado.numeroDeCasa,
+                        CodigoPostal = empleado.codigoPostal,
+                        RFC = empleado.rfc,
+                        Matricula = empleado.matriculaEmpleado,
+                        IdSucursal = (int)empleado.idSucursal
+                    };
+                    listaEmpleados.Empleados.Add(empleadoDTO);
+                }
+                return Result<List<EmpleadoDTO>>.Exito(listaEmpleados.Empleados);
             }
         }
 
@@ -139,6 +144,7 @@ namespace CineVerServicios.Lógica
             else
             {
                 var empleado = resultado.Valor;
+
                 var empleadoDTO = new EmpleadoDTO
                 {
                     IdEmpleado = empleado.idEmpleado,

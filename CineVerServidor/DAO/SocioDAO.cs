@@ -150,5 +150,32 @@ namespace DAO
                 }
             }
         }
+
+        public Result<bool> ExisteSocio(string folio)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var socio = entities.Socio.Where(e => e.folio.Equals(folio)).FirstOrDefault();
+                    if (socio != null)
+                    {
+                        return Result<bool>.Exito(true);
+                    }
+                    else
+                    {
+                        return Result<bool>.Exito(false);
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<bool>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<bool>.Fallo(sqlEx.Message);
+                }
+            }
+        }
     }
 }

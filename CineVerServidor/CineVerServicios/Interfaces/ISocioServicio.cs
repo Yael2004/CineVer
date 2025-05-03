@@ -5,6 +5,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Utilidades;
 
 namespace CineVerServicios.Interfaces
 {
@@ -20,6 +21,8 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ListaSociosDTO> ObtenerSocios();
         [OperationContract]
-        Task<ListaSociosDTO> BuscarSocioPorFolio(string folio);
+        Task<Result<SocioDTO>> BuscarSocioPorFolio(string folio);
+        [OperationContract]
+        Task<Result<bool>> ExisteSocio(string folio);
     }
 }

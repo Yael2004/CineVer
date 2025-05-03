@@ -56,7 +56,7 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ListaEmpleadoDTO> ObtenerEmpleados()
+        public Task<ListaEmpleadosDTO> ObtenerEmpleados()
         {
             throw new NotImplementedException();
         }
@@ -71,6 +71,7 @@ namespace CineVerServicios
             }
 
             var empleado = resultado.Valor;
+
             var empleadoDTO = new EmpleadoDTO
             {
                 IdEmpleado = empleado.IdEmpleado,

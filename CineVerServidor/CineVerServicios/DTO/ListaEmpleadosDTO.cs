@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace CineVerServicios.DTO
 {
     [DataContract]
-    public class ListaEmpleadoDTO
+    public class ListaEmpleadosDTO
     {
         [DataMember]
         public List<EmpleadoDTO> Empleados { get; set; }
         [DataMember]
         public ResultDTO Result { get; set; }
-        public ListaEmpleadoDTO()
+        public ListaEmpleadosDTO()
         {
             Empleados = new List<EmpleadoDTO>();
             Result = new ResultDTO(true, string.Empty);

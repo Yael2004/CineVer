@@ -12,26 +12,26 @@ namespace CineVerServicios.DTO
     public class SocioDTO
     {
         [DataMember]
-        public int idSocio { get; set; }
+        public int IdSocio { get; set; }
         [DataMember]
-        public string folio { get; set; }
+        public string Folio { get; set; }
         [DataMember]
-        public string nombres { get; set; }
+        public string Nombres { get; set; }
         [DataMember]
-        public string apellidos { get; set; }
+        public string Apellidos { get; set; }
         [DataMember]
-        public string fechaNacimiento { get; set; }
+        public DateTime FechaNacimiento { get; set; }
         [DataMember]
-        public string sexo { get; set; }
+        public string Sexo { get; set; }
         [DataMember]
-        public string numeroTelefono { get; set; }
+        public string NumeroTelefono { get; set; }
         [DataMember]
-        public string correo { get; set; }
+        public string Correo { get; set; }
         [DataMember]
-        public string calle { get; set; }
+        public string Calle { get; set; }
         [DataMember]
-        public string numeroCasa { get; set; }
+        public string NumeroCasa { get; set; }
         [DataMember]
-        public string codigoPostal { get; set; }
+        public string CodigoPostal { get; set; }
     }
 }

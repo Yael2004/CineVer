@@ -19,7 +19,7 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ResultDTO> InhabilitarEmpleado(int idEmpleado);
         [OperationContract]
-        Task<ListaEmpleadoDTO> ObtenerEmpleados();
+        Task<ListaEmpleadosDTO> ObtenerEmpleados();
         [OperationContract]
         Task<Result<EmpleadoDTO>> BuscarEmpleadoPorMatricula(string matricula);
         [OperationContract]
