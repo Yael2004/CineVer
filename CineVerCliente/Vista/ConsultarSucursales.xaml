@@ -32,7 +32,7 @@
                              ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="10" Margin="10" Padding="10" Background="#222">
+                                <Border BorderBrush="White" BorderThickness="1" CornerRadius="10" Margin="10" Padding="10" Background="#222" Width="500">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -50,9 +50,9 @@
                                                    VerticalAlignment="Center"/>
                                         
                                         <StackPanel Grid.Column="1" Margin="20,0" VerticalAlignment="Center">
-                                            <TextBlock Text="Estado: {Binding Estado}" Foreground="White"/>
-                                            <TextBlock Text="Ciudad: {Binding Ciudad}" Foreground="White"/>
-                                            <TextBlock Text="CP: {Binding CodigoPostal}" Foreground="White"/>
+                                            <TextBlock Text="{Binding Estado, StringFormat='Estado: {0}'}" Foreground="White"/>
+                                            <TextBlock Text="{Binding Ciudad, StringFormat='Ciudad: {0}'}" Foreground="White"/>
+                                            <TextBlock Text="{Binding CodigoPostal, StringFormat='Código Postal: {0}'}" Foreground="White"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">

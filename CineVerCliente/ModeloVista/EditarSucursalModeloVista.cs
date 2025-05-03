@@ -278,6 +278,18 @@ namespace CineVerCliente.ModeloVista
             var sucursal = new Sucursal();
         }
 
+        public void CargarSucursal(SucursalConsultada sucursal)
+        {
+            NombreSucursal = sucursal.Nombre;
+            CodigoPostal = sucursal.CodigoPostal;
+            Estado = sucursal.Estado;
+            Ciudad = sucursal.Ciudad;
+            Calle = sucursal.Calle;
+            Numero = sucursal.Numero;
+            HoraApertura = sucursal.HoraApertura;
+            HoraCierre = sucursal.HoraCierre;
+        }
+
         private bool ValidarCampos()
         {
             bool valido = true;

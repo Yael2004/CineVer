@@ -40,15 +40,7 @@ namespace CineVerCliente.ModeloVista
 
             MostrarMensajeConfirmacion = Visibility.Collapsed;
 
-            Sucursales = new ObservableCollection<SucursalConsultada>
-            {
-                new SucursalConsultada { Nombre = "Sucursal 1", Estado = "Estado 1", Ciudad = "Ciudad 1", CodigoPostal = "12345" },
-                new SucursalConsultada { Nombre = "Sucursal 2", Estado = "Estado 2", Ciudad = "Ciudad 2", CodigoPostal = "67890" },
-                new SucursalConsultada { Nombre = "Sucursal 3", Estado = "Estado 3", Ciudad = "Ciudad 3", CodigoPostal = "54321" },
-                new SucursalConsultada { Nombre = "Sucursal 4", Estado = "Estado 4", Ciudad = "Ciudad 4", CodigoPostal = "09876" },
-                new SucursalConsultada { Nombre = "Sucursal 5", Estado = "Estado 5", Ciudad = "Ciudad 5", CodigoPostal = "13579" },
-                new SucursalConsultada { Nombre = "Sucursal 6", Estado = "Estado 6", Ciudad = "Ciudad 6", CodigoPostal = "24680" }
-            };
+            CargarSucursales();
         }
 
         public string Nombre
@@ -118,9 +110,12 @@ namespace CineVerCliente.ModeloVista
 
         public void EditarSucursal(object obj)
         {
+
             if (obj is SucursalConsultada sucursal)
             {
-                _mainWindowModeloVista.CambiarModeloVista(new EditarSucursalModeloVista(_mainWindowModeloVista));
+                var editarSucursal = new EditarSucursalModeloVista(_mainWindowModeloVista);
+                editarSucursal.CargarSucursal(sucursal);
+                _mainWindowModeloVista.CambiarModeloVista(editarSucursal);
             }
         }
 
@@ -155,10 +150,15 @@ namespace CineVerCliente.ModeloVista
             {
                 Sucursales.Add(new SucursalConsultada
                 {
+                    IdSucursal = sucursal.IdSucursal,
                     Nombre = sucursal.Nombre,
                     Estado = sucursal.Estado,
                     Ciudad = sucursal.Ciudad,
-                    CodigoPostal = sucursal.CodigoPostal
+                    Calle = sucursal.Calle,
+                    CodigoPostal = sucursal.CodigoPostal,
+                    Numero = sucursal.NumeroEnLaCalle,
+                    HoraApertura = sucursal.HoraApertura,
+                    HoraCierre = sucursal.HoraCierre
                 });
             }
         }
