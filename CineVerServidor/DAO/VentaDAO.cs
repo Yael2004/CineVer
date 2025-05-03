@@ -53,5 +53,30 @@ namespace DAO
                 }
             }
         }
+
+        public Result<List<Venta>> ObtenerVentasPorAnio(int anio, int idSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var ventas = entities.Venta
+                        .Where(v => v.fecha.Value.Year == anio && v.idSucursal == idSucursal)
+                        .ToList();
+
+                    if (ventas.Count == 0)
+                    {
+                        return Result<List<Venta>>.Fallo("No se encontraron ventas para el año especificado");
+                    }
+
+                    return Result<List<Venta>>.Exito(ventas);
+                }
+                catch (Exception ex)
+                {
+                    return Result<List<Venta>>.Fallo("¡Error al consultar las ventas! " + ex.Message);
+                }
+            }
+        }
+
     }
 }

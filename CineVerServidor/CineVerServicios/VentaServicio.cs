@@ -23,24 +23,24 @@ namespace CineVerServicios
         }
 
         public Task<ListaPromocionesDTO> ObtenerPromocionesBoletos(int idSucursal)
-        {
+            {
             throw new NotImplementedException();
         }
 
         public Task<ListaPromocionesDTO> ObtenerPromocionesDulceria(int idSucursal)
-        {
+                {
             throw new NotImplementedException();
-        }
+            }
 
         public Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta)
-        {
+            {
             throw new NotImplementedException();
         }
 
         public Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta)
-        {
+                {
             throw new NotImplementedException();
-        }
+            }
 
         public Task<ResultDTO> RegistrarPromocion(int idSucursal, PromocionDTO promocion)
         {

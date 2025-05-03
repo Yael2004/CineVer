@@ -64,6 +64,7 @@
     <Compile Include="DTO\ListaPromocionesDTO.cs" />
     <Compile Include="DTO\ListaSucursalesDTO.cs" />
     <Compile Include="DTO\ListaProductosDulceriaDTO.cs" />
+    <Compile Include="DTO\ListaVentasDTO.cs" />
     <Compile Include="DTO\PeliculaDTO.cs" />
     <Compile Include="DTO\ProductoDulceriaDTO.cs" />
     <Compile Include="DTO\ProductoDulceriaResponseDTO.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Lógica\GestorPelícula.cs" />
     <Compile Include="Lógica\GestorPromociones.cs" />
     <Compile Include="Lógica\GestorSucursal.cs" />
+    <Compile Include="Lógica\GestorVenta.cs" />
     <Compile Include="PelículaServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SucursalServicio.cs" />
