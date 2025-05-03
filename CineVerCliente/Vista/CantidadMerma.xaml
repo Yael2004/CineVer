@@ -50,7 +50,7 @@
                                Foreground="White"/>
                         <TextBox Height="20" Width="50" Margin="499,388,196,186"
                                  Text="{Binding CantidadMerma, UpdateSourceTrigger=PropertyChanged}"
-                                 PreviewTextInput="SoloNumerosTextBox_PreviewTextInput"/>
+                                 PreviewTextInput="SoloNumeros"/>
 
                         <Button 
                             Height="50"

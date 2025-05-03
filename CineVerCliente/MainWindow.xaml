@@ -169,6 +169,14 @@
         <DataTemplate DataType="{x:Type vistaModelo:EditarDetallesProductoModeloVista}">
             <vista:EditarDetallesProducto/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ReportarMermaProductoModeloVista}">
+            <vista:ReportarMermaProductoModeloVista/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:CantidadMermaModeloVista}">
+            <vista:CantidadMerma/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

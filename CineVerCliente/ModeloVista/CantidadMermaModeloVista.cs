@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Helpers;
+﻿using CineVerCliente.DulceriaServicio;
+using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand ConfirmarCancelacionComando { get; set; }
         public ICommand ConfirmarConfirmacionComando { get; set; }
         public ICommand CancelarConfirmacionComando { get; set; }
+        public int IdProducto { get; set; }
         public string Nombre { get; set; }
         public string CantidadInventario { get; set; }
         public string CostoUnitario { get; set; }
@@ -27,6 +29,7 @@ namespace CineVerCliente.ModeloVista
         public string CantidadMerma { get; set; }
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
+        private DulceriaServicioClient _dulceriaServicioCliente;
 
         public Visibility MostrarMensajeCancelarOperacion
         {
@@ -51,6 +54,8 @@ namespace CineVerCliente.ModeloVista
         public CantidadMermaModeloVista(MainWindowModeloVista mainWindowModeloVista, ProductoDulceria producto)
         { 
             _mainWindowModeloVista = mainWindowModeloVista;
+            _dulceriaServicioCliente = new DulceriaServicioClient();
+            IdProducto = producto.Id;
             Nombre = producto.Nombre;
             CantidadInventario = producto.CantidadInventario;
             CostoUnitario = producto.CostoUnitario;
@@ -86,9 +91,44 @@ namespace CineVerCliente.ModeloVista
 
         public void ConfirmarConfirmacion(object obj)
         {
-            MostrarMensajeAceptarOperacion = Visibility.Collapsed;
-            _mainWindowModeloVista.CambiarModeloVista(new ReportarMermaProductoModeloVista(_mainWindowModeloVista));
-            Notificacion.Mostrar("Se ha eliminado el producto correctamente");
+            if (string.IsNullOrWhiteSpace(CantidadMerma))
+            {
+                CantidadMerma = "0";
+            }
+
+            try 
+            {
+                if (int.TryParse(CantidadMerma, out int cantidadMerma))
+                {
+                    if (cantidadMerma == 0)
+                    {
+                        Notificacion.Mostrar("Se ha eliminado el producto correctamente");
+                        MostrarMensajeAceptarOperacion = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        var resultado = _dulceriaServicioCliente.ReportarMerma(IdProducto, cantidadMerma);
+                        if (resultado.EsExitoso)
+                        {
+                            MostrarMensajeAceptarOperacion = Visibility.Collapsed;
+                            _mainWindowModeloVista.CambiarModeloVista(new ReportarMermaProductoModeloVista(_mainWindowModeloVista));
+                            Notificacion.Mostrar("Se ha eliminado el producto correctamente");
+                        }
+                        else
+                        {
+                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                        }
+                    }
+                }
+                else
+                {
+                    Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                }
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+            }
         }
 
         public void CancelarConfirmacion(object obj)

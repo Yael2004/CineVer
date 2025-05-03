@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerCliente.ModeloVista;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,14 +26,32 @@ namespace CineVerCliente.Vista
             InitializeComponent();
         }
 
-        private void SoloNumerosTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void SoloNumeros(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = !EsNumero(e.Text);
+            if (sender is TextBox textBox &&
+                DataContext is CantidadMermaModeloVista vm)
+            {
+                string textoPrevio = textBox.Text;
+                int caretIndex = textBox.CaretIndex;
+                string textoSimulado = textoPrevio.Insert(caretIndex, e.Text);
+
+                if (!int.TryParse(textoSimulado, out int valorNuevo))
+                {
+                    e.Handled = true;
+                    return;
+                }
+
+                if (!int.TryParse(vm.CantidadInventario, out int cantidadMaxima))
+                {
+                    return;
+                }
+
+                if (valorNuevo > cantidadMaxima)
+                {
+                    e.Handled = true;
+                }
+            }
         }
 
-        private bool EsNumero(string texto)
-        {
-            return int.TryParse(texto, out _);
-        }
     }
 }

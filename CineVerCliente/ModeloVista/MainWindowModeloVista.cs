@@ -79,7 +79,7 @@ namespace CineVerCliente.ModeloVista
 
         private void AgregarProductoDulceria(object obj)
         {
-            CambiarModeloVista(new EditarProductoDulceriaModeloVista(_mainWindowModeloVista));
+            CambiarModeloVista(new ReportarMermaProductoModeloVista(_mainWindowModeloVista));
         }
 
         private void RealizarCorteCaja(object obj)
