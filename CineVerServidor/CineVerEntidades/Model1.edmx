@@ -774,6 +774,7 @@
           <Property Name="domingoAplica" Type="Boolean" />
           <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_Promocion_Sucursal" FromRole="Promocion" ToRole="Sucursal" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Sala">
           <Key>
@@ -1383,6 +1384,7 @@
           <EntitySetMapping Name="Promocion">
             <EntityTypeMapping TypeName="CineVerModel.Promocion">
               <MappingFragment StoreEntitySet="Promocion">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
