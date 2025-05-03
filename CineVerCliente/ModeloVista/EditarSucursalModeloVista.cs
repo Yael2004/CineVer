@@ -12,6 +12,7 @@ namespace CineVerCliente.ModeloVista
 {
     public class EditarSucursalModeloVista : BaseModeloVista
     {
+        private int _idSucursal;
         private string _nombreSucursal;
         private string _codigoPostal;
         private string _estado;
@@ -40,6 +41,15 @@ namespace CineVerCliente.ModeloVista
         public ICommand AceptarConfirmarcionComando { get; }
         public ICommand CancelarConfirmacionComando { get; }
 
+        public int IdSucursal
+        {
+            get { return _idSucursal; }
+            set
+            {
+                _idSucursal = value;
+                OnPropertyChanged();
+            }
+        }
         public string NombreSucursal
         {
             get { return _nombreSucursal; }
@@ -222,38 +232,35 @@ namespace CineVerCliente.ModeloVista
             OcultarCamposVacios();
         }
 
-        private void AceptarEdicion(object obj)
+        private async void AceptarEdicion(object obj)
         {
-            if (obj is SucursalConsultada sucursal)
+            var cliente = new SucursalServicio.SucursalServicioClient();
+
+            if (ValidarCampos())
             {
-                var cliente = new SucursalServicio.SucursalServicioClient();
-
-                if (ValidarCampos())
+                var sucursalEditada = new SucursalServicio.SucursalDTO
                 {
-                    var sucursalEditada = new SucursalServicio.SucursalDTO
-                    {
-                        Nombre = NombreSucursal,
-                        CodigoPostal = CodigoPostal,
-                        Estado = Estado,
-                        Ciudad = Ciudad,
-                        Calle = Calle,
-                        NumeroEnLaCalle = Numero,
-                        HoraApertura = HoraApertura,
-                        HoraCierre = HoraCierre
-                    };
+                    Nombre = NombreSucursal,
+                    CodigoPostal = CodigoPostal,
+                    Estado = Estado,
+                    Ciudad = Ciudad,
+                    Calle = Calle,
+                    NumeroEnLaCalle = Numero,
+                    HoraApertura = HoraApertura,
+                    HoraCierre = HoraCierre
+                };
 
-                    var resultado = cliente.ActualizarSucursal(sucursal.IdSucursal, sucursalEditada);
+                var resultado = await cliente.ActualizarSucursalAsync(IdSucursal, sucursalEditada);
 
-                    if (resultado.EsExitoso)
-                    {
-                        Notificacion.Mostrar("Sucursal actualizada con éxito");
-                    }
-                    else
-                    {
-
-                    }
-                        _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
+                if (resultado.EsExitoso)
+                {
+                    Notificacion.Mostrar("Sucursal actualizada con éxito");
                 }
+                else
+                {
+                    Notificacion.Mostrar("Error al actualizar la sucursal: " + resultado.Error);
+                }
+                    _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
             }
         }
 
@@ -280,6 +287,7 @@ namespace CineVerCliente.ModeloVista
 
         public void CargarSucursal(SucursalConsultada sucursal)
         {
+            IdSucursal = sucursal.IdSucursal;
             NombreSucursal = sucursal.Nombre;
             CodigoPostal = sucursal.CodigoPostal;
             Estado = sucursal.Estado;
