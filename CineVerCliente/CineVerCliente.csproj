@@ -68,6 +68,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\EmpleadoServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\SucursalServicio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -112,6 +117,7 @@
     <Compile Include="ModeloVista\VenderBoletoModeloVista.cs" />
     <Compile Include="Modelo\Asiento.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
+    <Compile Include="Modelo\SingletonUsuarioEnLinea.cs" />
     <Compile Include="Modelo\SocioConsultado.cs" />
     <Compile Include="Modelo\ProductoDulceria.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
@@ -350,6 +356,22 @@
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio21.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.ListaEmpleadoDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.ResultDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio.wsdl" />
+    <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaSucursalesDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -408,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
+    <WCFMetadataStorage Include="Connected Services\EmpleadoServicio\" />
     <WCFMetadataStorage Include="Connected Services\SucursalServicio\" />
     <WCFMetadataStorage Include="Connected Services\VentaServicio\" />
   </ItemGroup>
@@ -461,6 +484,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\VentaServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

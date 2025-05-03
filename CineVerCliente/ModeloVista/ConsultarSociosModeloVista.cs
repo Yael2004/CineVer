@@ -134,18 +134,86 @@ namespace CineVerCliente.ModeloVista
             AceptarInhabilitarComando = new ComandoModeloVista(AceptarInhabilitar);
             CancelarInhabilitarComando = new ComandoModeloVista(CancelarInhabilitar);
             CerrarDetallesComando = new ComandoModeloVista(CerrarDetalles);
-            byte[] foto = new byte[0];
-            byte[] byteItems = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
             _todosLosElementos = new ObservableCollection<SocioConsultado>
             {
-                new SocioConsultado { Nombre = "Gabriel", Apellidos = "Armas Viveros", Folio = "SCNVX298563", Foto = foto, PuntosSocio = 20},
-                new SocioConsultado { Nombre = "Yael Alfredo", Apellidos = "Salazar Aguilar", Folio = "SCNVX287650", Foto = foto, PuntosSocio = 109},
-                new SocioConsultado { Nombre = "Daniela", Apellidos = "Luna Landa", Folio = "SCNVX294652", Foto = foto, PuntosSocio = 67},
-                new SocioConsultado { Nombre = "Maria Antonieta", Apellidos = "Hernandez Torres", Folio = "SCNVX274652", Foto = foto, PuntosSocio = 12},
-                new SocioConsultado { Nombre = "Sofia", Apellidos = "Suarez Juan", Folio = "SCNVX274652", Foto = foto, PuntosSocio = 87},
+                new SocioConsultado
+                {
+                    Nombres = "Gabriel",
+                    Apellidos = "Armas Viveros",
+                    Folio = "SCNVX298563",
+                    FechaNacimiento = new DateTime(1995, 4, 12),
+                    Sexo = "Masculino",
+                    NumeroTelefono = "5551234567",
+                    Correo = "gabriel.armas@example.com",
+                    Calle = "Av. Reforma",
+                    NumeroCasa = "123",
+                    CodigoPostal = "06000",
+                    PuntosSocio = 20
+                },
+                new SocioConsultado
+                {
+                    Nombres = "Yael Alfredo",
+                    Apellidos = "Salazar Aguilar",
+                    Folio = "SCNVX287650",
+                    FechaNacimiento = new DateTime(1992, 7, 30),
+                    Sexo = "Masculino",
+                    NumeroTelefono = "5512345678",
+                    Correo = "yael.salazar@example.com",
+                    Calle = "Calle Hidalgo",
+                    NumeroCasa = "45-B",
+                    CodigoPostal = "06100",
+                    PuntosSocio = 109
+                },
+                new SocioConsultado
+                {
+                    Nombres = "Daniela",
+                    Apellidos = "Luna Landa",
+                    Folio = "SCNVX294652",
+                    FechaNacimiento = new DateTime(1998, 3, 15),
+                    Sexo = "Femenino",
+                    NumeroTelefono = "5523456789",
+                    Correo = "daniela.luna@example.com",
+                    Calle = "Insurgentes Sur",
+                    NumeroCasa = "789",
+                    CodigoPostal = "06700",
+                    PuntosSocio = 67
+                },
+                new SocioConsultado
+                {
+                    Nombres = "Maria Antonieta",
+                    Apellidos = "Hernandez Torres",
+                    Folio = "SCNVX274652",
+                    FechaNacimiento = new DateTime(1985, 11, 5),
+                    Sexo = "Femenino",
+                    NumeroTelefono = "5545678910",
+                    Correo = "maria.hernandez@example.com",
+                    Calle = "Av. Juárez",
+                    NumeroCasa = "321",
+                    CodigoPostal = "06600",
+                    PuntosSocio = 12
+                },
+                new SocioConsultado
+                {
+                    Nombres = "Sofia",
+                    Apellidos = "Suarez Juan",
+                    Folio = "SCNVX274652",
+                    FechaNacimiento = new DateTime(1990, 9, 22),
+                    Sexo = "Femenino",
+                    NumeroTelefono = "5567890123",
+                    Correo = "sofia.suarez@example.com",
+                    Calle = "Calle Morelos",
+                    NumeroCasa = "56",
+                    CodigoPostal = "06800",
+                    PuntosSocio = 87
+                }
             };
 
             ElementosFiltrados = new ObservableCollection<SocioConsultado>(_todosLosElementos);
+        }
+
+        private async void CargarSocios()
+        {
+            //var socio = 
         }
 
         private void VerDetalles(object obj)
@@ -156,16 +224,31 @@ namespace CineVerCliente.ModeloVista
             }
             else
             {
-                TextoDetallesSocio = "Nombre: " + ((SocioConsultado)obj).Nombre + "\nApellidos: " + ((SocioConsultado)obj).Apellidos
-                    + "\nFolio de socio: " + ((SocioConsultado)obj).Folio + "\nPuntos de socio: " + ((SocioConsultado)obj).PuntosSocio;
+                SocioConsultado socio = (SocioConsultado)obj;
+                TextoDetallesSocio = string.Format(
+                    "Nombre(s): {0}\nApellidos: {1}\nFolio: {2}\nSexo: {3}\nCorreo electrónico: {4}" +
+                    "\nNúmero telefónico: {5}\nCalle: {6}\nNúmero de casa: {7}\nCódigo postal: {8}" +
+                    "\nFecha de nacimiento: {9}\nPuntos acumulados: {10}",
+                    socio.Nombres,
+                    socio.Apellidos,
+                    socio.Folio,
+                    socio.Sexo,
+                    socio.Correo,
+                    socio.NumeroTelefono,
+                    socio.Calle,
+                    socio.NumeroCasa,
+                    socio.CodigoPostal,
+                    socio.FechaNacimiento.ToShortDateString(),
+                    socio.PuntosSocio
+                );
+
                 MostrarDetallesSocio = Visibility.Visible;
             }
         }
 
         private void Editar(object obj)
         {
-            //Preguntar a Yael
-            //_mainWindowModeloVista.CambiarModeloVista(new ModificarEmpleadoModeloVista());
+            _mainWindowModeloVista.CambiarModeloVista(new ModificarSocioModeloVista(_mainWindowModeloVista));
         }
 
         private void InhabilitarCuenta(object obj)
@@ -176,8 +259,9 @@ namespace CineVerCliente.ModeloVista
             }
             else
             {
+                SocioConsultado socio = (SocioConsultado)obj;
                 string mensaje = "¿Está seguro de que desea inhabilitar la cuenta del socio " +
-                    ((SocioConsultado)obj).Nombre + " " + ((SocioConsultado)obj).Apellidos + "?";
+                socio.Nombres + " " + socio.Apellidos + "?";
                 TextoInhabilitar = mensaje;
                 MostrarMensajeInhabilitar = Visibility.Visible;
             }
@@ -212,7 +296,7 @@ namespace CineVerCliente.ModeloVista
             else if (TextoBusqueda.Length < 4)
             {
                 var filtrados = _todosLosElementos
-                    .Where(empleado => empleado.Nombre.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
+                    .Where(empleado => empleado.Nombres.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
                         empleado.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
                         empleado.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
 
@@ -232,7 +316,7 @@ namespace CineVerCliente.ModeloVista
             else
             {
                 var filtrados = _todosLosElementos
-                    .Where(empleado => empleado.Nombre.ToLower().Contains(TextoBusqueda.ToLower()) ||
+                    .Where(empleado => empleado.Nombres.ToLower().Contains(TextoBusqueda.ToLower()) ||
                         empleado.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
                         empleado.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
 

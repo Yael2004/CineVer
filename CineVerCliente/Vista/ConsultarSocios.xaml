@@ -120,23 +120,17 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Image Grid.Column="0"
-                                            Width="50"
-                                            Height="50"
-                                            Source="{Binding Foto}" 
-                                            Margin="0,0,10,0"/>
-
-                                        <StackPanel Grid.Column="1" 
+                                        <StackPanel Grid.Column="0" 
                                             VerticalAlignment="Center"
                                             HorizontalAlignment="Center"
                                             Height="50"
                                             Width="280">
-                                            <TextBlock Text="{Binding Nombre}" 
+                                            <TextBlock Text="{Binding Nombres}" 
                                                 FontWeight="Bold"/>
                                             <TextBlock Text="{Binding Apellidos}" FontWeight="Bold"/>
                                         </StackPanel>
 
-                                        <Button Grid.Column="2" 
+                                        <Button Grid.Column="1" 
                                             Content="Ver detalles"
                                             Style="{StaticResource BotonNegro}"
                                             Margin="10,0,0,0"
@@ -145,14 +139,16 @@
                                             Command="{Binding DataContext.VerDetallesComando, RelativeSource={RelativeSource AncestorType=ListView}}"
                                             CommandParameter="{Binding}"/>
 
-                                        <Button Grid.Column="3"
+                                        <Button Grid.Column="2"
                                             Content="Editar"
                                             Style="{StaticResource BotonConfirmarAmarillo}"
                                             Margin="10,0,0,0"
                                             Height="50"
-                                            Width="120"/>
+                                            Width="120"
+                                            Command="{Binding DataContext.EditarComando, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                            CommandParameter="{Binding}"/>
 
-                                        <Button Grid.Column="4" 
+                                        <Button Grid.Column="3" 
                                             Content="Inhabilitar cuenta"
                                             Style="{StaticResource BotonCancelar}"
                                             Margin="10,0,0,0"

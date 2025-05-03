@@ -15,6 +15,7 @@ namespace CineVerServidor
             using (ServiceHost host = new ServiceHost(typeof(DulceriaServicio)))
             using (ServiceHost host2 = new ServiceHost(typeof(PelículaServicio)))
             using (ServiceHost host3 = new ServiceHost(typeof(SucursalServicio)))
+            using (ServiceHost host4 = new ServiceHost(typeof(EmpleadoServicio)))
             using (ServiceHost host4 = new ServiceHost(typeof(VentaServicio)))
             using (ServiceHost host5 = new ServiceHost(typeof(CorteCajaServicio)))
             {
