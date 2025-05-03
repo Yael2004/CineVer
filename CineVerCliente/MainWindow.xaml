@@ -161,6 +161,14 @@
         <DataTemplate DataType="{x:Type vistaModelo:IniciarSesionModeloVista}">
             <vista:IniciarSesion/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:EditarProductoDulceriaModeloVista}">
+            <vista:EditarProductoDulceria/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:EditarDetallesProductoModeloVista}">
+            <vista:EditarDetallesProducto/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>

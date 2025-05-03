@@ -41,6 +41,7 @@ namespace CineVerServicios.Lógica
         {
             ProductoDulceria productoDulceria = new ProductoDulceria
             {
+                idProducto = producto.IdProducto,
                 nombre = producto.Nombre,
                 cantidadInventario = producto.CantidadInventario,
                 costoUnitario = producto.CostoUnitario,

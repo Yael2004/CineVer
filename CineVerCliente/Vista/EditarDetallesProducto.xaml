@@ -22,7 +22,7 @@
                                Margin="0,10,0,546"/>
 
                         <Button Height="50"
-                                Content="Agregar nuevo producto" 
+                                Content="Confirmar cambios" 
                                 Margin="171,490,404,54"
                                 Style="{StaticResource BotonConfirmarNaranja}"
                                 Command="{Binding ConfirmarCambiosComando}"/>
@@ -65,18 +65,32 @@
 
                         <Image Source="{Binding ImagenProducto}" Margin="82,203,482,204"/>
 
-                        <TextBox Text="{Binding NombreProducto}" Margin="411,147,58,415"/>
+                        <TextBox Text="{Binding NombreProducto}" 
+                                 Margin="411,147,58,415"
+                                 MaxLength="20"/>
 
-                        <TextBox Text="{Binding CantidadInventario}" Margin="329,229,338,333"/>
+                        <TextBox Text="{Binding CantidadInventario}" 
+                                 Margin="329,229,338,333"
+                                 MaxLength="5"
+                                 PreviewTextInput="SoloNumeros"
+                                 LostFocus="ValidarVacio"/>
 
-                        <TextBox Text="{Binding CostoUnitario}" Margin="329,303,338,259"/>
+                        <TextBox Text="{Binding CostoUnitario}" 
+                                 Margin="329,303,338,259"
+                                 MaxLength="4"
+                                 PreviewTextInput="SoloNumeros"
+                                 LostFocus="ValidarVacio"/>
 
-                        <TextBox Text="{Binding PrecioVentaUnitario}" Margin="329,377,338,185"/>
+                        <TextBox Text="{Binding PrecioVentaUnitario}" 
+                                 Margin="329,377,338,185"
+                                 MaxLength="4"
+                                 PreviewTextInput="SoloNumeros"
+                                 LostFocus="ValidarVacio"/>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}" Height="200"/>
 
-                            <TextBlock Text="¿Está seguro de cancelar el pago?"
+                            <TextBlock Text="¿Está seguro de cancelar la operación?"
                                        Style="{StaticResource TextoMensajes}"
                                        Height="64" Width="400"
                                        Margin="0,46,0,0" VerticalAlignment="Top"/>
@@ -95,7 +109,7 @@
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeConfirmarProducto}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}" Height="200"/>
 
-                            <TextBlock Text="¿Está seguro de realizar el pago?"
+                            <TextBlock Text="¿Está seguro de realizar la operación?"
                                        Style="{StaticResource TextoMensajes}"
                                        Height="64" Width="400"
                                        Margin="0,46,0,0" VerticalAlignment="Top"/>

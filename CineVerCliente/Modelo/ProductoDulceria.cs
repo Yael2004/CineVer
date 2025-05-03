@@ -9,28 +9,11 @@ namespace CineVerCliente.Modelo
     public class ProductoDulceria
     {
         public int Id { get; set; }
-        private string _costoUnitario;
-        public string CostoUnitario
-        {
-            get { return _costoUnitario; }
-            set
-            {
-                _costoUnitario = value.Replace("$", "");
-                _costoUnitario = $"$ {_costoUnitario}";
-            }
-        }
-        private string _precioVentaUnitario;
-        public string PrecioVentaUnitario
-        {
-            get { return _precioVentaUnitario; }
-            set
-            {
-                _precioVentaUnitario = value.Replace("$", "");
-                _precioVentaUnitario = $"$ {_precioVentaUnitario}";
-            }
-        }
+        public string CostoUnitario { get; set; }
+        public string PrecioVentaUnitario { get; set; }
         public byte[] Imagen { get; set; }
         public string Nombre { get; set; }
         public string CantidadInventario { get; set; }
+        public int IdSucursal { get; set; }
     }
 }

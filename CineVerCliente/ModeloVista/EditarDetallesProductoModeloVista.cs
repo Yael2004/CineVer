@@ -7,20 +7,24 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using CineVerCliente.Modelo;
+using CineVerCliente.DulceriaServicio;
 
 namespace CineVerCliente.ModeloVista
 {
     public class EditarDetallesProductoModeloVista : BaseModeloVista
     {
+        private int _idProducto;
         private string _nombreProducto;
         private string _cantidadInventario;
         private string _costoUnitario;
         private string _precioVentaUnitario;
         private byte[] _imagenProducto;
+        private int _idSucursal;
         private Visibility _mostrarMensajeCancelarOperacion = Visibility.Collapsed;
         private Visibility _mostrarMensajeConfirmarProducto = Visibility.Collapsed;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
+        private DulceriaServicioClient _dulceriaServicioCliente;
 
         public ICommand ConfirmarCambiosComando { get; }
         public ICommand ConfirmarConfirmacionComando { get; } 
@@ -28,6 +32,16 @@ namespace CineVerCliente.ModeloVista
         public ICommand CancelarOperacionComando { get; }
         public ICommand ConfirmarCancelacionComando { get; }
         public ICommand CancelarCancelacionComando { get; }
+
+        public int IdProducto
+        {
+            get { return _idProducto; }
+            set
+            {
+                _idProducto = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string NombreProducto
         {
@@ -79,6 +93,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public int IdSucursal
+        {
+            get { return _idSucursal; }
+            set
+            {
+                _idSucursal = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Visibility MostrarMensajeCancelarOperacion
         {
             get { return _mostrarMensajeCancelarOperacion; }
@@ -102,11 +126,14 @@ namespace CineVerCliente.ModeloVista
         public EditarDetallesProductoModeloVista(MainWindowModeloVista mainWindowModeloVista, ProductoDulceria producto)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
+            IdProducto = producto.Id;
             NombreProducto = producto.Nombre;
             CantidadInventario = producto.CantidadInventario;
             CostoUnitario = producto.CostoUnitario;
             PrecioVentaUnitario = producto.PrecioVentaUnitario;
             ImagenProducto = producto.Imagen;
+            IdSucursal = producto.IdSucursal;
+            _dulceriaServicioCliente = new DulceriaServicioClient();
             ConfirmarCambiosComando = new ComandoModeloVista(ConfirmarCambios);
             ConfirmarConfirmacionComando = new ComandoModeloVista(ConfirmarConfirmacion);
             CancelarNuevoProductoComando = new ComandoModeloVista(CancelarNuevoProducto);
@@ -122,9 +149,34 @@ namespace CineVerCliente.ModeloVista
 
         private void ConfirmarConfirmacion(object obj)
         {
-            MostrarMensajeConfirmarProducto = Visibility.Collapsed;
-            Notificacion.Mostrar("Pago realizado correctamente");
-            _mainWindowModeloVista.CambiarModeloVista(new EditarProductoDulceriaModeloVista(_mainWindowModeloVista));
+            try
+            {
+                var respuesta = _dulceriaServicioCliente.ActualizarProductoDulceria(new ProductoDulceriaDTO
+                {
+                    IdProducto = IdProducto,
+                    Nombre = NombreProducto,
+                    CostoUnitario = decimal.Parse(CostoUnitario),
+                    PrecioVentaUnitario = decimal.Parse(PrecioVentaUnitario),
+                    CantidadInventario = int.Parse(CantidadInventario),
+                    Imagen = ImagenProducto,
+                    IdSucursal = IdSucursal
+                });
+
+                if (respuesta.EsExitoso)
+                {
+                    MostrarMensajeConfirmarProducto = Visibility.Collapsed;
+                    Notificacion.Mostrar("Pago realizado correctamente");
+                    _mainWindowModeloVista.CambiarModeloVista(new EditarProductoDulceriaModeloVista(_mainWindowModeloVista));
+                }
+                else
+                {
+                    Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                }
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+            }
         }
 
         private void CancelarNuevoProducto(object obj)
