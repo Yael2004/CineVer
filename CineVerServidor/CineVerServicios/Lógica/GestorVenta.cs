@@ -12,27 +12,58 @@ namespace CineVerServicios.Lógica
     public class GestorVenta
     {
         private VentaDAO ventaDAO = new VentaDAO();
-        public Result<List<ListaVentasDTO>> ObtenerVentasPorAnio(int anio, int idSucursal)
+        public Result<ListaVentasDTO> ObtenerVentasPorAnio(int anio, int idSucursal)
         {
             var resultado = ventaDAO.ObtenerVentasPorAnio(anio, idSucursal);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ListaVentasDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                var listaVentas = new ListaVentasDTO();
+                foreach (var venta in resultado.Valor)
+                {
+                    var ventaDTO = new VentaDTO
+                    {
+                        IdVenta = venta.idVenta,
+                        Fecha = (DateTime)venta.fecha,
+                        Total = (decimal)venta.total,
+                        MetodoPago = venta.metodoPago,
+                        TIpoVenta = venta.tipoVenta,
+                        IdSucursal = (int)venta.idSucursal
+                    };
+                    listaVentas.Ventas.Add(ventaDTO);
+                }
+                return Result<ListaVentasDTO>.Exito(listaVentas);
+            }
+        }
 
-            //if (!resultado.EsExitoso)
-                return Result<List<ListaVentasDTO>>.Fallo(resultado.Error);
-
-            //var agrupadoPorMes = resultado.Valor
-            //    .GroupBy(v => v.fecha.Value.Month)
-            //    .Select(g => new ListaVentasDTO
-            //    {
-
-            //         = g.Key,
-            //        TotalBoletos = g.Sum(v => v.totalBoletos ?? 0),
-            //        TotalDulceria = g.Sum(v => v.totalDulceria ?? 0),
-            //        Total = g.Sum(v => (v.totalBoletos ?? 0) + (v.totalDulceria ?? 0))
-            //    })
-            //    .OrderBy(dto => dto.Periodo)
-            //    .ToList();
-
-            //return Result<List<ListaVentasDTO>>.Exito();
+        public Result<ListaVentasDTO> ObtenerVentasPorMes(int mes, int anio, int idSucursal)
+        {
+            var resultado = ventaDAO.ObtenerVentasPorMes(mes, anio, idSucursal);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ListaVentasDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                var listaVentas = new ListaVentasDTO();
+                foreach (var venta in resultado.Valor)
+                {
+                    var ventaDTO = new VentaDTO
+                    {
+                        IdVenta = venta.idVenta,
+                        Fecha = (DateTime)venta.fecha,
+                        Total = (decimal)venta.total,
+                        MetodoPago = venta.metodoPago,
+                        TIpoVenta = venta.tipoVenta,
+                        IdSucursal = (int)venta.idSucursal
+                    };
+                    listaVentas.Ventas.Add(ventaDTO);
+                }
+                return Result<ListaVentasDTO>.Exito(listaVentas);
+            }
         }
 
     }

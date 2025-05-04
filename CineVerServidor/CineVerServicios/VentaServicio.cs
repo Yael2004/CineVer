@@ -1,5 +1,6 @@
 ﻿using CineVerServicios.DTO;
 using CineVerServicios.Interfaces;
+using CineVerServicios.Lógica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace CineVerServicios
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class VentaServicio : IVentaServicio
     {
+        private GestorVenta _gestorVenta = new GestorVenta();
         public Task<ResultDTO> ActualizarPromocion(PromocionDTO promocion)
         {
             throw new NotImplementedException();
@@ -31,6 +33,34 @@ namespace CineVerServicios
                 {
             throw new NotImplementedException();
             }
+
+        public Task<ListaVentasDTO> ObtenerVentasPorAnio(int anio, int idSucursal)
+        {
+            var resultado = _gestorVenta.ObtenerVentasPorAnio(anio, idSucursal);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                throw new FaultException(resultado.Error);
+            }
+        }
+
+        public Task<ListaVentasDTO> ObtenerVentasPorMes(int mes, int anio, int idSucursal)
+        {
+            var resultado = _gestorVenta.ObtenerVentasPorMes(mes, anio, idSucursal);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                throw new FaultException(resultado.Error);
+            }
+        }
 
         public Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta)
             {
