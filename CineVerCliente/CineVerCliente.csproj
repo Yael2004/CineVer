@@ -73,6 +73,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\VentaServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\EstadoAColorConvertidor.cs" />
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
@@ -110,6 +115,7 @@
     <Compile Include="Modelo\SocioConsultado.cs" />
     <Compile Include="Modelo\ProductoDulceria.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
+    <Compile Include="Modelo\Venta.cs" />
     <Compile Include="Modelo\VentaDetalle.cs" />
     <Compile Include="Vista\AgregarNuevoProductoDulceria.xaml.cs">
       <DependentUpon>AgregarNuevoProductoDulceria.xaml</DependentUpon>
@@ -360,6 +366,25 @@
     <None Include="Connected Services\SucursalServicio\SucursalServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.ListaPromocionesDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.ListaVentasDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.ResultDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\VentaServicio\VentaServicio.wsdl" />
+    <None Include="Connected Services\VentaServicio\VentaServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\VentaServicio\VentaServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\VentaServicio\VentaServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -384,6 +409,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
     <WCFMetadataStorage Include="Connected Services\SucursalServicio\" />
+    <WCFMetadataStorage Include="Connected Services\VentaServicio\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio.disco" />
@@ -423,6 +449,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Imagenes\Iconos\Icono_Asiento.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VentaServicio\VentaServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VentaServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VentaServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\VentaServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

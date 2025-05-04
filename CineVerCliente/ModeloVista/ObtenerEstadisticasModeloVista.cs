@@ -41,6 +41,7 @@ namespace CineVerCliente.ModeloVista
             set
             {
                 _anioSeleccionado = value;
+                GenerarVentasAnio();
                 OnPropertyChanged();
             }
         }
@@ -72,7 +73,6 @@ namespace CineVerCliente.ModeloVista
             {
                 _mesSeleccionado = value;
                 NombreMes = new DateTime(AnioSeleccionado, _mesSeleccionado, 1).ToString("MMMM", new System.Globalization.CultureInfo("es-MX"));
-                Ventas = GenerarVentasDummy(_mesSeleccionado);
                 OnPropertyChanged(nameof(MesSeleccionado));
                 OnPropertyChanged(nameof(NombreMes));
                 OnPropertyChanged(nameof(Ventas));
@@ -93,50 +93,112 @@ namespace CineVerCliente.ModeloVista
 
             MostrarTabla = Visibility.Collapsed;
             MostrarGrafica = Visibility.Visible;
-
-            Coleccion = new SeriesCollection
-            {
-                new ColumnSeries
-                {
-                    Title = "Dulcería",
-                    Values = new ChartValues<double> { 100, 200, 150, 250, 300, 300, 150, 50, 250, 500, 100, 200 },
-                    Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#E5A000")),
-                    MaxColumnWidth = 30,
-                    ColumnPadding = 5
-                },
-                new ColumnSeries
-                {
-                    Title = "Boletos",
-                    Values = new ChartValues<double> { 80, 180, 120, 210, 270, 300, 200, 150, 170, 240, 170, 300 },
-                    Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#441FEC")),
-                    MaxColumnWidth = 30,
-                    ColumnPadding = 5
-                }
-            };
         }
 
-        private List<VentaDetalle> GenerarVentasDummy(int mes)
+        private async void GenerarVentasMes(int mes)
         {
-            return new List<VentaDetalle>
+            try
             {
-                new VentaDetalle { Dia = 1, Tipo = "Boletos", InicioDia = 5000, FinDia = 15000, VentasTotales = 10000 },
-                new VentaDetalle { Dia = 1, Tipo = "Dulcería", InicioDia = 5000, FinDia = 15000, VentasTotales = 10000 },
+                var cliente = new VentaServicio.VentaServicioClient();
+                var resultado = await cliente.ObtenerVentasPorMesAsync(mes, AnioSeleccionado, 1);
 
-                new VentaDetalle { Dia = 2, Tipo = "Boletos", InicioDia = 2000, FinDia = 10000, VentasTotales = 8000 },
-                new VentaDetalle { Dia = 2, Tipo = "Dulcería", InicioDia = 5000, FinDia = 15000, VentasTotales = 10000 },
+                if (resultado == null)
+                {
+                    return;
+                }
 
-                new VentaDetalle { Dia = 3, Tipo = "Boletos", InicioDia = 2000, FinDia = 25000, VentasTotales = 23000 },
-                new VentaDetalle { Dia = 3, Tipo = "Dulcería", InicioDia = 5000, FinDia = 15000, VentasTotales = 10000 },
+                Ventas = resultado.Ventas.Select(v => new VentaDetalle
+                {
+                    Fecha = v.Fecha,
+                    Tipo = v.TIpoVenta,
+                    Total = v.Total
+                }).ToList();
 
-                new VentaDetalle { Dia = 4, Tipo = "Boletos", InicioDia = 3000, FinDia = 12000, VentasTotales = 9000 },
-                new VentaDetalle { Dia = 4, Tipo = "Dulcería", InicioDia = 2000, FinDia = 15000, VentasTotales = 13000 },
+                var ventasDiarias = Ventas
+                    .GroupBy(v => v.Fecha.Day)
+                    .Select(g => new VentaDetalle
+                    {
+                        Dia = g.Key,
+                        Tipo = g.First().Tipo,
+                        VentasTotales = g.Sum(v => v.Total),
+                        InicioDia = g.Min(v => v.Fecha),
+                        FinDia = g.Max(v => v.Fecha)
+                    })
+                    .ToList();
 
-                new VentaDetalle { Dia = 5, Tipo = "Boletos", InicioDia = 5000, FinDia = 10300, VentasTotales = 5300 },
-                new VentaDetalle { Dia = 5, Tipo = "Dulcería", InicioDia = 5000, FinDia = 15000, VentasTotales = 10000 },
+                Ventas = ventasDiarias;
+                OnPropertyChanged(nameof(Ventas));
 
-                new VentaDetalle { Dia = 6, Tipo = "Boletos", InicioDia = 4200, FinDia = 8800, VentasTotales = 4600 },
-                new VentaDetalle { Dia = 6, Tipo = "Dulcería", InicioDia = 5000, FinDia = 15000, VentasTotales = 10000 },
-            };
+                MostrarTabla = Visibility.Visible;
+                MostrarGrafica = Visibility.Collapsed;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar las ventas del mes: {ex.Message}", "¡Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+        private async void GenerarVentasAnio()
+        {
+            try
+            {
+                var cliente = new VentaServicio.VentaServicioClient();
+                var resultado = await cliente.ObtenerVentasPorAnioAsync(AnioSeleccionado, 1);
+
+                if (resultado == null)
+                {
+                    return;
+                }
+
+                Ventas = resultado.Ventas.Select(v => new VentaDetalle
+                {
+                    Fecha = v.Fecha,
+                    Tipo = v.TIpoVenta,
+                    Total = v.Total
+                }).ToList();
+
+                var valoresDulceria = new List<decimal>(new decimal[12]);
+                var valoresBoletos = new List<decimal>(new decimal[12]);
+
+                foreach (var venta in Ventas)
+                {
+                    if (venta.Fecha.Month >= 1 && venta.Fecha.Month <= 12)
+                    {
+                        int mes = venta.Fecha.Month - 1;
+                        if (venta.Tipo == "Dulcería")
+                            valoresDulceria[mes] += venta.Total;
+                        else if (venta.Tipo == "Boletos")
+                            valoresBoletos[mes] += venta.Total;
+                    }
+                }
+
+                Coleccion = new SeriesCollection
+                {
+                    new ColumnSeries
+                    {
+                        Title = "Dulcería",
+                        Values = new ChartValues<decimal>(valoresDulceria),
+                        Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#E5A000")),
+                        MaxColumnWidth = 30,
+                        ColumnPadding = 5
+                    },
+                    new ColumnSeries
+                    {
+                        Title = "Boletos",
+                        Values = new ChartValues<decimal>(valoresBoletos),
+                        Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#441FEC")),
+                        MaxColumnWidth = 30,
+                        ColumnPadding = 5
+                    }
+                };
+
+                OnPropertyChanged(nameof(Coleccion));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar las ventas del año: {ex.Message}", "¡Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void MesClic(ChartPoint punto)
@@ -146,9 +208,12 @@ namespace CineVerCliente.ModeloVista
             int mes = (int)punto.X + 1;
             MesSeleccionado = mes;
 
+            GenerarVentasMes(mes);
+
             MostrarTabla = Visibility.Visible;
             MostrarGrafica = Visibility.Collapsed;
         }
+
 
         private void RegresarAGrafica(object obj)
         {

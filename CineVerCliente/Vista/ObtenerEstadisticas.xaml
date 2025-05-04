@@ -45,7 +45,7 @@
                            Foreground="{StaticResource Blanco}" 
                            Margin="189,81,547,391"/>
 
-                    <ComboBox Style="{StaticResource ComboBox}" Margin="619,30,6,435" 
+                    <ComboBox Margin="619,30,6,435" 
                               ItemsSource="{Binding Anios}"
                               SelectedItem="{Binding AnioSeleccionado}"/>
 

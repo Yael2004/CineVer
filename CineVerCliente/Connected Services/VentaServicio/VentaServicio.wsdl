@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="VentaServicio" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IVentaServicio_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:2020/VentaServicio?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:2020/VentaServicio?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:2020/VentaServicio?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVentaServicio_RealizarPagoDulceria_InputMessage">
+    <wsdl:part name="parameters" element="tns:RealizarPagoDulceria" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_RealizarPagoDulceria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RealizarPagoDulceriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_RealizarPagoBoletos_InputMessage">
+    <wsdl:part name="parameters" element="tns:RealizarPagoBoletos" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_RealizarPagoBoletos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RealizarPagoBoletosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerPromociones_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPromociones" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerPromociones_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPromocionesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerPromocionesDulceria_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPromocionesDulceria" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerPromocionesDulceria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPromocionesDulceriaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerPromocionesBoletos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPromocionesBoletos" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerPromocionesBoletos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPromocionesBoletosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ActualizarPromocion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarPromocion" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ActualizarPromocion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarPromocionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_RegistrarPromocion_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarPromocion" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_RegistrarPromocion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegistrarPromocionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasPorAnio_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasPorAnio" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasPorAnio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasPorAnioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasPorMes_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasPorMes" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasPorMes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasPorMesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IVentaServicio">
+    <wsdl:operation name="RealizarPagoDulceria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/RealizarPagoDulceria" message="tns:IVentaServicio_RealizarPagoDulceria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/RealizarPagoDulceriaResponse" message="tns:IVentaServicio_RealizarPagoDulceria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RealizarPagoBoletos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/RealizarPagoBoletos" message="tns:IVentaServicio_RealizarPagoBoletos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/RealizarPagoBoletosResponse" message="tns:IVentaServicio_RealizarPagoBoletos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPromociones">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerPromociones" message="tns:IVentaServicio_ObtenerPromociones_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerPromocionesResponse" message="tns:IVentaServicio_ObtenerPromociones_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPromocionesDulceria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerPromocionesDulceria" message="tns:IVentaServicio_ObtenerPromocionesDulceria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerPromocionesDulceriaResponse" message="tns:IVentaServicio_ObtenerPromocionesDulceria_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPromocionesBoletos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerPromocionesBoletos" message="tns:IVentaServicio_ObtenerPromocionesBoletos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerPromocionesBoletosResponse" message="tns:IVentaServicio_ObtenerPromocionesBoletos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarPromocion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ActualizarPromocion" message="tns:IVentaServicio_ActualizarPromocion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ActualizarPromocionResponse" message="tns:IVentaServicio_ActualizarPromocion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarPromocion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/RegistrarPromocion" message="tns:IVentaServicio_RegistrarPromocion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/RegistrarPromocionResponse" message="tns:IVentaServicio_RegistrarPromocion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasPorAnio">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasPorAnio" message="tns:IVentaServicio_ObtenerVentasPorAnio_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasPorAnioResponse" message="tns:IVentaServicio_ObtenerVentasPorAnio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasPorMes">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasPorMes" message="tns:IVentaServicio_ObtenerVentasPorMes_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasPorMesResponse" message="tns:IVentaServicio_ObtenerVentasPorMes_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IVentaServicio" type="tns:IVentaServicio">
+    <wsp:PolicyReference URI="#NetTcpBinding_IVentaServicio_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RealizarPagoDulceria">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/RealizarPagoDulceria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RealizarPagoBoletos">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/RealizarPagoBoletos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPromociones">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerPromociones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPromocionesDulceria">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerPromocionesDulceria" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPromocionesBoletos">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerPromocionesBoletos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarPromocion">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ActualizarPromocion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarPromocion">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/RegistrarPromocion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasPorAnio">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerVentasPorAnio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasPorMes">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerVentasPorMes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VentaServicio">
+    <wsdl:port name="NetTcpBinding_IVentaServicio" binding="tns:NetTcpBinding_IVentaServicio">
+      <soap12:address location="net.tcp://localhost:1010/VentaServicio/VentaServicio" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:1010/VentaServicio/VentaServicio</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>LAPTOP-4SRV2TJ2\yaela</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
