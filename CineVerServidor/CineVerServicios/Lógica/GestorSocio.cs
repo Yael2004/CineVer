@@ -116,6 +116,7 @@ namespace CineVerServicios.Lógica
                     };
                     listaSocios.Socios.Add(socioDTO);
                 }
+
                 return Result<List<SocioDTO>>.Exito(listaSocios.Socios);
             }
         }
@@ -146,6 +147,7 @@ namespace CineVerServicios.Lógica
                     FechaNacimiento = (DateTime)socio.fechaNacimiento,
                     Folio = socio.folio
                 };
+
                 return Result<SocioDTO>.Exito(socioDTO);
             }
         }

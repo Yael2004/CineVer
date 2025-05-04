@@ -129,6 +129,7 @@ namespace CineVerServicios.Lógica
                     };
                     listaEmpleados.Empleados.Add(empleadoDTO);
                 }
+
                 return Result<List<EmpleadoDTO>>.Exito(listaEmpleados.Empleados);
             }
         }
@@ -163,6 +164,7 @@ namespace CineVerServicios.Lógica
                     Matricula = empleado.matriculaEmpleado,
                     IdSucursal = (int)empleado.idSucursal
                 };
+
                 return Result<EmpleadoDTO>.Exito(empleadoDTO);
             }
         }
