@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="7b27dbc9-8750-4c49-bd63-179cc741a336" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2020/CuentaFidelidadServicio" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CuentaFidelidadServicio.wsdl" MetadataType="Wsdl" ID="c0410b7e-5361-46ce-a117-cb7452ceba0e" SourceId="1" SourceUrl="http://localhost:2020/CuentaFidelidadServicio?wsdl" />
+    <MetadataFile FileName="CuentaFidelidadServicio.xsd" MetadataType="Schema" ID="daa328c0-94bd-4dd2-bdf8-4aa733479981" SourceId="1" SourceUrl="http://localhost:2020/CuentaFidelidadServicio?xsd=xsd1" />
+    <MetadataFile FileName="CuentaFidelidadServicio.disco" MetadataType="Disco" ID="f67ddb12-914d-481b-b9d0-c558e0b48973" SourceId="1" SourceUrl="http://localhost:2020/CuentaFidelidadServicio?disco" />
+    <MetadataFile FileName="CuentaFidelidadServicio1.xsd" MetadataType="Schema" ID="ddda25eb-4c84-459a-9408-179e1aa0986f" SourceId="1" SourceUrl="http://localhost:2020/CuentaFidelidadServicio?xsd=xsd2" />
+    <MetadataFile FileName="CuentaFidelidadServicio2.xsd" MetadataType="Schema" ID="6bc6bbf8-d56c-4d10-a80d-47722e91fc81" SourceId="1" SourceUrl="http://localhost:2020/CuentaFidelidadServicio?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

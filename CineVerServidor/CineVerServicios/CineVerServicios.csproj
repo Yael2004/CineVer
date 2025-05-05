@@ -63,7 +63,11 @@
     <Compile Include="CorteCajaServicio.cs" />
     <Compile Include="DTO\CorteCajaDTO.cs" />
     <Compile Include="DTO\CorteCajaInicioFinDTO.cs" />
+    <Compile Include="CuentaFidelidadServicio.cs" />
+    <Compile Include="DTO\CuentaFidelidadDTO.cs" />
+    <Compile Include="DTO\CuentaFidelidadResponseDTO.cs" />
     <Compile Include="DTO\EmpleadoDTO.cs" />
+    <Compile Include="DTO\EmpleadoResponseDTO.cs" />
     <Compile Include="DTO\ListaEmpleadosDTO.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
     <Compile Include="DTO\ListaPromocionesDTO.cs" />
@@ -77,11 +81,13 @@
     <Compile Include="DTO\PromocionDTO.cs" />
     <Compile Include="DTO\ResultDTO.cs" />
     <Compile Include="DTO\SocioDTO.cs" />
+    <Compile Include="DTO\SocioResponseDTO.cs" />
     <Compile Include="DTO\SucursalDTO.cs" />
     <Compile Include="DTO\VentaDTO.cs" />
     <Compile Include="DulceriaServicio.cs" />
     <Compile Include="Interfaces\ICorteCajaServicio.cs" />
     <Compile Include="EmpleadoServicio.cs" />
+    <Compile Include="Interfaces\ICuentaFidelidadServicio.cs" />
     <Compile Include="Interfaces\IDulceriaServicio.cs" />
     <Compile Include="Interfaces\IEmpleadoServicio.cs" />
     <Compile Include="Interfaces\IPelículaServicio.cs" />
@@ -90,6 +96,7 @@
     <Compile Include="Interfaces\IVentaServicio.cs" />
     <Compile Include="Lógica\GestorCorteCaja.cs" />
     <Compile Include="Lógica\GestorDulceria.cs" />
+    <Compile Include="Lógica\GestorCuentaFidelidad.cs" />
     <Compile Include="Lógica\GestorEmpleado.cs" />
     <Compile Include="Lógica\GestorPelícula.cs" />
     <Compile Include="Lógica\GestorPromociones.cs" />

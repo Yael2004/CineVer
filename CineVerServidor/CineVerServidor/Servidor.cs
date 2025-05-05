@@ -16,8 +16,8 @@ namespace CineVerServidor
             using (ServiceHost host2 = new ServiceHost(typeof(PelículaServicio)))
             using (ServiceHost host3 = new ServiceHost(typeof(SucursalServicio)))
             using (ServiceHost host4 = new ServiceHost(typeof(EmpleadoServicio)))
-            using (ServiceHost host4 = new ServiceHost(typeof(VentaServicio)))
-            using (ServiceHost host5 = new ServiceHost(typeof(CorteCajaServicio)))
+            using (ServiceHost host5 = new ServiceHost(typeof(SocioServicio)))
+            using (ServiceHost host6 = new ServiceHost(typeof(CuentaFidelidadServicio)))
             {
                 try
                 {
@@ -26,6 +26,7 @@ namespace CineVerServidor
                     host3.Open();
                     host4.Open();
                     host5.Open();
+                    host6.Open();
                     Console.WriteLine("Servicio del CineVer en ejecucion...");
                     Console.ReadLine();
                     host.Close();
@@ -33,6 +34,7 @@ namespace CineVerServidor
                     host3.Close();
                     host4.Close();
                     host5.Close();
+                    host6.Close();
                 }
                 catch (Exception ex)
                 {
@@ -42,6 +44,7 @@ namespace CineVerServidor
                     host3.Abort();
                     host4.Abort();
                     host5.Abort();
+                    host6.Abort();
                 }
             }
         }
