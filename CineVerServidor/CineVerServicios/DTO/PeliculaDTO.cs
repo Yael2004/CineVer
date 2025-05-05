@@ -26,5 +26,7 @@ namespace CineVerServicios.DTO
         public Nullable<int> idSucursal { get; set; }
         [DataMember]
         public string nombre { get; set; }
+        [DataMember]
+        public byte[] poster { get; set; }
     }
 }

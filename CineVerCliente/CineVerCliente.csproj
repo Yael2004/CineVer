@@ -57,6 +57,21 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25104.5739\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25104.5739\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25104.5739\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25104.5739\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.7.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>packages\Extended.Wpf.Toolkit.4.7.25104.5739\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -68,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\PeliculaServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\SucursalServicio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -75,6 +95,7 @@
     </Compile>
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
+    <Compile Include="ModeloVista\AgregarPelículaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarNuevoProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarPromocionModeloVista.cs" />
@@ -112,6 +133,9 @@
       <DependentUpon>AgregarNuevoProductoDulceria.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modelo\SucursalConsultada.cs" />
+    <Compile Include="Vista\AgregarPeliculaVista.xaml.cs">
+      <DependentUpon>AgregarPeliculaVista.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\AgregarProductoDulceria.xaml.cs">
       <DependentUpon>AgregarProductoDulceria.xaml</DependentUpon>
     </Compile>
@@ -198,6 +222,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vista\AgregarNuevoProductoDulceria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\AgregarPeliculaVista.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -334,6 +362,19 @@
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio21.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\PeliculaServicio\CineVerCliente.PeliculaServicio.ListaPeliculasDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\PeliculaServicio\PelículaServicio.wsdl" />
     <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaSucursalesDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -373,6 +414,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
+    <WCFMetadataStorage Include="Connected Services\PeliculaServicio\" />
     <WCFMetadataStorage Include="Connected Services\SucursalServicio\" />
   </ItemGroup>
   <ItemGroup>
@@ -407,6 +449,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\SucursalServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\fondo_Película.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\Icono_Imagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Icono_Imagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\Icono_IMagen_BLanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Icono_IMagen_BLanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\cinever logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\cinever logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

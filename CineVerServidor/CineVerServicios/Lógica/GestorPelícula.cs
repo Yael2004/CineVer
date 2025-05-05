@@ -33,6 +33,7 @@ namespace CineVerServicios.Lógica
                     peliculaDTO.idSucursal = pelicula.idSucursal;
                     peliculaDTO.genero = pelicula.genero;
                     peliculaDTO.sinopsis = pelicula.sinopsis;
+                    peliculaDTO.poster = pelicula.poster;
                     listaPeliculas.Peliculas.Add(peliculaDTO);
                 }
                 return Result<ListaPeliculasDTO>.Exito(listaPeliculas);
@@ -48,6 +49,7 @@ namespace CineVerServicios.Lógica
             peliculaEntitie.duracion = pelicula.duracion;
             peliculaEntitie.director = pelicula.director;
             peliculaEntitie.sinopsis = pelicula.sinopsis;
+            peliculaEntitie.poster = pelicula.poster;
             var result = peliculaDAO.AgregarPelicula(peliculaEntitie);
             if (!result.EsExitoso)
             {
@@ -68,6 +70,7 @@ namespace CineVerServicios.Lógica
             peliculaEntitie.duracion = pelicula.duracion;
             peliculaEntitie.director = pelicula.director;
             peliculaEntitie.sinopsis = pelicula.sinopsis;
+            peliculaEntitie.poster = pelicula.poster;
             var result = peliculaDAO.EliminarPelicula(peliculaEntitie);
             if (!result.EsExitoso)
             {
@@ -88,6 +91,7 @@ namespace CineVerServicios.Lógica
             peliculaEntitie.duracion = peliculaEditada.duracion;
             peliculaEntitie.director = peliculaEditada.director;
             peliculaEntitie.sinopsis = peliculaEditada.sinopsis;
+            peliculaEntitie.poster = peliculaEditada.poster;
 
             Película peliculaEntitie2 = new Película();
             peliculaEntitie2.idSucursal = peliculaOriginal.idSucursal;
@@ -97,6 +101,7 @@ namespace CineVerServicios.Lógica
             peliculaEntitie2.duracion = peliculaOriginal.duracion;
             peliculaEntitie2.director = peliculaOriginal.director;
             peliculaEntitie2.sinopsis = peliculaOriginal.sinopsis;
+            peliculaEntitie2.poster = peliculaOriginal.poster;
             var result = peliculaDAO.EditarPelicula(peliculaEntitie,peliculaEntitie2);
             if (!result.EsExitoso)
             {
@@ -139,6 +144,7 @@ namespace CineVerServicios.Lógica
                     peliculaDTO.idSucursal = pelicula.idSucursal;
                     peliculaDTO.genero = pelicula.genero;
                     peliculaDTO.sinopsis = pelicula.sinopsis;
+                    peliculaDTO.poster = pelicula.poster;
                     listaPeliculas.Peliculas.Add(peliculaDTO);
                 }
                 return Result<ListaPeliculasDTO>.Exito(listaPeliculas);

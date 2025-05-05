@@ -67,7 +67,9 @@
 
                 <Button Grid.Column="8" Content="Funciones" Margin="0"
                 Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                        Command="{Binding AgregarPeliculaComando}"/>
+                
 
                 <Button Grid.Column="9" Content="Sucursales" Margin="0"
                 Style="{StaticResource BotonMenu}" 

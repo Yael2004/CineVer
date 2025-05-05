@@ -1,0 +1,201 @@
+﻿<Window x:Class="CineVerCliente.Vista.AgregarPeliculaVista"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        d:DataContext="{d:DesignInstance Type=vistaModelo:AgregarPelículaModeloVista}"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Agregar Película"
+        WindowStartupLocation="CenterScreen"
+        Height="600" Width="1000"
+        ResizeMode="NoResize">
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        
+        <!-- Fondo de pantalla con imagen -->
+        <Image Source="pack://application:,,,/Assets/Imagenes/Fondos/fondo_Película.jpg"
+               Stretch="UniformToFill" Grid.ColumnSpan="3"
+               Panel.ZIndex="0" Grid.Row="0" Grid.RowSpan="3" />
+        
+        <Border Background="{StaticResource Negro}" Grid.Row="0" Grid.ColumnSpan="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"
+Source="/Vista/cinever logo.png" 
+Height="50" 
+Margin="10"
+VerticalAlignment="Center"/>
+
+                <Button Grid.Column="2" Content="Promociones" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"/>
+
+                <Button Grid.Column="3" Content="Empleados" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"
+ Command="{Binding EmpleadoComando}"/>
+
+                <Button Grid.Column="4" Content="Socios" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"/>
+
+                <Button Grid.Column="5" Content="Reportes" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"/>
+
+                <Button Grid.Column="6" Content="Dulcería" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"
+ Command="{Binding AgregarProductoDulceriaComando}"/>
+
+                <Button Grid.Column="7" Content="Boletos" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"
+ Command="{Binding DevolverBoletoComando}"/>
+
+                <Button Grid.Column="8" Content="Funciones" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"/>
+
+                <Button Grid.Column="9" Content="Sucursales" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"
+ Command="{Binding SucursalComando}"/>
+
+                <Button Grid.Column="10" Content="Cerrar sesión" Margin="0"
+ Style="{StaticResource BotonMenu}" 
+ VerticalAlignment="Center"
+ Command="{Binding CorteCaja}"/>
+            </Grid>
+        </Border>
+
+        <!-- Contenedor del formulario centrado -->
+        <Border   MinWidth="700"
+                  MinHeight="500"
+                Grid.Column="1"
+                Background="#dF1E1E1E"
+                Grid.Row="1"
+                Grid.RowSpan="3"
+                CornerRadius="12"
+                Padding="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Panel.ZIndex="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.ColumnSpan="2" Text="Agregar película"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 10"/>
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="2">
+                    <TextBlock Text="Título de la película:" Foreground="White" />
+                    <TextBox Text="{Binding Titulo}"  Style="{StaticResource Textbox}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="2">
+                    <TextBlock Text="Género:" Foreground="White" Margin="0,10,0,0"/>
+                    <ComboBox ItemsSource="{Binding Generos}" SelectedItem="{Binding GeneroSeleccionado}"  Style="{StaticResource ResourceKey=ComboBox}"/>
+                </StackPanel>
+
+                <!-- Lado izquierdo -->
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="3">
+
+                    <TextBlock Text="Póster promocional (.jpg):" Foreground="White" Margin="0,10,0,0"/>
+                    <Button Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" Command="{Binding CargarImagenCommand}">
+                        <Image Source="/Vista/Icono_IMagen_BLanco.png" Height="180" />
+                    </Button>
+
+
+                </StackPanel>
+
+                <!-- Lado derecho -->
+                <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="20,10,0,0">
+                    <TextBlock Text="Director:" Foreground="White"/>
+                    <TextBox Text="{Binding Director}"  Style="{StaticResource Textbox}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0">
+                    <TextBlock Text="Sinopsis:" Foreground="White" Margin="0,10,0,0"/>
+                    <TextBox Text="{Binding Sinopsis}" Width="300" Height="120" TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource Textbox}"/>
+                    <TextBlock Text="Duración (Minutos):" Foreground="White" Margin="0,10,0,0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <xctk:IntegerUpDown Value="{Binding Duracion}" Padding="5" Width="100" Height="30"/>
+                    </StackPanel>
+                </StackPanel>
+                
+
+
+                <!-- Botón de regresar -->
+                <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Top" Margin="20,0,0,0">
+                    <Button Content="Regresar"
+                        Grid.Row="4"
+                        Grid.ColumnSpan="2"
+                        Command="{Binding RegresarCommand}"
+                        HorizontalAlignment="Center"
+                        Width="100"
+                        Margin="0,20,0,0" Style="{StaticResource BotonConfirmarBlanco}"/>
+                </StackPanel>
+
+                <!-- Botón de Agregar -->
+                <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0">
+                    <Button Content="Registrar"
+         Grid.Row="4"
+                            
+         Command="{Binding GuardarCommand}"
+         Grid.ColumnSpan="2"
+         
+         HorizontalAlignment="Center"
+         Width="100"
+         Margin="0,20,0,0" Style="{StaticResource BotonConfirmarAmarillo}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
