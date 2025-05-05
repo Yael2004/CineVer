@@ -115,16 +115,17 @@ namespace CineVerCliente.ModeloVista
                 }).ToList();
 
                 var ventasDiarias = Ventas
-                    .GroupBy(v => v.Fecha.Day)
+                    .GroupBy(v => new { Dia = v.Fecha.Day, Tipo = v.Tipo })
                     .Select(g => new VentaDetalle
                     {
-                        Dia = g.Key,
-                        Tipo = g.First().Tipo,
+                        Dia = g.Key.Dia,
+                        Tipo = g.Key.Tipo,
                         VentasTotales = g.Sum(v => v.Total),
                         InicioDia = g.Min(v => v.Fecha),
                         FinDia = g.Max(v => v.Fecha)
                     })
                     .ToList();
+
 
                 Ventas = ventasDiarias;
                 OnPropertyChanged(nameof(Ventas));
@@ -213,7 +214,6 @@ namespace CineVerCliente.ModeloVista
             MostrarTabla = Visibility.Visible;
             MostrarGrafica = Visibility.Collapsed;
         }
-
 
         private void RegresarAGrafica(object obj)
         {
