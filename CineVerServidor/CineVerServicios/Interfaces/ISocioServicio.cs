@@ -21,8 +21,8 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ListaSociosDTO> ObtenerSocios();
         [OperationContract]
-        Task<Result<SocioDTO>> BuscarSocioPorFolio(string folio);
+        Task<SocioResponseDTO> BuscarSocioPorFolio(string folio);
         [OperationContract]
-        Task<Result<bool>> ExisteSocio(string folio);
+        Task<ResultDTO> ExisteSocio(string folio);
     }
 }

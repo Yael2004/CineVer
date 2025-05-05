@@ -21,8 +21,8 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ListaEmpleadosDTO> ObtenerEmpleados();
         [OperationContract]
-        Task<Result<EmpleadoDTO>> BuscarEmpleadoPorMatricula(string matricula);
+        Task<EmpleadoResponseDTO> BuscarEmpleadoPorMatricula(string matricula);
         [OperationContract]
-        Task<Result<bool>> ExisteEmpleado(string matriucla);
+        Task<ResultDTO> ExisteEmpleado(string matriucla);
     }
 }

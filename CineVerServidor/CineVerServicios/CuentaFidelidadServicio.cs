@@ -1,6 +1,7 @@
 ﻿using CineVerServicios.DTO;
 using CineVerServicios.Interfaces;
 using CineVerServicios.Lógica;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,27 +15,30 @@ namespace CineVerServicios
     {
         private GestorCuentaFidelidad _gestorCuentaFidelidad = new GestorCuentaFidelidad();
 
-        public Task<Result<string>> RegistrarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO)
+        public Task<ResultDTO> RegistrarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO)
         {
             var resultado = _gestorCuentaFidelidad.RegistrarCuentaFidelidad(cuentaFidelidadDTO);
 
             if (resultado.EsExitoso)
             {
-                return Task.FromResult(new Result<string>(true, string.Empty));
+                return Task.FromResult(new ResultDTO(true, string.Empty));
             }
             else
             {
-                return Task.FromResult(new Result<string>(false, resultado.Error));
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
             }
         }
 
-        public Task<Result<CuentaFidelidadDTO>> ObtenerCuentaFidelidadPorIdSocio(int idSocio)
+        public Task<CuentaFidelidadResponseDTO> ObtenerCuentaFidelidadPorIdSocio(int idSocio)
         {
             var resultado = _gestorCuentaFidelidad.ObtenerCuentaFidelidadPorIdSocio(idSocio);
 
             if (!resultado.EsExitoso)
             {
-                return Task.FromResult(Result<CuentaFidelidadDTO>.Fallo(resultado.Error));
+                return Task.FromResult(new CuentaFidelidadResponseDTO
+                {
+                    ResultDTO = new ResultDTO(false, resultado.Error)
+                });
             }
 
             var cuentaFidelidad = resultado.Valor;
@@ -46,34 +50,38 @@ namespace CineVerServicios
                 Puntos = (int)cuentaFidelidad.Puntos
             };
 
-            return Task.FromResult(Result<CuentaFidelidadDTO>.Exito(cuentaFidelidadDTO));
+            return Task.FromResult(new CuentaFidelidadResponseDTO
+            {
+                cuenta = cuentaFidelidadDTO,
+                ResultDTO = new ResultDTO(true, string.Empty)
+            });
         }
 
-        public Task<Result<string>> ModificarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO)
+        public Task<ResultDTO> ModificarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO)
         {
             var resultado = _gestorCuentaFidelidad.ModificarCuentaFidelidad(cuentaFidelidadDTO);
 
             if (resultado.EsExitoso)
             {
-                return Task.FromResult(new Result<string>(true, string.Empty));
+                return Task.FromResult(new ResultDTO(true, string.Empty));
             }
             else
             {
-                return Task.FromResult(new Result<string>(false, resultado.Error));
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
             }
         }
 
-        public Task<Result<string>> InhabilitarCuentaFidelidad(int idCuenta)
+        public Task<ResultDTO> InhabilitarCuentaFidelidad(int idCuenta)
         {
             var resultado = _gestorCuentaFidelidad.InhabilitarCuentaFidelidad(idCuenta);
 
             if (resultado.EsExitoso)
             {
-                return Task.FromResult(new Result<string>(true, string.Empty));
+                return Task.FromResult(new ResultDTO(true, string.Empty));
             }
             else
             {
-                return Task.FromResult(new Result<string>(false, resultado.Error));
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
             }
         }
     }

@@ -61,13 +61,16 @@ namespace CineVerServicios
             throw new NotImplementedException();
         }
 
-        public Task<Result<EmpleadoDTO>> BuscarEmpleadoPorMatricula(string matricula)
+        public Task<EmpleadoResponseDTO> BuscarEmpleadoPorMatricula(string matricula)
         {
             var resultado = _gestorEmpleado.BuscarEmpleadoPorMatricula(matricula);
 
             if (!resultado.EsExitoso)
             {
-                return Task.FromResult(Result<EmpleadoDTO>.Fallo(resultado.Error));
+                return Task.FromResult(new EmpleadoResponseDTO
+                {
+                    ResultDTO = new ResultDTO(false, resultado.Error)
+                });
             }
 
             var empleado = resultado.Valor;
@@ -92,20 +95,24 @@ namespace CineVerServicios
                 Foto = empleado.Foto
             };
 
-            return Task.FromResult(Result<EmpleadoDTO>.Exito(empleadoDTO));
+            return Task.FromResult(new EmpleadoResponseDTO
+            {
+                empleado = empleadoDTO,
+                ResultDTO = new ResultDTO(true, string.Empty)
+            });
         }
 
-        public Task<Result<bool>> ExisteEmpleado(string matricula)
+        public Task<ResultDTO> ExisteEmpleado(string matricula)
         {
             var resultado = _gestorEmpleado.ExisteEmpleado(matricula);
 
             if (resultado.EsExitoso)
             {
-                return Task.FromResult(Result<bool>.Exito(resultado.Valor));
+                return Task.FromResult(new ResultDTO(true, string.Empty));
             }
             else
             {
-                return Task.FromResult(Result<bool>.Fallo(resultado.Error));
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
             }
         }
     }

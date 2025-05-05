@@ -13,12 +13,12 @@ namespace CineVerServicios.Interfaces
     public interface ICuentaFidelidadServicio
     {
         [OperationContract]
-        Task<Result<string>> RegistrarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO);
+        Task<ResultDTO> RegistrarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO);
         [OperationContract]
-        Task<Result<CuentaFidelidadDTO>> ObtenerCuentaFidelidadPorIdSocio(int idSocio);
+        Task<CuentaFidelidadResponseDTO> ObtenerCuentaFidelidadPorIdSocio(int idSocio);
         [OperationContract]
-        Task<Result<string>> ModificarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO);
+        Task<ResultDTO> ModificarCuentaFidelidad(CuentaFidelidadDTO cuentaFidelidadDTO);
         [OperationContract]
-        Task<Result<string>> InhabilitarCuentaFidelidad(int idSocio);
+        Task<ResultDTO> InhabilitarCuentaFidelidad(int idSocio);
     }
 }

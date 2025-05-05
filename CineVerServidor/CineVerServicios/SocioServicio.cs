@@ -1,6 +1,7 @@
 ﻿using CineVerServicios.DTO;
 using CineVerServicios.Interfaces;
 using CineVerServicios.Lógica;
+using DAO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,13 +62,16 @@ namespace CineVerServicios
             throw new NotImplementedException();
         }
 
-        public Task<Result<SocioDTO>> BuscarSocioPorFolio(string folio)
+        public Task<SocioResponseDTO> BuscarSocioPorFolio(string folio)
         {
             var resultado = _gestorSocio.BuscarSocioPorFolio(folio);
 
             if (!resultado.EsExitoso)
             {
-                return Task.FromResult(Result<SocioDTO>.Fallo(resultado.Error));
+                return Task.FromResult(new SocioResponseDTO
+                {
+                    ResultDTO = new ResultDTO(false, resultado.Error)
+                });
             }
 
             var socio = resultado.Valor;
@@ -87,20 +91,24 @@ namespace CineVerServicios
                 Folio = socio.Folio
             };
 
-            return Task.FromResult(Result<SocioDTO>.Exito(socioDTO));
+            return Task.FromResult(new SocioResponseDTO
+            {
+                socio = socioDTO,
+                ResultDTO = new ResultDTO(true, string.Empty)
+            });
         }
 
-        public Task<Result<bool>> ExisteSocio(string folio)
+        public Task<ResultDTO> ExisteSocio(string folio)
         {
             var resultado = _gestorSocio.ExisteSocio(folio);
 
             if (resultado.EsExitoso)
             {
-                return Task.FromResult(Result<bool>.Exito(resultado.Valor));
+                return Task.FromResult(new ResultDTO(true, string.Empty));
             }
             else
             {
-                return Task.FromResult(Result<bool>.Fallo(resultado.Error));
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
             }
         }
     }
