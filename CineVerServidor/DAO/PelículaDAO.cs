@@ -88,6 +88,10 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch(Exception ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
             }
         }
         public Result<int> ObtenerIdPelicula(string nombre, string director)

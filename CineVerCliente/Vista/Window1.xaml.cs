@@ -1,5 +1,4 @@
-﻿using CineVerCliente.ModeloVista;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,21 +15,13 @@ using System.Windows.Shapes;
 namespace CineVerCliente.Vista
 {
     /// <summary>
-    /// Lógica de interacción para AgregarPeliculaVista.xaml
+    /// Lógica de interacción para Window1.xaml
     /// </summary>
-    public partial class AgregarPeliculaVista : UserControl
+    public partial class Window1 : Window
     {
-        private AgregarPelículaModeloVista _modeloVista;
-        public AgregarPelículaModeloVista ModeloVista
-        {
-            get { return _modeloVista; }
-            set { _modeloVista = value; }
-        }
-    
-        public AgregarPeliculaVista()
+        public Window1()
         {
             InitializeComponent();
-            
         }
     }
 }

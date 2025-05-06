@@ -16,22 +16,153 @@ namespace CineVerCliente.ModeloVista
 {
     public class AgregarPelículaModeloVista : BaseModeloVista
     {
-        public string Titulo { get; set; }
-        public string Director { get; set; }
-        public string Sinopsis { get; set; }
-        public int Duracion { get; set; }
-        public ObservableCollection<string> Generos { get; set; }
-        public string GeneroSeleccionado { get; set; }
+        private string _titulo;
+        private string _genero;
+        private string _director;
+        private string _sinopsis;
+        private int _duracion;
+        
 
-        private Visibility TituloVacio;
-        private Visibility DuracionVacio;
-        private Visibility SinopsisVacio;
-        private Visibility DirectorVacio;
-        private Visibility GeneroVacio;
-        private Visibility PosterVacio;
+        public string Titulo
+        {
+            get => _titulo;
+            set
+            {
+                _titulo = value;
+                OnPropertyChanged(nameof(Titulo));
+            }
+        }
+
+        public string Genero
+        {
+            get => _genero;
+            set
+            {
+                _genero = value;
+                OnPropertyChanged(nameof(Genero));
+            }
+        }
+
+        public string Director
+        {
+            get => _director;
+            set
+            {
+                _director = value;
+                OnPropertyChanged(nameof(Director));
+            }
+        }
+
+        public string Sinopsis
+        {
+            get => _sinopsis;
+            set
+            {
+                _sinopsis = value;
+                OnPropertyChanged(nameof(Sinopsis));
+            }
+        }
+
+        public int Duracion
+        {
+            get => _duracion;
+            set
+            {
+                _duracion = value;
+                OnPropertyChanged(nameof(Duracion));
+            }
+        }
+        public ObservableCollection<string> _generos;
+        public ObservableCollection<string> Generos
+        {
+            get => _generos;
+            set
+            {
+                _generos = value;
+                OnPropertyChanged(nameof(Generos));
+            }
+        }
+        
+        private Visibility _tituloVacio;
+        private Visibility _duracionVacio;
+        private Visibility _sinopsisVacio;
+        private Visibility _directorVacio;
+        private Visibility _generoVacio;
+        private Visibility _posterVacio;
+
+        public Visibility TituloVacio
+        {
+            get { return _tituloVacio; }
+            set
+            {
+                _tituloVacio = value;
+                OnPropertyChanged(nameof(TituloVacio));
+            }
+        }
+
+        public Visibility DuracionVacio
+        {
+            get { return _duracionVacio; }
+            set
+            {
+                _duracionVacio = value;
+                OnPropertyChanged(nameof(DuracionVacio));
+            }
+        }
+
+        public Visibility SinopsisVacio
+        {
+            get { return _sinopsisVacio; }
+            set
+            {
+                _sinopsisVacio = value;
+                OnPropertyChanged(nameof(SinopsisVacio));
+            }
+        }
+
+        public Visibility DirectorVacio
+        {
+            get { return _directorVacio; }
+            set
+            {
+                _directorVacio = value;
+                OnPropertyChanged(nameof(DirectorVacio));
+            }
+        }
+
+        public Visibility GeneroVacio
+        {
+            get { return _generoVacio; }
+            set
+            {
+                _generoVacio = value;
+                OnPropertyChanged(nameof(GeneroVacio));
+            }
+        }
+
+        public Visibility PosterVacio
+        {
+            get { return _posterVacio; }
+            set
+            {
+                _posterVacio = value;
+                OnPropertyChanged(nameof(PosterVacio));
+            }
+        }
+
         private Visibility _mostrarMensajeConfirmar;
 
-        public string PosterPath { get; set; }
+        
+        private string _posterPath;
+        public string PosterPath
+        {
+            get => _posterPath;
+            set
+            {
+                _posterPath = value;
+                OnPropertyChanged(nameof(PosterPath));
+            }
+        }
 
         public ICommand CargarImagenCommand { get; }
         public ICommand AumentarDuracionCommand { get; }
@@ -48,6 +179,7 @@ namespace CineVerCliente.ModeloVista
             CargarImagenCommand = new ComandoModeloVista(CargarImagen);
             GuardarCommand = new ComandoModeloVista(Guardar);
             RegresarCommand = new ComandoModeloVista(Regresar);
+            OcultarCamposVacios();
         }
 
         public AgregarPelículaModeloVista()
@@ -71,6 +203,7 @@ namespace CineVerCliente.ModeloVista
                 pelicula.duracion = duracion;
                 pelicula.director = Director;
                 pelicula.sinopsis = Sinopsis;
+                pelicula.genero = Genero;
                 pelicula.nombre = Titulo;
                 pelicula.poster = File.Exists(PosterPath) ? File.ReadAllBytes(PosterPath) : null;
                 PelículaServicioClient peliculaServicio = new PelículaServicioClient();
@@ -135,7 +268,7 @@ namespace CineVerCliente.ModeloVista
         }
         private bool ValidarGenero()
         {
-            if (string.IsNullOrEmpty(GeneroSeleccionado))
+            if (string.IsNullOrEmpty(Genero))
             {
                 GeneroVacio = Visibility.Visible; return false;
             }
@@ -179,6 +312,15 @@ namespace CineVerCliente.ModeloVista
                 DuracionVacio=Visibility.Collapsed;
                 return true;
             }
+        }
+        private void OcultarCamposVacios()
+        {
+            TituloVacio = Visibility.Collapsed;
+            DuracionVacio = Visibility.Collapsed;
+            SinopsisVacio = Visibility.Collapsed;
+            DirectorVacio = Visibility.Collapsed;
+            GeneroVacio = Visibility.Collapsed;
+            PosterVacio = Visibility.Collapsed;     
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
