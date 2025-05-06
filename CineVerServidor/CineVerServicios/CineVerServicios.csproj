@@ -68,7 +68,9 @@
     <Compile Include="DTO\CuentaFidelidadResponseDTO.cs" />
     <Compile Include="DTO\EmpleadoDTO.cs" />
     <Compile Include="DTO\EmpleadoResponseDTO.cs" />
+    <Compile Include="DTO\GastoDTO.cs" />
     <Compile Include="DTO\ListaEmpleadosDTO.cs" />
+    <Compile Include="DTO\ListaGastosDTO.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
     <Compile Include="DTO\ListaPromocionesDTO.cs" />
     <Compile Include="DTO\ListaSociosDTO.cs" />
@@ -87,9 +89,11 @@
     <Compile Include="DulceriaServicio.cs" />
     <Compile Include="Interfaces\ICorteCajaServicio.cs" />
     <Compile Include="EmpleadoServicio.cs" />
+    <Compile Include="GastoServicio.cs" />
     <Compile Include="Interfaces\ICuentaFidelidadServicio.cs" />
     <Compile Include="Interfaces\IDulceriaServicio.cs" />
     <Compile Include="Interfaces\IEmpleadoServicio.cs" />
+    <Compile Include="Interfaces\IGastoServicio.cs" />
     <Compile Include="Interfaces\IPelículaServicio.cs" />
     <Compile Include="Interfaces\ISocioServicio.cs" />
     <Compile Include="Interfaces\ISucursalServicio.cs" />
@@ -98,6 +102,7 @@
     <Compile Include="Lógica\GestorDulceria.cs" />
     <Compile Include="Lógica\GestorCuentaFidelidad.cs" />
     <Compile Include="Lógica\GestorEmpleado.cs" />
+    <Compile Include="Lógica\GestorGasto.cs" />
     <Compile Include="Lógica\GestorPelícula.cs" />
     <Compile Include="Lógica\GestorPromociones.cs" />
     <Compile Include="Lógica\GestorSocio.cs" />

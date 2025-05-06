@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d1702de7-d735-45c1-8f89-44c499c1c076" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2020/GastoServicio" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GastoServicio.xsd" MetadataType="Schema" ID="bfe1c0c7-810b-45df-83c6-dc6c62804af4" SourceId="1" SourceUrl="http://localhost:2020/GastoServicio?xsd=xsd1" />
+    <MetadataFile FileName="GastoServicio1.xsd" MetadataType="Schema" ID="57bf109d-4f02-4bff-9242-0b1e586bf7ef" SourceId="1" SourceUrl="http://localhost:2020/GastoServicio?xsd=xsd2" />
+    <MetadataFile FileName="GastoServicio.disco" MetadataType="Disco" ID="9c5a8184-20ba-404b-8603-312023f12902" SourceId="1" SourceUrl="http://localhost:2020/GastoServicio?disco" />
+    <MetadataFile FileName="GastoServicio2.xsd" MetadataType="Schema" ID="1abf5292-cff0-44e2-b81b-9802d7dee85f" SourceId="1" SourceUrl="http://localhost:2020/GastoServicio?xsd=xsd0" />
+    <MetadataFile FileName="GastoServicio.wsdl" MetadataType="Wsdl" ID="99ef9bf4-a200-410e-bf91-5746d0823ff5" SourceId="1" SourceUrl="http://localhost:2020/GastoServicio?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

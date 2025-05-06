@@ -61,6 +61,7 @@
     <Compile Include="CorteCajaDAO.cs" />
     <Compile Include="CuentaFidelidadDAO.cs" />
     <Compile Include="EmpleadoDAO.cs" />
+    <Compile Include="GastoDAO.cs" />
     <Compile Include="PelículaDAO.cs" />
     <Compile Include="ProductoDulceriaDAO.cs" />
     <Compile Include="PromocionDAO.cs" />
