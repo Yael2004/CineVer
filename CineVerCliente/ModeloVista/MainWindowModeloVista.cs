@@ -1,6 +1,7 @@
 ﻿using CineVerCliente.Vista;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,10 @@ namespace CineVerCliente.ModeloVista
     public class MainWindowModeloVista : BaseModeloVista
     {
         private object _vistaActual;
+
+        private ObservableCollection<string> _opcionesPromociones = new ObservableCollection<string>();
+        private string _opcionPromocion;
+
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
         public ICommand SucursalComando {  get; }
@@ -30,9 +35,32 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public ObservableCollection<string> OpcionesPromociones
+        {
+            get { return _opcionesPromociones; }
+            set
+            {
+                _opcionesPromociones = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string OpcionPromocion
+        {
+            get { return _opcionPromocion; }
+            set
+            {
+                _opcionPromocion = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MainWindowModeloVista()
         {
             _mainWindowModeloVista = this;
+            OpcionesPromociones.Add("Promociones");
+            OpcionesPromociones.Add("Promocion 1");
+            OpcionPromocion = OpcionesPromociones.FirstOrDefault();
             SucursalComando = new ComandoModeloVista(Sucursales);
             EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
             AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);

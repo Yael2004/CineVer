@@ -7,6 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using CineVerCliente.EmpleadoServicio;
+using CineVerCliente.Modelo;
+using CineVerCliente.SocioServicio;
+using CineVerCliente.CuentaFidelidadServicio;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -14,13 +18,13 @@ namespace CineVerCliente.ModeloVista
     {
         private string _nombre;
         private string _apellidos;
-        private string _fechaNacimiento;
+        private DateTime _fechaNacimiento;
         private ObservableCollection<string> listaSexos = new ObservableCollection<string>();
         private string _sexo;
         private string _numeroTelefono;
         private string _correoElectronico;
         private string _calle;
-        private int _numeroCasa;
+        private string _numeroCasa;
         private string _codigoPostal;
 
         private Visibility _nombreCampoVacio;
@@ -65,7 +69,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public string FechaNacimiento
+        public DateTime FechaNacimiento
         {
             get { return _fechaNacimiento; }
             set
@@ -125,7 +129,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public int NumeroCasa
+        public string NumeroCasa
         {
             get { return _numeroCasa; }
             set
@@ -285,7 +289,60 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarConfirmacion(object obj)
         {
-            Notificacion.Mostrar("Socio registrado con éxito", 4000);
+            var clienteSocio = new SocioServicio.SocioServicioClient();
+            var clienteCuenta = new CuentaFidelidadServicio.CuentaFidelidadServicioClient();
+
+            var socio = new SocioDTO
+            {
+                Nombres = _nombre,
+                Apellidos = _apellidos,
+                FechaNacimiento = _fechaNacimiento,
+                Sexo = _sexo,
+                NumeroTelefono = _numeroTelefono,
+                Correo = _correoElectronico,
+                Calle = _calle,
+                NumeroCasa = _numeroCasa,
+                CodigoPostal = _codigoPostal,
+            };
+
+            var respuestaSocio = clienteSocio.RegistrarSocio(socio);
+
+            if (respuestaSocio.EsExitoso)
+            {
+                var socioRegistrado = clienteSocio.BuscarSocioPorFolio(socio.Folio);
+
+                if (socioRegistrado == null)
+                {
+                    Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                }
+                else
+                {
+                    var cuentaFidelidad = new CuentaFidelidadDTO
+                    {
+                        IdSocio = socioRegistrado.socio.IdSocio,
+                        Puntos = 0
+                    };
+
+                    var respuestaCuenta = clienteCuenta.RegistrarCuentaFidelidad(cuentaFidelidad);
+
+                    if (respuestaCuenta.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Socio registrado con éxito", 4000);
+                        _mainWindowModeloVista.CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
+                    }
+                    else
+                    {
+                        Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio", 4000);
+                        MostrarMensajeConfirmacion = Visibility.Collapsed;
+                    }
+                }
+            }
+            else
+            {
+                Notificacion.Mostrar("Error al registrar el socio", 4000);
+                MostrarMensajeConfirmacion = Visibility.Collapsed;
+            }
         }
 
         private void CancelarConfirmacion(object obj)
@@ -411,7 +468,7 @@ namespace CineVerCliente.ModeloVista
 
         private bool ValidarNumeroCasa()
         {
-            if (NumeroCasa <= 0)
+            if (string.IsNullOrEmpty(NumeroCasa))
             {
                 NumeroCasaCampoVacio = Visibility.Visible;
                 return false;

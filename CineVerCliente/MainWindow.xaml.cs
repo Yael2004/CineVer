@@ -26,5 +26,10 @@ namespace CineVerCliente
             InitializeComponent();
             this.DataContext = new MainWindowModeloVista();
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

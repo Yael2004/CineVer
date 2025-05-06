@@ -92,7 +92,7 @@
 
                     <ListView Grid.Row="1"
                 
-                        ItemsSource="{Binding ElementosFiltrados}"
+                        ItemsSource="{Binding SociosFiltrados}"
                         BorderBrush="LightGray"
                         Background="White"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"

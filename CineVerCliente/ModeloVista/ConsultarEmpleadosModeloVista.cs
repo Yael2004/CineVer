@@ -129,102 +129,103 @@ namespace CineVerCliente.ModeloVista
         public ConsultarEmpleadosModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
+            CargarEmpleados();
             VerDetallesComando = new ComandoModeloVista(VerDetalles);
             EditarComando = new ComandoModeloVista(Editar);
             InhabilitarCuentaComando = new ComandoModeloVista(InhabilitarCuenta);
             AceptarInhabilitarComando = new ComandoModeloVista(AceptarInhabilitar);
             CancelarInhabilitarComando = new ComandoModeloVista(CancelarInhabilitar);
             CerrarDetallesComando = new ComandoModeloVista(CerrarDetalles);
-            byte[] foto = new byte[0];
-            byte[] byteItems = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
-            _todosLosEmpleados = new ObservableCollection<EmpleadoConsultado>
-            {
-                new EmpleadoConsultado
-                {
-                    Nombres = "Gabriel",
-                    Apellidos = "Armas Viveros",
-                    Matricula = "CNVX2985637",
-                    Rol = "Gerente",
-                    Sexo = "Masculino",
-                    Correo = "gabriel.armas@example.com",
-                    NumeroTelefono = "5551234567",
-                    Calle = "Av. Reforma",
-                    NumeroCasa = "120",
-                    CodigoPostal = "01234",
-                    RFC = "GAVG800101HDF",
-                    Nss = "12345678901",
-                    FechaNacimiento = new DateTime(1980, 5, 14),
-                    Foto = foto
-                },
-                new EmpleadoConsultado
-                {
-                    Nombres = "Yael Alfredo",
-                    Apellidos = "Salazar Aguilar",
-                    Matricula = "CNVX2876509",
-                    Rol = "Gerente",
-                    Sexo = "Masculino",
-                    Correo = "yael.salazar@example.com",
-                    NumeroTelefono = "5559876543",
-                    Calle = "Calle Morelos",
-                    NumeroCasa = "55",
-                    CodigoPostal = "06700",
-                    RFC = "YASA900202MDF",
-                    Nss = "10987654321",
-                    FechaNacimiento = new DateTime(1990, 2, 2),
-                    Foto = foto
-                },
-                new EmpleadoConsultado
-                {
-                    Nombres = "Daniela",
-                    Apellidos = "Luna Landa",
-                    Matricula = "CNVX2946527",
-                    Rol = "Empleado administrativo",
-                    Sexo = "Femenino",
-                    Correo = "daniela.luna@example.com",
-                    NumeroTelefono = "5556543210",
-                    Calle = "Insurgentes Sur",
-                    NumeroCasa = "201",
-                    CodigoPostal = "03100",
-                    RFC = "DALL920303MDF",
-                    Nss = "11223344556",
-                    FechaNacimiento = new DateTime(1992, 3, 3),
-                    Foto = foto
-                },
-                new EmpleadoConsultado
-                {
-                    Nombres = "Maria Antonieta",
-                    Apellidos = "Hernandez Torres",
-                    Matricula = "CNVX2746527",
-                    Rol = "Empleado administrativo",
-                    Sexo = "Femenino",
-                    Correo = "maria.hernandez@example.com",
-                    NumeroTelefono = "5553219876",
-                    Calle = "Av. Juárez",
-                    NumeroCasa = "77",
-                    CodigoPostal = "06000",
-                    RFC = "MAHT850707MDF",
-                    Nss = "22334455667",
-                    FechaNacimiento = new DateTime(1985, 7, 7),
-                    Foto = foto
-                },
-                new EmpleadoConsultado
-                {
-                    Nombres = "Sofia",
-                    Apellidos = "Suarez Juan",
-                    Matricula = "CNVX2746527",
-                    Rol = "Empleado operativo",
-                    Sexo = "Femenino",
-                    Correo = "sofia.suarez@example.com",
-                    NumeroTelefono = "5557654321",
-                    Calle = "Av. Universidad",
-                    NumeroCasa = "88",
-                    CodigoPostal = "04510",
-                    RFC = "SOSJ950505MDF",
-                    Nss = "33445566778",
-                    FechaNacimiento = new DateTime(1995, 5, 5),
-                    Foto = foto
-                }
-            };
+            //byte[] foto = new byte[0];
+            //byte[] byteItems = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
+            //_todosLosEmpleados = new ObservableCollection<EmpleadoConsultado>
+            //{
+            //    new EmpleadoConsultado
+            //    {
+            //        Nombres = "Gabriel",
+            //        Apellidos = "Armas Viveros",
+            //        Matricula = "CNVX2985637",
+            //        Rol = "Gerente",
+            //        Sexo = "Masculino",
+            //        Correo = "gabriel.armas@example.com",
+            //        NumeroTelefono = "5551234567",
+            //        Calle = "Av. Reforma",
+            //        NumeroCasa = "120",
+            //        CodigoPostal = "01234",
+            //        RFC = "GAVG800101HDF",
+            //        Nss = "12345678901",
+            //        FechaNacimiento = new DateTime(1980, 5, 14),
+            //        Foto = foto
+            //    },
+            //    new EmpleadoConsultado
+            //    {
+            //        Nombres = "Yael Alfredo",
+            //        Apellidos = "Salazar Aguilar",
+            //        Matricula = "CNVX2876509",
+            //        Rol = "Gerente",
+            //        Sexo = "Masculino",
+            //        Correo = "yael.salazar@example.com",
+            //        NumeroTelefono = "5559876543",
+            //        Calle = "Calle Morelos",
+            //        NumeroCasa = "55",
+            //        CodigoPostal = "06700",
+            //        RFC = "YASA900202MDF",
+            //        Nss = "10987654321",
+            //        FechaNacimiento = new DateTime(1990, 2, 2),
+            //        Foto = foto
+            //    },
+            //    new EmpleadoConsultado
+            //    {
+            //        Nombres = "Daniela",
+            //        Apellidos = "Luna Landa",
+            //        Matricula = "CNVX2946527",
+            //        Rol = "Empleado administrativo",
+            //        Sexo = "Femenino",
+            //        Correo = "daniela.luna@example.com",
+            //        NumeroTelefono = "5556543210",
+            //        Calle = "Insurgentes Sur",
+            //        NumeroCasa = "201",
+            //        CodigoPostal = "03100",
+            //        RFC = "DALL920303MDF",
+            //        Nss = "11223344556",
+            //        FechaNacimiento = new DateTime(1992, 3, 3),
+            //        Foto = foto
+            //    },
+            //    new EmpleadoConsultado
+            //    {
+            //        Nombres = "Maria Antonieta",
+            //        Apellidos = "Hernandez Torres",
+            //        Matricula = "CNVX2746527",
+            //        Rol = "Empleado administrativo",
+            //        Sexo = "Femenino",
+            //        Correo = "maria.hernandez@example.com",
+            //        NumeroTelefono = "5553219876",
+            //        Calle = "Av. Juárez",
+            //        NumeroCasa = "77",
+            //        CodigoPostal = "06000",
+            //        RFC = "MAHT850707MDF",
+            //        Nss = "22334455667",
+            //        FechaNacimiento = new DateTime(1985, 7, 7),
+            //        Foto = foto
+            //    },
+            //    new EmpleadoConsultado
+            //    {
+            //        Nombres = "Sofia",
+            //        Apellidos = "Suarez Juan",
+            //        Matricula = "CNVX2746527",
+            //        Rol = "Empleado operativo",
+            //        Sexo = "Femenino",
+            //        Correo = "sofia.suarez@example.com",
+            //        NumeroTelefono = "5557654321",
+            //        Calle = "Av. Universidad",
+            //        NumeroCasa = "88",
+            //        CodigoPostal = "04510",
+            //        RFC = "SOSJ950505MDF",
+            //        Nss = "33445566778",
+            //        FechaNacimiento = new DateTime(1995, 5, 5),
+            //        Foto = foto
+            //    }
+            //};
 
             EmpleadosFiltrados = new ObservableCollection<EmpleadoConsultado>(_todosLosEmpleados);
         }
@@ -311,7 +312,23 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarInhabilitar(object obj)
         {
-            Notificacion.Mostrar("Cuenta inhabilitada exitosamente", 4000);
+            var cliente = new EmpleadoServicio.EmpleadoServicioClient();
+
+            var empleado = (EmpleadoConsultado)obj;
+
+            var respuesta = cliente.InhabilitarEmpleado(empleado.IdEmpleado);
+
+            if (respuesta.EsExitoso)
+            {
+                Notificacion.Mostrar("Cuenta inhabilitada exitosamente", 4000);
+                CargarEmpleados();
+                MostrarMensajeInhabilitar = Visibility.Collapsed;
+            }
+            else
+            {
+                Notificacion.Mostrar("Error al inhabilitar la cuenta", 4000);
+                MostrarMensajeInhabilitar = Visibility.Collapsed;
+            }
         }
 
         private void CancelarInhabilitar(object obj)

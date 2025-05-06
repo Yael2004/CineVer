@@ -436,9 +436,19 @@ namespace CineVerCliente.ModeloVista
                 IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
             };
 
-            cliente.RegistrarEmpleado(empleado);
+            var respuesta = cliente.RegistrarEmpleado(empleado);
 
-            Notificacion.Mostrar("Empleado registrado con éxito", 4000);
+            if (respuesta.EsExitoso)
+            {
+                Notificacion.Mostrar("Empleado registrado con éxito", 4000);
+                MostrarMensajeConfirmacion = Visibility.Collapsed;
+                _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
+            }
+            else
+            {
+                Notificacion.Mostrar("Error al registrar al empleado", 4000);
+                MostrarMensajeConfirmacion = Visibility.Collapsed;
+            }
         }
 
         private void CancelarConfirmacion(object obj)
