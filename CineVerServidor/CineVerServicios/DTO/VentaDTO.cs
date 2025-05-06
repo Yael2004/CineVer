@@ -33,5 +33,7 @@ namespace CineVerServicios.DTO
 
         [DataMember]
         public string TIpoVenta { get; set; }
+        [DataMember]
+        public string FolioVenta { get; set; }
     }
 }

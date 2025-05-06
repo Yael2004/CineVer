@@ -60,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CorteCajaServicio.cs" />
+    <Compile Include="DTO\CorteCajaDTO.cs" />
+    <Compile Include="DTO\CorteCajaInicioFinDTO.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
     <Compile Include="DTO\ListaPromocionesDTO.cs" />
     <Compile Include="DTO\ListaSucursalesDTO.cs" />
@@ -73,10 +76,12 @@
     <Compile Include="DTO\SucursalDTO.cs" />
     <Compile Include="DTO\VentaDTO.cs" />
     <Compile Include="DulceriaServicio.cs" />
+    <Compile Include="Interfaces\ICorteCajaServicio.cs" />
     <Compile Include="Interfaces\IDulceriaServicio.cs" />
     <Compile Include="Interfaces\IPelículaServicio.cs" />
     <Compile Include="Interfaces\ISucursalServicio.cs" />
     <Compile Include="Interfaces\IVentaServicio.cs" />
+    <Compile Include="Lógica\GestorCorteCaja.cs" />
     <Compile Include="Lógica\GestorDulceria.cs" />
     <Compile Include="Lógica\GestorPelícula.cs" />
     <Compile Include="Lógica\GestorPromociones.cs" />

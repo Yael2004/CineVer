@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CorteCajaDAO.cs" />
     <Compile Include="PelículaDAO.cs" />
     <Compile Include="ProductoDulceriaDAO.cs" />
     <Compile Include="PromocionDAO.cs" />

@@ -34,6 +34,20 @@ namespace CineVerServicios
             throw new NotImplementedException();
             }
 
+        public Task<ResultDTO> ObtenerVentaPorFolio(string folio)
+        {
+            var resultado = _gestorVenta.ObtenerVentaPorFolio(folio);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
+        }
+
         public Task<ListaVentasDTO> ObtenerVentasPorAnio(int anio, int idSucursal)
         {
             var resultado = _gestorVenta.ObtenerVentasPorAnio(anio, idSucursal);

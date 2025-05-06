@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CineVerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CineVerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actor">
           <Key>
             <PropertyRef Name="idActor" />
@@ -51,6 +51,7 @@
           <Property Name="gastos" Type="decimal" Precision="8" Scale="2" />
           <Property Name="ganancias" Type="decimal" Precision="10" Scale="2" />
           <Property Name="inicioDia" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="fechaCorte" Type="date" />
         </EntityType>
         <EntityType Name="CuentaFidelidad">
           <Key>
@@ -211,6 +212,7 @@
           <Property Name="metodoPago" Type="varchar" MaxLength="30" />
           <Property Name="fecha" Type="datetime" />
           <Property Name="tipoVenta" Type="varchar" MaxLength="30" />
+          <Property Name="folioVenta" Type="varchar" MaxLength="8" />
         </EntityType>
         <EntityType Name="VentaEnDulceria">
           <Key>
@@ -593,8 +595,7 @@
             <End Role="VentaEnDulceria" EntitySet="VentaEnDulceria" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CineVerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -653,6 +654,7 @@
           <Property Name="ganancias" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="inicioDia" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_CorteCaja_Sucursal" FromRole="CorteCaja" ToRole="Sucursal" />
+          <Property Name="fechaCorte" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="CuentaFidelidad">
           <Key>
@@ -847,6 +849,7 @@
           <NavigationProperty Name="Empleado" Relationship="Self.FK_Venta_Empleado" FromRole="Venta" ToRole="Empleado" />
           <NavigationProperty Name="Socio" Relationship="Self.FK_Venta_Socio" FromRole="Venta" ToRole="Socio" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_Venta_Sucursal" FromRole="Venta" ToRole="Sucursal" />
+          <Property Name="folioVenta" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VentaEnDulceria">
           <Key>
@@ -1276,6 +1279,7 @@
           <EntitySetMapping Name="CorteCaja">
             <EntityTypeMapping TypeName="CineVerModel.CorteCaja">
               <MappingFragment StoreEntitySet="CorteCaja">
+                <ScalarProperty Name="fechaCorte" ColumnName="fechaCorte" />
                 <ScalarProperty Name="idCorteCaja" ColumnName="idCorteCaja" />
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
                 <ScalarProperty Name="efectivoEsperado" ColumnName="efectivoEsperado" />
@@ -1449,6 +1453,7 @@
           <EntitySetMapping Name="Venta">
             <EntityTypeMapping TypeName="CineVerModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="folioVenta" ColumnName="folioVenta" />
                 <ScalarProperty Name="idVenta" ColumnName="idVenta" />
                 <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
                 <ScalarProperty Name="idSocio" ColumnName="idSocio" />

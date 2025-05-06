@@ -100,5 +100,25 @@ namespace DAO
             }
         }
 
+        public Result<string> ObtenerVentaPorFolio(string folio)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var venta = entities.Venta
+                        .FirstOrDefault(v => v.folioVenta == folio);
+                    if (venta == null)
+                    {
+                        return Result<string>.Fallo("No se encontró la venta con el folio especificado");
+                    }
+                    return Result<string>.Exito("Se econtró la venta especificada");
+                }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo("¡Error al consultar la venta! " + ex.Message);
+                }
+            }
+        }
     }
 }

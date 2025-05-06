@@ -23,6 +23,7 @@ namespace CineVerEntidades
         public Nullable<decimal> gastos { get; set; }
         public Nullable<decimal> ganancias { get; set; }
         public Nullable<decimal> inicioDia { get; set; }
+        public Nullable<System.DateTime> fechaCorte { get; set; }
     
         public virtual Sucursal Sucursal { get; set; }
     }

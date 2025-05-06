@@ -31,6 +31,7 @@ namespace CineVerServicios.Lógica
                         Total = (decimal)venta.total,
                         MetodoPago = venta.metodoPago,
                         TIpoVenta = venta.tipoVenta,
+                        FolioVenta = venta.folioVenta,
                         IdSucursal = (int)venta.idSucursal
                     };
                     listaVentas.Ventas.Add(ventaDTO);
@@ -63,6 +64,19 @@ namespace CineVerServicios.Lógica
                     listaVentas.Ventas.Add(ventaDTO);
                 }
                 return Result<ListaVentasDTO>.Exito(listaVentas);
+            }
+        }
+
+        public Result<string> ObtenerVentaPorFolio(string folio)
+        {
+            var resultado = ventaDAO.ObtenerVentaPorFolio(folio);
+            if (!resultado.EsExitoso)
+            {
+                return Result<string>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<string>.Exito("Se econtró la venta especificada");
             }
         }
 
