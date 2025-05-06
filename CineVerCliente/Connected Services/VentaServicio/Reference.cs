@@ -26,6 +26,9 @@ namespace CineVerCliente.VentaServicio {
         private System.DateTime FechaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FolioVentaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdEmpleadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -65,6 +68,19 @@ namespace CineVerCliente.VentaServicio {
                 if ((this.FechaField.Equals(value) != true)) {
                     this.FechaField = value;
                     this.RaisePropertyChanged("Fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FolioVenta {
+            get {
+                return this.FolioVentaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FolioVentaField, value) != true)) {
+                    this.FolioVentaField = value;
+                    this.RaisePropertyChanged("FolioVenta");
                 }
             }
         }
@@ -663,6 +679,12 @@ namespace CineVerCliente.VentaServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasPorMes", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasPorMesResponse")]
         System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ListaVentasDTO> ObtenerVentasPorMesAsync(int mes, int anio, int idSucursal);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolio", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolioResponse")]
+        CineVerCliente.VentaServicio.ResultDTO ObtenerVentaPorFolio(string folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolio", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolioResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentaPorFolioAsync(string folio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -762,6 +784,14 @@ namespace CineVerCliente.VentaServicio {
         
         public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ListaVentasDTO> ObtenerVentasPorMesAsync(int mes, int anio, int idSucursal) {
             return base.Channel.ObtenerVentasPorMesAsync(mes, anio, idSucursal);
+        }
+        
+        public CineVerCliente.VentaServicio.ResultDTO ObtenerVentaPorFolio(string folio) {
+            return base.Channel.ObtenerVentaPorFolio(folio);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentaPorFolioAsync(string folio) {
+            return base.Channel.ObtenerVentaPorFolioAsync(folio);
         }
     }
 }

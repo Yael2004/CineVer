@@ -105,7 +105,8 @@
                                 Content="Aceptar"
                                 Height="40"
                                 Width="150" Margin="0,134,0,26"
-                                HorizontalAlignment="Center"/>
+                                HorizontalAlignment="Center"
+                                Command="{Binding AceptarNoPosibleComando}"/>
                     </Grid>
                 </Grid>
             </Grid>

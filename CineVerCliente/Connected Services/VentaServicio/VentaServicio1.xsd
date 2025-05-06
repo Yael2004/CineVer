@@ -3,6 +3,7 @@
   <xs:complexType name="VentaDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FolioVenta" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdEmpleado" type="xs:int" />
       <xs:element minOccurs="0" name="IdSocio" type="xs:int" />
       <xs:element minOccurs="0" name="IdSucursal" type="xs:int" />

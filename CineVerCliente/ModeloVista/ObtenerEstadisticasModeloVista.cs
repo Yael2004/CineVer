@@ -167,9 +167,9 @@ namespace CineVerCliente.ModeloVista
                     if (venta.Fecha.Month >= 1 && venta.Fecha.Month <= 12)
                     {
                         int mes = venta.Fecha.Month - 1;
-                        if (venta.Tipo == "Dulcería")
+                        if (venta.Tipo.Contains("Dulce"))
                             valoresDulceria[mes] += venta.Total;
-                        else if (venta.Tipo == "Boletos")
+                        else if (venta.Tipo.Contains("Bole"))
                             valoresBoletos[mes] += venta.Total;
                     }
                 }

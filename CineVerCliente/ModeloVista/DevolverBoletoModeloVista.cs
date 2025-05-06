@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerCliente.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand DevolverBoletoComando { get; }
         public ICommand AceptarDevolucionComando { get; }
         public ICommand CancelarDevolucionComando { get; }
+        public ICommand AceptarNoPosibleComando { get; }
 
         public string NumeroSocio
         {
@@ -91,6 +93,7 @@ namespace CineVerCliente.ModeloVista
             DevolverBoletoComando = new ComandoModeloVista(DevolverBoleto);
             AceptarDevolucionComando = new ComandoModeloVista(AceptarDevolucion);
             CancelarDevolucionComando = new ComandoModeloVista(CancelarDevolucion);
+            AceptarNoPosibleComando = new ComandoModeloVista(AceptarNoPosible);
 
             MostrarVentanaConfirmacion = Visibility.Collapsed;
             MostrarVentanaDevolucionNoPosible = Visibility.Collapsed;
@@ -108,15 +111,29 @@ namespace CineVerCliente.ModeloVista
 
         public void AceptarDevolucion(object obj)
         {
-            // Lógica para aceptar la devolución
+            var cliente = new VentaServicio.VentaServicioClient();
+            var resultado = cliente.ObtenerVentaPorFolio(FolioVenta);
+
+            if (!resultado.EsExitoso)
+            {
+                MessageBox.Show(resultado.Error);
+                MostrarVentanaConfirmacion = Visibility.Collapsed;
+                MostrarVentanaDevolucionNoPosible = Visibility.Visible;
+                return;
+            }
+
+            Notificacion.Mostrar("El boleto ha sido devuelto exitosamente.");
             MostrarVentanaConfirmacion = Visibility.Collapsed;
-            // Aquí puedes agregar la lógica para realizar la devolución
         }
 
         public void CancelarDevolucion(object obj)
         {
             MostrarVentanaConfirmacion = Visibility.Collapsed;
-            // Aquí puedes agregar la lógica para cancelar la devolución
+        }
+
+        public void AceptarNoPosible(object obj)
+        {
+            MostrarVentanaDevolucionNoPosible = Visibility.Collapsed;
         }
 
         public bool ValidarCampos()

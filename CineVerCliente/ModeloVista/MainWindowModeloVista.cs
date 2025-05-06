@@ -37,7 +37,7 @@ namespace CineVerCliente.ModeloVista
             EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
             AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);
             CorteCaja = new ComandoModeloVista(RealizarCorteCaja);
-            BoletoComando = new ComandoModeloVista(VenderBoleto);
+            BoletoComando = new ComandoModeloVista(DevolverBoleto);
             SucursalComando = new ComandoModeloVista(Sucursales);
             EmpleadoComando = new ComandoModeloVista(IniciarSesion);
         }
