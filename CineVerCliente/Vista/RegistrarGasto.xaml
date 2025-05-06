@@ -37,13 +37,13 @@
                     Style="{StaticResource Textbox}" 
                     Margin="399,410,145,305"
                     MaxLength="60"
-                    Text="{Binding NombreGasto, UpdateSourceTrigger=PropertyChanged}"/>
+                    Text="{Binding Motivo, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="TotalGasto"
                     Style="{StaticResource Textbox}" 
                     Margin="399,524,145,191"
                     MaxLength="60"
-                    Text="{Binding TotalGasto, UpdateSourceTrigger=PropertyChanged}"/>
+                    Text="{Binding Monto, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Content="Cancelar"
                     Style="{StaticResource BotonCancelar}" 

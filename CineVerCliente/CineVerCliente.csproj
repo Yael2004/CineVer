@@ -78,6 +78,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\GastoServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\SocioServicio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -398,6 +403,22 @@
     <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\GastoServicio\CineVerCliente.GastoServicio.ListaGastosDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\GastoServicio\CineVerCliente.GastoServicio.ResultDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\GastoServicio\GastoServicio.wsdl" />
+    <None Include="Connected Services\GastoServicio\GastoServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GastoServicio\GastoServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GastoServicio\GastoServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\SocioServicio\CineVerCliente.SocioServicio.ListaSociosDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -477,6 +498,7 @@
     <WCFMetadataStorage Include="Connected Services\CuentaFidelidadServicio\" />
     <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
     <WCFMetadataStorage Include="Connected Services\EmpleadoServicio\" />
+    <WCFMetadataStorage Include="Connected Services\GastoServicio\" />
     <WCFMetadataStorage Include="Connected Services\SocioServicio\" />
     <WCFMetadataStorage Include="Connected Services\SucursalServicio\" />
     <WCFMetadataStorage Include="Connected Services\VentaServicio\" />
@@ -576,6 +598,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CuentaFidelidadServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GastoServicio\GastoServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GastoServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GastoServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\GastoServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

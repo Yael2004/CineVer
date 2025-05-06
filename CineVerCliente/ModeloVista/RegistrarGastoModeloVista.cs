@@ -1,4 +1,6 @@
-﻿using CineVerCliente.Helpers;
+﻿using CineVerCliente.GastoServicio;
+using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,8 @@ namespace CineVerCliente.ModeloVista
 {
     class RegistrarGastoModeloVista : BaseModeloVista
     {
-        private string _nombreGasto;
-        private string _totalGasto;
+        private string _motivo;
+        private decimal _monto;
 
         private Visibility _nombreGastoCampoVacio;
         private Visibility _totalGastoCampoVacio;
@@ -26,22 +28,22 @@ namespace CineVerCliente.ModeloVista
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
-        public string NombreGasto
+        public string Motivo
         {
-            get { return _nombreGasto; }
+            get { return _motivo; }
             set
             {
-                _nombreGasto = value;
+                _motivo = value;
                 OnPropertyChanged();
             }
         }
 
-        public string TotalGasto
+        public decimal Monto
         {
-            get { return _totalGasto; }
+            get { return _monto; }
             set
             {
-                _totalGasto = value;
+                _monto = value;
                 OnPropertyChanged();
             }
         }
@@ -102,7 +104,29 @@ namespace CineVerCliente.ModeloVista
 
         public void AceptarConfirmacion(Object obj)
         {
-            Notificacion.Mostrar("Gasto registrado correctamente", 4000);
+            var cliente = new GastoServicio.GastoServicioClient();
+
+            var gasto = new GastoDTO
+            {
+                Motivo = Motivo,
+                Monto = Monto,
+                Fecha = DateTime.Now,
+                IdEmpleado = UsuarioEnLinea.Instancia.IdEmpleado,
+                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
+            };
+
+            var resultado = cliente.RegistrarGasto(gasto);
+
+            if (resultado.EsExitoso)
+            {
+                Notificacion.Mostrar("Gasto registrado correctamente", 4000);
+                MostrarMensajeConfirmacion = Visibility.Collapsed;
+            }
+            else
+            {
+                Notificacion.Mostrar("Error al registrar el gasto", 4000);
+                MostrarMensajeConfirmacion = Visibility.Collapsed;
+            }
         }
 
         public void CancelarConfirmacion(Object obj)
@@ -114,8 +138,8 @@ namespace CineVerCliente.ModeloVista
         {
             bool valido = true;
 
-            valido &= ValidarNombreGasto();
-            valido &= ValidarTotalGasto();
+            valido &= ValidarMotivo();
+            valido &= ValidarMonto();
 
             if (valido)
             {
@@ -125,9 +149,9 @@ namespace CineVerCliente.ModeloVista
             return false;
         }
 
-        private bool ValidarNombreGasto()
+        private bool ValidarMotivo()
         {
-            if (string.IsNullOrEmpty(NombreGasto))
+            if (string.IsNullOrEmpty(Motivo))
             {
                 NombreGastoCampoVacio = Visibility.Visible;
                 return false;
@@ -137,9 +161,9 @@ namespace CineVerCliente.ModeloVista
             return true;
         }
 
-        private bool ValidarTotalGasto()
+        private bool ValidarMonto()
         {
-            if (string.IsNullOrEmpty(TotalGasto))
+            if (Monto == 0)
             {
                 TotalGastoCampoVacio = Visibility.Visible;
                 return false;
