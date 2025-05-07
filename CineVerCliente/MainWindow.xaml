@@ -181,6 +181,10 @@
             <vista:AgregarPeliculaVista/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vistaModelo:EditarPeliculaModeloVista}">
+            <vista:EditarPelicula/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Window.DataContext>

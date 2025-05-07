@@ -4,24 +4,46 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
+using System.Windows;
+using System.ComponentModel;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CineVerCliente.ModeloVista
 {
-    public class AgregarPelículaModeloVista : BaseModeloVista
+    public class EditarPeliculaModeloVista:BaseModeloVista
     {
         private string _titulo;
         private string _genero;
         private string _director;
         private string _sinopsis;
         private int _duracion;
-        
+        private string _poster;
+        public string Poster
+        {
+            get => _poster;
+            set
+            {
+                _poster = value;
+                OnPropertyChanged(nameof(Poster));
+            }
+        }
+        private PeliculaDTOs _peliculaOriginal;
+        public PeliculaDTOs PeliculaOriginal
+        {
+            get => _peliculaOriginal;
+            set
+            {
+                _peliculaOriginal = value;
+                OnPropertyChanged(nameof(PeliculaOriginal));
+            }
+        }
+
 
         public string Titulo
         {
@@ -82,7 +104,7 @@ namespace CineVerCliente.ModeloVista
                 OnPropertyChanged(nameof(Generos));
             }
         }
-        
+
         private Visibility _tituloVacio;
         private Visibility _duracionVacio;
         private Visibility _sinopsisVacio;
@@ -152,9 +174,9 @@ namespace CineVerCliente.ModeloVista
 
         private Visibility _mostrarMensajeConfirmar;
 
-        
-        private string _posterPath;
-        public string PosterPath
+
+        private ImageSource _posterPath;
+        public ImageSource PosterPath
         {
             get => _posterPath;
             set
@@ -172,18 +194,39 @@ namespace CineVerCliente.ModeloVista
         public ICommand RegresarCommand { get; }
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
-        public AgregarPelículaModeloVista(MainWindowModeloVista mainWindowModeloVista)
+        public EditarPeliculaModeloVista(MainWindowModeloVista mainWindowModeloVista,PeliculaDTOs peliculaOriginal)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
             Generos = new ObservableCollection<string> { "Terror", "Acción", "Comedia", "Romance", "Drama" };
             CargarImagenCommand = new ComandoModeloVista(CargarImagen);
             GuardarCommand = new ComandoModeloVista(Guardar);
+            PeliculaOriginal = peliculaOriginal;
             RegresarCommand = new ComandoModeloVista(Regresar);
-            PosterPath = "/Vista/Icono_IMagen_BLanco.png";
+            PosterPath = ConvertirBytesAImagen(PeliculaOriginal.poster);
             OcultarCamposVacios();
+            Titulo = PeliculaOriginal.nombre;
+            Genero = PeliculaOriginal.genero;
+            Director = PeliculaOriginal.director;
+            Sinopsis = PeliculaOriginal.sinopsis;
+            Duracion = (int)PeliculaOriginal.duracion.Value.TotalMinutes;
         }
 
-        public AgregarPelículaModeloVista()
+        public ImageSource ConvertirBytesAImagen(byte[] bytes)
+        {
+            if (bytes == null || bytes.Length == 0) return null;
+
+            var imagen = new BitmapImage();
+            using (var ms = new MemoryStream(bytes))
+            {
+                imagen.BeginInit();
+                imagen.CacheOption = BitmapCacheOption.OnLoad;
+                imagen.StreamSource = ms;
+                imagen.EndInit();
+                imagen.Freeze(); // Importante para evitar errores de hilo si lo usas en bindings
+            }
+            return imagen;
+        }
+        public EditarPeliculaModeloVista()
         {
         }
 
@@ -191,7 +234,11 @@ namespace CineVerCliente.ModeloVista
         {
             var dlg = new OpenFileDialog { Filter = "Imagenes|*.jpg;*.png" };
             if (dlg.ShowDialog() == true)
-                PosterPath = dlg.FileName;
+            {
+                Poster = dlg.FileName;
+                PosterPath = new BitmapImage(new Uri(Poster));
+            }
+                
         }
 
         private void Guardar(Object obj)
@@ -207,20 +254,11 @@ namespace CineVerCliente.ModeloVista
                 pelicula.idSucursal = 1; // Cambiar por la sucursal actual
                 pelicula.genero = Genero;
                 pelicula.nombre = Titulo;
-                pelicula.poster = File.Exists(PosterPath) ? File.ReadAllBytes(PosterPath) : null;
+                pelicula.poster = File.Exists(Poster) ? File.ReadAllBytes(Poster) : null;
                 PelículaServicioClient peliculaServicio = new PelículaServicioClient();
-                string mensaje = peliculaServicio.AgregarPelicula(pelicula);
+                string mensaje = peliculaServicio.EditarPelicula(pelicula, PeliculaOriginal);
                 Notificacion.Mostrar(mensaje);
             }
-        }
-        private void Regresar(Object obj)
-        {
-            CambiarModeloVista(new ConsultarPeliculasModeloVista(_mainWindowModeloVista));
-        }
-        public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
-        {
-            VistaActualModelo = nuevoModeloVista;
-            _mainWindowModeloVista.VistaActualModelo = nuevoModeloVista;
         }
         private object _vistaActual;
         public object VistaActualModelo
@@ -231,6 +269,15 @@ namespace CineVerCliente.ModeloVista
                 _vistaActual = value;
                 OnPropertyChanged();
             }
+        }
+        public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
+        {
+            VistaActualModelo = nuevoModeloVista;
+            _mainWindowModeloVista.VistaActualModelo = nuevoModeloVista;
+        }
+        private void Regresar(Object obj)
+        {
+            CambiarModeloVista(new ConsultarPeliculasModeloVista(_mainWindowModeloVista));
         }
         public Visibility MostrarMensajeConfirmar
         {
@@ -273,7 +320,7 @@ namespace CineVerCliente.ModeloVista
         }
         private bool ValidarPoster()
         {
-            if (string.IsNullOrEmpty(PosterPath))
+            if (string.IsNullOrEmpty(Poster))
             {
                 PosterVacio = Visibility.Visible;
                 return false;
@@ -292,7 +339,7 @@ namespace CineVerCliente.ModeloVista
             else
             {
                 GeneroVacio = Visibility.Collapsed;
-                return true;    
+                return true;
             }
 
         }
@@ -313,20 +360,20 @@ namespace CineVerCliente.ModeloVista
             }
             else
             {
-                SinopsisVacio=Visibility.Collapsed;
+                SinopsisVacio = Visibility.Collapsed;
                 return true;
             }
         }
         private bool ValidarDuracion()
         {
-            if(Duracion <= 0)
+            if (Duracion <= 0)
             {
                 DuracionVacio = Visibility.Visible;
                 return false;
             }
             else
             {
-                DuracionVacio=Visibility.Collapsed;
+                DuracionVacio = Visibility.Collapsed;
                 return true;
             }
         }
@@ -337,7 +384,7 @@ namespace CineVerCliente.ModeloVista
             SinopsisVacio = Visibility.Collapsed;
             DirectorVacio = Visibility.Collapsed;
             GeneroVacio = Visibility.Collapsed;
-            PosterVacio = Visibility.Collapsed;     
+            PosterVacio = Visibility.Collapsed;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

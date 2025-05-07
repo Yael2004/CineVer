@@ -121,6 +121,7 @@ namespace DAO
                     if (peliculaNueva != null)
                     {
                         peliculaNueva.nombre = peliculaEditada.nombre;
+                        peliculaNueva.poster = peliculaEditada.poster;
                         peliculaNueva.director = peliculaEditada.director;
                         peliculaNueva.duracion = peliculaEditada.duracion;
                         peliculaNueva.genero = peliculaEditada.genero;
@@ -177,7 +178,7 @@ namespace DAO
             {
                 try
                 {
-                    List <Película> listaPeliculas = entities.Película.Where(e=>e.nombre.Equals(nombre)&&e.idSucursal == idSucursal).ToList();
+                    List <Película> listaPeliculas = entities.Película.Where(e=>e.nombre.Contains(nombre)&&e.idSucursal == idSucursal).ToList();
                     return Result<List<Película>>.Exito(listaPeliculas);
                 }
                 catch (DbEntityValidationException ex)

@@ -94,6 +94,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImagenGrupo.cs" />
+    <Compile Include="Helpers\ImagenPelicula.cs" />
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarPelículaModeloVista.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="ModeloVista\DevolverBoletoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSociosModeloVista.cs" />
     <Compile Include="ModeloVista\EditarDetallesProductoModeloVista.cs" />
+    <Compile Include="ModeloVista\EditarPeliculaModeloVista.cs" />
     <Compile Include="ModeloVista\EditarProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\EditarPromocionModeloVista.cs" />
     <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
@@ -209,6 +211,9 @@
     </Compile>
     <Compile Include="Vista\ConsultarPeliculas.xaml.cs">
       <DependentUpon>ConsultarPeliculas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EditarPelicula.xaml.cs">
+      <DependentUpon>EditarPelicula.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
@@ -327,6 +332,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarPeliculas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\EditarPelicula.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -512,6 +521,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\fondo_Película.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\icono-agregar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\icono-agregar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using CineVerCliente.PeliculaServicio;
+using System.Windows.Input;
+using System.Windows;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -17,6 +19,12 @@ namespace CineVerCliente.ModeloVista
         private PelículaServicioClient peliculaServicio = new PelículaServicioClient();
         private string _busqueda;
         private readonly MainWindowModeloVista _mainWindow;
+        
+        public ICommand EditarPeliculaCommand { get; }
+        public ICommand EliminarPeliculaCommand { get; }
+        public ICommand AceptarComando { get; }
+        public ICommand CancelarComando { get; }
+        public ICommand AgregarPeliculaComando { get; }
         public string Busqueda
         {
             get => _busqueda;
@@ -24,18 +32,24 @@ namespace CineVerCliente.ModeloVista
             {
                 _busqueda = value;
                 OnPropertyChanged(nameof(Busqueda));
+                CargarImagenesDesdeBytes(peliculaServicio.ObtenerPeliculasPorNombre(1,_busqueda)); //Arreglar id sucursal
             }
         }
         public ObservableCollection<ImagenGrupo> GruposDeImagenes { get; set; } = new ObservableCollection<ImagenGrupo>();
         public ConsultarPeliculasModeloVista(MainWindowModeloVista mainWindow)
         {
             _mainWindow = mainWindow;
-            CargarImagenesDesdeBytes();
+            EditarPeliculaCommand = new ComandoModeloVista(EditarPelicula);
+            EliminarPeliculaCommand = new ComandoModeloVista(EliminarPelicula);
+            AceptarComando = new ComandoModeloVista(AceptarEliminar);
+            CancelarComando = new ComandoModeloVista(CancelarEliminar);
+            AgregarPeliculaComando = new ComandoModeloVista(AgregarPelicula);
+            CargarImagenesDesdeBytes(peliculaServicio.ObtenerListaPeliculas(1));
         }
 
-        public void CargarImagenesDesdeBytes()
+        public void CargarImagenesDesdeBytes(ListaPeliculasDTO peliculas)
         {
-            var peliculas = peliculaServicio.ObtenerListaPeliculas(1);
+            
             GruposDeImagenes.Clear();
             var imagenes = ObtenerListaImagenes(peliculas);
             
@@ -66,17 +80,85 @@ namespace CineVerCliente.ModeloVista
             }
             return imagen;
         }
-        public List<ImageSource> ObtenerListaImagenes(ListaPeliculasDTO peliculas)
+        public List<ImagenPelicula> ObtenerListaImagenes(ListaPeliculasDTO peliculas)
         {
-            var listaImagenes = new List<ImageSource>();
+            var lista = new List<ImagenPelicula>();
             foreach (var pelicula in peliculas.Peliculas)
             {
                 var img = ConvertirBytesAImagen(pelicula.poster);
                 if (img != null)
-                    listaImagenes.Add(img);
+                {
+                    lista.Add(new ImagenPelicula
+                    {
+                        Pelicula = pelicula,
+                        Imagen = img
+                    });
+                }
             }
-            return listaImagenes;
+            return lista;
         }
+        public void AgregarPelicula(Object obj)
+        {
+            CambiarModeloVista(new AgregarPelículaModeloVista(_mainWindow));
+        }
+        public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
+        {
+            VistaActualModelo = nuevoModeloVista;
+            _mainWindow.VistaActualModelo = nuevoModeloVista;
+        }
+        private object _vistaActual;
+        public object VistaActualModelo
+        {
+            get { return _vistaActual; }
+            set
+            {
+                _vistaActual = value;
+                OnPropertyChanged();
+            }
+        }
+        private void EditarPelicula(Object obj)
+        {
+            if(obj is PeliculaDTOs pelicula)
+            {
+                CambiarModeloVista(new EditarPeliculaModeloVista(_mainWindow,pelicula));
+                
+            }
+        }
+        private bool _mostrarMensajeConfirmar;
+        public bool MostrarMensajeConfirmar
+        {
+            get => _mostrarMensajeConfirmar;
+            set
+            {
+                _mostrarMensajeConfirmar = value;
+                OnPropertyChanged(nameof(MostrarMensajeConfirmar));
+            }
+        }
+
+        private PeliculaDTOs _peliculaSeleccionada;
+
+        private void EliminarPelicula(Object obj)
+        {
+            if(obj is PeliculaDTOs pelicula)
+            {
+                _peliculaSeleccionada = pelicula;
+                MostrarMensajeConfirmar = true;
+            }
+        }
+        private void AceptarEliminar(Object obj)
+        {
+            if (_peliculaSeleccionada != null)
+            {
+                peliculaServicio.EliminarPelicula(_peliculaSeleccionada);
+                CargarImagenesDesdeBytes(peliculaServicio.ObtenerListaPeliculas(1));
+                MostrarMensajeConfirmar = false;
+            }
+        }
+        private void CancelarEliminar(Object obj)
+        {
+            MostrarMensajeConfirmar = false;
+        }
+
 
     }
 }
