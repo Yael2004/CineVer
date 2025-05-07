@@ -48,7 +48,8 @@
                 Command="{Binding EmpleadoComando}"/>
 
                 <Button Grid.Column="4" Content="Socios" Margin="0"
-                Style="{StaticResource BotonMenu}" 
+                Style="{StaticResource BotonMenu}"
+                        Command="{Binding ConsultarPeliculasComando}"
                 VerticalAlignment="Center"/>
 
                 <Button Grid.Column="5" Content="Reportes" Margin="0"
@@ -106,6 +107,10 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:EditarSucursalModeloVista}">
             <vista:EditarSucursal/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarPeliculasModeloVista}">
+            <vista:ConsultarPeliculas/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vistaModelo:RegistrarEmpleadoModeloVista}">

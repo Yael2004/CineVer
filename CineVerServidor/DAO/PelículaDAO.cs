@@ -21,10 +21,7 @@ namespace DAO
                 try
                 {
                     var peliculas = entities.Película.Where(p => p.idSucursal == idSucursal).ToList();
-                    if(peliculas.Count > 0)
-                    {
-                        return Result<List<Película>>.Fallo("No hay películas agregadas a la sucursal que consulta");
-                    }
+                    
                     return Result<List<Película>>.Exito(peliculas);
                 }
                 catch(DbEntityValidationException ex)

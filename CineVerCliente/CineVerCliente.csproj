@@ -107,6 +107,7 @@
     <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarEmpleadosModeloVista.cs" />
+    <Compile Include="ModeloVista\ConsultarPeliculasModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSucursalesModeloVista.cs" />
     <Compile Include="ModeloVista\DevolverBoletoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSociosModeloVista.cs" />
@@ -206,8 +207,8 @@
     <Compile Include="Vista\ReportarMermaProductoModeloVista.xaml.cs">
       <DependentUpon>ReportarMermaProductoModeloVista.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vista\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
+    <Compile Include="Vista\ConsultarPeliculas.xaml.cs">
+      <DependentUpon>ConsultarPeliculas.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
@@ -325,7 +326,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vista\Window1.xaml">
+    <Page Include="Vista\ConsultarPeliculas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -499,6 +500,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="cinever logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Icono_Editar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Icono_Eliminar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\fondo_ConsultarPeliculas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\fondo_Película.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
