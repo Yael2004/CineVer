@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,6 +87,7 @@ namespace CineVerCliente.ModeloVista
             set
             {
                 _filas = value;
+                GenerarMapaSala();
                 OnPropertyChanged(nameof(Filas));
             }
         }
@@ -104,7 +106,49 @@ namespace CineVerCliente.ModeloVista
             Filas.Clear();
             for (int i = 1; i <= NumeroFilas; i++)
             {
-                Filas.Add(new FilaAsientos { NumeroFila = i });
+                var fila = new FilaAsientos { NumeroFila = i };
+                fila.PropertyChanged += Fila_PropertyChanged;
+
+                Filas.Add(fila);
+            }
+            GenerarMapaSala();
+        }
+        private bool ValidarNombreSala()
+        {
+            if (string.IsNullOrWhiteSpace(NombreSala))
+            {
+                NombreSalaVacio = Visibility.Visible;
+                return false;
+            }
+            else
+            {
+                
+                NombreSalaVacio = Visibility.Collapsed;
+                return true;
+            }
+        }
+        private bool ValidarDescripcionSala()
+        {
+            if (string.IsNullOrEmpty(DescripcionSala))
+            {
+                DescripcionSalaVacio = Visibility.Visible;
+                return false;
+            }
+            else
+            {
+                DescripcionSalaVacio = Visibility.Collapsed;
+                return true;
+            }
+        }
+        private void ValidarNumeroFilas()
+        {
+            if (NumeroFilas <= 0)
+            {
+                NumeroFilasVacio = Visibility.Visible;
+            }
+            else
+            {
+                NumeroFilasVacio = Visibility.Collapsed;
             }
         }
         private void Guardar(Object obj)
@@ -123,6 +167,39 @@ namespace CineVerCliente.ModeloVista
             DescripcionSalaVacio = Visibility.Collapsed;
             NumeroFilasVacio = Visibility.Collapsed;
         }
+
+        public ObservableCollection<ObservableCollection<Asiento>> MapaSala { get; set; }
+
+        private void GenerarMapaSala()
+        {
+            MapaSala = new ObservableCollection<ObservableCollection<Asiento>>();
+
+            foreach (var fila in Filas)
+            {
+                var filaAsientos = new ObservableCollection<Asiento>();
+                for (int i = 1; i <= fila.CantidadAsientos; i++)
+                {
+                    filaAsientos.Add(new Asiento
+                    {
+                        Fila = fila.NumeroFila,
+                        Numero = i
+                    });
+                }
+                MapaSala.Add(filaAsientos);
+            }
+
+            OnPropertyChanged(nameof(MapaSala));
+        }
+
+        private void Fila_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(FilaAsientos.CantidadAsientos))
+            {
+                GenerarMapaSala(); // Se vuelve a generar el mapa solo si cambia la cantidad de asientos
+            }
+        }
+
+
 
     }
 }

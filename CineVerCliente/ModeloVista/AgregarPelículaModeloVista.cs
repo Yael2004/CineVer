@@ -330,6 +330,7 @@ namespace CineVerCliente.ModeloVista
                 return true;
             }
         }
+        
         private void OcultarCamposVacios()
         {
             TituloVacio = Visibility.Collapsed;

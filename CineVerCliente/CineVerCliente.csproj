@@ -93,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Asiento.cs" />
     <Compile Include="Helpers\FilaAsientos.cs" />
     <Compile Include="Helpers\ImagenGrupo.cs" />
     <Compile Include="Helpers\ImagenPelicula.cs" />
@@ -536,6 +537,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\icono-agregar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\asiento.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\asiento.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
