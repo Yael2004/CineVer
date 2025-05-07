@@ -93,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FilaAsientos.cs" />
     <Compile Include="Helpers\ImagenGrupo.cs" />
     <Compile Include="Helpers\ImagenPelicula.cs" />
     <Compile Include="Helpers\Notificacion.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="ModeloVista\AgregarNuevoProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarPromocionModeloVista.cs" />
+    <Compile Include="ModeloVista\AgregarSalaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalSalasModeloVista.cs" />
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
@@ -145,6 +147,9 @@
     </Compile>
     <Compile Include="Vista\AgregarPromocion.xaml.cs">
       <DependentUpon>AgregarPromocion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\AgregarSala.xaml.cs">
+      <DependentUpon>AgregarSala.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\AgregarSucursal.xaml.cs">
       <DependentUpon>AgregarSucursal.xaml</DependentUpon>
@@ -244,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\AgregarPromocion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\AgregarSala.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
