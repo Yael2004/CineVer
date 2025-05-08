@@ -32,6 +32,9 @@ namespace CineVerCliente.EmpleadoServicio {
         private string CodigoPostalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] ContraseñaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool ContratadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -118,6 +121,19 @@ namespace CineVerCliente.EmpleadoServicio {
                 if ((object.ReferenceEquals(this.CodigoPostalField, value) != true)) {
                     this.CodigoPostalField = value;
                     this.RaisePropertyChanged("CodigoPostal");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Contraseña {
+            get {
+                return this.ContraseñaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContraseñaField, value) != true)) {
+                    this.ContraseñaField = value;
+                    this.RaisePropertyChanged("Contraseña");
                 }
             }
         }
@@ -536,6 +552,12 @@ namespace CineVerCliente.EmpleadoServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/ExisteEmpleado", ReplyAction="http://tempuri.org/IEmpleadoServicio/ExisteEmpleadoResponse")]
         System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> ExisteEmpleadoAsync(string matriucla);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesion", ReplyAction="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesionResponse")]
+        CineVerCliente.EmpleadoServicio.ResultDTO VerificarInicioSesion(string matricula, string contrasena);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesion", ReplyAction="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesionResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> VerificarInicioSesionAsync(string matricula, string contrasena);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -611,6 +633,14 @@ namespace CineVerCliente.EmpleadoServicio {
         
         public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> ExisteEmpleadoAsync(string matriucla) {
             return base.Channel.ExisteEmpleadoAsync(matriucla);
+        }
+        
+        public CineVerCliente.EmpleadoServicio.ResultDTO VerificarInicioSesion(string matricula, string contrasena) {
+            return base.Channel.VerificarInicioSesion(matricula, contrasena);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> VerificarInicioSesionAsync(string matricula, string contrasena) {
+            return base.Channel.VerificarInicioSesionAsync(matricula, contrasena);
         }
     }
 }

@@ -162,7 +162,7 @@ namespace DAO
                     }
                     else
                     {
-                        return Result<bool>.Exito(false);
+                        return Result<bool>.Fallo("El empleado no existe");
                     }
                 }
                 catch (DbEntityValidationException ex)
@@ -176,38 +176,39 @@ namespace DAO
             }
         }
 
-        //public Result<bool> VerificarInicioSesion(string matricula, string contraseña)
-        //{
-        //    using (CineVerEntities entities = new CineVerEntities())
-        //    {
-        //        try
-        //        {
-        //            var empleado = entities.Empleado.Where(e => e.matriculaEmpleado.Equals(matricula) && e.contratado == true).FirstOrDefault();
-        //            if (empleado != null)
-        //            {
-        //                if (empleado.contraseña.Equals(contraseña))
-        //                {
-        //                    return Result<bool>.Exito(true);
-        //                }
-        //                else
-        //                {
-        //                    return Result<bool>.Exito(false);
-        //                }
-        //            }
-        //            else
-        //            {
-        //                return Result<bool>.Fallo("Empleado no encontrado");
-        //            }
-        //        }
-        //        catch (DbEntityValidationException ex)
-        //        {
-        //            return Result<bool>.Fallo(ex.Message);
-        //        }
-        //        catch (SqlException sqlEx)
-        //        {
-        //            return Result<bool>.Fallo(sqlEx.Message);
-        //        }
-        //    }
-        //}
+        public Result<bool> VerificarInicioSesion(string matricula, string contraseña)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var empleado = entities.Empleado.Where(e => e.matriculaEmpleado.Equals(matricula) && e.contratado == true).FirstOrDefault();
+
+                    if (empleado != null)
+                    {
+                        if (empleado.contraseña.Equals(contraseña))
+                        {
+                            return Result<bool>.Exito(true);
+                        }
+                        else
+                        {
+                            return Result<bool>.Exito(false);
+                        }
+                    }
+                    else
+                    {
+                        return Result<bool>.Fallo("Empleado no encontrado");
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<bool>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<bool>.Fallo(sqlEx.Message);
+                }
+            }
+        }
     }
 }

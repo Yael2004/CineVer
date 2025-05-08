@@ -34,6 +34,7 @@ namespace CineVerServicios.Lógica
                 matriculaEmpleado = empleadoDTO.Matricula,
                 foto = empleadoDTO.Foto,
                 contratado = empleadoDTO.Contratado,
+                contraseña = empleadoDTO.Contraseña,
                 idSucursal = empleadoDTO.IdSucursal
             };
 
@@ -70,6 +71,7 @@ namespace CineVerServicios.Lógica
                 matriculaEmpleado = empleadoDTO.Matricula,
                 foto = empleadoDTO.Foto,
                 contratado = empleadoDTO.Contratado,
+                contraseña = empleadoDTO.Contraseña,
                 idSucursal = empleadoDTO.IdSucursal
             };
 
@@ -131,6 +133,7 @@ namespace CineVerServicios.Lógica
                         Matricula = empleado.matriculaEmpleado,
                         Foto = empleado.foto,
                         Contratado = (bool)empleado.contratado,
+                        Contraseña = empleado.contraseña,
                         IdSucursal = (int)empleado.idSucursal
                     };
                     listaEmpleados.Empleados.Add(empleadoDTO);
@@ -170,6 +173,7 @@ namespace CineVerServicios.Lógica
                     Matricula = empleado.matriculaEmpleado,
                     Foto = empleado.foto,
                     Contratado = (bool)empleado.contratado,
+                    Contraseña = empleado.contraseña,
                     IdSucursal = (int)empleado.idSucursal
                 };
 
@@ -180,6 +184,20 @@ namespace CineVerServicios.Lógica
         public Result<bool> ExisteEmpleado(string matricula)
         {
             var resultado = empleadoDAO.ExisteEmpleado(matricula);
+
+            if (resultado.EsExitoso)
+            {
+                return Result<bool>.Exito(resultado.Valor);
+            }
+            else
+            {
+                return Result<bool>.Fallo(resultado.Error);
+            }
+        }
+
+        public Result<bool> VerificarInicioSesion(string matricula, string contraseña)
+        {
+            var resultado = empleadoDAO.VerificarInicioSesion(matricula, contraseña);
 
             if (resultado.EsExitoso)
             {

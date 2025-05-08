@@ -109,6 +109,7 @@ namespace CineVerServicios
                 Matricula = empleado.Matricula,
                 Foto = empleado.Foto,
                 Contratado = empleado.Contratado,
+                Contraseña = empleado.Contraseña,
                 IdSucursal = (int)empleado.IdSucursal
             };
 
@@ -122,6 +123,20 @@ namespace CineVerServicios
         public Task<ResultDTO> ExisteEmpleado(string matricula)
         {
             var resultado = _gestorEmpleado.ExisteEmpleado(matricula);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
+        }
+
+        public Task<ResultDTO> VerificarInicioSesion(string matricula, string contrasena)
+        {
+            var resultado = _gestorEmpleado.VerificarInicioSesion(matricula, contrasena);
 
             if (resultado.EsExitoso)
             {

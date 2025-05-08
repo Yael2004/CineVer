@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using System.Security.Cryptography;
+using CineVerCliente.Modelo;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -108,7 +109,37 @@ namespace CineVerCliente.ModeloVista
             {
                 string hashContrasenia = HashContraseña(Contraseña);
 
+                var cliente = new EmpleadoServicio.EmpleadoServicioClient();
 
+                var empleado = cliente.VerificarInicioSesion(Matricula, hashContrasenia);
+
+                if (empleado.EsExitoso)
+                {
+                    var empleadoLogueado = cliente.BuscarEmpleadoPorMatricula(Matricula);
+
+                    var empleadoConsultado = new EmpleadoConsultado
+                    {
+                        IdEmpleado = empleadoLogueado.empleado.IdEmpleado,
+                        Nombres = empleadoLogueado.empleado.Nombres,
+                        Apellidos = empleadoLogueado.empleado.Apellidos,
+                        Nss = empleadoLogueado.empleado.Nss,
+                        Rol = empleadoLogueado.empleado.Rol,
+                        FechaNacimiento = empleadoLogueado.empleado.FechaNacimiento,
+                        Sexo = empleadoLogueado.empleado.Sexo,
+                        NumeroTelefono = empleadoLogueado.empleado.NumeroTelefono,
+                        Correo = empleadoLogueado.empleado.Correo,
+                        Calle = empleadoLogueado.empleado.Calle,
+                        NumeroCasa = empleadoLogueado.empleado.NumeroCasa,
+                        CodigoPostal = empleadoLogueado.empleado.CodigoPostal,
+                        RFC = empleadoLogueado.empleado.RFC,
+                        Matricula = empleadoLogueado.empleado.Matricula,
+                        IdSucursal = empleadoLogueado.empleado.IdSucursal
+                    };
+
+                    UsuarioEnLinea.Instancia.EstablecerDatosUsuarioEnSesion(empleadoConsultado);
+
+                    _mainWindowModeloVista.CambiarModeloVista(new MainWindowModeloVista());
+                }
             }
         }
 

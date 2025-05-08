@@ -456,6 +456,7 @@ namespace CineVerCliente.ModeloVista
                 RFC = _rfc,
                 Foto = _foto,
                 Contratado = true,
+                //Falta contraseña
                 IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
             };
 

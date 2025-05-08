@@ -15,144 +15,183 @@
         </Grid.RowDefinitions>
 
         <Border Background="{StaticResource Negro}" Grid.Row="0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+            <Viewbox Stretch="Fill">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
 
-                </Grid.ColumnDefinitions>
+                    </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0"
-                    Source="/Assets/logo-cinever.png" 
-                    Height="40" 
-                    Margin="10"
-                    VerticalAlignment="Center"/>
+                    <Image Grid.Column="0"
+                        Source="/Assets/logo-cinever.png" 
+                        Height="40" 
+                        Margin="10"
+                        VerticalAlignment="Center"/>
 
-                <Menu Grid.Column="2"
-                    Style="{StaticResource MenuMain}"
-                    Visibility="{Binding PromocionesMenu}">
-                    <MenuItem Header="Promociones"
-                        Visibility="{Binding _promocionesMenu}">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
+                    <Menu Grid.Column="2"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding PromocionesMenu}">
+                        <MenuItem Header="Promociones">
+                            <MenuItem Header="Agregar promoción"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding AgregarPromocionMenu}"
+                                Command=""
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Editar promoción"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding EditarPromocionMenu}"
+                                Command=""
+                                CommandParameter="{Binding}"/>
+                        </MenuItem>
+                    </Menu>
 
-                <Menu Grid.Column="3"
-                    Style="{StaticResource MenuMain}">
-                    <MenuItem Header="Empleados">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"
-                            Command="{Binding EmpleadoComando}"
+                    <Menu Grid.Column="3"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding EmpleadosMenu}">
+                        <MenuItem Header="Empleados">
+                            <MenuItem Header="Registrar empleado"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding RegistrarEmpleadoMenu}"
+                                Command="{Binding RegistrarEmpleadoComando}"
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Consultar empleados"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding ConsultarEmpleadoMenu}"
+                                Command="{Binding ConsultarEmpleadosComando}"
+                                CommandParameter="{Binding}"/>
+                        </MenuItem>
+                    </Menu>
+
+                    <Menu Grid.Column="4"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding SociosMenu}">
+                        <MenuItem Header="Socios">
+                            <MenuItem Header="Registrar socio"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding RegistrarSocioMenu}"
+                                Command="{Binding RegistrarSocioComando}"
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Consultar socios"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding ConsultarSociosMenu}"
+                                Command="{Binding ConsultarSociosComando}"
+                                CommandParameter="{Binding}"/>
+                        </MenuItem>
+                    </Menu>
+
+                    <Menu Grid.Column="5"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding VentasMenu}">
+                        <MenuItem Header="Ventas">
+                            <MenuItem Header="Corte de Caja"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding CorteDeCajaMenu}"
+                                Command="{Binding RealizarCorteCajaComando}"
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Obtener Estadísticas"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding ObtenerEstadisticasMenu}"
+                                Command=""
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Registrar gasto"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding RegistrarGastoMenu}"
+                                Command="{Binding RegistrarGastoComando}"
+                                CommandParameter="{Binding}"/>
+                        </MenuItem>
+                    </Menu>
+                
+                    <Menu Grid.Column="6"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding DulceriaMenu}">
+                        <MenuItem Header="Dulcería">
+                            <MenuItem Header="Agregar inventario productos"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding AgregarInventarioProductosMenu}"
+                                Command=""
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Editar productos"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding EditarProductosMenu}"
+                                Command=""
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Realizar venta"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding RealizarVentaMenu}"
+                                Command=""
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Reportar merma"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding ReportarMermaMenu}"
+                                Command="{Binding ReportarMermaProductoComando}"
+                                CommandParameter="{Binding}"/>
+                        </MenuItem>
+                    </Menu>
+                
+                    <Menu Grid.Column="7"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding BoletosMenu}">
+                        <MenuItem Header="Devolver boleto"
+                            Command="{Binding DevolverBoletoComando}"
                             CommandParameter="{Binding}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
+                    </Menu>
 
-                <Menu Grid.Column="4"
-                    Style="{StaticResource MenuMain}">
-                    <MenuItem Header="Socios">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
+                    <Menu Grid.Column="8"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding FuncionesMenu}">
+                        <MenuItem Header="Funciones">
+                            <MenuItem Header="Cartelera y películas"
+                                Style="{StaticResource MenuItemMain}"/>
+                        </MenuItem>
+                    </Menu>
 
-                <Menu Grid.Column="5"
-                    Style="{StaticResource MenuMain}"
-                    Visibility="{Binding ReportesMenu}">
-                    <MenuItem Header="Reportes">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
+                    <Menu Grid.Column="9"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding SucursalesMenu}">
+                        <MenuItem Header="Sucursales">
+                            <MenuItem Header="Consultar sucursales"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding ConsultarSucursalesMenu}"
+                                Command="{Binding ConsultarSucursalesComando}"
+                                CommandParameter="{Binding}"/>
+                            <MenuItem Header="Agregar sucursal"
+                                Style="{StaticResource MenuItemMain}"
+                                Visibility="{Binding AgregarSucursalMenu}"
+                                Command="{Binding AgregarSucursalComando}"
+                                CommandParameter="{Binding}"/>
+                        </MenuItem>
+                    </Menu>
 
-                <Menu Grid.Column="6"
-                    Style="{StaticResource MenuMain}">
-                    <MenuItem Header="Dulcería">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
+                    <Menu Grid.Column="10"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding SalasMenu}">
+                        <MenuItem Header="Salas">
+                            <MenuItem Header="Administrar salas"
+                                Style="{StaticResource MenuItemMain}"/>
+                        </MenuItem>
+                    </Menu>
 
-                <Menu Grid.Column="7"
-                    Style="{StaticResource MenuMain}">
-                    <MenuItem Header="Boletos">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
-
-                <Menu Grid.Column="8"
-                    Style="{StaticResource MenuMain}"
-                    Visibility="{Binding FuncionesMenu}">
-                    <MenuItem Header="Funciones">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
-
-                <Menu Grid.Column="9"
-                    Style="{StaticResource MenuMain}"
-                    Visibility="{Binding SucursalesMenu}">
-                    <MenuItem Header="Sucursales">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
-
-                <Menu Grid.Column="10"
-                    Style="{StaticResource MenuMain}">
-                    <MenuItem Header="Cerrar sesión">
-                        <MenuItem Header="Ventana 1"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 2"
-                            Style="{StaticResource MenuItemMain}"/>
-                        <MenuItem Header="Ventana 3"
-                            Style="{StaticResource MenuItemMain}"/>
-                    </MenuItem>
-                </Menu>
-            </Grid>
+                    <Menu Grid.Column="11"
+                        Style="{StaticResource MenuMain}"
+                        Visibility="{Binding SesionMenu}">
+                        <MenuItem Header="Cerrar sesión"
+                            Command="{Binding CerrarSesionComando}"
+                            CommandParameter="{Binding}"/>
+                    </Menu>
+                </Grid>
+            </Viewbox>
         </Border>
 
         <ContentControl Content="{Binding VistaActualModelo}" Grid.Row="1"/>
