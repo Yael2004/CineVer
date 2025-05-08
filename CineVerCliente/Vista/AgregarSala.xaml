@@ -28,7 +28,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Fondo de pantalla con imagen -->
-        <Image Source="pack://application:,,,/Assets/Imagenes/Fondos/fondo_Película.jpg"
+        <Image Source="/Vista/fondo_Sala.jpg"
                Stretch="UniformToFill" Grid.ColumnSpan="3"
                Panel.ZIndex="0" Grid.Row="0" Grid.RowSpan="3" />
 
@@ -44,125 +44,129 @@
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
         Panel.ZIndex="1">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <TextBlock Grid.ColumnSpan="2" Text="Agregar Sala"
+                    <TextBlock Grid.ColumnSpan="2" Text="Agregar Sala"
                            FontSize="18"
                            FontWeight="Bold"
                            Foreground="White"
                            HorizontalAlignment="Center"
                            Margin="0 0 0 10"/>
-                <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="1">
-                    <TextBlock Text="Nombre sala" Foreground="White" />
-                    <TextBox Text="{Binding Titulo}"  Style="{StaticResource Textbox}"/>
-                    <Label x:Name="NombreSucursalCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding NombreSalaVacio}"/>
-                </StackPanel>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="1">
+                        <TextBlock Text="Nombre sala" Foreground="White" />
+                        <TextBox Text="{Binding NombreSala}"  Style="{StaticResource Textbox}"/>
+                        <Label x:Name="NombreSucursalCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding NombreSalaVacio}"/>
+                    </StackPanel>
 
-                <StackPanel Orientation="Vertical"
+                    <StackPanel Orientation="Vertical"
             Grid.Column="1"
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Margin="0"
             >
-                    <TextBlock Text="Numero de filas:" Foreground="White" />
-                    <xctk:IntegerUpDown Value="{Binding NumeroFilas}" 
+                        <TextBlock Text="Numero de filas:" Foreground="White" />
+                        <xctk:IntegerUpDown Value="{Binding NumeroFilas}" 
                         Padding="5" 
                         Width="100" 
                         Height="30" 
                         HorizontalAlignment="Center"/>
 
-                    <Label x:Name="DuracionCampoVacio"
+                        <Label x:Name="DuracionCampoVacio"
            Padding="5" 
            Style="{StaticResource TextoCamposVacio}" 
            Visibility="{Binding NumeroFilasVacio}"
            HorizontalAlignment="Center"/>
-                </StackPanel>
+                    </StackPanel>
 
 
-                <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="2">
-                    
-                </StackPanel>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="2">
 
-                <!-- Lado izquierdo -->
-                <ItemsControl Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Filas}" Margin="0,10,0,0">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                <TextBlock Text="Fila " Foreground="White" VerticalAlignment="Center"/>
-                                <TextBlock Text="{Binding NumeroFila}" Foreground="White" Margin="5,0" VerticalAlignment="Center"/>
-                                <TextBlock Text=" - Asientos:" Foreground="White" Margin="5,0" VerticalAlignment="Center"/>
-                                <xctk:IntegerUpDown Value="{Binding CantidadAsientos, Mode=TwoWay}" 
+                    </StackPanel>
+
+                    <!-- Lado izquierdo -->
+                    <ItemsControl Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Filas}" Margin="0,10,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <TextBlock Text="Fila " Foreground="White" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding NumeroFila}" Foreground="White" Margin="5,0" VerticalAlignment="Center"/>
+                                    <TextBlock Text=" - Asientos:" Foreground="White" Margin="5,0" VerticalAlignment="Center"/>
+                                    <xctk:IntegerUpDown Value="{Binding CantidadAsientos, Mode=TwoWay}" 
                     Padding="5" 
                     Width="100" 
                     Height="30" 
                     HorizontalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
 
-                <!-- Lado derecho -->
-                <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="20,10,0,0">
-                    <TextBlock Text="Descripcion:" Foreground="White" Margin="0,10,0,0"/>
-                    <TextBox Text="{Binding DescripcionSala}"  Height="120" TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource Textbox}"/>
-                    <Label x:Name="DescripcionVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding DescripcionSalaVacio}"/>
-                </StackPanel>
+                    <!-- Lado derecho -->
+                    <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Margin="20,10,0,0">
+                        <TextBlock Text="Descripcion:" Foreground="White" Margin="0,10,0,0"/>
+                        <TextBox Text="{Binding DescripcionSala}"  Height="120" TextWrapping="Wrap" AcceptsReturn="True" Style="{StaticResource Textbox}"/>
+                        <Label x:Name="DescripcionVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding DescripcionSalaVacio}"/>
+                    </StackPanel>
 
-                <ItemsControl ItemsSource="{Binding MapaSala}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ItemsControl ItemsSource="{Binding}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <StackPanel Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Button Width="40" Height="40" Margin="2">
-                                            <Image Source="/Vista/asiento.png" Stretch="Uniform"/>
-                                        </Button>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                    <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                        <ItemsControl ItemsSource="{Binding MapaSala}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ItemsControl ItemsSource="{Binding}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Button Width="40" Height="40" Margin="2">
+                                                    <Image Source="/Vista/asiento.png" Stretch="Uniform"/>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
 
 
 
 
-                <!-- Botón de regresar -->
-                <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Top" Margin="20,0,0,0">
-                    <Button Content="Regresar"
+
+                    <!-- Botón de regresar -->
+                    <StackPanel Grid.Row="5" Grid.Column="0" VerticalAlignment="Top" Margin="20,0,0,0">
+                        <Button Content="Regresar"
                         Grid.Row="4"
                         Grid.ColumnSpan="2"
                         Command="{Binding RegresarCommand}"
                         HorizontalAlignment="Center"
                         Width="100"
                         Margin="0,20,0,0" Style="{StaticResource BotonConfirmarBlanco}"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <!-- Botón de Agregar -->
-                <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0">
-                    <Button Content="Registrar"
+                    <!-- Botón de Agregar -->
+                    <StackPanel Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0">
+                        <Button Content="Registrar"
          Grid.Row="4"
                             
          Command="{Binding GuardarCommand}"
@@ -171,10 +175,11 @@
          HorizontalAlignment="Center"
          Width="100"
          Margin="0,20,0,0" Style="{StaticResource BotonConfirmarAmarillo}"/>
-                </StackPanel>
-                
+                    </StackPanel>
 
-            </Grid>
+
+                </Grid>
+            </ScrollViewer>
         </Border>
     </Grid>
 </UserControl> 

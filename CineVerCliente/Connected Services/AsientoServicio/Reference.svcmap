@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="09956246-ee3f-4980-9960-150a7faee7ec" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2020/AsientoServicio" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AsientoServicio.wsdl" MetadataType="Wsdl" ID="92f7c054-7860-4320-88b8-c4f5f706c797" SourceId="1" SourceUrl="http://localhost:2020/AsientoServicio?wsdl" />
+    <MetadataFile FileName="AsientoServicio.disco" MetadataType="Disco" ID="38d98188-0037-4bbf-8a6f-f0192ead98ca" SourceId="1" SourceUrl="http://localhost:2020/AsientoServicio?disco" />
+    <MetadataFile FileName="AsientoServicio.xsd" MetadataType="Schema" ID="b5fc4ec2-e873-44cf-a49e-c3c5240388bf" SourceId="1" SourceUrl="http://localhost:2020/AsientoServicio?xsd=xsd2" />
+    <MetadataFile FileName="AsientoServicio1.xsd" MetadataType="Schema" ID="5a9826ea-f5e6-4cd6-a79f-512ddb701d70" SourceId="1" SourceUrl="http://localhost:2020/AsientoServicio?xsd=xsd1" />
+    <MetadataFile FileName="AsientoServicio2.xsd" MetadataType="Schema" ID="982fab6e-7ea1-4f19-a31e-d65bc4c8b716" SourceId="1" SourceUrl="http://localhost:2020/AsientoServicio?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

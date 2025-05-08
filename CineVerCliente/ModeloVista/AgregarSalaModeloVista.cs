@@ -1,4 +1,7 @@
-﻿using CineVerCliente.Helpers;
+﻿using CineVerCliente.AsientoServicio;
+using CineVerCliente.FilaServicio;
+using CineVerCliente.Helpers;
+using CineVerCliente.SalaServicio;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +17,9 @@ namespace CineVerCliente.ModeloVista
     public class AgregarSalaModeloVista:BaseModeloVista
     {
         public ICommand GuardarCommand { get; }
+        private SalaServicioClient _salaServicio = new SalaServicioClient();
+        private AsientoServicioClient _asientoServicio = new AsientoServicioClient();
+        private FilaServicioClient _filaServicio = new FilaServicioClient();
         public ICommand RegresarCommand { get; }
 
         private Visibility _nombreSalaVacio;
@@ -75,7 +81,7 @@ namespace CineVerCliente.ModeloVista
             {
                 _numeroFilas = value;
                 OnPropertyChanged(nameof(NumeroFilas));
-                GenerarFilas();
+                ActualizarFilas();
             }
         }
         private readonly MainWindowModeloVista _mainWindowModeloVista;
@@ -103,6 +109,10 @@ namespace CineVerCliente.ModeloVista
 
         private void GenerarFilas()
         {
+            foreach (var fila in Filas)
+            {
+                fila.PropertyChanged -= Fila_PropertyChanged;
+            }
             Filas.Clear();
             for (int i = 1; i <= NumeroFilas; i++)
             {
@@ -113,9 +123,34 @@ namespace CineVerCliente.ModeloVista
             }
             GenerarMapaSala();
         }
+        private void ActualizarFilas()
+        {
+            // Si agregas filas nuevas
+            while (Filas.Count < NumeroFilas)
+            {
+                var nuevaFila = new FilaAsientos
+                {
+                    NumeroFila = Filas.Count + 1,
+                    CantidadAsientos = 0
+                };
+                nuevaFila.PropertyChanged += Fila_PropertyChanged;
+                Filas.Add(nuevaFila);
+            }
+
+            // Si reduces el número de filas
+            while (Filas.Count > NumeroFilas)
+            {
+                var fila = Filas[Filas.Count - 1];
+                fila.PropertyChanged -= Fila_PropertyChanged;
+                Filas.RemoveAt(Filas.Count - 1);
+            }
+
+            GenerarMapaSala();
+        }
+
         private bool ValidarNombreSala()
         {
-            if (string.IsNullOrWhiteSpace(NombreSala))
+            if (string.IsNullOrEmpty(NombreSala))
             {
                 NombreSalaVacio = Visibility.Visible;
                 return false;
@@ -140,26 +175,75 @@ namespace CineVerCliente.ModeloVista
                 return true;
             }
         }
-        private void ValidarNumeroFilas()
+        private bool ValidarNumeroFilas()
         {
             if (NumeroFilas <= 0)
             {
                 NumeroFilasVacio = Visibility.Visible;
+                return false;
             }
             else
             {
                 NumeroFilasVacio = Visibility.Collapsed;
+                return true;
             }
         }
         private void Guardar(Object obj)
         {
-
+            if (ValidarCampos())
+            {
+                SalaDTO sala = new SalaDTO();
+                sala.nombre = NombreSala;
+                sala.descripcion = DescripcionSala;
+                sala.estadoSala = "DISPONIBLE";
+                sala.numeroFilas = NumeroFilas;
+                sala.idSucursal = 1; // Cambia esto por el ID de la sucursal correspondiente
+                string mensaje = _salaServicio.AgregarSala(sala);
+                int idSala = _salaServicio.ObtenerIdSala(1, sala.nombre);
+                foreach(var fila in Filas)
+                {
+                    FilaDTO filaDTO = new FilaDTO();
+                    filaDTO.númeroFila = fila.NumeroFila;
+                    filaDTO.numeroAsientos = fila.CantidadAsientos;
+                    filaDTO.idSala = idSala;
+                    _filaServicio.AgregarFila(filaDTO);
+                    for (int i = 1; i <= fila.CantidadAsientos; i++)
+                    {
+                        AsientoDTO asientoDTO = new AsientoDTO();
+                        char letra = (char)('A' + i - 1);
+                        string letraColumna = letra.ToString();
+                        asientoDTO.letraColumna = letraColumna;
+                        _filaServicio.ObtenerIdFila(idSala, fila.NumeroFila);
+                        asientoDTO.estado = "DISPONIBLE";
+                        asientoDTO.idFila = fila.NumeroFila;
+                        _asientoServicio.AgregarAsiento(asientoDTO);
+                    }
+                }
+                Notificacion.Mostrar(mensaje);
+                
+            }
         }
 
         private void Regresar(Object obj)
         {
             
         }
+        private bool ValidarCampos()
+        {
+            bool valido = true;
+            valido &= ValidarNombreSala();
+            valido &= ValidarNumeroFilas();
+            valido &= ValidarDescripcionSala();
+            if (valido)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
 
         private void OcultarCamposVacios()
         {
