@@ -23,6 +23,9 @@ namespace CineVerCliente.SocioServicio {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool AfiliadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ApellidosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -62,6 +65,19 @@ namespace CineVerCliente.SocioServicio {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Afiliado {
+            get {
+                return this.AfiliadoField;
+            }
+            set {
+                if ((this.AfiliadoField.Equals(value) != true)) {
+                    this.AfiliadoField = value;
+                    this.RaisePropertyChanged("Afiliado");
+                }
             }
         }
         

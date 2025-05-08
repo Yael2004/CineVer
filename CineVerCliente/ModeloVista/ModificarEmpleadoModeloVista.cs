@@ -432,7 +432,8 @@ namespace CineVerCliente.ModeloVista
                 NumeroCasa = _numeroCasa,
                 CodigoPostal = _codigoPostal,
                 RFC = _rfc,
-                //Aqui falta foto
+                Foto = _foto,
+                Contratado = true,
                 IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
             };
 

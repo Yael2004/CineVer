@@ -22,13 +22,14 @@ namespace CineVerServicios.Lógica
                 nombre = socioDTO.Nombres,
                 apellido = socioDTO.Apellidos,
                 correoElectronico = socioDTO.Correo,
-                sexo = socioDTO.Sexo,
+                Sexo = socioDTO.Sexo,
                 numeroTelefono = socioDTO.NumeroTelefono,
                 calle = socioDTO.Calle,
                 numeroCasa = socioDTO.NumeroCasa,
                 codigoPostal = socioDTO.CodigoPostal,
                 fechaNacimiento = socioDTO.FechaNacimiento,
-                folio = socioDTO.Folio
+                folio = socioDTO.Folio,
+                afiliado = socioDTO.Afiliado
             };
 
             var resultado = socioDAO.RegistrarSocio(socio);
@@ -51,13 +52,14 @@ namespace CineVerServicios.Lógica
                 nombre = socioDTO.Nombres,
                 apellido = socioDTO.Apellidos,
                 correoElectronico = socioDTO.Correo,
-                sexo = socioDTO.Sexo,
+                Sexo = socioDTO.Sexo,
                 numeroTelefono = socioDTO.NumeroTelefono,
                 calle = socioDTO.Calle,
                 numeroCasa = socioDTO.NumeroCasa,
                 codigoPostal = socioDTO.CodigoPostal,
                 fechaNacimiento = socioDTO.FechaNacimiento,
-                folio = socioDTO.Folio
+                folio = socioDTO.Folio,
+                afiliado = socioDTO.Afiliado
             };
 
             var resultado = socioDAO.ModificarSocio(socio);
@@ -98,21 +100,22 @@ namespace CineVerServicios.Lógica
             {
                 var listaSocios = new ListaSociosDTO();
 
-                foreach (var empleado in resultado.Valor)
+                foreach (var socio in resultado.Valor)
                 {
                     var socioDTO = new SocioDTO
                     {
-                        IdSocio = empleado.idSocio,
-                        Nombres = empleado.nombre,
-                        Apellidos = empleado.apellido,
-                        Correo = empleado.correoElectronico,
-                        Sexo = empleado.sexo,
-                        NumeroTelefono = empleado.numeroTelefono,
-                        Calle = empleado.calle,
-                        NumeroCasa = empleado.numeroCasa,
-                        CodigoPostal = empleado.codigoPostal,
-                        FechaNacimiento = (DateTime)empleado.fechaNacimiento,
-                        Folio = empleado.folio
+                        IdSocio = socio.idSocio,
+                        Nombres = socio.nombre,
+                        Apellidos = socio.apellido,
+                        Correo = socio.correoElectronico,
+                        Sexo = socio.Sexo,
+                        NumeroTelefono = socio.numeroTelefono,
+                        Calle = socio.calle,
+                        NumeroCasa = socio.numeroCasa,
+                        CodigoPostal = socio.codigoPostal,
+                        FechaNacimiento = (DateTime)socio.fechaNacimiento,
+                        Folio = socio.folio,
+                        Afiliado = (bool)socio.afiliado
                     };
                     listaSocios.Socios.Add(socioDTO);
                 }
@@ -139,13 +142,14 @@ namespace CineVerServicios.Lógica
                     Nombres = socio.nombre,
                     Apellidos = socio.apellido,
                     Correo = socio.correoElectronico,
-                    Sexo = socio.sexo,
+                    Sexo = socio.Sexo,
                     NumeroTelefono = socio.numeroTelefono,
                     Calle = socio.calle,
                     NumeroCasa = socio.numeroCasa,
                     CodigoPostal = socio.codigoPostal,
                     FechaNacimiento = (DateTime)socio.fechaNacimiento,
-                    Folio = socio.folio
+                    Folio = socio.folio,
+                    Afiliado = (bool)socio.afiliado
                 };
 
                 return Result<SocioDTO>.Exito(socioDTO);

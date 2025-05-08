@@ -41,6 +41,8 @@ namespace CineVerServicios.DTO
         [DataMember]
         public byte[] Foto { get; set; }
         [DataMember]
+        public bool Contratado { get; set; }
+        [DataMember]
         public int IdSucursal { get; set; }
     }
 }

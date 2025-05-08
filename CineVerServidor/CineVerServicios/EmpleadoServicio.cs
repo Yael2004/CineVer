@@ -58,7 +58,23 @@ namespace CineVerServicios
 
         public Task<ListaEmpleadosDTO> ObtenerEmpleados()
         {
-            throw new NotImplementedException();
+            var resultado = _gestorEmpleado.ObtenerEmpleados();
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ListaEmpleadosDTO
+                {
+                    Empleados = resultado.Valor,
+                    Result = new ResultDTO(true, string.Empty)
+                });
+            }
+            else
+            {
+                return Task.FromResult(new ListaEmpleadosDTO
+                {
+                    Result = new ResultDTO(false, resultado.Error)
+                });
+            }
         }
 
         public Task<EmpleadoResponseDTO> BuscarEmpleadoPorMatricula(string matricula)
@@ -91,8 +107,9 @@ namespace CineVerServicios
                 CodigoPostal = empleado.CodigoPostal,
                 RFC = empleado.RFC,
                 Matricula = empleado.Matricula,
-                IdSucursal = (int)empleado.IdSucursal,
-                Foto = empleado.Foto
+                Foto = empleado.Foto,
+                Contratado = empleado.Contratado,
+                IdSucursal = (int)empleado.IdSucursal
             };
 
             return Task.FromResult(new EmpleadoResponseDTO

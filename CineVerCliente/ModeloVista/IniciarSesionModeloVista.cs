@@ -6,16 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using System.Security.Cryptography;
 
 namespace CineVerCliente.ModeloVista
 {
     class IniciarSesionModeloVista : BaseModeloVista
     {
         private string _matricula;
-        private string _contrasenia;
+        private string _contraseña;
 
         private Visibility _matriculaCampoVacio;
-        private Visibility _contraseniaCampoVacio;
+        private Visibility _contraseñaCampoVacio;
         private Visibility _datosIncorrectos;
 
         public ICommand IniciarSesionComando { get; }
@@ -33,12 +34,12 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public string Contrasenia
+        public string Contraseña
         {
-            get { return _contrasenia; }
+            get { return _contraseña; }
             set
             {
-                _contrasenia = value;
+                _contraseña = value;
                 OnPropertyChanged();
             }
         }
@@ -53,12 +54,12 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public Visibility ContraseniaCampoVacio
+        public Visibility ContraseñaCampoVacio
         {
-            get { return _contraseniaCampoVacio; }
+            get { return _contraseñaCampoVacio; }
             set
             {
-                _contraseniaCampoVacio = value;
+                _contraseñaCampoVacio = value;
                 OnPropertyChanged();
             }
         }
@@ -82,11 +83,32 @@ namespace CineVerCliente.ModeloVista
             OcultarCampos();
         }
 
+        private string HashContraseña(string contraseña)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] contraseñaBytes = Encoding.UTF8.GetBytes(contraseña);
+
+                byte[] hashBytes = sha256.ComputeHash(contraseñaBytes);
+
+                StringBuilder stringBuilder = new StringBuilder();
+
+                foreach (byte b in hashBytes)
+                {
+                    stringBuilder.Append(b.ToString("x2"));
+                }
+
+                return stringBuilder.ToString();
+            }
+        }
+
         public void IniciarSesion(Object obj)
         {
             if (ValidarCampos())
             {
-                _mainWindowModeloVista.CambiarModeloVista(new MainWindowModeloVista());
+                string hashContrasenia = HashContraseña(Contraseña);
+
+
             }
         }
 
@@ -101,7 +123,7 @@ namespace CineVerCliente.ModeloVista
             bool valido = true;
 
             valido &= ValidarMatricula();
-            valido &= ValidarContrasenia();
+            valido &= ValidarContraseña();
 
             if (valido)
             {
@@ -123,21 +145,21 @@ namespace CineVerCliente.ModeloVista
             return true;
         }
 
-        private bool ValidarContrasenia()
+        private bool ValidarContraseña()
         {
-            if (string.IsNullOrEmpty(Contrasenia))
+            if (string.IsNullOrEmpty(Contraseña))
             {
-                ContraseniaCampoVacio = Visibility.Visible;
+                ContraseñaCampoVacio = Visibility.Visible;
                 return false;
             }
-            ContraseniaCampoVacio = Visibility.Collapsed;
+            ContraseñaCampoVacio = Visibility.Collapsed;
             return true;
         }
 
         private void OcultarCampos()
         {
             MatriculaCampoVacio = Visibility.Collapsed;
-            ContraseniaCampoVacio = Visibility.Collapsed;
+            ContraseñaCampoVacio = Visibility.Collapsed;
             DatosIncorrectos = Visibility.Collapsed;
         }
     }

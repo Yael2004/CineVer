@@ -26,7 +26,7 @@ namespace CineVerEntidades
         public string nombre { get; set; }
         public string apellido { get; set; }
         public Nullable<System.DateTime> fechaNacimiento { get; set; }
-        public string sexo { get; set; }
+        public string Sexo { get; set; }
         public string numeroTelefono { get; set; }
         public string correoElectronico { get; set; }
         public string calle { get; set; }

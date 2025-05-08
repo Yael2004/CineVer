@@ -42,7 +42,7 @@
                     Style="{StaticResource Textbox}" 
                     Margin="503,456,57,271"
                     MaxLength="60"
-                    Text="{Binding Contrasenia, UpdateSourceTrigger=PropertyChanged}"/>
+                    Text="{Binding Contraseña, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Content="Iniciar sesión"
                     Style="{StaticResource BotonConfirmarBlanco}" 
@@ -62,7 +62,7 @@
                 <Label x:Name="ContraseñaCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
                     Margin="746,507,300,222" 
-                    Visibility="{Binding ContraseniaCampoVacio}"/>
+                    Visibility="{Binding ContraseñaCampoVacio}"/>
 
                 <Label x:Name="DatosIncorrectos"
                     Content="La matrícula o constraseña son incorrectos"

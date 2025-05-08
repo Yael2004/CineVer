@@ -38,49 +38,120 @@
                     Margin="10"
                     VerticalAlignment="Center"/>
 
-                <ComboBox Grid.Column="2"
-                    Width="120"
-                    Margin="10"
-                    VerticalAlignment="Center"
-                    ItemsSource="{Binding OpcionesPromociones}"
-                    SelectedItem="{Binding OpcionPromocion, Mode=TwoWay}"/>
+                <Menu Grid.Column="2"
+                    Style="{StaticResource MenuMain}"
+                    Visibility="{Binding PromocionesMenu}">
+                    <MenuItem Header="Promociones"
+                        Visibility="{Binding _promocionesMenu}">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="3" Content="Empleados" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"
-                Command="{Binding EmpleadoComando}"/>
+                <Menu Grid.Column="3"
+                    Style="{StaticResource MenuMain}">
+                    <MenuItem Header="Empleados">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"
+                            Command="{Binding EmpleadoComando}"
+                            CommandParameter="{Binding}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="4" Content="Socios" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                <Menu Grid.Column="4"
+                    Style="{StaticResource MenuMain}">
+                    <MenuItem Header="Socios">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="5" Content="Reportes" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                <Menu Grid.Column="5"
+                    Style="{StaticResource MenuMain}"
+                    Visibility="{Binding ReportesMenu}">
+                    <MenuItem Header="Reportes">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="6" Content="Dulcería" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"
-                Command="{Binding AgregarProductoDulceriaComando}"/>
+                <Menu Grid.Column="6"
+                    Style="{StaticResource MenuMain}">
+                    <MenuItem Header="Dulcería">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="7" Content="Boletos" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"
-                Command="{Binding BoletoComando}"/>
+                <Menu Grid.Column="7"
+                    Style="{StaticResource MenuMain}">
+                    <MenuItem Header="Boletos">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="8" Content="Funciones" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                <Menu Grid.Column="8"
+                    Style="{StaticResource MenuMain}"
+                    Visibility="{Binding FuncionesMenu}">
+                    <MenuItem Header="Funciones">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="9" Content="Sucursales" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"
-                Command="{Binding SucursalComando}"/>
+                <Menu Grid.Column="9"
+                    Style="{StaticResource MenuMain}"
+                    Visibility="{Binding SucursalesMenu}">
+                    <MenuItem Header="Sucursales">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
 
-                <Button Grid.Column="10" Content="Cerrar sesión" Margin="0"
-                Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"
-                Command="{Binding CorteCaja}"/>
+                <Menu Grid.Column="10"
+                    Style="{StaticResource MenuMain}">
+                    <MenuItem Header="Cerrar sesión">
+                        <MenuItem Header="Ventana 1"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 2"
+                            Style="{StaticResource MenuItemMain}"/>
+                        <MenuItem Header="Ventana 3"
+                            Style="{StaticResource MenuItemMain}"/>
+                    </MenuItem>
+                </Menu>
             </Grid>
         </Border>
 

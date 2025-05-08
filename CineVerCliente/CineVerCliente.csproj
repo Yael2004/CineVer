@@ -387,7 +387,10 @@
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.ListaEmpleadoDTO.datasource">
+    <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.EmpleadoResponseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.ListaEmpleadosDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.ResultDTO.datasource">

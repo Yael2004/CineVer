@@ -59,7 +59,23 @@ namespace CineVerServicios
 
         public Task<ListaSociosDTO> ObtenerSocios()
         {
-            throw new NotImplementedException();
+            var resultado = _gestorSocio.ObtenerSocios();
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ListaSociosDTO
+                {
+                    Socios = resultado.Valor,
+                    Result = new ResultDTO(true, string.Empty)
+                });
+            }
+            else
+            {
+                return Task.FromResult(new ListaSociosDTO
+                {
+                    Result = new ResultDTO(false, resultado.Error)
+                });
+            }
         }
 
         public Task<SocioResponseDTO> BuscarSocioPorFolio(string folio)
@@ -88,7 +104,8 @@ namespace CineVerServicios
                 NumeroCasa = socio.NumeroCasa,
                 CodigoPostal = socio.CodigoPostal,
                 FechaNacimiento = (DateTime)socio.FechaNacimiento,
-                Folio = socio.Folio
+                Folio = socio.Folio,
+                Afiliado = (bool)socio.Afiliado
             };
 
             return Task.FromResult(new SocioResponseDTO

@@ -31,7 +31,23 @@ namespace CineVerServicios
 
         public Task<ListaGastosDTO> ObtenerGastosDelDia(DateTime fecha)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorGasto.ObtenerGastosDelDia(fecha);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ListaGastosDTO
+                {
+                    Gastos = resultado.Valor,
+                    Result = new ResultDTO(true, string.Empty)
+                });
+            }
+            else
+            {
+                return Task.FromResult(new ListaGastosDTO
+                {
+                    Result = new ResultDTO(false, resultado.Error)
+                });
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace DAO
             {
                 try
                 {
-                    var empleados = entities.Empleado.ToList();
+                    var empleados = entities.Empleado.Where(e => e.contratado == true).ToList();
 
                     if (empleados.Count == 0)
                     {
@@ -45,7 +45,7 @@ namespace DAO
             {
                 try
                 {
-                    var empleado = entities.Empleado.Where(e => e.matriculaEmpleado.Equals(matriculaEmpleado)).FirstOrDefault();
+                    var empleado = entities.Empleado.Where(e => e.matriculaEmpleado.Equals(matriculaEmpleado) && e.contratado == true).FirstOrDefault();
 
                     if (empleado != null)
                     {
@@ -128,7 +128,7 @@ namespace DAO
 
                     if (empleado != null)
                     {
-                        entities.Empleado.Remove(empleado);
+                        empleado.contratado = false;
                         entities.SaveChanges();
                         return Result<string>.Exito("Cuenta de empleado inhabilitada exitosamente");
                     }
@@ -154,7 +154,7 @@ namespace DAO
             {
                 try
                 {
-                    var empleado = entities.Empleado.Where(e => e.matriculaEmpleado.Equals(matriculaEmpleado)).FirstOrDefault();
+                    var empleado = entities.Empleado.Where(e => e.matriculaEmpleado.Equals(matriculaEmpleado) && e.contratado == true).FirstOrDefault();
 
                     if (empleado != null)
                     {
@@ -175,5 +175,39 @@ namespace DAO
                 }
             }
         }
+
+        //public Result<bool> VerificarInicioSesion(string matricula, string contraseña)
+        //{
+        //    using (CineVerEntities entities = new CineVerEntities())
+        //    {
+        //        try
+        //        {
+        //            var empleado = entities.Empleado.Where(e => e.matriculaEmpleado.Equals(matricula) && e.contratado == true).FirstOrDefault();
+        //            if (empleado != null)
+        //            {
+        //                if (empleado.contraseña.Equals(contraseña))
+        //                {
+        //                    return Result<bool>.Exito(true);
+        //                }
+        //                else
+        //                {
+        //                    return Result<bool>.Exito(false);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                return Result<bool>.Fallo("Empleado no encontrado");
+        //            }
+        //        }
+        //        catch (DbEntityValidationException ex)
+        //        {
+        //            return Result<bool>.Fallo(ex.Message);
+        //        }
+        //        catch (SqlException sqlEx)
+        //        {
+        //            return Result<bool>.Fallo(sqlEx.Message);
+        //        }
+        //    }
+        //}
     }
 }

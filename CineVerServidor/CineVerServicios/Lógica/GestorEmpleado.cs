@@ -32,6 +32,8 @@ namespace CineVerServicios.Lógica
                 codigoPostal = empleadoDTO.CodigoPostal,
                 rfc = empleadoDTO.RFC,
                 matriculaEmpleado = empleadoDTO.Matricula,
+                foto = empleadoDTO.Foto,
+                contratado = empleadoDTO.Contratado,
                 idSucursal = empleadoDTO.IdSucursal
             };
 
@@ -66,6 +68,8 @@ namespace CineVerServicios.Lógica
                 codigoPostal = empleadoDTO.CodigoPostal,
                 rfc = empleadoDTO.RFC,
                 matriculaEmpleado = empleadoDTO.Matricula,
+                foto = empleadoDTO.Foto,
+                contratado = empleadoDTO.Contratado,
                 idSucursal = empleadoDTO.IdSucursal
             };
 
@@ -125,6 +129,8 @@ namespace CineVerServicios.Lógica
                         CodigoPostal = empleado.codigoPostal,
                         RFC = empleado.rfc,
                         Matricula = empleado.matriculaEmpleado,
+                        Foto = empleado.foto,
+                        Contratado = (bool)empleado.contratado,
                         IdSucursal = (int)empleado.idSucursal
                     };
                     listaEmpleados.Empleados.Add(empleadoDTO);
@@ -162,6 +168,8 @@ namespace CineVerServicios.Lógica
                     CodigoPostal = empleado.codigoPostal,
                     RFC = empleado.rfc,
                     Matricula = empleado.matriculaEmpleado,
+                    Foto = empleado.foto,
+                    Contratado = (bool)empleado.contratado,
                     IdSucursal = (int)empleado.idSucursal
                 };
 

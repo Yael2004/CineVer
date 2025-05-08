@@ -354,9 +354,9 @@ namespace CineVerCliente.ModeloVista
             else if (TextoBusqueda.Length < 4)
             {
                 var filtrados = _todosLosSocios
-                    .Where(empleado => empleado.Nombres.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
-                        empleado.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
-                        empleado.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
+                    .Where(socio => socio.Nombres.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
+                        socio.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
+                        socio.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
 
                 SociosFiltrados = new ObservableCollection<SocioConsultado>(filtrados);
 
@@ -374,9 +374,9 @@ namespace CineVerCliente.ModeloVista
             else
             {
                 var filtrados = _todosLosSocios
-                    .Where(empleado => empleado.Nombres.ToLower().Contains(TextoBusqueda.ToLower()) ||
-                        empleado.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
-                        empleado.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
+                    .Where(socio => socio.Nombres.ToLower().Contains(TextoBusqueda.ToLower()) ||
+                        socio.Apellidos.ToLower().StartsWith(TextoBusqueda.ToLower()) ||
+                        socio.Folio.ToLower().StartsWith(TextoBusqueda.ToLower())).ToList();
 
                 SociosFiltrados = new ObservableCollection<SocioConsultado>(filtrados);
 

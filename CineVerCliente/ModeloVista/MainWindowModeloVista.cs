@@ -1,4 +1,6 @@
-﻿using CineVerCliente.Vista;
+﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
+using CineVerCliente.Vista;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,10 +16,13 @@ namespace CineVerCliente.ModeloVista
     {
         private object _vistaActual;
 
-        private ObservableCollection<string> _opcionesPromociones = new ObservableCollection<string>();
-        private string _opcionPromocion;
-
         private readonly MainWindowModeloVista _mainWindowModeloVista;
+
+        public Visibility _promocionesMenu;
+        public Visibility _empleadosMenu;
+        public Visibility _reportesMenu;
+        public Visibility _funcionesMenu;
+        public Visibility _sucursalesMenu;
 
         public ICommand SucursalComando {  get; }
         public ICommand EmpleadoComando { get; }
@@ -35,22 +40,52 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public ObservableCollection<string> OpcionesPromociones
+        public Visibility PromocionesMenu
         {
-            get { return _opcionesPromociones; }
+            get { return _promocionesMenu; }
             set
             {
-                _opcionesPromociones = value;
+                _promocionesMenu = value;
                 OnPropertyChanged();
             }
         }
 
-        public string OpcionPromocion
+        public Visibility EmpleadosMenu
         {
-            get { return _opcionPromocion; }
+            get { return _empleadosMenu; }
             set
             {
-                _opcionPromocion = value;
+                _empleadosMenu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility ReportesMenu
+        {
+            get { return _reportesMenu; }
+            set
+            {
+                _reportesMenu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility FuncionesMenu
+        {
+            get { return _funcionesMenu; }
+            set
+            {
+                _funcionesMenu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility SucursalesMenu
+        {
+            get { return _sucursalesMenu; }
+            set
+            {
+                _sucursalesMenu = value;
                 OnPropertyChanged();
             }
         }
@@ -58,16 +93,54 @@ namespace CineVerCliente.ModeloVista
         public MainWindowModeloVista()
         {
             _mainWindowModeloVista = this;
-            OpcionesPromociones.Add("Promociones");
-            OpcionesPromociones.Add("Promocion 1");
-            OpcionPromocion = OpcionesPromociones.FirstOrDefault();
+            CrearMenus();
             SucursalComando = new ComandoModeloVista(Sucursales);
-            EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
+            EmpleadoComando = new ComandoModeloVista(RegistrarEmpleado);
             AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);
             CorteCaja = new ComandoModeloVista(RealizarCorteCaja);
             BoletoComando = new ComandoModeloVista(DevolverBoleto);
             SucursalComando = new ComandoModeloVista(Sucursales);
-            EmpleadoComando = new ComandoModeloVista(IniciarSesion);
+        }
+
+        private void CrearMenus()
+        {
+            //string rol = UsuarioEnLinea.Instancia.Rol;
+            string rol = "Gerente"; // Solo es para probar
+
+            if (string.IsNullOrEmpty(rol))
+            {
+                PromocionesMenu = Visibility.Collapsed;
+                EmpleadosMenu = Visibility.Collapsed;
+                ReportesMenu = Visibility.Collapsed;
+                FuncionesMenu = Visibility.Collapsed;
+                SucursalesMenu = Visibility.Collapsed;
+                Notificacion.Mostrar("Error al iniciar sesión", 4000);
+                //Aqui regresarlo al loggin
+            }
+            else if (rol.Equals("Gerente"))
+            {
+                PromocionesMenu = Visibility.Visible;
+                EmpleadosMenu = Visibility.Visible;
+                ReportesMenu = Visibility.Visible;
+                FuncionesMenu = Visibility.Visible;
+                SucursalesMenu = Visibility.Visible;
+            }
+            else if (rol.Equals("Empleado administrativo"))
+            {
+                PromocionesMenu = Visibility.Visible;
+                EmpleadosMenu = Visibility.Visible;
+                ReportesMenu = Visibility.Collapsed;
+                FuncionesMenu = Visibility.Visible;
+                SucursalesMenu = Visibility.Collapsed;
+            }
+            else if (rol.Equals("Empleado operativo"))
+            {
+                PromocionesMenu = Visibility.Visible;
+                EmpleadosMenu = Visibility.Collapsed;
+                ReportesMenu = Visibility.Collapsed;
+                FuncionesMenu = Visibility.Visible;
+                SucursalesMenu = Visibility.Collapsed;
+            }
         }
 
         public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)

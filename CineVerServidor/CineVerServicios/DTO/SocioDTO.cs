@@ -33,5 +33,7 @@ namespace CineVerServicios.DTO
         public string NumeroCasa { get; set; }
         [DataMember]
         public string CodigoPostal { get; set; }
+        [DataMember]
+        public bool Afiliado { get; set; }
     }
 }

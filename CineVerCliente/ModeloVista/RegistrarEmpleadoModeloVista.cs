@@ -29,6 +29,7 @@ namespace CineVerCliente.ModeloVista
         private string _rfc;
         private string _nss;
         private byte[] _foto;
+        private string _contraseña;
 
         private Visibility _rolCampoVacio;
         private Visibility _nombreCampoVacio;
@@ -44,6 +45,7 @@ namespace CineVerCliente.ModeloVista
         private Visibility _nssCampoVacio;
         private Visibility _fotoValida;
         private Visibility _fotoCampoVacio;
+        private Visibility _contraseñaCampoVacio;
 
         private Visibility _mostrarMensajeConfirmacion = Visibility.Collapsed;
         private Visibility _mostrarMensajeCancelacion = Visibility.Collapsed;
@@ -208,6 +210,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public string Contraseña
+        {
+            get { return _contraseña; }
+            set
+            {
+                _contraseña = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Visibility RolCampoVacio
         {
             get { return _rolCampoVacio; }
@@ -348,6 +360,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public Visibility ContraseñaCampoVacio
+        {
+            get { return _contraseñaCampoVacio; }
+            set
+            {
+                _contraseñaCampoVacio = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Visibility MostrarMensajeConfirmacion
         {
             get { return _mostrarMensajeConfirmacion; }
@@ -432,7 +454,8 @@ namespace CineVerCliente.ModeloVista
                 NumeroCasa = _numeroCasa,
                 CodigoPostal = _codigoPostal,
                 RFC = _rfc,
-                //Aqui falta foto
+                Foto = _foto,
+                Contratado = true,
                 IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
             };
 
@@ -483,6 +506,7 @@ namespace CineVerCliente.ModeloVista
             valido &= ValidarRFC();
             valido &= ValidarNSS();
             valido &= ValidarFoto();
+            valido &= ValidarContraseña();
 
             if (valido)
             {
@@ -650,6 +674,17 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        private bool ValidarContraseña()
+        {
+            if (string.IsNullOrEmpty(Contraseña))
+            {
+                ContraseñaCampoVacio = Visibility.Visible;
+                return false;
+            }
+            ContraseñaCampoVacio = Visibility.Collapsed;
+            return true;
+        }
+
         private void OcultarCampos()
         {
             RolCampoVacio = Visibility.Collapsed;
@@ -666,6 +701,7 @@ namespace CineVerCliente.ModeloVista
             NSSCampoVacio = Visibility.Collapsed;
             FotoValida = Visibility.Collapsed;
             FotoCampoVacio = Visibility.Collapsed;
+            ContraseñaCampoVacio = Visibility.Collapsed;
         }
     }
 }

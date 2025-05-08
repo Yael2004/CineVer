@@ -32,10 +32,16 @@ namespace CineVerCliente.EmpleadoServicio {
         private string CodigoPostalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ContratadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string CorreoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime FechaNacimientoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] FotoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdEmpleadoField;
@@ -117,6 +123,19 @@ namespace CineVerCliente.EmpleadoServicio {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Contratado {
+            get {
+                return this.ContratadoField;
+            }
+            set {
+                if ((this.ContratadoField.Equals(value) != true)) {
+                    this.ContratadoField = value;
+                    this.RaisePropertyChanged("Contratado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Correo {
             get {
                 return this.CorreoField;
@@ -138,6 +157,19 @@ namespace CineVerCliente.EmpleadoServicio {
                 if ((this.FechaNacimientoField.Equals(value) != true)) {
                     this.FechaNacimientoField = value;
                     this.RaisePropertyChanged("FechaNacimiento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Foto {
+            get {
+                return this.FotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FotoField, value) != true)) {
+                    this.FotoField = value;
+                    this.RaisePropertyChanged("Foto");
                 }
             }
         }
@@ -345,9 +377,9 @@ namespace CineVerCliente.EmpleadoServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ListaEmpleadoDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ListaEmpleadosDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
     [System.SerializableAttribute()]
-    public partial class ListaEmpleadoDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ListaEmpleadosDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -404,6 +436,67 @@ namespace CineVerCliente.EmpleadoServicio {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EmpleadoResponseDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class EmpleadoResponseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.EmpleadoServicio.ResultDTO ResultDTOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.EmpleadoServicio.EmpleadoDTO empleadoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.EmpleadoServicio.ResultDTO ResultDTO {
+            get {
+                return this.ResultDTOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultDTOField, value) != true)) {
+                    this.ResultDTOField = value;
+                    this.RaisePropertyChanged("ResultDTO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.EmpleadoServicio.EmpleadoDTO empleado {
+            get {
+                return this.empleadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.empleadoField, value) != true)) {
+                    this.empleadoField = value;
+                    this.RaisePropertyChanged("empleado");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EmpleadoServicio.IEmpleadoServicio")]
     public interface IEmpleadoServicio {
@@ -427,10 +520,22 @@ namespace CineVerCliente.EmpleadoServicio {
         System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> InhabilitarEmpleadoAsync(int idEmpleado);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/ObtenerEmpleados", ReplyAction="http://tempuri.org/IEmpleadoServicio/ObtenerEmpleadosResponse")]
-        CineVerCliente.EmpleadoServicio.ListaEmpleadoDTO ObtenerEmpleados();
+        CineVerCliente.EmpleadoServicio.ListaEmpleadosDTO ObtenerEmpleados();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/ObtenerEmpleados", ReplyAction="http://tempuri.org/IEmpleadoServicio/ObtenerEmpleadosResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ListaEmpleadoDTO> ObtenerEmpleadosAsync();
+        System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ListaEmpleadosDTO> ObtenerEmpleadosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/BuscarEmpleadoPorMatricula", ReplyAction="http://tempuri.org/IEmpleadoServicio/BuscarEmpleadoPorMatriculaResponse")]
+        CineVerCliente.EmpleadoServicio.EmpleadoResponseDTO BuscarEmpleadoPorMatricula(string matricula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/BuscarEmpleadoPorMatricula", ReplyAction="http://tempuri.org/IEmpleadoServicio/BuscarEmpleadoPorMatriculaResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.EmpleadoResponseDTO> BuscarEmpleadoPorMatriculaAsync(string matricula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/ExisteEmpleado", ReplyAction="http://tempuri.org/IEmpleadoServicio/ExisteEmpleadoResponse")]
+        CineVerCliente.EmpleadoServicio.ResultDTO ExisteEmpleado(string matriucla);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/ExisteEmpleado", ReplyAction="http://tempuri.org/IEmpleadoServicio/ExisteEmpleadoResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> ExisteEmpleadoAsync(string matriucla);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -484,12 +589,28 @@ namespace CineVerCliente.EmpleadoServicio {
             return base.Channel.InhabilitarEmpleadoAsync(idEmpleado);
         }
         
-        public CineVerCliente.EmpleadoServicio.ListaEmpleadoDTO ObtenerEmpleados() {
+        public CineVerCliente.EmpleadoServicio.ListaEmpleadosDTO ObtenerEmpleados() {
             return base.Channel.ObtenerEmpleados();
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ListaEmpleadoDTO> ObtenerEmpleadosAsync() {
+        public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ListaEmpleadosDTO> ObtenerEmpleadosAsync() {
             return base.Channel.ObtenerEmpleadosAsync();
+        }
+        
+        public CineVerCliente.EmpleadoServicio.EmpleadoResponseDTO BuscarEmpleadoPorMatricula(string matricula) {
+            return base.Channel.BuscarEmpleadoPorMatricula(matricula);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.EmpleadoResponseDTO> BuscarEmpleadoPorMatriculaAsync(string matricula) {
+            return base.Channel.BuscarEmpleadoPorMatriculaAsync(matricula);
+        }
+        
+        public CineVerCliente.EmpleadoServicio.ResultDTO ExisteEmpleado(string matriucla) {
+            return base.Channel.ExisteEmpleado(matriucla);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> ExisteEmpleadoAsync(string matriucla) {
+            return base.Channel.ExisteEmpleadoAsync(matriucla);
         }
     }
 }

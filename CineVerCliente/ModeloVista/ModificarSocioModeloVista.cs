@@ -299,6 +299,7 @@ namespace CineVerCliente.ModeloVista
                 Calle = _calle,
                 NumeroCasa = _numeroCasa,
                 CodigoPostal = _codigoPostal,
+                Afiliado = true
             };
 
             var respuesta = cliente.ModificarSocio(socio);

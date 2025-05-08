@@ -70,12 +70,17 @@
                 <Label Content="RFC"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="287,582,635,121"/>
+                    Margin="88,589,834,114"/>
 
                 <Label Content="NSS"
                     FontSize="20"
                     Foreground="White" 
-                    Margin="286,632,632,71"/>
+                    Margin="513,589,405,114"/>
+
+                <Label Content="Constraseña"
+                    FontSize="20"
+                    Foreground="White" 
+                    Margin="216,640,701,63"/>
 
                 <Label Content="Foto de empleado"
                     FontSize="20"
@@ -84,14 +89,14 @@
 
                 <Button Content="Subir foto"
                     Style="{StaticResource BotonConfirmarBlanco}" 
-                    Margin="369,694,501,10"
+                    Margin="366,699,543,10"
                     Command="{Binding SubirFotoComando}"/>
 
                 <Label x:Name="FotoValida"
                     Content="Foto válida"
                     FontSize="10"
                     Foreground="LawnGreen" 
-                    Margin="475,694,405,34"
+                    Margin="497,697,382,31"
                     Visibility="{Binding FotoValida}"/>
 
                 <Label Content="Registrar Empleado"
@@ -162,7 +167,7 @@
 
                 <TextBox Name="RFC"
                     Style="{StaticResource Textbox}" 
-                    Margin="369,588,175,128"
+                    Margin="152,589,606,129"
                     MaxLength="60"
                     Text="{Binding RFC, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -172,14 +177,20 @@
                     MaxLength="60"
                     Text="{Binding NSS, UpdateSourceTrigger=PropertyChanged}"/>
 
+                <TextBox Name="Contraseña"
+                    Style="{StaticResource Textbox}" 
+                    Margin="583,589,175,129"
+                    MaxLength="60"
+                    Text="{Binding Constraseña, UpdateSourceTrigger=PropertyChanged}"/>
+
                 <Button Content="Cancelar"
                     Style="{StaticResource BotonCancelar}" 
-                    Margin="776,694,94,10"
+                    Margin="818,703,88,10"
                     Command="{Binding CancelarComando}"/>
 
                 <Button Content="Registrar"
                     Style="{StaticResource BotonConfirmarNaranja}" 
-                    Margin="653,694,219,10"
+                    Margin="670,704,222,10"
                     Command="{Binding RegistrarComando}"/>
 
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" 
@@ -259,17 +270,22 @@
 
                 <Label x:Name="RFCCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="365,623,548,106" 
+                    Margin="154,623,759,106" 
                     Visibility="{Binding RFCCampoVacio}"/>
 
                 <Label x:Name="NSSCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="365,668,548,62" 
+                    Margin="367,671,546,59" 
                     Visibility="{Binding NSSCampoVacio}"/>
+
+                <Label x:Name="ContraseñaCampoVacio"
+                    Style="{StaticResource TextoCamposVacio}" 
+                    Margin="583,621,330,109" 
+                    Visibility="{Binding ContraseñaCampoVacio}"/>
 
                 <Label x:Name="FotoCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 
-                    Margin="475,718,438,12" 
+                    Margin="497,720,415,10" 
                     Visibility="{Binding FotoCampoVacio}"/>
 
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" 

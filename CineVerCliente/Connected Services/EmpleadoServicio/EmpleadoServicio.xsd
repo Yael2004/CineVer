@@ -5,8 +5,10 @@
       <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Calle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CodigoPostal" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Contratado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Correo" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FechaNacimiento" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Foto" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="IdEmpleado" type="xs:int" />
       <xs:element minOccurs="0" name="IdSucursal" type="xs:int" />
       <xs:element minOccurs="0" name="Matricula" nillable="true" type="xs:string" />
@@ -27,17 +29,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ResultDTO" nillable="true" type="tns:ResultDTO" />
-  <xs:complexType name="ListaEmpleadoDTO">
+  <xs:complexType name="ListaEmpleadosDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Empleados" nillable="true" type="tns:ArrayOfEmpleadoDTO" />
       <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ListaEmpleadoDTO" nillable="true" type="tns:ListaEmpleadoDTO" />
+  <xs:element name="ListaEmpleadosDTO" nillable="true" type="tns:ListaEmpleadosDTO" />
   <xs:complexType name="ArrayOfEmpleadoDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="EmpleadoDTO" nillable="true" type="tns:EmpleadoDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfEmpleadoDTO" nillable="true" type="tns:ArrayOfEmpleadoDTO" />
+  <xs:complexType name="EmpleadoResponseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ResultDTO" nillable="true" type="tns:ResultDTO" />
+      <xs:element minOccurs="0" name="empleado" nillable="true" type="tns:EmpleadoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmpleadoResponseDTO" nillable="true" type="tns:EmpleadoResponseDTO" />
 </xs:schema>

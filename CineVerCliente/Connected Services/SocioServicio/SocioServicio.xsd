@@ -2,6 +2,7 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:complexType name="SocioDTO">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Afiliado" type="xs:boolean" />
       <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Calle" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CodigoPostal" nillable="true" type="xs:string" />

@@ -51,7 +51,35 @@
   <xs:element name="ObtenerEmpleadosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerEmpleadosResult" nillable="true" type="q6:ListaEmpleadoDTO" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerEmpleadosResult" nillable="true" type="q6:ListaEmpleadosDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarEmpleadoPorMatricula">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="matricula" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarEmpleadoPorMatriculaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="BuscarEmpleadoPorMatriculaResult" nillable="true" type="q7:EmpleadoResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExisteEmpleado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="matriucla" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExisteEmpleadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ExisteEmpleadoResult" nillable="true" type="q8:ResultDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -20,7 +20,7 @@ namespace DAO
             {
                 try
                 {
-                    var socios = entities.Socio.ToList();
+                    var socios = entities.Socio.Where(e => e.afiliado == true).ToList();
 
                     if (socios.Count == 0)
                     {
@@ -45,7 +45,7 @@ namespace DAO
             {
                 try
                 {
-                    var socio = entities.Socio.Where(e => e.folio.Equals(folio)).FirstOrDefault();
+                    var socio = entities.Socio.Where(e => e.folio.Equals(folio) && e.afiliado == true).FirstOrDefault();
 
                     if (socio != null)
                     {
@@ -131,7 +131,7 @@ namespace DAO
 
                     if (socio != null)
                     {
-                        entities.Socio.Remove(socio);
+                        socio.afiliado = false;
                         entities.SaveChanges();
                         return Result<string>.Exito("Cuenta de socio inhabilitada exitosamente");
                     }
@@ -157,7 +157,7 @@ namespace DAO
             {
                 try
                 {
-                    var socio = entities.Socio.Where(e => e.folio.Equals(folio)).FirstOrDefault();
+                    var socio = entities.Socio.Where(e => e.folio.Equals(folio) && e.afiliado == true).FirstOrDefault();
                     if (socio != null)
                     {
                         return Result<bool>.Exito(true);
