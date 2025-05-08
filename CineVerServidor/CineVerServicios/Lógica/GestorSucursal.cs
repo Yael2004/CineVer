@@ -25,7 +25,8 @@ namespace CineVerServicios.Lógica
                 numeroEnLaCalle = sucursalDTO.NumeroEnLaCalle,
                 codigoPostal = sucursalDTO.CodigoPostal,
                 horaApertura = sucursalDTO.HoraApertura,
-                horaCierre = sucursalDTO.HoraCierre
+                horaCierre = sucursalDTO.HoraCierre,
+                estadoSucursal = "Cerrada"
             };
 
             var resultado = sucursalDAO.AgregarSucursal(sucursal);

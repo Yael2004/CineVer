@@ -12,11 +12,13 @@ namespace CineVerEntidades
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class CineVerEntities : DbContext
     {
         public CineVerEntities()
-            : base("name=CineVerEntities")
+            : base("name=cineverEntities")
         {
         }
     
@@ -43,5 +45,38 @@ namespace CineVerEntidades
         public virtual DbSet<Sucursal> Sucursal { get; set; }
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaEnDulceria> VentaEnDulceria { get; set; }
+    
+        public virtual int InsertarVentaConFolio(Nullable<int> idEmpleado, Nullable<int> idSocio, Nullable<int> idSucursal, Nullable<decimal> total, string metodoPago, Nullable<System.DateTime> fecha, string tipoVenta)
+        {
+            var idEmpleadoParameter = idEmpleado.HasValue ?
+                new ObjectParameter("idEmpleado", idEmpleado) :
+                new ObjectParameter("idEmpleado", typeof(int));
+    
+            var idSocioParameter = idSocio.HasValue ?
+                new ObjectParameter("idSocio", idSocio) :
+                new ObjectParameter("idSocio", typeof(int));
+    
+            var idSucursalParameter = idSucursal.HasValue ?
+                new ObjectParameter("idSucursal", idSucursal) :
+                new ObjectParameter("idSucursal", typeof(int));
+    
+            var totalParameter = total.HasValue ?
+                new ObjectParameter("total", total) :
+                new ObjectParameter("total", typeof(decimal));
+    
+            var metodoPagoParameter = metodoPago != null ?
+                new ObjectParameter("metodoPago", metodoPago) :
+                new ObjectParameter("metodoPago", typeof(string));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("fecha", fecha) :
+                new ObjectParameter("fecha", typeof(System.DateTime));
+    
+            var tipoVentaParameter = tipoVenta != null ?
+                new ObjectParameter("tipoVenta", tipoVenta) :
+                new ObjectParameter("tipoVenta", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarVentaConFolio", idEmpleadoParameter, idSocioParameter, idSucursalParameter, totalParameter, metodoPagoParameter, fechaParameter, tipoVentaParameter);
+        }
     }
 }

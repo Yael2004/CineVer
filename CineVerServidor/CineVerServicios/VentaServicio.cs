@@ -48,6 +48,31 @@ namespace CineVerServicios
             }
         }
 
+        public Task<VentaBoletosResponseDTO> ObtenerVentasDeBoletosDelDia(int idSucursal)
+        {
+            var resultado = _gestorVenta.ObtenerVentasDeBoletosDelDia(idSucursal);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new VentaBoletosResponseDTO
+                {
+                    Total = resultado.Valor,
+                    ResultDTO = new ResultDTO(true, string.Empty)
+                });
+            }
+            else
+            {
+                return Task.FromResult(new VentaBoletosResponseDTO
+                {
+                    ResultDTO = new ResultDTO(false, resultado.Error)
+                });
+            }
+        }
+
+        public Task<ResultDTO> ObtenerVentasDeDulceriaDelDia(int idSucursal)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ListaVentasDTO> ObtenerVentasPorAnio(int anio, int idSucursal)
         {
             var resultado = _gestorVenta.ObtenerVentasPorAnio(anio, idSucursal);
@@ -89,6 +114,20 @@ namespace CineVerServicios
         public Task<ResultDTO> RegistrarPromocion(int idSucursal, PromocionDTO promocion)
         {
             throw new NotImplementedException();
+        }
+
+        public Task<ResultDTO> VerificarFechaVentaParaDevolucion(string folio)
+        {
+            var resultado = _gestorVenta.VerificarFechaVentaParaDevolucion(folio);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
         }
     }
 }

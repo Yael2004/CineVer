@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CineVerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="cineverModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actor">
           <Key>
             <PropertyRef Name="idActor" />
@@ -82,6 +82,7 @@
           <Property Name="idSucursal" Type="int" />
           <Property Name="foto" Type="varbinary(max)" />
           <Property Name="contratado" Type="bit" />
+          <Property Name="contraseña" Type="varbinary" MaxLength="64" />
         </EntityType>
         <EntityType Name="Fila">
           <Key>
@@ -177,7 +178,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="apellido" Type="varchar" MaxLength="60" />
           <Property Name="fechaNacimiento" Type="date" />
-          <Property Name="Sexo" Type="varchar" MaxLength="1" />
+          <Property Name="sexo" Type="varchar" MaxLength="1" />
           <Property Name="numeroTelefono" Type="varchar" MaxLength="13" />
           <Property Name="correoElectronico" Type="varchar" MaxLength="50" />
           <Property Name="calle" Type="varchar" MaxLength="80" />
@@ -208,7 +209,7 @@
           <Property Name="idEmpleado" Type="int" />
           <Property Name="idSocio" Type="int" />
           <Property Name="idSucursal" Type="int" />
-          <Property Name="total" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="total" Type="decimal" Precision="6" Scale="2" />
           <Property Name="metodoPago" Type="varchar" MaxLength="30" />
           <Property Name="fecha" Type="datetime" />
           <Property Name="tipoVenta" Type="varchar" MaxLength="30" />
@@ -487,7 +488,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CineVerModelStoreContainer">
+        <Function Name="InsertarVentaConFolio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEmpleado" Type="int" Mode="In" />
+          <Parameter Name="idSocio" Type="int" Mode="In" />
+          <Parameter Name="idSucursal" Type="int" Mode="In" />
+          <Parameter Name="total" Type="decimal" Mode="In" />
+          <Parameter Name="metodoPago" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="datetime" Mode="In" />
+          <Parameter Name="tipoVenta" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="cineverModelStoreContainer">
           <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActorEnPelicula" EntityType="Self.ActorEnPelicula" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asiento" EntityType="Self.Asiento" Schema="dbo" store:Type="Tables" />
@@ -598,7 +608,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CineVerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="cineverModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Actor">
           <Key>
             <PropertyRef Name="idActor" />
@@ -653,8 +663,8 @@
           <Property Name="gastos" Type="Decimal" Precision="8" Scale="2" />
           <Property Name="ganancias" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="inicioDia" Type="Decimal" Precision="10" Scale="2" />
-          <NavigationProperty Name="Sucursal" Relationship="Self.FK_CorteCaja_Sucursal" FromRole="CorteCaja" ToRole="Sucursal" />
           <Property Name="fechaCorte" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Sucursal" Relationship="Self.FK_CorteCaja_Sucursal" FromRole="CorteCaja" ToRole="Sucursal" />
         </EntityType>
         <EntityType Name="CuentaFidelidad">
           <Key>
@@ -689,6 +699,7 @@
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_Empleado_Sucursal" FromRole="Empleado" ToRole="Sucursal" />
           <NavigationProperty Name="Gasto" Relationship="Self.FK_Gasto_Empleado" FromRole="Empleado" ToRole="Gasto" />
           <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Empleado" FromRole="Empleado" ToRole="Venta" />
+          <Property Name="contraseña" Type="Binary" MaxLength="64" FixedLength="false" />
         </EntityType>
         <EntityType Name="Fila">
           <Key>
@@ -800,7 +811,7 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Precision="0" />
-          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="numeroTelefono" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="correoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="calle" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
@@ -841,15 +852,15 @@
           <Property Name="idEmpleado" Type="Int32" />
           <Property Name="idSocio" Type="Int32" />
           <Property Name="idSucursal" Type="Int32" />
-          <Property Name="total" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="total" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="metodoPago" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="tipoVenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="folioVenta" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Boleto" Relationship="Self.FK_Boleto_Venta" FromRole="Venta" ToRole="Boleto" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_Venta_Empleado" FromRole="Venta" ToRole="Empleado" />
           <NavigationProperty Name="Socio" Relationship="Self.FK_Venta_Socio" FromRole="Venta" ToRole="Socio" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_Venta_Sucursal" FromRole="Venta" ToRole="Sucursal" />
-          <Property Name="folioVenta" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VentaEnDulceria">
           <Key>
@@ -1125,7 +1136,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CineVerEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="cineverEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actor" EntityType="Self.Actor" />
           <EntitySet Name="ActorEnPelicula" EntityType="Self.ActorEnPelicula" />
           <EntitySet Name="Asiento" EntityType="Self.Asiento" />
@@ -1232,15 +1243,24 @@
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Venta" EntitySet="Venta" />
           </AssociationSet>
+          <FunctionImport Name="InsertarVentaConFolio">
+            <Parameter Name="idEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="idSocio" Mode="In" Type="Int32" />
+            <Parameter Name="idSucursal" Mode="In" Type="Int32" />
+            <Parameter Name="total" Mode="In" Type="Decimal" />
+            <Parameter Name="metodoPago" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="tipoVenta" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CineVerModelStoreContainer" CdmEntityContainer="CineVerEntities">
+        <EntityContainerMapping StorageEntityContainer="cineverModelStoreContainer" CdmEntityContainer="cineverEntities">
           <EntitySetMapping Name="Actor">
-            <EntityTypeMapping TypeName="CineVerModel.Actor">
+            <EntityTypeMapping TypeName="cineverModel.Actor">
               <MappingFragment StoreEntitySet="Actor">
                 <ScalarProperty Name="idActor" ColumnName="idActor" />
                 <ScalarProperty Name="nombreActor" ColumnName="nombreActor" />
@@ -1248,7 +1268,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ActorEnPelicula">
-            <EntityTypeMapping TypeName="CineVerModel.ActorEnPelicula">
+            <EntityTypeMapping TypeName="cineverModel.ActorEnPelicula">
               <MappingFragment StoreEntitySet="ActorEnPelicula">
                 <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
                 <ScalarProperty Name="idActor" ColumnName="idActor" />
@@ -1257,7 +1277,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Asiento">
-            <EntityTypeMapping TypeName="CineVerModel.Asiento">
+            <EntityTypeMapping TypeName="cineverModel.Asiento">
               <MappingFragment StoreEntitySet="Asiento">
                 <ScalarProperty Name="idFila" ColumnName="idFila" />
                 <ScalarProperty Name="letraColumna" ColumnName="letraColumna" />
@@ -1267,7 +1287,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Boleto">
-            <EntityTypeMapping TypeName="CineVerModel.Boleto">
+            <EntityTypeMapping TypeName="cineverModel.Boleto">
               <MappingFragment StoreEntitySet="Boleto">
                 <ScalarProperty Name="idBoleto" ColumnName="idBoleto" />
                 <ScalarProperty Name="idFuncion" ColumnName="idFuncion" />
@@ -1277,9 +1297,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CorteCaja">
-            <EntityTypeMapping TypeName="CineVerModel.CorteCaja">
+            <EntityTypeMapping TypeName="cineverModel.CorteCaja">
               <MappingFragment StoreEntitySet="CorteCaja">
-                <ScalarProperty Name="fechaCorte" ColumnName="fechaCorte" />
                 <ScalarProperty Name="idCorteCaja" ColumnName="idCorteCaja" />
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
                 <ScalarProperty Name="efectivoEsperado" ColumnName="efectivoEsperado" />
@@ -1289,11 +1308,12 @@
                 <ScalarProperty Name="gastos" ColumnName="gastos" />
                 <ScalarProperty Name="ganancias" ColumnName="ganancias" />
                 <ScalarProperty Name="inicioDia" ColumnName="inicioDia" />
+                <ScalarProperty Name="fechaCorte" ColumnName="fechaCorte" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CuentaFidelidad">
-            <EntityTypeMapping TypeName="CineVerModel.CuentaFidelidad">
+            <EntityTypeMapping TypeName="cineverModel.CuentaFidelidad">
               <MappingFragment StoreEntitySet="CuentaFidelidad">
                 <ScalarProperty Name="idCuenta" ColumnName="idCuenta" />
                 <ScalarProperty Name="idSocio" ColumnName="idSocio" />
@@ -1302,8 +1322,9 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Empleado">
-            <EntityTypeMapping TypeName="CineVerModel.Empleado">
+            <EntityTypeMapping TypeName="cineverModel.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
                 <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
@@ -1325,7 +1346,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fila">
-            <EntityTypeMapping TypeName="CineVerModel.Fila">
+            <EntityTypeMapping TypeName="cineverModel.Fila">
               <MappingFragment StoreEntitySet="Fila">
                 <ScalarProperty Name="idFila" ColumnName="idFila" />
                 <ScalarProperty Name="númeroFila" ColumnName="númeroFila" />
@@ -1335,7 +1356,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Función">
-            <EntityTypeMapping TypeName="CineVerModel.Función">
+            <EntityTypeMapping TypeName="cineverModel.Función">
               <MappingFragment StoreEntitySet="Función">
                 <ScalarProperty Name="idFuncion" ColumnName="idFuncion" />
                 <ScalarProperty Name="idSala" ColumnName="idSala" />
@@ -1347,7 +1368,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Gasto">
-            <EntityTypeMapping TypeName="CineVerModel.Gasto">
+            <EntityTypeMapping TypeName="cineverModel.Gasto">
               <MappingFragment StoreEntitySet="Gasto">
                 <ScalarProperty Name="idGasto" ColumnName="idGasto" />
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
@@ -1359,7 +1380,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Película">
-            <EntityTypeMapping TypeName="CineVerModel.Película">
+            <EntityTypeMapping TypeName="cineverModel.Película">
               <MappingFragment StoreEntitySet="Película">
                 <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
                 <ScalarProperty Name="genero" ColumnName="genero" />
@@ -1372,7 +1393,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProductoDulceria">
-            <EntityTypeMapping TypeName="CineVerModel.ProductoDulceria">
+            <EntityTypeMapping TypeName="cineverModel.ProductoDulceria">
               <MappingFragment StoreEntitySet="ProductoDulceria">
                 <ScalarProperty Name="idProducto" ColumnName="idProducto" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1385,7 +1406,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Promocion">
-            <EntityTypeMapping TypeName="CineVerModel.Promocion">
+            <EntityTypeMapping TypeName="cineverModel.Promocion">
               <MappingFragment StoreEntitySet="Promocion">
                 <ScalarProperty Name="idPromocion" ColumnName="idPromocion" />
                 <ScalarProperty Name="tipo" ColumnName="tipo" />
@@ -1405,7 +1426,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sala">
-            <EntityTypeMapping TypeName="CineVerModel.Sala">
+            <EntityTypeMapping TypeName="cineverModel.Sala">
               <MappingFragment StoreEntitySet="Sala">
                 <ScalarProperty Name="idSala" ColumnName="idSala" />
                 <ScalarProperty Name="numeroFilas" ColumnName="numeroFilas" />
@@ -1417,14 +1438,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Socio">
-            <EntityTypeMapping TypeName="CineVerModel.Socio">
+            <EntityTypeMapping TypeName="cineverModel.Socio">
               <MappingFragment StoreEntitySet="Socio">
                 <ScalarProperty Name="idSocio" ColumnName="idSocio" />
                 <ScalarProperty Name="folio" ColumnName="folio" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
-                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
                 <ScalarProperty Name="numeroTelefono" ColumnName="numeroTelefono" />
                 <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
                 <ScalarProperty Name="calle" ColumnName="calle" />
@@ -1435,7 +1456,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sucursal">
-            <EntityTypeMapping TypeName="CineVerModel.Sucursal">
+            <EntityTypeMapping TypeName="cineverModel.Sucursal">
               <MappingFragment StoreEntitySet="Sucursal">
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -1451,9 +1472,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Venta">
-            <EntityTypeMapping TypeName="CineVerModel.Venta">
+            <EntityTypeMapping TypeName="cineverModel.Venta">
               <MappingFragment StoreEntitySet="Venta">
-                <ScalarProperty Name="folioVenta" ColumnName="folioVenta" />
                 <ScalarProperty Name="idVenta" ColumnName="idVenta" />
                 <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
                 <ScalarProperty Name="idSocio" ColumnName="idSocio" />
@@ -1462,11 +1482,12 @@
                 <ScalarProperty Name="metodoPago" ColumnName="metodoPago" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="tipoVenta" ColumnName="tipoVenta" />
+                <ScalarProperty Name="folioVenta" ColumnName="folioVenta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VentaEnDulceria">
-            <EntityTypeMapping TypeName="CineVerModel.VentaEnDulceria">
+            <EntityTypeMapping TypeName="cineverModel.VentaEnDulceria">
               <MappingFragment StoreEntitySet="VentaEnDulceria">
                 <ScalarProperty Name="idVenta" ColumnName="idVenta" />
                 <ScalarProperty Name="idProductoDulceria" ColumnName="idProductoDulceria" />
@@ -1475,6 +1496,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="InsertarVentaConFolio" FunctionName="cineverModel.Store.InsertarVentaConFolio" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

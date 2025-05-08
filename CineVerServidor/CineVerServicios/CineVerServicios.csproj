@@ -85,6 +85,7 @@
     <Compile Include="DTO\SocioDTO.cs" />
     <Compile Include="DTO\SocioResponseDTO.cs" />
     <Compile Include="DTO\SucursalDTO.cs" />
+    <Compile Include="DTO\VentaBoletosResponseDTO.cs" />
     <Compile Include="DTO\VentaDTO.cs" />
     <Compile Include="DulceriaServicio.cs" />
     <Compile Include="Interfaces\ICorteCajaServicio.cs" />

@@ -1,6 +1,7 @@
 ﻿using CineVerEntidades;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -120,5 +121,84 @@ namespace DAO
                 }
             }
         }
+
+        public Result<string> VerificarFechaVentaParaDevolucion(string folio)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var venta = entities.Venta
+                        .FirstOrDefault(v => v.folioVenta == folio);
+
+                    var tiempoRestante = venta.fecha.Value - DateTime.Now.Date;
+
+                    if (tiempoRestante.TotalMinutes < 60)
+                    {
+                        return Result<string>.Fallo("No es posible devolver el boleto");
+                    }
+
+                    return Result<string>.Exito("La devolucion es valida");
+                }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo("¡Error al verificar la fecha de la venta! " + ex.Message);
+                }
+            }
+        }
+
+        public Result<decimal> ObtenerVentasDeBoletosDelDia(int idSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var fechaHoy = DateTime.Now.Date;
+                    var ventas = entities.Venta
+                        .Where(v => DbFunctions.TruncateTime(v.fecha) == fechaHoy && v.idSucursal == idSucursal && v.tipoVenta.Contains("Bole"))
+                        .ToList();
+
+                    if (ventas.Count == 0)
+                    {
+                        return Result<decimal>.Fallo("No se encontraron ventas de boletos para el día especificado");
+                    }
+
+                    decimal totalVentas = (decimal)ventas.Sum(v => v.total);
+
+                    return Result<decimal>.Exito(totalVentas);
+                }
+                catch (Exception ex)
+                {
+                    return Result<decimal>.Fallo("¡Error al consultar las ventas de boletos! " + ex.Message);
+                }
+            }
+        }
+
+        public Result<decimal> ObtenerVentasDeDulceriaDelDia(int idSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var fechaHoy = DateTime.Now.Date;
+                    var ventas = entities.Venta
+                        .Where(v => DbFunctions.TruncateTime(v.fecha) == fechaHoy && v.idSucursal == idSucursal && v.tipoVenta.Contains("Dulce"))
+                        .ToList();
+
+                    if (ventas.Count == 0)
+                    {
+                        return Result<decimal>.Fallo("No se encontraron ventas de dulcería para el día especificado");
+                    }
+                    decimal totalVentas = (decimal)ventas.Sum(v => v.total);
+
+                    return Result<decimal>.Exito(totalVentas);
+                }
+                catch (Exception ex)
+                {
+                    return Result<decimal>.Fallo("¡Error al consultar las ventas de dulcería! " + ex.Message);
+                }
+            }
+        }
+
     }
 }

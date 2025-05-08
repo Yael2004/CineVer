@@ -31,5 +31,11 @@ namespace CineVerServicios.Interfaces
         Task<ListaVentasDTO> ObtenerVentasPorMes(int mes, int anio, int idSucursal);
         [OperationContract]
         Task<ResultDTO> ObtenerVentaPorFolio(string folio);
+        [OperationContract]
+        Task<ResultDTO> VerificarFechaVentaParaDevolucion(string folio);
+        [OperationContract]
+        Task<VentaBoletosResponseDTO> ObtenerVentasDeBoletosDelDia(int idSucursal);
+        [OperationContract]
+        Task<ResultDTO> ObtenerVentasDeDulceriaDelDia(int idSucursal);
     }
 }

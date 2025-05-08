@@ -80,5 +80,32 @@ namespace CineVerServicios.Lógica
             }
         }
 
+        public Result<string> VerificarFechaVentaParaDevolucion(string folio)
+        {
+            var resultado = ventaDAO.VerificarFechaVentaParaDevolucion(folio);
+
+            if (!resultado.EsExitoso)
+            {
+                return Result<string>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<string>.Exito("Se econtró la venta especificada");
+            }
+        }
+
+        public Result<decimal> ObtenerVentasDeBoletosDelDia(int idSucursal)
+        {
+            var resultado = ventaDAO.ObtenerVentasDeBoletosDelDia(idSucursal);
+            
+            if (!resultado.EsExitoso)
+            {
+                return Result<decimal>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<decimal>.Exito(resultado.Valor);
+            }
+        }
     }
 }

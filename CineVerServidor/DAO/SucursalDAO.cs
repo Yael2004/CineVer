@@ -20,7 +20,7 @@ namespace DAO
             {
                 try
                 {
-                    var sucursales = entities.Sucursal.ToList();
+                    var sucursales = entities.Sucursal.Where(s => s.estadoSucursal == "Abierta").ToList();
                     if (sucursales.Count == 0)
                     {
                         return Result<List<Sucursal>>.Fallo("No hay sucursales registradas");
@@ -133,7 +133,7 @@ namespace DAO
                     var sucursal = entities.Sucursal.Find(idSucursal);
                     if (sucursal != null)
                     {
-                        entities.Sucursal.Remove(sucursal);
+                        sucursal.estadoSucursal = "Cerrada";
                         entities.SaveChanges();
                         return Result<string>.Exito("Sucursal eliminada correctamente");
                     }
