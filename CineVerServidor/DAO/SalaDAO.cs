@@ -109,6 +109,25 @@ namespace DAO
                 }
             }
         }
+        public Result<List<Sala>> ObtenerSalasPorSucursalYNombre(int idSucursal, string nombreSala)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var salas = entities.Sala.Where(e => e.idSucursal == idSucursal && e.nombre.Contains(nombreSala)).ToList();
+                    return Result<List<Sala>>.Exito(salas);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<List<Sala>>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<List<Sala>>.Fallo(sqlEx.Message);
+                }
+            }
+        }
         public Result<string> AgregarSala(Sala sala)
         {
             using (CineVerEntities entities = new CineVerEntities())

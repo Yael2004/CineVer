@@ -25,6 +25,23 @@ namespace CineVerServicios
             }
         }
 
+        public Task<ListaSalaDTO> ObtenerSalasPorSucursalYNombre(int idSucursal, string nombre)
+        {
+            var salas = gestorSala.ObtenerSalasPorNombreYSucursal(idSucursal,nombre);
+            if (salas.EsExitoso)
+            {
+                
+                return Task.FromResult(salas.Valor);
+            }
+            else
+            {
+                return Task.FromResult(new ListaSalaDTO
+                {
+                    Salas = new List<SalaDTO>(),
+                    Result = new ResultDTO(false, salas.Error)
+                });
+            }
+        }
         public Task<string> EditarSala(SalaDTO salaEditada, SalaDTO salaOriginal)
         {
             var result = gestorSala.EditarSala(salaEditada, salaOriginal);

@@ -85,6 +85,30 @@ namespace CineVerServicios.Lógica
                 return Result<string>.Fallo(result.Error);
             }
         }
+        public Result<ListaSalaDTO> ObtenerSalasPorNombreYSucursal(int idSucursal, string nombreSala)
+        {
+            var result = salaDAO.ObtenerSalasPorSucursalYNombre(idSucursal, nombreSala);
+            if (!result.EsExitoso)
+            {
+                return Result<ListaSalaDTO>.Fallo(result.Error);
+            }
+            else
+            {
+                var listaSalas = new ListaSalaDTO();
+                foreach (Sala sala in result.Valor)
+                {
+                    var salaDTO = new SalaDTO();
+                    salaDTO.estadoSala = sala.estadoSala;
+                    salaDTO.idSala = sala.idSala;
+                    salaDTO.idSucursal = sala.idSucursal;
+                    salaDTO.descripcion = sala.descripcion;
+                    salaDTO.nombre = sala.nombre;
+                    salaDTO.numeroFilas = sala.numeroFilas;
+                    listaSalas.Salas.Add(salaDTO);
+                }
+                return Result<ListaSalaDTO>.Exito(listaSalas);
+            }
+        }
         public Result<string> EliminarSala(SalaDTO salaDTO)
         {
             var salaEntitie = new Sala();

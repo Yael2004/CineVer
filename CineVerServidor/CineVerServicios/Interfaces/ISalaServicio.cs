@@ -21,6 +21,8 @@ namespace CineVerServicios.Interfaces
         Task<string> EliminarSala(SalaDTO sala);
         [OperationContract]
         Task<int> ObtenerIdSala(int idSucursal, string nombre);
+        [OperationContract]
+        Task<ListaSalaDTO> ObtenerSalasPorSucursalYNombre(int idSucursal, string nombre);
 
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="ceaae62a-4d36-40bf-89e8-8d3b497fb7fe" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2020/SucursalServicio" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SucursalServicio.disco" MetadataType="Disco" ID="2a5fb8b3-2416-4120-8b14-de03b1ffa7a2" SourceId="1" SourceUrl="http://localhost:2020/SucursalServicio?disco" />
+    <MetadataFile FileName="SucursalServicio.xsd" MetadataType="Schema" ID="92800b14-5ced-4541-b90d-bd227a3924d9" SourceId="1" SourceUrl="http://localhost:2020/SucursalServicio?xsd=xsd0" />
+    <MetadataFile FileName="SucursalServicio1.xsd" MetadataType="Schema" ID="85616306-fc0a-4d15-b29f-bc81837feb35" SourceId="1" SourceUrl="http://localhost:2020/SucursalServicio?xsd=xsd2" />
+    <MetadataFile FileName="SucursalServicio.wsdl" MetadataType="Wsdl" ID="10b0d568-9183-47bd-a151-d2a7a487d528" SourceId="1" SourceUrl="http://localhost:2020/SucursalServicio?wsdl" />
+    <MetadataFile FileName="SucursalServicio2.xsd" MetadataType="Schema" ID="14b6f280-04d2-4df9-8e9a-8291256744bc" SourceId="1" SourceUrl="http://localhost:2020/SucursalServicio?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
