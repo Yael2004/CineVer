@@ -119,6 +119,7 @@
     <Compile Include="Helpers\ImagenPelicula.cs" />
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\Validadores.cs" />
+    <Compile Include="ModeloVista\AgregarFuncionModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarPelículaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarNuevoProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarProductoDulceriaModeloVista.cs" />
@@ -158,6 +159,9 @@
     <Compile Include="Modelo\ProductoDulceria.cs" />
     <Compile Include="Modelo\Sucursal.cs" />
     <Compile Include="Modelo\VentaDetalle.cs" />
+    <Compile Include="Vista\AgregarFuncion.xaml.cs">
+      <DependentUpon>AgregarFuncion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\AgregarNuevoProductoDulceria.xaml.cs">
       <DependentUpon>AgregarNuevoProductoDulceria.xaml</DependentUpon>
     </Compile>
@@ -265,6 +269,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vista\AgregarFuncion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vista\AgregarNuevoProductoDulceria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
