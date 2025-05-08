@@ -89,7 +89,7 @@ namespace DAO
                     {
                         salaInsertar.estadoSala = salaEditada.estadoSala;
                         salaInsertar.nombre = salaEditada.nombre;
-                        salaInsertar.numeroFilas = salaEditada.numeroFilas;
+                        salaInsertar.numeroFilas = salaEditada.numeroFilas.Value;
                         salaInsertar.descripcion = salaEditada.descripcion;
                         entities.SaveChanges();
                         return Result<string>.Exito("Sala editada");
