@@ -179,7 +179,7 @@ namespace CineVerCliente.ModeloVista
             CargarImagenCommand = new ComandoModeloVista(CargarImagen);
             GuardarCommand = new ComandoModeloVista(Guardar);
             RegresarCommand = new ComandoModeloVista(Regresar);
-            PosterPath = "/Vista/Icono_IMagen_BLanco.png";
+            PosterPath = "/Vista/Icono_Imagen.png";
             OcultarCamposVacios();
         }
 

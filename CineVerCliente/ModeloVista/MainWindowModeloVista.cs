@@ -23,6 +23,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand AgregarPeliculaComando { get; }
         public ICommand ConsultarPeliculasComando { get; }
         public ICommand ConsultarSalasComando { get; }
+        public ICommand AgregarFuncionCOmando { get; }
 
         public object VistaActualModelo
         {
@@ -48,11 +49,17 @@ namespace CineVerCliente.ModeloVista
             AgregarSalaComando = new ComandoModeloVista(AgregarSala);
             ConsultarPeliculasComando = new ComandoModeloVista(ConsultarPeliculas);
             ConsultarSalasComando = new ComandoModeloVista(ConsultarSalas);
+            AgregarFuncionCOmando = new ComandoModeloVista(AgregarFuncion);
         }
 
         public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
         {
             VistaActualModelo = nuevoModeloVista;
+        }
+
+        public void AgregarFuncion(object obj)
+        {
+            CambiarModeloVista(new AgregarFuncionModeloVista(_mainWindowModeloVista));
         }
 
         public void ConsultarSalas(object obj)

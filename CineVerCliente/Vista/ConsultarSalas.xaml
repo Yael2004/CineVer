@@ -158,7 +158,7 @@
                     VerticalAlignment="Center"
                     Margin="5 8 0 0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Image Source="/Vista/icono-agregar.png"
+                            <Image Source="/Vista/icono-agregar (1).png"
         Width="50"
         Height="50"
         Margin="0,0,0,5"/>

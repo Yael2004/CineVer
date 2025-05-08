@@ -54,7 +54,8 @@
 
                 <Button Grid.Column="5" Content="Reportes" Margin="0"
                 Style="{StaticResource BotonMenu}" 
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Command="{Binding AgregarFuncionCOmando}"/>
 
                 <Button Grid.Column="6" Content="Dulcería" Margin="0"
                 Style="{StaticResource BotonMenu}" 
@@ -125,9 +126,12 @@
             <vista:AgregarSala/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vistaModelo:ConsultarEmpleadosModeloVista}">
-            <vista:ConsultarEmpleados/>
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarFuncionModeloVista}">
+            <vista:AgregarFuncion/>
         </DataTemplate>
+
+
+        
 
         <DataTemplate DataType="{x:Type vistaModelo:AgregarProductoDulceriaModeloVista}">
             <vista:AgregarProductoDulceria/>

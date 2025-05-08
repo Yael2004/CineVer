@@ -588,13 +588,7 @@
     <Resource Include="Assets\Imagenes\Fondos\fondo_Película.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Imagenes\Iconos\Icono_Imagen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Vista\Icono_Imagen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Imagenes\Iconos\Icono_IMagen_BLanco.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\Icono_IMagen_BLanco.png" />
@@ -634,9 +628,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\fondo_Película.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Assets\Imagenes\Iconos\icono-agregar.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\icono-agregar.png" />
@@ -715,10 +706,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vista\icono-Sala.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\FondoFunciones.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Assets\Imagenes\Iconos\icono-Sala.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Vista\icono-Sala.png" />
+    <Resource Include="Assets\Imagenes\Iconos\Icono_Imagen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\icono-agregar %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\icono-agregar %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
