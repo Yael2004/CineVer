@@ -246,9 +246,10 @@ namespace CineVerCliente.ModeloVista
 
             MostrarNumeroCampoVacio = Visibility.Collapsed;
 
-            //Falta verificar si la cuenta existe o no
-            bool cuentaNoExiste = false;
-            if (cuentaNoExiste)
+            var clienteSocio = new SocioServicio.SocioServicioClient();
+            var resultadoSocio = clienteSocio.ExisteSocio(NumeroCuenta);
+
+            if (!resultadoSocio.EsExitoso)
             {
                 MostrarCuentaNoExiste = Visibility.Visible;
             }
@@ -265,6 +266,7 @@ namespace CineVerCliente.ModeloVista
 
         private void CalcularPrecio()
         {
+            //Falta ver si hay promociones
             //Falta comprobar el precio de los boletos de la funcion
             int cantidad = ContarAsientosSeleccionados();
             decimal precio = 50;

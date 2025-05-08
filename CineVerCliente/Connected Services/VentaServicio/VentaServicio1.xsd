@@ -66,4 +66,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfVentaDTO" nillable="true" type="tns:ArrayOfVentaDTO" />
+  <xs:complexType name="VentaBoletosResponseDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ResultDTO" nillable="true" type="tns:ResultDTO" />
+      <xs:element minOccurs="0" name="Total" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VentaBoletosResponseDTO" nillable="true" type="tns:VentaBoletosResponseDTO" />
 </xs:schema>

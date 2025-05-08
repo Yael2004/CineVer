@@ -463,6 +463,9 @@
     <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.ResultDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.VentaBoletosResponseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\VentaServicio\VentaServicio.wsdl" />
     <None Include="Connected Services\VentaServicio\VentaServicio.xsd">
       <SubType>Designer</SubType>

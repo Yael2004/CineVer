@@ -206,6 +206,8 @@ namespace CineVerCliente.ModeloVista
 
             MontoFinalDiaCampoVacio = Visibility.Hidden;
             InicioSiguienteDiaCampoVacio = Visibility.Hidden;
+        
+            CargarDatos();
         }
 
         public void Salir(object obj)
@@ -240,6 +242,17 @@ namespace CineVerCliente.ModeloVista
         public void Cancelar(object obj)
         {
             MostrarMensajeConfirmar = Visibility.Collapsed;
+        }
+
+        private void CargarDatos()
+        {
+            var clienteVenta = new VentaServicio.VentaServicioClient();
+            var resultado = clienteVenta.ObtenerVentasDeBoletosDelDia(1);
+
+            if (resultado.ResultDTO.EsExitoso)
+            {
+                VentaBoletos = resultado.Total;
+            }   
         }
 
         private bool ValidarMontoFinalDia()

@@ -622,6 +622,67 @@ namespace CineVerCliente.VentaServicio {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VentaBoletosResponseDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class VentaBoletosResponseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.VentaServicio.ResultDTO ResultDTOField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private decimal TotalField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.VentaServicio.ResultDTO ResultDTO {
+            get {
+                return this.ResultDTOField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultDTOField, value) != true)) {
+                    this.ResultDTOField = value;
+                    this.RaisePropertyChanged("ResultDTO");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public decimal Total {
+            get {
+                return this.TotalField;
+            }
+            set {
+                if ((this.TotalField.Equals(value) != true)) {
+                    this.TotalField = value;
+                    this.RaisePropertyChanged("Total");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="VentaServicio.IVentaServicio")]
     public interface IVentaServicio {
@@ -685,6 +746,24 @@ namespace CineVerCliente.VentaServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolio", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolioResponse")]
         System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentaPorFolioAsync(string folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/VerificarFechaVentaParaDevolucion", ReplyAction="http://tempuri.org/IVentaServicio/VerificarFechaVentaParaDevolucionResponse")]
+        CineVerCliente.VentaServicio.ResultDTO VerificarFechaVentaParaDevolucion(string folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/VerificarFechaVentaParaDevolucion", ReplyAction="http://tempuri.org/IVentaServicio/VerificarFechaVentaParaDevolucionResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> VerificarFechaVentaParaDevolucionAsync(string folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDiaResponse")]
+        CineVerCliente.VentaServicio.VentaBoletosResponseDTO ObtenerVentasDeBoletosDelDia(int idSucursal);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDiaResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaBoletosResponseDTO> ObtenerVentasDeBoletosDelDiaAsync(int idSucursal);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDiaResponse")]
+        CineVerCliente.VentaServicio.ResultDTO ObtenerVentasDeDulceriaDelDia(int idSucursal);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDiaResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentasDeDulceriaDelDiaAsync(int idSucursal);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -792,6 +871,30 @@ namespace CineVerCliente.VentaServicio {
         
         public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentaPorFolioAsync(string folio) {
             return base.Channel.ObtenerVentaPorFolioAsync(folio);
+        }
+        
+        public CineVerCliente.VentaServicio.ResultDTO VerificarFechaVentaParaDevolucion(string folio) {
+            return base.Channel.VerificarFechaVentaParaDevolucion(folio);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> VerificarFechaVentaParaDevolucionAsync(string folio) {
+            return base.Channel.VerificarFechaVentaParaDevolucionAsync(folio);
+        }
+        
+        public CineVerCliente.VentaServicio.VentaBoletosResponseDTO ObtenerVentasDeBoletosDelDia(int idSucursal) {
+            return base.Channel.ObtenerVentasDeBoletosDelDia(idSucursal);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaBoletosResponseDTO> ObtenerVentasDeBoletosDelDiaAsync(int idSucursal) {
+            return base.Channel.ObtenerVentasDeBoletosDelDiaAsync(idSucursal);
+        }
+        
+        public CineVerCliente.VentaServicio.ResultDTO ObtenerVentasDeDulceriaDelDia(int idSucursal) {
+            return base.Channel.ObtenerVentasDeDulceriaDelDia(idSucursal);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentasDeDulceriaDelDiaAsync(int idSucursal) {
+            return base.Channel.ObtenerVentasDeDulceriaDelDiaAsync(idSucursal);
         }
     }
 }

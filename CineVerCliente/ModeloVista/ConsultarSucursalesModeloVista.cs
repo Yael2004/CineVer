@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Modelo;
+﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,8 @@ namespace CineVerCliente.ModeloVista
         private string _estado;
         private string _ciudad;
         private string _codigoPostal;
+
+        private int _idSucursal;
 
         private ObservableCollection<SucursalConsultada> _sucursales;
 
@@ -124,13 +127,26 @@ namespace CineVerCliente.ModeloVista
             if (obj is SucursalConsultada sucursal)
             {
                 MostrarMensajeConfirmacion = Visibility.Visible;
+                _idSucursal = sucursal.IdSucursal;
             }
         }
 
         public void AceptarEliminarSucursal(object obj)
         {
-            if (obj is SucursalConsultada sucursal)
+            MostrarMensajeConfirmacion = Visibility.Collapsed;
+
+            var cliente = new SucursalServicio.SucursalServicioClient();
+            var respuesta = cliente.CerrarSucursal(_idSucursal);
+
+            if (respuesta.EsExitoso)
             {
+                Notificacion.Mostrar("Sucursal eliminada exitosamente.");
+                MostrarMensajeConfirmacion = Visibility.Collapsed;
+                CargarSucursales();
+            }
+            else
+            {
+                Notificacion.Mostrar("Error al eliminar la sucursal.");
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
             }
         }

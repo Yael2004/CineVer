@@ -68,6 +68,14 @@
                     <Label x:Name="FolioVentaCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="262,281,271,142" 
                             Visibility="{Binding FolioVentaCampoVacio}"/>
 
+                    <Label x:Name="NumeroSocioNoExiste" Style="{StaticResource TextoCamposVacio}" Margin="262,180,271,243" 
+                           Content="La cuenta no existe" 
+                           Visibility="{Binding NumeroSocioNoExiste}"/>
+
+                    <Label x:Name="FolioVentaNoExiste" Style="{StaticResource TextoCamposVacio}" Margin="262,281,271,142" 
+                           Content="El folio no existe" 
+                           Visibility="{Binding FolioVentaNoExiste}"/>
+
                     <Grid Style="{StaticResource GridAmarillo}"
                           HorizontalAlignment="Center"
                           Visibility="{Binding MostrarVentanaConfirmacion}" 

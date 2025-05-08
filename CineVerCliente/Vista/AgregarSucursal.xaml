@@ -136,6 +136,24 @@
                         <Label x:Name="HoraCierreCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="544,519,381,57" Visibility="{Binding HoraCierreCampoVacio}"/>
                         <Label x:Name="HoraAperturaCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="298,519,627,57" Visibility="{Binding HoraAperturaCampoVacio}"/>
 
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeConfirmar}">
+                            <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                                       Height="200"
+                                       Margin="0,0,0,0"/>
+
+                            <Button Margin="74,153,215,10" 
+                                    Content="Aceptar"
+                                    Style="{StaticResource BotonConfirmarBlanco}"
+                                    Command="{Binding AceptarComando}"/>
+
+                            <TextBlock Text="Se abrirá una nueva sucursal ¿Todos los campos son correctos?"
+                                        Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,36,0,0" VerticalAlignment="Top"/>
+
+                            <Button Margin="218,153,71,10" 
+                                    Content="Cancelar"
+                                    Style="{StaticResource BotonNegro}"
+                                    Command="{Binding CancelarComando}"/>
+                        </Grid>
                     </Grid>
 
                     <Grid Visibility="{Binding VerSegundaVista}">
@@ -166,25 +184,6 @@
                                 Content="Regresar"
                                 Style="{StaticResource BotonConfirmarBlanco}" Margin="544,544,278,10"
                                 Command="{Binding RegresarComando}"/>
-
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeConfirmar}">
-                            <Rectangle Style="{StaticResource RectanguloAmarillo}"
-                               Height="200"
-                               Margin="0,0,0,0"/>
-
-                            <Button Margin="74,153,215,10" 
-                                    Content="Aceptar"
-                                    Style="{StaticResource BotonConfirmarBlanco}"
-                                    Command="{Binding AceptarComando}"/>
-
-                            <TextBlock Text="Se abrirá una nueva sucursal ¿Todos los campos son correctos?"
-                                        Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,36,0,0" VerticalAlignment="Top"/>
-
-                            <Button Margin="218,153,71,10" 
-                                    Content="Cancelar"
-                                    Style="{StaticResource BotonNegro}"
-                                    Command="{Binding CancelarComando}"/>
-                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

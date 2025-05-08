@@ -145,4 +145,46 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="VerificarFechaVentaParaDevolucion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folio" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="VerificarFechaVentaParaDevolucionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="VerificarFechaVentaParaDevolucionResult" nillable="true" type="q15:ResultDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerVentasDeBoletosDelDia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idSucursal" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerVentasDeBoletosDelDiaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasDeBoletosDelDiaResult" nillable="true" type="q16:VentaBoletosResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerVentasDeDulceriaDelDia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idSucursal" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerVentasDeDulceriaDelDiaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasDeDulceriaDelDiaResult" nillable="true" type="q17:ResultDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

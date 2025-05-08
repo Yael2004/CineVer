@@ -256,8 +256,7 @@ namespace CineVerCliente.ModeloVista
         {
             if (ValidarCampos())
             {
-                VerPrimeraVista = Visibility.Collapsed;
-                VerSegundaVista = Visibility.Visible;
+                MostrarMensajeConfirmar = Visibility.Visible;
             }
         }
 

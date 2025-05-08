@@ -96,6 +96,24 @@
   <wsdl:message name="IVentaServicio_ObtenerVentaPorFolio_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerVentaPorFolioResponse" />
   </wsdl:message>
+  <wsdl:message name="IVentaServicio_VerificarFechaVentaParaDevolucion_InputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarFechaVentaParaDevolucion" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_VerificarFechaVentaParaDevolucion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VerificarFechaVentaParaDevolucionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasDeBoletosDelDia_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasDeBoletosDelDia" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasDeBoletosDelDia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasDeBoletosDelDiaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasDeDulceriaDelDia_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasDeDulceriaDelDia" />
+  </wsdl:message>
+  <wsdl:message name="IVentaServicio_ObtenerVentasDeDulceriaDelDia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerVentasDeDulceriaDelDiaResponse" />
+  </wsdl:message>
   <wsdl:portType name="IVentaServicio">
     <wsdl:operation name="RealizarPagoDulceria">
       <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/RealizarPagoDulceria" message="tns:IVentaServicio_RealizarPagoDulceria_InputMessage" />
@@ -136,6 +154,18 @@
     <wsdl:operation name="ObtenerVentaPorFolio">
       <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolio" message="tns:IVentaServicio_ObtenerVentaPorFolio_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolioResponse" message="tns:IVentaServicio_ObtenerVentaPorFolio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarFechaVentaParaDevolucion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/VerificarFechaVentaParaDevolucion" message="tns:IVentaServicio_VerificarFechaVentaParaDevolucion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/VerificarFechaVentaParaDevolucionResponse" message="tns:IVentaServicio_VerificarFechaVentaParaDevolucion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasDeBoletosDelDia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDia" message="tns:IVentaServicio_ObtenerVentasDeBoletosDelDia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDiaResponse" message="tns:IVentaServicio_ObtenerVentasDeBoletosDelDia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasDeDulceriaDelDia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDia" message="tns:IVentaServicio_ObtenerVentasDeDulceriaDelDia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDiaResponse" message="tns:IVentaServicio_ObtenerVentasDeDulceriaDelDia_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IVentaServicio" type="tns:IVentaServicio">
@@ -224,6 +254,33 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerVentaPorFolio">
       <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerVentaPorFolio" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarFechaVentaParaDevolucion">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/VerificarFechaVentaParaDevolucion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasDeBoletosDelDia">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDia" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerVentasDeDulceriaDelDia">
+      <soap12:operation soapAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDia" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

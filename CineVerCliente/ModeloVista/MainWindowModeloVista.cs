@@ -112,7 +112,7 @@ namespace CineVerCliente.ModeloVista
 
         private void RealizarCorteCaja(object obj)
         {
-            CambiarModeloVista(new ObtenerEstadisticasModeloVista(_mainWindowModeloVista));
+            CambiarModeloVista(new RealizarCorteCajaModeloVista(_mainWindowModeloVista));
         }
 
         private void DevolverBoleto(object obj)
