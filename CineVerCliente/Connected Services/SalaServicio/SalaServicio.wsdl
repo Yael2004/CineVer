@@ -36,6 +36,12 @@
       <xsd:import schemaLocation="http://localhost:2020/SalaServicio?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="ISalaServicio_ObtenerSalaPorID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSalaPorID" />
+  </wsdl:message>
+  <wsdl:message name="ISalaServicio_ObtenerSalaPorID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSalaPorIDResponse" />
+  </wsdl:message>
   <wsdl:message name="ISalaServicio_ObtenerSalasPorSucursal_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerSalasPorSucursal" />
   </wsdl:message>
@@ -73,6 +79,10 @@
     <wsdl:part name="parameters" element="tns:ObtenerSalasPorSucursalYNombreResponse" />
   </wsdl:message>
   <wsdl:portType name="ISalaServicio">
+    <wsdl:operation name="ObtenerSalaPorID">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISalaServicio/ObtenerSalaPorID" message="tns:ISalaServicio_ObtenerSalaPorID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISalaServicio/ObtenerSalaPorIDResponse" message="tns:ISalaServicio_ObtenerSalaPorID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ObtenerSalasPorSucursal">
       <wsdl:input wsaw:Action="http://tempuri.org/ISalaServicio/ObtenerSalasPorSucursal" message="tns:ISalaServicio_ObtenerSalasPorSucursal_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISalaServicio/ObtenerSalasPorSucursalResponse" message="tns:ISalaServicio_ObtenerSalasPorSucursal_OutputMessage" />
@@ -101,6 +111,15 @@
   <wsdl:binding name="NetTcpBinding_ISalaServicio" type="tns:ISalaServicio">
     <wsp:PolicyReference URI="#NetTcpBinding_ISalaServicio_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ObtenerSalaPorID">
+      <soap12:operation soapAction="http://tempuri.org/ISalaServicio/ObtenerSalaPorID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerSalasPorSucursal">
       <soap12:operation soapAction="http://tempuri.org/ISalaServicio/ObtenerSalasPorSucursal" style="document" />
       <wsdl:input>

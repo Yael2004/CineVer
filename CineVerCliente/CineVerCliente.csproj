@@ -469,6 +469,9 @@
     <None Include="Connected Services\PeliculaServicio\CineVerCliente.PeliculaServicio.ListaPeliculasDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\PeliculaServicio\CineVerCliente.PeliculaServicio.PeliculaDTOs.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\PeliculaServicio\PeliculaServicio.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -480,6 +483,9 @@
     </None>
     <None Include="Connected Services\PeliculaServicio\PelículaServicio.wsdl" />
     <None Include="Connected Services\SalaServicio\CineVerCliente.SalaServicio.ListaSalaDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SalaServicio\CineVerCliente.SalaServicio.SalaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\SalaServicio\SalaServicio.wsdl" />

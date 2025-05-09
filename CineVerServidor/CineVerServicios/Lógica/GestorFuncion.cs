@@ -22,11 +22,30 @@ namespace CineVerServicios.Lógica
                 foreach(var funcion in result.Valor)
                 {
                     var funcionInsertar = new FuncionDTO();
-                    funcionInsertar.Sala = funcion.Sala;
+
+                    SalaDTO salaDTO = new SalaDTO();
+                    salaDTO.idSala = funcion.Sala.idSala;
+                    salaDTO.nombre = funcion.Sala.nombre;
+                    salaDTO.descripcion = funcion.Sala.descripcion;
+                    salaDTO.estadoSala = funcion.Sala.estadoSala;
+                    salaDTO.numeroFilas = funcion.Sala.numeroFilas;
+                    funcionInsertar.Sala = salaDTO;
+
                     funcionInsertar.idSala = funcion.idSala;
                     funcionInsertar.idPelicula = funcion.idPelicula;
                     funcionInsertar.idFuncion = funcion.idFuncion;
-                    funcionInsertar.Película = funcion.Película;
+
+                    PeliculaDTOs peliculaDTO = new PeliculaDTOs();
+                    peliculaDTO.idPelicula = funcion.Película.idPelicula;
+                    peliculaDTO.nombre = funcion.Película.nombre;
+                    peliculaDTO.duracion = funcion.Película.duracion;
+                    peliculaDTO.genero = funcion.Película.genero;
+                    peliculaDTO.sinopsis = funcion.Película.sinopsis;
+                    peliculaDTO.director = funcion.Película.director;
+                    peliculaDTO.poster = funcion.Película.poster;
+                    funcionInsertar.Película = peliculaDTO;
+                    
+
                     funcionInsertar.fecha = funcion.fecha;
                     funcionInsertar.precioBoleto = funcion.precioBoleto;
                     funcionInsertar.horaInicio = funcion.horaInicio;
@@ -48,11 +67,29 @@ namespace CineVerServicios.Lógica
                 foreach (var funcion in result.Valor)
                 {
                     var funcionInsertar = new FuncionDTO();
-                    funcionInsertar.Sala = funcion.Sala;
+
+                    SalaDTO salaDTO = new SalaDTO();
+                    salaDTO.idSala = funcion.Sala.idSala;
+                    salaDTO.nombre = funcion.Sala.nombre;
+                    salaDTO.descripcion = funcion.Sala.descripcion;
+                    salaDTO.estadoSala = funcion.Sala.estadoSala;
+                    salaDTO.numeroFilas = funcion.Sala.numeroFilas;
+                    funcionInsertar.Sala = salaDTO;
                     funcionInsertar.idSala = funcion.idSala;
                     funcionInsertar.idPelicula = funcion.idPelicula;
                     funcionInsertar.idFuncion = funcion.idFuncion;
-                    funcionInsertar.Película = funcion.Película;
+
+
+                    PeliculaDTOs peliculaDTO = new PeliculaDTOs();
+                    peliculaDTO.idPelicula = funcion.Película.idPelicula;
+                    peliculaDTO.nombre = funcion.Película.nombre;
+                    peliculaDTO.duracion = funcion.Película.duracion;
+                    peliculaDTO.genero = funcion.Película.genero;
+                    peliculaDTO.sinopsis = funcion.Película.sinopsis;
+                    peliculaDTO.director = funcion.Película.director;
+                    peliculaDTO.poster = funcion.Película.poster;
+                    funcionInsertar.Película = peliculaDTO;
+
                     funcionInsertar.fecha = funcion.fecha;
                     funcionInsertar.precioBoleto = funcion.precioBoleto;
                     funcionInsertar.horaInicio = funcion.horaInicio;
@@ -67,18 +104,36 @@ namespace CineVerServicios.Lógica
         }
         public Result<ListaFuncionesDTO> ObtenerFuncionesPorSalaYFecha(int idSala, DateTime fecha)
         {
-            var result = funcionDAO.ObtenerFuncionesPorPeliculaYFecha(idSala, fecha);
+            var result = funcionDAO.ObtenerFuncionesPorSalaYFecha(idSala, fecha);
             if (result.EsExitoso)
             {
                 var listaFunciones = new ListaFuncionesDTO();
                 foreach (var funcion in result.Valor)
                 {
                     var funcionInsertar = new FuncionDTO();
-                    funcionInsertar.Sala = funcion.Sala;
+
+                    SalaDTO salaDTO = new SalaDTO();
+                    salaDTO.idSala = funcion.Sala.idSala;
+                    salaDTO.nombre = funcion.Sala.nombre;
+                    salaDTO.descripcion = funcion.Sala.descripcion;
+                    salaDTO.estadoSala = funcion.Sala.estadoSala;
+                    salaDTO.numeroFilas = funcion.Sala.numeroFilas;
+                    funcionInsertar.Sala = salaDTO;
+
                     funcionInsertar.idSala = funcion.idSala;
                     funcionInsertar.idPelicula = funcion.idPelicula;
                     funcionInsertar.idFuncion = funcion.idFuncion;
-                    funcionInsertar.Película = funcion.Película;
+
+                    PeliculaDTOs peliculaDTO = new PeliculaDTOs();
+                    peliculaDTO.idPelicula = funcion.Película.idPelicula;
+                    peliculaDTO.nombre = funcion.Película.nombre;
+                    peliculaDTO.duracion = funcion.Película.duracion;
+                    peliculaDTO.genero = funcion.Película.genero;
+                    peliculaDTO.sinopsis = funcion.Película.sinopsis;
+                    peliculaDTO.director = funcion.Película.director;
+                    peliculaDTO.poster = funcion.Película.poster;
+                    funcionInsertar.Película = peliculaDTO;
+
                     funcionInsertar.fecha = funcion.fecha;
                     funcionInsertar.precioBoleto = funcion.precioBoleto;
                     funcionInsertar.horaInicio = funcion.horaInicio;
@@ -97,8 +152,7 @@ namespace CineVerServicios.Lógica
             funcionEntitie.idFuncion = funcion.idFuncion;
             funcionEntitie.idSala = funcion.idSala;
             funcionEntitie.idPelicula = funcion.idPelicula;
-            funcionEntitie.Sala = funcion.Sala;
-            funcionEntitie.Película = funcion.Película;
+            
             funcionEntitie.horaInicio = funcion.horaInicio;
             funcionEntitie.precioBoleto = funcion.precioBoleto;
             funcionEntitie.fecha = funcion.fecha;
@@ -118,8 +172,9 @@ namespace CineVerServicios.Lógica
             funcionEntitie.idFuncion = funcion.idFuncion;
             funcionEntitie.idSala = funcion.idSala;
             funcionEntitie.idPelicula = funcion.idPelicula;
-            funcionEntitie.Sala = funcion.Sala;
-            funcionEntitie.Película = funcion.Película;
+
+
+            
             funcionEntitie.horaInicio = funcion.horaInicio;
             funcionEntitie.precioBoleto = funcion.precioBoleto;
             funcionEntitie.fecha = funcion.fecha;
@@ -139,8 +194,7 @@ namespace CineVerServicios.Lógica
             funcionEntitieOriginal.idFuncion = funcionOriginal.idFuncion;
             funcionEntitieOriginal.idSala = funcionOriginal.idSala;
             funcionEntitieOriginal.idPelicula = funcionOriginal.idPelicula;
-            funcionEntitieOriginal.Sala = funcionOriginal.Sala;
-            funcionEntitieOriginal.Película = funcionOriginal.Película;
+            
             funcionEntitieOriginal.horaInicio = funcionOriginal.horaInicio;
             funcionEntitieOriginal.precioBoleto = funcionOriginal.precioBoleto;
             funcionEntitieOriginal.fecha = funcionOriginal.fecha;
@@ -149,8 +203,7 @@ namespace CineVerServicios.Lógica
             funcionEntitieEditada.idFuncion = funcionEditada.idFuncion;
             funcionEntitieEditada.idSala = funcionEditada.idSala;
             funcionEntitieEditada.idPelicula = funcionEditada.idPelicula;
-            funcionEntitieEditada.Sala = funcionEditada.Sala;
-            funcionEntitieEditada.Película = funcionEditada.Película;
+            
             funcionEntitieEditada.horaInicio = funcionEditada.horaInicio;
             funcionEntitieEditada.precioBoleto = funcionEditada.precioBoleto;
             funcionEntitieEditada.fecha = funcionEditada.fecha;

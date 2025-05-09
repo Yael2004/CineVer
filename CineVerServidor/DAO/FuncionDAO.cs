@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.Linq;
@@ -56,7 +57,15 @@ namespace DAO
             {
                 try
                 {
-                    var funciones = entities.Función.Where(e => e.fecha == fecha && e.idSala == idSala).ToList();
+                    DateTime fechaLimpia = fecha.Date;
+                    DateTime? fechaNullable = fechaLimpia;
+
+                    var funciones = entities.Función.Include("Película").Include("Sala")
+                        .Where(e => DbFunctions.TruncateTime(e.fecha) == fechaNullable && e.idSala == idSala)
+                        .ToList();
+
+
+
                     return Result<List<Función>>.Exito(funciones);
                 }
                 catch (DbEntityValidationException ex)
@@ -86,6 +95,10 @@ namespace DAO
                 catch (SqlException sqlEx)
                 {
                     return Result<string>.Fallo(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo(ex.InnerException?.InnerException?.Message ?? ex.Message);
                 }
             }
         }

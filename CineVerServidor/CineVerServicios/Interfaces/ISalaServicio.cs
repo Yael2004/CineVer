@@ -12,6 +12,8 @@ namespace CineVerServicios.Interfaces
     public interface ISalaServicio
     {
         [OperationContract]
+        Task<SalaDTO> ObtenerSalaPorID(int idSala);
+        [OperationContract]
         Task<ListaSalaDTO> ObtenerSalasPorSucursal(int idSucursal);
         [OperationContract]
         Task<string> AgregarSala(SalaDTO sala);

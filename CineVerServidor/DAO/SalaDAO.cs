@@ -32,6 +32,26 @@ namespace DAO
                 }
             }
         }
+
+        public Result<Sala> ObtenerSalaPorId(int idSala)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var sala = entities.Sala.Find(idSala);
+                    return Result<Sala>.Exito(sala);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<Sala>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<Sala>.Fallo(sqlEx.Message);
+                }
+            }
+        }
         public Result<int> ObtenerIDSala(int? idSucursal, string nombreSala)
         {
             using (CineVerEntities entities = new CineVerEntities())

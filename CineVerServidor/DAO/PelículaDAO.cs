@@ -172,6 +172,33 @@ namespace DAO
                 }
             }
         }
+
+        public Result<Película> ObtenerPeliculaPorID(int id)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var pelicula = entities.Película.Find(id);
+                    if (pelicula != null)
+                    {
+                        return Result<Película>.Exito(pelicula);
+                    }
+                    else
+                    {
+                        return Result<Película>.Fallo("Pelicula no encontrada");
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<Película>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<Película>.Fallo(sqlEx.Message);
+                }
+            }
+        }
         public Result<List <Película>> ObtenerPeliculasPorNombre(int idSucursal, string nombre)
         {
             using (CineVerEntities entities = new CineVerEntities())

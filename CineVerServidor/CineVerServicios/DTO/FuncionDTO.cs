@@ -25,8 +25,8 @@ namespace CineVerServicios.DTO
         [DataMember]
         public Nullable<decimal> precioBoleto { get; set; }
         [DataMember]
-        public virtual Sala Sala { get; set; }
+        public virtual SalaDTO Sala { get; set; }
         [DataMember]
-        public virtual Película Película { get; set; }
+        public virtual PeliculaDTOs Película { get; set; }
     }
 }

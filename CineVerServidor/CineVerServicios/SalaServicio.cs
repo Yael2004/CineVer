@@ -97,5 +97,22 @@ namespace CineVerServicios
                 });
             }
         }
+
+        public Task<SalaDTO> ObtenerSalaPorID(int idSala)
+        {
+            var result = gestorSala.ObtenerSalaPorID(idSala);
+            if (result.EsExitoso)
+            {
+                return Task.FromResult(result.Valor);
+            }
+            else
+            {
+                return Task.FromResult(new SalaDTO
+                {
+                    idSala = -1,
+                    
+                });
+            }
+        }
     }
 }

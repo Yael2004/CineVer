@@ -81,6 +81,27 @@ namespace CineVerServicios.Lógica
                 return Result<string>.Exito(result.Valor);
             }
         }
+        public Result <PeliculaDTOs> ObtenerPeliculaPorID(int idPelicula)
+        {
+            var result = peliculaDAO.ObtenerPeliculaPorID(idPelicula);
+            if (!result.EsExitoso)
+            {
+                return Result<PeliculaDTOs>.Fallo(result.Error);
+            }
+            else
+            {
+                var peliculaDTO = new PeliculaDTOs();
+                peliculaDTO.nombre = result.Valor.nombre;
+                peliculaDTO.director = result.Valor.director;
+                peliculaDTO.idPelicula = result.Valor.idPelicula;
+                peliculaDTO.duracion = result.Valor.duracion;
+                peliculaDTO.idSucursal = result.Valor.idSucursal;
+                peliculaDTO.genero = result.Valor.genero;
+                peliculaDTO.sinopsis = result.Valor.sinopsis;
+                peliculaDTO.poster = result.Valor.poster;
+                return Result<PeliculaDTOs>.Exito(peliculaDTO);
+            }
+        }
         public Result<string> EditarPelicula(PeliculaDTOs peliculaEditada, PeliculaDTOs peliculaOriginal)
         {
             Película peliculaEntitie = new Película();

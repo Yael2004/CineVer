@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:2020/PeliculaServicio?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ListaPeliculasDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Peliculas" nillable="true" type="tns:ArrayOfPeliculaDTOs" />
-      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultDTO" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ListaPeliculasDTO" nillable="true" type="tns:ListaPeliculasDTO" />
-  <xs:complexType name="ArrayOfPeliculaDTOs">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="PeliculaDTOs" nillable="true" type="tns:PeliculaDTOs" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfPeliculaDTOs" nillable="true" type="tns:ArrayOfPeliculaDTOs" />
   <xs:complexType name="PeliculaDTOs">
     <xs:sequence>
       <xs:element minOccurs="0" name="director" nillable="true" type="xs:string" />
@@ -27,6 +14,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PeliculaDTOs" nillable="true" type="tns:PeliculaDTOs" />
+  <xs:complexType name="ListaPeliculasDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Peliculas" nillable="true" type="tns:ArrayOfPeliculaDTOs" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListaPeliculasDTO" nillable="true" type="tns:ListaPeliculasDTO" />
+  <xs:complexType name="ArrayOfPeliculaDTOs">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PeliculaDTOs" nillable="true" type="tns:PeliculaDTOs" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPeliculaDTOs" nillable="true" type="tns:ArrayOfPeliculaDTOs" />
   <xs:complexType name="ResultDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Error" nillable="true" type="xs:string" />

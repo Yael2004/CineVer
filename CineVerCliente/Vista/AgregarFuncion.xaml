@@ -122,43 +122,57 @@
                            HorizontalAlignment="Center"
                            Margin="0 0 0 10"/>
                     <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="1" Margin="15">
-                        <TextBlock Text="Título de la película:" Foreground="White" />
+                        <TextBlock Text="Título de la película:" Foreground="White" FontSize="16"/>
                         <ComboBox ItemsSource="{Binding Peliculas}" 
               SelectedItem="{Binding PeliculaSeleccionada}" 
               DisplayMemberPath="nombre"
-              
+              Background="White"
+              FontSize="14"
+             
+              Height="35"
               Margin="0,5,0,0"/>
                         <Label x:Name="NombreSucursalCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding NombrePeliculaVacio}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" VerticalAlignment="Top" Grid.Row="1" Margin="15">
-                        <TextBlock Text="Sala:" Foreground="White" />
+                        <TextBlock Text="Sala:" Foreground="White" FontSize="16"/>
                         <ComboBox ItemsSource="{Binding Salas}" 
               SelectedItem="{Binding SalaSeleccionada}" 
               DisplayMemberPath="nombre"
+              Background="White"
+              FontSize="14"
+              
+              Height="35"
               Margin="0,5,0,0"/>
                         <Label x:Name="SalaCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding NombreSalaVacio}"/>
                     </StackPanel>
 
+
                     <!-- Controles de Fecha y Hora -->
                     <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Margin="15">
-                        <TextBlock Text="Fecha de inicio de funciones:" Foreground="White" Margin="0,0,0,5"/>
-                        <DatePicker SelectedDate="{Binding FechaFuncion}" Width="200" />
+                        <TextBlock Text="Fecha de inicio de funciones:" Foreground="White" Margin="0,0,0,5" FontSize="16"/>
+                        <DatePicker SelectedDate="{Binding FechaFuncionInicio}" Width="250" Height="35" FontSize="14" HorizontalAlignment="Left"/>
+                        <Label x:Name="FechaInicioVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding FechaInicioVacio}"/>
+                        
+                        <TextBlock Text="Fecha de fin de funciones:" Foreground="White" Margin="0,10,0,5" FontSize="16"/>
+                        <DatePicker SelectedDate="{Binding FechaFuncionFin}" Width="250" Height="35" FontSize="14" HorizontalAlignment="Left"/>
+                        <Label x:Name="FechaFinVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding FechaFinVacio}"/>
 
-                        <TextBlock Text="Fecha de fin de funciones:" Foreground="White" Margin="0,10,0,5"/>
-                        <DatePicker SelectedDate="{Binding FechaFuncion}" Width="200" />
+                        <TextBlock Text="Seleccione la hora de la función:" Foreground="White" Margin="0,15,0,5" FontSize="16"/>
+                        <xctk:TimePicker Value="{Binding HoraFuncion}" Format="Custom" FormatString="HH:mm"
+                     Width="250" Height="35" FontSize="14" HorizontalAlignment="Left"/>
+                        <Label x:Name="Horario" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding HoraFuncionVacio}"/>
 
-                        <TextBlock Text="Seleccione la hora de la función:" Foreground="White" Margin="0,15,0,5"/>
-                        <xctk:TimePicker Value="{Binding HoraFuncion}" Format="Custom" FormatString="HH:mm" Width="200"/>
-
-                        <TextBlock Text="Costo del boleto:" Foreground="White" Margin="0,15,0,5"/>
+                        <TextBlock Text="Costo del boleto:" Foreground="White" Margin="0,15,0,5" FontSize="16"/>
                         <xctk:DoubleUpDown Value="{Binding CostoBoleto}"
                        FormatString="F2"
                        Minimum="0"
                        Increment="0.10"
-                       Width="200"
-                       HorizontalAlignment="Center"/>
+                       Width="250" Height="35" FontSize="14"
+                       HorizontalAlignment="Left"/>
+                        <Label x:Name="CostoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding CostoVacio}"/>
                     </StackPanel>
+
 
 
 
@@ -171,7 +185,7 @@
 
                         <TextBlock Text="Póster promocional:" Foreground="White" Margin="0,10,0,0"/>
                         <Button Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" Command="{Binding CargarImagenCommand}">
-                            <Image Source="{Binding Poster, FallbackValue=/Vista/Icono_IMagen_BLanco.png, TargetNullValue=/Vista/Icono_IMagen_BLanco.png}" Height="300" />
+                            <Image Source="{Binding Poster, FallbackValue=/Vista/Icono_IMagen_BLanco.png, TargetNullValue=/Vista/Icono_IMagen_BLanco.png}" Height="400" />
 
                         </Button>
                         

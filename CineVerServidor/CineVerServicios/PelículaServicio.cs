@@ -83,6 +83,21 @@ namespace CineVerServicios
             }
         }
 
+        public Task<PeliculaDTOs> ObtenerPeliculaPorID(int idPelicula)
+        {
+            var resultado = _gestorPelicula.ObtenerPeliculaPorID(idPelicula);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(new PeliculaDTOs
+                {
+                   
+                });
+            }
+        }
 
         public Task<ListaPeliculasDTO> ObtenerPeliculasPorNombre(int idSucursal, string nombre)
         {

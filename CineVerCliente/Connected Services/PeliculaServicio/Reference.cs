@@ -15,128 +15,6 @@ namespace CineVerCliente.PeliculaServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ListaPeliculasDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
-    [System.SerializableAttribute()]
-    public partial class ListaPeliculasDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CineVerCliente.PeliculaServicio.PeliculaDTOs[] PeliculasField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CineVerCliente.PeliculaServicio.ResultDTO ResultField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CineVerCliente.PeliculaServicio.PeliculaDTOs[] Peliculas {
-            get {
-                return this.PeliculasField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PeliculasField, value) != true)) {
-                    this.PeliculasField = value;
-                    this.RaisePropertyChanged("Peliculas");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CineVerCliente.PeliculaServicio.ResultDTO Result {
-            get {
-                return this.ResultField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResultField, value) != true)) {
-                    this.ResultField = value;
-                    this.RaisePropertyChanged("Result");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ResultDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
-    [System.SerializableAttribute()]
-    public partial class ResultDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ErrorField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool EsExitosoField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Error {
-            get {
-                return this.ErrorField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ErrorField, value) != true)) {
-                    this.ErrorField = value;
-                    this.RaisePropertyChanged("Error");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool EsExitoso {
-            get {
-                return this.EsExitosoField;
-            }
-            set {
-                if ((this.EsExitosoField.Equals(value) != true)) {
-                    this.EsExitosoField = value;
-                    this.RaisePropertyChanged("EsExitoso");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="PeliculaDTOs", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
     [System.SerializableAttribute()]
     public partial class PeliculaDTOs : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -292,9 +170,137 @@ namespace CineVerCliente.PeliculaServicio {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ListaPeliculasDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class ListaPeliculasDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.PeliculaServicio.PeliculaDTOs[] PeliculasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.PeliculaServicio.ResultDTO ResultField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.PeliculaServicio.PeliculaDTOs[] Peliculas {
+            get {
+                return this.PeliculasField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PeliculasField, value) != true)) {
+                    this.PeliculasField = value;
+                    this.RaisePropertyChanged("Peliculas");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.PeliculaServicio.ResultDTO Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultField, value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ResultDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class ResultDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ErrorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool EsExitosoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Error {
+            get {
+                return this.ErrorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ErrorField, value) != true)) {
+                    this.ErrorField = value;
+                    this.RaisePropertyChanged("Error");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool EsExitoso {
+            get {
+                return this.EsExitosoField;
+            }
+            set {
+                if ((this.EsExitosoField.Equals(value) != true)) {
+                    this.EsExitosoField = value;
+                    this.RaisePropertyChanged("EsExitoso");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="PeliculaServicio.IPelículaServicio")]
     public interface IPelículaServicio {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPelículaServicio/ObtenerPeliculaPorID", ReplyAction="http://tempuri.org/IPelículaServicio/ObtenerPeliculaPorIDResponse")]
+        CineVerCliente.PeliculaServicio.PeliculaDTOs ObtenerPeliculaPorID(int idPelicula);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPelículaServicio/ObtenerPeliculaPorID", ReplyAction="http://tempuri.org/IPelículaServicio/ObtenerPeliculaPorIDResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.PeliculaServicio.PeliculaDTOs> ObtenerPeliculaPorIDAsync(int idPelicula);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPelículaServicio/ObtenerListaPeliculas", ReplyAction="http://tempuri.org/IPelículaServicio/ObtenerListaPeliculasResponse")]
         CineVerCliente.PeliculaServicio.ListaPeliculasDTO ObtenerListaPeliculas(int idSucursal);
@@ -358,6 +364,14 @@ namespace CineVerCliente.PeliculaServicio {
         
         public PelículaServicioClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public CineVerCliente.PeliculaServicio.PeliculaDTOs ObtenerPeliculaPorID(int idPelicula) {
+            return base.Channel.ObtenerPeliculaPorID(idPelicula);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.PeliculaServicio.PeliculaDTOs> ObtenerPeliculaPorIDAsync(int idPelicula) {
+            return base.Channel.ObtenerPeliculaPorIDAsync(idPelicula);
         }
         
         public CineVerCliente.PeliculaServicio.ListaPeliculasDTO ObtenerListaPeliculas(int idSucursal) {

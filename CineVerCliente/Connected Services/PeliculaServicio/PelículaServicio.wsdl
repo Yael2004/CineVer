@@ -36,6 +36,12 @@
       <xsd:import schemaLocation="http://localhost:2020/PeliculaServicio?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IPelículaServicio_ObtenerPeliculaPorID_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPeliculaPorID" />
+  </wsdl:message>
+  <wsdl:message name="IPelículaServicio_ObtenerPeliculaPorID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPeliculaPorIDResponse" />
+  </wsdl:message>
   <wsdl:message name="IPelículaServicio_ObtenerListaPeliculas_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerListaPeliculas" />
   </wsdl:message>
@@ -73,6 +79,10 @@
     <wsdl:part name="parameters" element="tns:EliminarPeliculaResponse" />
   </wsdl:message>
   <wsdl:portType name="IPelículaServicio">
+    <wsdl:operation name="ObtenerPeliculaPorID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPelículaServicio/ObtenerPeliculaPorID" message="tns:IPelículaServicio_ObtenerPeliculaPorID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPelículaServicio/ObtenerPeliculaPorIDResponse" message="tns:IPelículaServicio_ObtenerPeliculaPorID_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ObtenerListaPeliculas">
       <wsdl:input wsaw:Action="http://tempuri.org/IPelículaServicio/ObtenerListaPeliculas" message="tns:IPelículaServicio_ObtenerListaPeliculas_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPelículaServicio/ObtenerListaPeliculasResponse" message="tns:IPelículaServicio_ObtenerListaPeliculas_OutputMessage" />
@@ -101,6 +111,15 @@
   <wsdl:binding name="NetTcpBinding_IPelículaServicio" type="tns:IPelículaServicio">
     <wsp:PolicyReference URI="#NetTcpBinding_IPelículaServicio_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ObtenerPeliculaPorID">
+      <soap12:operation soapAction="http://tempuri.org/IPelículaServicio/ObtenerPeliculaPorID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerListaPeliculas">
       <soap12:operation soapAction="http://tempuri.org/IPelículaServicio/ObtenerListaPeliculas" style="document" />
       <wsdl:input>

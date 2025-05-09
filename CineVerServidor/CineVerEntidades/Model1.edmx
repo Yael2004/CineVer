@@ -98,7 +98,7 @@
           <Property Name="idPelicula" Type="int" />
           <Property Name="fecha" Type="date" />
           <Property Name="horaInicio" Type="time" Precision="7" />
-          <Property Name="precioBoleto" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="precioBoleto" Type="decimal" Precision="6" Scale="2" />
         </EntityType>
         <EntityType Name="Gasto">
           <Key>
@@ -132,7 +132,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="cantidadInventario" Type="int" />
           <Property Name="costoUnitario" Type="decimal" Precision="3" Scale="2" />
-          <Property Name="precioVenta" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="precioVenta" Type="decimal" Precision="6" Scale="2" />
           <Property Name="imagen" Type="varbinary" MaxLength="8000" />
           <Property Name="idSucursal" Type="int" />
         </EntityType>
@@ -810,7 +810,7 @@
           <Property Name="idPelicula" Type="Int32" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="horaInicio" Type="Time" Precision="7" />
-          <Property Name="precioBoleto" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="precioBoleto" Type="Decimal" Precision="6" Scale="2" />
           <NavigationProperty Name="Boleto" Relationship="CineVerModel.FK_Boleto_Función" FromRole="Función" ToRole="Boleto" />
           <NavigationProperty Name="Película" Relationship="CineVerModel.FK_Función_Película" FromRole="Función" ToRole="Película" />
           <NavigationProperty Name="Sala" Relationship="CineVerModel.FK_Función_Sala" FromRole="Función" ToRole="Sala" />
@@ -852,7 +852,7 @@
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cantidadInventario" Type="Int32" />
           <Property Name="costoUnitario" Type="Decimal" Precision="3" Scale="2" />
-          <Property Name="precioVenta" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="precioVenta" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="imagen" Type="Binary" MaxLength="8000" FixedLength="false" />
           <Property Name="idSucursal" Type="Int32" />
           <NavigationProperty Name="Sucursal" Relationship="CineVerModel.FK_ProductoDulceria_Sucursal" FromRole="ProductoDulceria" ToRole="Sucursal" />
