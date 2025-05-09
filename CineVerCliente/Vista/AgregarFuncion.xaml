@@ -10,6 +10,58 @@
         mc:Ignorable="d" 
         d:DesignHeight="600" d:DesignWidth="1000">
 
+    <UserControl.Resources>
+
+        <Style x:Key="RoundedDatePicker" TargetType="DatePicker">
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DatePicker">
+                        <Grid>
+                            <Border x:Name="Border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8"
+                            SnapsToDevicePixels="True">
+                                <Grid>
+                                    <DatePickerTextBox x:Name="PART_TextBox"
+                                               Margin="0"
+                                               Background="Transparent"
+                                               BorderThickness="0"
+                                               VerticalContentAlignment="Center"/>
+                                    <Button x:Name="PART_Button"
+                                    Margin="0"
+                                    Padding="0"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Width="20"
+                                    Height="20"
+                                    Focusable="False"
+                                    Background="Transparent"
+                                    BorderBrush="{x:Null}">
+                                        <Path Fill="Gray" Data="M0,0 L1,0 1,1 0,1 Z"
+                                      Stretch="Uniform"
+                                      Width="12"
+                                      Height="12" />
+                                    </Button>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+    </UserControl.Resources>
+
+
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -76,7 +128,7 @@
               DisplayMemberPath="nombre"
               
               Margin="0,5,0,0"/>
-                        <Label x:Name="NombreSucursalCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding TituloVacio}"/>
+                        <Label x:Name="NombreSucursalCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding NombrePeliculaVacio}"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" VerticalAlignment="Top" Grid.Row="1" Margin="15">
@@ -85,8 +137,18 @@
               SelectedItem="{Binding SalaSeleccionada}" 
               DisplayMemberPath="nombre"
               Margin="0,5,0,0"/>
-                        <Label x:Name="SalaCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding TituloVacio}"/>
+                        <Label x:Name="SalaCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding NombreSalaVacio}"/>
                     </StackPanel>
+
+                    <!-- Controles de Fecha y Hora -->
+                    <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Margin="15">
+                        <TextBlock Text="Fecha de la función:" Foreground="White" Margin="0,0,0,5"/>
+                        <DatePicker SelectedDate="{Binding FechaFuncion}" Width="200" Style="{StaticResource RoundedDatePicker}"/>
+
+                        <TextBlock Text="Seleccione la hora de la función:" Foreground="White" Margin="0,15,0,5"/>
+                        <xctk:TimePicker Value="{Binding HoraFuncion}" Format="Custom" FormatString="HH:mm" Width="200"/>
+                    </StackPanel>
+
 
 
 
@@ -100,7 +162,7 @@
                             <Image Source="{Binding Poster, FallbackValue=/Vista/Icono_IMagen_BLanco.png, TargetNullValue=/Vista/Icono_IMagen_BLanco.png}" Height="180" />
 
                         </Button>
-                        <Label x:Name="imagenCampoVacio" Style="{StaticResource TextoCamposVacio}" Visibility="{Binding PosterVacio}"/>
+                        
 
 
                     </StackPanel>

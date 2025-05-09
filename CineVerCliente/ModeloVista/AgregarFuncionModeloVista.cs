@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -18,6 +19,47 @@ namespace CineVerCliente.ModeloVista
         private readonly MainWindowModeloVista _mainWindowModeloVista;
         public ICommand GuardarCommand { get; }
         public ICommand CancelarCommand { get; }
+        private Visibility _nombrePeliculaVacio;
+        public Visibility NombrePeliculaVacio
+        {
+            get => _nombrePeliculaVacio;
+            set
+            {
+                _nombrePeliculaVacio = value;
+                OnPropertyChanged(nameof(NombrePeliculaVacio));
+            }
+        }
+        private Visibility _nombreSalaVacio;
+        public Visibility NombreSalaVacio
+        {
+            get => _nombreSalaVacio;
+            set
+            {
+                _nombreSalaVacio = value;
+                OnPropertyChanged(nameof(NombreSalaVacio));
+            }
+        }
+
+        private SalaDTO _salaSeleccionada;
+        public SalaDTO SalaSeleccionada
+        {
+            get => _salaSeleccionada;
+            set
+            {
+                _salaSeleccionada = value;
+                OnPropertyChanged(nameof(SalaSeleccionada));
+            }
+        }
+        private ObservableCollection<SalaDTO> _salas;
+        public ObservableCollection<SalaDTO> Salas
+        {
+            get => _salas;
+            set
+            {
+                _salas = value;
+                OnPropertyChanged(nameof(Salas));
+            }
+        }
         private ObservableCollection<PeliculaDTOs> _peliculas;
         public ObservableCollection<PeliculaDTOs> Peliculas
         {
@@ -73,7 +115,10 @@ namespace CineVerCliente.ModeloVista
 
             var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(1);    //Cambiar por el id de la sucursal
             _peliculas = new ObservableCollection<PeliculaDTOs>(peliculasBase.Peliculas);
+            var salasBase = _salaServicio.ObtenerSalasPorSucursal(1);    //Cambiar por el id de la sucursal
+            _salas = new ObservableCollection<SalaDTO>(salasBase.Salas);
             Poster = new BitmapImage(new Uri("pack://application:,,,/Vista/Icono_Imagen.png"));
+            OcultarCamposVacios();
         }
         public ImageSource ConvertirRutaAImageSource(string ruta)
         {
@@ -122,6 +167,11 @@ namespace CineVerCliente.ModeloVista
         private void Regresar(Object obj)
         {
 
+        }
+        public void OcultarCamposVacios()
+        {
+            NombrePeliculaVacio = Visibility.Collapsed;
+            NombreSalaVacio = Visibility.Collapsed;
         }
     }
 }
