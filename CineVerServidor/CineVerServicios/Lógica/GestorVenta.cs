@@ -97,7 +97,34 @@ namespace CineVerServicios.Lógica
         public Result<decimal> ObtenerVentasDeBoletosDelDia(int idSucursal)
         {
             var resultado = ventaDAO.ObtenerVentasDeBoletosDelDia(idSucursal);
-            
+
+            if (!resultado.EsExitoso)
+            {
+                return Result<decimal>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<decimal>.Exito(resultado.Valor);
+            }
+        }
+
+        public Result<decimal> ObtenerVentasDeDulceriaDelDia(int idSucursal)
+        {
+            var resultado = ventaDAO.ObtenerVentasDeDulceriaDelDia(idSucursal);
+            if (!resultado.EsExitoso)
+            {
+                return Result<decimal>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<decimal>.Exito(resultado.Valor);
+            }
+        }
+
+        public Result<decimal> ObtenerVentasEnEfectivoDelDia(int idSucursal)
+        {
+            var resultado = ventaDAO.ObtenerVentasEnEfectivoDelDia(idSucursal);
+
             if (!resultado.EsExitoso)
             {
                 return Result<decimal>.Fallo(resultado.Error);

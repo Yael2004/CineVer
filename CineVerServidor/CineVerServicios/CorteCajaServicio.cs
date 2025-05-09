@@ -45,5 +45,27 @@ namespace CineVerServicios
                 return Task.FromResult<CorteCajaInicioFinDTO>(null);
             }
         }
+
+        public Task<CorteCajaResponseDTO> ObtenerMontoInicioDia(int idSucursal)
+        {
+            var resultado = _gestorCorteCaja.ObtenerMontoInicioDia(idSucursal);
+
+            if (resultado.EsExitoso)
+            {
+                var corteCajaResponse = new CorteCajaResponseDTO
+                {
+                    Monto = resultado.Valor,
+                    ResultDTO = new ResultDTO(true, string.Empty)
+                };
+                return Task.FromResult(corteCajaResponse);
+            }
+            else
+            {
+                return Task.FromResult(new CorteCajaResponseDTO {
+
+                    ResultDTO = new ResultDTO(false, resultado.Error)
+                });
+            }
+        }
     }
 }

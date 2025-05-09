@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CineVerServicios.DTO
 {
     [DataContract]
-    public class VentaBoletosResponseDTO
+    public class VentaTipoResponseDTO
     {
         [DataMember]
         public decimal Total { get; set; }

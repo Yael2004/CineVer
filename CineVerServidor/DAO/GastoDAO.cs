@@ -35,18 +35,19 @@ namespace DAO
             }
         }
 
-        public Result<List<Gasto>> ObtenerGastosDelDia(DateTime fecha)
+        public Result<List<Gasto>> ObtenerGastosDelDia(DateTime fecha, int idSucursal)
         {
             using (CineVerEntities entities = new CineVerEntities())
             {
                 try
                 {
-                    var gastos = entities.Gasto.Where(e => e.fecha.Value.Day.Equals(fecha.Day)).ToList();
+                    var gastos = entities.Gasto.Where(e => e.fecha.Value.Day.Equals(fecha.Day) && e.idSucursal.Value.Equals(idSucursal)).ToList();
 
                     if (gastos.Count() == 0)
                     {
                         return Result<List<Gasto>>.Fallo("No hay gastos registrados el día de hoy");
                     }
+
                     return Result<List<Gasto>>.Exito(gastos);
                 }
                 catch (DbEntityValidationException ex)

@@ -38,13 +38,13 @@ namespace CineVerServicios.Lógica
             }
         }
 
-        public Result<List<GastoDTO>> ObtenerGastosDelDia(DateTime fecha)
+        public Result<ListaGastosDTO> ObtenerGastosDelDia(DateTime fecha, int idSucursal)
         {
-            var resultado = gastoDAO.ObtenerGastosDelDia(fecha);
+            var resultado = gastoDAO.ObtenerGastosDelDia(fecha, idSucursal);
             
             if (!resultado.EsExitoso)
             {
-                return Result<List<GastoDTO>>.Fallo(resultado.Error);
+                return Result<ListaGastosDTO>.Fallo(resultado.Error);
             }
             else
             {
@@ -59,12 +59,12 @@ namespace CineVerServicios.Lógica
                         Motivo = gasto.motivo,
                         Fecha = (DateTime)gasto.fecha,
                         IdSucursal = (int)gasto.idSucursal,
-                        IdEmpleado = (int)gasto.idEmpleado
+                        //IdEmpleado = (int)gasto.idEmpleado
                     };
                     listaGastos.Gastos.Add(gastoDTO);
                 }
 
-                return Result<List<GastoDTO>>.Exito(listaGastos.Gastos);
+                return Result<ListaGastosDTO>.Exito(listaGastos);
             }
         }
     }

@@ -48,12 +48,12 @@ namespace CineVerServicios
             }
         }
 
-        public Task<VentaBoletosResponseDTO> ObtenerVentasDeBoletosDelDia(int idSucursal)
+        public Task<VentaTipoResponseDTO> ObtenerVentasDeBoletosDelDia(int idSucursal)
         {
             var resultado = _gestorVenta.ObtenerVentasDeBoletosDelDia(idSucursal);
             if (resultado.EsExitoso)
             {
-                return Task.FromResult(new VentaBoletosResponseDTO
+                return Task.FromResult(new VentaTipoResponseDTO
                 {
                     Total = resultado.Valor,
                     ResultDTO = new ResultDTO(true, string.Empty)
@@ -61,16 +61,52 @@ namespace CineVerServicios
             }
             else
             {
-                return Task.FromResult(new VentaBoletosResponseDTO
+                return Task.FromResult(new VentaTipoResponseDTO
                 {
                     ResultDTO = new ResultDTO(false, resultado.Error)
                 });
             }
         }
 
-        public Task<ResultDTO> ObtenerVentasDeDulceriaDelDia(int idSucursal)
+        public Task<VentaTipoResponseDTO> ObtenerVentasDeDulceriaDelDia(int idSucursal)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorVenta.ObtenerVentasDeDulceriaDelDia(idSucursal);
+            
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new VentaTipoResponseDTO
+                {
+                    Total = resultado.Valor,
+                    ResultDTO = new ResultDTO(true, string.Empty)
+                });
+            }
+            else
+            {
+                return Task.FromResult(new VentaTipoResponseDTO
+                {
+                    ResultDTO = new ResultDTO(false, resultado.Error)
+                });
+            }
+        }
+
+        public Task<VentaTipoResponseDTO> ObtenerVentasEnEfectivoDelDia(int idSucursal)
+        {
+            var resultado = _gestorVenta.ObtenerVentasEnEfectivoDelDia(idSucursal);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new VentaTipoResponseDTO
+                {
+                    Total = resultado.Valor,
+                    ResultDTO = new ResultDTO(true, string.Empty)
+                });
+            }
+            else
+            {
+                return Task.FromResult(new VentaTipoResponseDTO
+                {
+                    ResultDTO = new ResultDTO(false, resultado.Error)
+                });
+            }
         }
 
         public Task<ListaVentasDTO> ObtenerVentasPorAnio(int anio, int idSucursal)

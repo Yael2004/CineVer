@@ -62,5 +62,18 @@ namespace CineVerServicios.Lógica
             }
         }
 
+        public Result<decimal> ObtenerMontoInicioDia(int idSucursal)
+        {
+            var resultado = corteCajaDAO.ObtenerMontoInicioDia(idSucursal);
+
+            if (resultado.EsExitoso)
+            {
+                return Result<decimal>.Exito(resultado.Valor);
+            }
+            else
+            {
+                return Result<decimal>.Fallo(resultado.Error);
+            }
+        }
     }
 }

@@ -200,5 +200,28 @@ namespace DAO
             }
         }
 
+        public Result<decimal> ObtenerVentasEnEfectivoDelDia(int idSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var fechaHoy = DateTime.Now.Date;
+                    var ventas = entities.Venta
+                        .Where(v => DbFunctions.TruncateTime(v.fecha) == fechaHoy && v.idSucursal == idSucursal && v.metodoPago.Contains("Efectivo"))
+                        .ToList();
+                    if (ventas.Count == 0)
+                    {
+                        return Result<decimal>.Fallo("No se encontraron ventas en efectivo para el día especificado");
+                    }
+                    decimal totalVentas = (decimal)ventas.Sum(v => v.total);
+                    return Result<decimal>.Exito(totalVentas);
+                }
+                catch (Exception ex)
+                {
+                    return Result<decimal>.Fallo("¡Error al consultar las ventas en efectivo! " + ex.Message);
+                }
+            }
+        }
     }
 }

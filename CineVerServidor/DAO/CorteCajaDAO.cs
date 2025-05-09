@@ -63,5 +63,33 @@ namespace DAO
                 }
             }
         }
+
+        public Result<decimal> ObtenerMontoInicioDia(int idSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var fechaAyer = DateTime.Now.AddDays(-1).Date;
+                    var corteCaja = entities.CorteCaja.FirstOrDefault(c => DbFunctions.TruncateTime(c.fechaCorte) == fechaAyer && c.idSucursal == idSucursal);
+                    if (corteCaja != null)
+                    {
+                        return Result<decimal>.Exito(corteCaja.inicioDia);
+                    }
+                    else
+                    {
+                        return Result<decimal>.Fallo("No se encontró el corte de caja para la fecha especificada.");
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<decimal>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<decimal>.Fallo(sqlEx.Message);
+                }
+            }
+        }
     }
 }

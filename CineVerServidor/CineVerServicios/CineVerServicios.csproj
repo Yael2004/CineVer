@@ -64,6 +64,7 @@
     <Compile Include="DTO\CorteCajaDTO.cs" />
     <Compile Include="DTO\CorteCajaInicioFinDTO.cs" />
     <Compile Include="CuentaFidelidadServicio.cs" />
+    <Compile Include="DTO\CorteCajaResponseDTO.cs" />
     <Compile Include="DTO\CuentaFidelidadDTO.cs" />
     <Compile Include="DTO\CuentaFidelidadResponseDTO.cs" />
     <Compile Include="DTO\EmpleadoDTO.cs" />
@@ -85,7 +86,7 @@
     <Compile Include="DTO\SocioDTO.cs" />
     <Compile Include="DTO\SocioResponseDTO.cs" />
     <Compile Include="DTO\SucursalDTO.cs" />
-    <Compile Include="DTO\VentaBoletosResponseDTO.cs" />
+    <Compile Include="DTO\VentaTipoResponseDTO.cs" />
     <Compile Include="DTO\VentaDTO.cs" />
     <Compile Include="DulceriaServicio.cs" />
     <Compile Include="Interfaces\ICorteCajaServicio.cs" />

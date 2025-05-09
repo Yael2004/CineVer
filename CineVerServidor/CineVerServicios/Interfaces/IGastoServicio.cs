@@ -14,6 +14,6 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ResultDTO> RegistrarGasto(GastoDTO gastoDTO);
         [OperationContract]
-        Task<ListaGastosDTO> ObtenerGastosDelDia(DateTime fecha);
+        Task<ListaGastosDTO> ObtenerGastosDelDia(DateTime fecha, int idSucursal);
     }
 }
