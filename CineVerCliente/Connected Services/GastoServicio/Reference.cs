@@ -271,10 +271,10 @@ namespace CineVerCliente.GastoServicio {
         System.Threading.Tasks.Task<CineVerCliente.GastoServicio.ResultDTO> RegistrarGastoAsync(CineVerCliente.GastoServicio.GastoDTO gastoDTO);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGastoServicio/ObtenerGastosDelDia", ReplyAction="http://tempuri.org/IGastoServicio/ObtenerGastosDelDiaResponse")]
-        CineVerCliente.GastoServicio.ListaGastosDTO ObtenerGastosDelDia(System.DateTime fecha);
+        CineVerCliente.GastoServicio.ListaGastosDTO ObtenerGastosDelDia(System.DateTime fecha, int idSucursal);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGastoServicio/ObtenerGastosDelDia", ReplyAction="http://tempuri.org/IGastoServicio/ObtenerGastosDelDiaResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.GastoServicio.ListaGastosDTO> ObtenerGastosDelDiaAsync(System.DateTime fecha);
+        System.Threading.Tasks.Task<CineVerCliente.GastoServicio.ListaGastosDTO> ObtenerGastosDelDiaAsync(System.DateTime fecha, int idSucursal);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -312,12 +312,12 @@ namespace CineVerCliente.GastoServicio {
             return base.Channel.RegistrarGastoAsync(gastoDTO);
         }
         
-        public CineVerCliente.GastoServicio.ListaGastosDTO ObtenerGastosDelDia(System.DateTime fecha) {
-            return base.Channel.ObtenerGastosDelDia(fecha);
+        public CineVerCliente.GastoServicio.ListaGastosDTO ObtenerGastosDelDia(System.DateTime fecha, int idSucursal) {
+            return base.Channel.ObtenerGastosDelDia(fecha, idSucursal);
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.GastoServicio.ListaGastosDTO> ObtenerGastosDelDiaAsync(System.DateTime fecha) {
-            return base.Channel.ObtenerGastosDelDiaAsync(fecha);
+        public System.Threading.Tasks.Task<CineVerCliente.GastoServicio.ListaGastosDTO> ObtenerGastosDelDiaAsync(System.DateTime fecha, int idSucursal) {
+            return base.Channel.ObtenerGastosDelDiaAsync(fecha, idSucursal);
         }
     }
 }

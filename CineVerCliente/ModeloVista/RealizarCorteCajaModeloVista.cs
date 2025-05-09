@@ -206,8 +206,6 @@ namespace CineVerCliente.ModeloVista
 
             MontoFinalDiaCampoVacio = Visibility.Hidden;
             InicioSiguienteDiaCampoVacio = Visibility.Hidden;
-        
-            CargarDatos();
         }
 
         public void Salir(object obj)
@@ -237,6 +235,9 @@ namespace CineVerCliente.ModeloVista
             VerPrimeraVista = Visibility.Collapsed;
             MostrarMensajeConfirmar = Visibility.Collapsed;
             VerSegundaVista = Visibility.Visible;
+
+
+            CargarDatos();
         }
 
         public void Cancelar(object obj)
@@ -246,13 +247,45 @@ namespace CineVerCliente.ModeloVista
 
         private void CargarDatos()
         {
-            var clienteVenta = new VentaServicio.VentaServicioClient();
-            var resultado = clienteVenta.ObtenerVentasDeBoletosDelDia(1);
-
-            if (resultado.ResultDTO.EsExitoso)
+            try
             {
-                VentaBoletos = resultado.Total;
-            }   
+                var clienteVenta = new VentaServicio.VentaServicioClient();
+                var clienteGastos = new GastoServicio.GastoServicioClient();
+                var clienteCorteCaja = new CorteCajaServicio.CorteCajaServicioClient();
+
+                var resultadoBoletos = clienteVenta.ObtenerVentasDeBoletosDelDia(1);
+                var resultadoDulceria = clienteVenta.ObtenerVentasDeDulceriaDelDia(1);
+                var resultadoGastos = clienteGastos.ObtenerGastosDelDia(DateTime.Now, 1);
+                var resultadoEfectivo = clienteVenta.ObtenerVentasEnEfectivoDelDia(1);
+                var resultadoCorteCaja = clienteCorteCaja.ObtenerMontoInicioDia(1);
+                
+                if (resultadoBoletos.ResultDTO.EsExitoso && resultadoDulceria.ResultDTO.EsExitoso)
+                {
+                    VentaBoletos = resultadoBoletos.Total;
+                    VentaDulceria = resultadoDulceria.Total;
+                    VentasTotales = resultadoBoletos.Total + resultadoDulceria.Total;
+                    EfectivoCaja = decimal.Parse(MontoFinalDiaTexto);
+                    Gastos = resultadoGastos.Gastos.Sum(g => g.Monto);
+                    DiferenciaEfectivo = EfectivoEsperado - EfectivoCaja;
+                
+                    if (resultadoCorteCaja.Monto == 0)
+                    {
+                        MontoFinalDiaTexto = "0,00";
+                    }
+                    else
+                    {
+                        EfectivoEsperado = resultadoEfectivo.Total + resultadoCorteCaja.Monto;
+                    }
+
+                    Ganancias = VentasTotales - Gastos;
+                }   
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar los datos: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
         }
 
         private bool ValidarMontoFinalDia()

@@ -63,6 +63,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\CorteCajaServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\CuentaFidelidadServicio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -349,6 +354,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\CorteCajaServicio\CineVerCliente.CorteCajaServicio.CorteCajaInicioFinDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CorteCajaServicio\CineVerCliente.CorteCajaServicio.CorteCajaResponseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CorteCajaServicio\CineVerCliente.CorteCajaServicio.ResultDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CorteCajaServicio\CorteCajaServicio.wsdl" />
+    <None Include="Connected Services\CorteCajaServicio\CorteCajaServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CorteCajaServicio\CorteCajaServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CorteCajaServicio\CorteCajaServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\DulceriaServicio\CineVerCliente.DulceriaServicio.ListaProductosDulceriaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -466,7 +490,7 @@
     <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.ResultDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.VentaBoletosResponseDTO.datasource">
+    <None Include="Connected Services\VentaServicio\CineVerCliente.VentaServicio.VentaTipoResponseDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\VentaServicio\VentaServicio.wsdl" />
@@ -501,6 +525,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CorteCajaServicio\" />
     <WCFMetadataStorage Include="Connected Services\CuentaFidelidadServicio\" />
     <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
     <WCFMetadataStorage Include="Connected Services\EmpleadoServicio\" />
@@ -619,6 +644,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\GastoServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CorteCajaServicio\CorteCajaServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CorteCajaServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CorteCajaServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CorteCajaServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

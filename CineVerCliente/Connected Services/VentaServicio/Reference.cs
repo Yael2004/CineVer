@@ -624,9 +624,9 @@ namespace CineVerCliente.VentaServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="VentaBoletosResponseDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VentaTipoResponseDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
     [System.SerializableAttribute()]
-    public partial class VentaBoletosResponseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class VentaTipoResponseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -754,16 +754,22 @@ namespace CineVerCliente.VentaServicio {
         System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> VerificarFechaVentaParaDevolucionAsync(string folio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDiaResponse")]
-        CineVerCliente.VentaServicio.VentaBoletosResponseDTO ObtenerVentasDeBoletosDelDia(int idSucursal);
+        CineVerCliente.VentaServicio.VentaTipoResponseDTO ObtenerVentasDeBoletosDelDia(int idSucursal);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeBoletosDelDiaResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaBoletosResponseDTO> ObtenerVentasDeBoletosDelDiaAsync(int idSucursal);
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaTipoResponseDTO> ObtenerVentasDeBoletosDelDiaAsync(int idSucursal);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDiaResponse")]
-        CineVerCliente.VentaServicio.ResultDTO ObtenerVentasDeDulceriaDelDia(int idSucursal);
+        CineVerCliente.VentaServicio.VentaTipoResponseDTO ObtenerVentasDeDulceriaDelDia(int idSucursal);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasDeDulceriaDelDiaResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentasDeDulceriaDelDiaAsync(int idSucursal);
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaTipoResponseDTO> ObtenerVentasDeDulceriaDelDiaAsync(int idSucursal);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasEnEfectivoDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasEnEfectivoDelDiaResponse")]
+        CineVerCliente.VentaServicio.VentaTipoResponseDTO ObtenerVentasEnEfectivoDelDia(int idSucursal);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasEnEfectivoDelDia", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasEnEfectivoDelDiaResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaTipoResponseDTO> ObtenerVentasEnEfectivoDelDiaAsync(int idSucursal);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -881,20 +887,28 @@ namespace CineVerCliente.VentaServicio {
             return base.Channel.VerificarFechaVentaParaDevolucionAsync(folio);
         }
         
-        public CineVerCliente.VentaServicio.VentaBoletosResponseDTO ObtenerVentasDeBoletosDelDia(int idSucursal) {
+        public CineVerCliente.VentaServicio.VentaTipoResponseDTO ObtenerVentasDeBoletosDelDia(int idSucursal) {
             return base.Channel.ObtenerVentasDeBoletosDelDia(idSucursal);
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaBoletosResponseDTO> ObtenerVentasDeBoletosDelDiaAsync(int idSucursal) {
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaTipoResponseDTO> ObtenerVentasDeBoletosDelDiaAsync(int idSucursal) {
             return base.Channel.ObtenerVentasDeBoletosDelDiaAsync(idSucursal);
         }
         
-        public CineVerCliente.VentaServicio.ResultDTO ObtenerVentasDeDulceriaDelDia(int idSucursal) {
+        public CineVerCliente.VentaServicio.VentaTipoResponseDTO ObtenerVentasDeDulceriaDelDia(int idSucursal) {
             return base.Channel.ObtenerVentasDeDulceriaDelDia(idSucursal);
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ObtenerVentasDeDulceriaDelDiaAsync(int idSucursal) {
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaTipoResponseDTO> ObtenerVentasDeDulceriaDelDiaAsync(int idSucursal) {
             return base.Channel.ObtenerVentasDeDulceriaDelDiaAsync(idSucursal);
+        }
+        
+        public CineVerCliente.VentaServicio.VentaTipoResponseDTO ObtenerVentasEnEfectivoDelDia(int idSucursal) {
+            return base.Channel.ObtenerVentasEnEfectivoDelDia(idSucursal);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.VentaTipoResponseDTO> ObtenerVentasEnEfectivoDelDiaAsync(int idSucursal) {
+            return base.Channel.ObtenerVentasEnEfectivoDelDiaAsync(idSucursal);
         }
     }
 }

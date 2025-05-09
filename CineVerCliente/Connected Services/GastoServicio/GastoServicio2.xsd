@@ -19,6 +19,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="idSucursal" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

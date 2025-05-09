@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="02d9ed63-fc62-49c1-aee6-6ce8993fe54b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:2020/CorteCajaServicio" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CorteCajaServicio.disco" MetadataType="Disco" ID="c8d8d453-a304-40ee-8e6c-74d5b291883b" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?disco" />
+    <MetadataFile FileName="CorteCajaServicio.xsd" MetadataType="Schema" ID="5d4d1ed6-71c9-4c86-a5de-7fcbc36d6756" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd2" />
+    <MetadataFile FileName="CorteCajaServicio.wsdl" MetadataType="Wsdl" ID="c60c214b-95c8-4325-a602-eab0977ebf9f" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?wsdl" />
+    <MetadataFile FileName="CorteCajaServicio1.xsd" MetadataType="Schema" ID="cc0eb249-6cb4-453f-91ea-85c0f54e1713" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd0" />
+    <MetadataFile FileName="CorteCajaServicio2.xsd" MetadataType="Schema" ID="3d0415ed-8a86-4b10-b187-c075c27d8e70" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

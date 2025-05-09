@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:2020/CorteCajaServicio?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" />
+  <xs:element name="GuardarCorteCaja">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="corteCajaDTO" nillable="true" type="q1:CorteCajaDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarCorteCajaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="GuardarCorteCajaResult" nillable="true" type="q2:ResultDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerInicioFinDia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerInicioFinDiaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerInicioFinDiaResult" nillable="true" type="q3:CorteCajaInicioFinDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerMontoInicioDia">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idSucursal" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerMontoInicioDiaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerMontoInicioDiaResult" nillable="true" type="q4:CorteCajaResponseDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
