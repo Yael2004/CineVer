@@ -142,12 +142,24 @@
 
                     <!-- Controles de Fecha y Hora -->
                     <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Margin="15">
-                        <TextBlock Text="Fecha de la función:" Foreground="White" Margin="0,0,0,5"/>
-                        <DatePicker SelectedDate="{Binding FechaFuncion}" Width="200" Style="{StaticResource RoundedDatePicker}"/>
+                        <TextBlock Text="Fecha de inicio de funciones:" Foreground="White" Margin="0,0,0,5"/>
+                        <DatePicker SelectedDate="{Binding FechaFuncion}" Width="200" />
+
+                        <TextBlock Text="Fecha de fin de funciones:" Foreground="White" Margin="0,10,0,5"/>
+                        <DatePicker SelectedDate="{Binding FechaFuncion}" Width="200" />
 
                         <TextBlock Text="Seleccione la hora de la función:" Foreground="White" Margin="0,15,0,5"/>
                         <xctk:TimePicker Value="{Binding HoraFuncion}" Format="Custom" FormatString="HH:mm" Width="200"/>
+
+                        <TextBlock Text="Costo del boleto:" Foreground="White" Margin="0,15,0,5"/>
+                        <xctk:DoubleUpDown Value="{Binding CostoBoleto}"
+                       FormatString="F2"
+                       Minimum="0"
+                       Increment="0.10"
+                       Width="200"
+                       HorizontalAlignment="Center"/>
                     </StackPanel>
+
 
 
 
@@ -159,7 +171,7 @@
 
                         <TextBlock Text="Póster promocional:" Foreground="White" Margin="0,10,0,0"/>
                         <Button Width="Auto" Height="Auto" Background="Transparent" BorderThickness="0" Command="{Binding CargarImagenCommand}">
-                            <Image Source="{Binding Poster, FallbackValue=/Vista/Icono_IMagen_BLanco.png, TargetNullValue=/Vista/Icono_IMagen_BLanco.png}" Height="180" />
+                            <Image Source="{Binding Poster, FallbackValue=/Vista/Icono_IMagen_BLanco.png, TargetNullValue=/Vista/Icono_IMagen_BLanco.png}" Height="300" />
 
                         </Button>
                         
