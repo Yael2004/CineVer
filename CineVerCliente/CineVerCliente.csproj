@@ -115,9 +115,11 @@
     </Compile>
     <Compile Include="Helpers\Asiento.cs" />
     <Compile Include="Helpers\FilaAsientos.cs" />
+    <Compile Include="Helpers\FuncionVista.cs" />
     <Compile Include="Helpers\ImagenGrupo.cs" />
     <Compile Include="Helpers\ImagenPelicula.cs" />
     <Compile Include="Helpers\Notificacion.cs" />
+    <Compile Include="Helpers\PeliculaConFunciones.cs" />
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarFuncionModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarPelículaModeloVista.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarEmpleadosModeloVista.cs" />
+    <Compile Include="ModeloVista\ConsultarFuncionesModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarPeliculasModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSalasModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSucursalesModeloVista.cs" />
@@ -189,6 +192,9 @@
     </Compile>
     <Compile Include="Vista\ConsultarEmpleados.xaml.cs">
       <DependentUpon>ConsultarEmpleados.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\ConsultarFunciones.xaml.cs">
+      <DependentUpon>ConsultarFunciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\ConsultarSalas.xaml.cs">
       <DependentUpon>ConsultarSalas.xaml</DependentUpon>
@@ -306,6 +312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\ConsultarEmpleados.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\ConsultarFunciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -728,6 +738,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\icono-agregar %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Iconos\billete-de-banco %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\billete-de-banco %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

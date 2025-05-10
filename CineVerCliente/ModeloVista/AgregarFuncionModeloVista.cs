@@ -210,6 +210,22 @@ namespace CineVerCliente.ModeloVista
             Poster = new BitmapImage(new Uri("pack://application:,,,/Vista/Icono_Imagen.png"));
             OcultarCamposVacios();
         }
+
+        public AgregarFuncionModeloVista(MainWindowModeloVista mainWindowModeloVista,PeliculaDTOs pelicula)
+        {
+            _mainWindowModeloVista = mainWindowModeloVista;
+            GuardarCommand = new ComandoModeloVista(Guardar);
+            RegresarCommand = new ComandoModeloVista(Regresar);
+            _peliculaServicioClient = new PelículaServicioClient();
+
+            var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(1);    //Cambiar por el id de la sucursal
+            _peliculas = new ObservableCollection<PeliculaDTOs>(peliculasBase.Peliculas);
+            var salasBase = _salaServicio.ObtenerSalasPorSucursal(1);    //Cambiar por el id de la sucursal
+            _salas = new ObservableCollection<SalaDTO>(salasBase.Salas);
+            PeliculaSeleccionada = pelicula;
+            PeliculaSeleccionada = _peliculas.FirstOrDefault(p => p.idPelicula == pelicula.idPelicula);
+            OcultarCamposVacios();
+        }
         public ImageSource ConvertirRutaAImageSource(string ruta)
         {
             if (string.IsNullOrEmpty(ruta) || !System.IO.File.Exists(ruta))
@@ -350,9 +366,13 @@ namespace CineVerCliente.ModeloVista
 
             }
         }
+        public void CambiarModeloVista(BaseModeloVista nuevoModeloVista)
+        {
+            _mainWindowModeloVista.VistaActualModelo = nuevoModeloVista;
+        }
         private void Regresar(Object obj)
         {
-
+            CambiarModeloVista(new ConsultarFuncionesModeloVista(_mainWindowModeloVista));
         }
         public bool ValidarCampos()
         {

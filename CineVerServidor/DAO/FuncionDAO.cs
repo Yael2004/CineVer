@@ -19,7 +19,7 @@ namespace DAO
             {
                 try
                 {
-                    var funciones = entities.Función.Where(e=>e.fecha == fecha && e.idPelicula == idPelicula).ToList();
+                    var funciones = entities.Función.Include("Película").Include("Sala").Where(e=>e.fecha == fecha && e.idPelicula == idPelicula).ToList();
                     return Result<List<Función>>.Exito(funciones);
                 }
                 catch (DbEntityValidationException ex)
@@ -38,7 +38,7 @@ namespace DAO
             {
                 try
                 {
-                    var funciones = entities.Función.Where(e => e.fecha == fecha).ToList();
+                    var funciones = entities.Función.Include("Película").Include("Sala").Where(e => e.fecha == fecha).ToList();
                     return Result<List<Función>>.Exito(funciones);
                 }
                 catch (DbEntityValidationException ex)
