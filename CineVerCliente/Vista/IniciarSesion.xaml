@@ -10,7 +10,7 @@
         <Viewbox Stretch="Fill">
             <Grid>
                 <Grid Background="{StaticResource Blanco}"/>
-                <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,603,0"/>
+                <Grid Background="{StaticResource Fondo_Loggin}" Margin="0,0,603,0"/>
 
                 <Grid Margin="445,0,0,0">
                     <Grid Background="#FEAD34"/>
@@ -36,12 +36,14 @@
                     Style="{StaticResource Textbox}" 
                     Margin="503,259,57,468"
                     MaxLength="60"
+                    PreviewTextInput="CampoAlfanumerico"
                     Text="{Binding Matricula, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Contrasenia"
                     Style="{StaticResource Textbox}" 
                     Margin="503,456,57,271"
                     MaxLength="60"
+                    PreviewTextInput="ContraseñaValida"
                     Text="{Binding Contraseña, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Content="Iniciar sesión"

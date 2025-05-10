@@ -349,8 +349,8 @@ namespace CineVerCliente.ModeloVista
 
         private void CrearMenus()
         {
-            string rol = UsuarioEnLinea.Instancia.Rol;
-            //string rol = "Empleado operativo"; // Solo es para probar
+            //string rol = UsuarioEnLinea.Instancia.Rol;
+            string rol = "Gerente"; // Solo es para probar
 
             if (string.IsNullOrEmpty(rol))
             {

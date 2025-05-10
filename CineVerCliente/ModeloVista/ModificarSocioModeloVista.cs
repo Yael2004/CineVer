@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using CineVerCliente.SocioServicio;
+using CineVerCliente.Modelo;
 
 namespace CineVerCliente.ModeloVista
 {
     public class ModificarSocioModeloVista : BaseModeloVista
     {
-        private string _nombre;
+        private string _nombres;
         private string _apellidos;
         private DateTime _fechaNacimiento;
         private ObservableCollection<string> listaSexos = new ObservableCollection<string>();
@@ -46,12 +47,12 @@ namespace CineVerCliente.ModeloVista
         public ICommand AceptarCancelacionComando { get; }
         public ICommand CancelarCancelacionComando { get; }
 
-        public string Nombre
+        public string Nombres
         {
-            get { return _nombre; }
+            get { return _nombres; }
             set
             {
-                _nombre = value;
+                _nombres = value;
                 OnPropertyChanged();
             }
         }
@@ -271,6 +272,20 @@ namespace CineVerCliente.ModeloVista
             OcultarCampos();
         }
 
+        public void CargarSocio(SocioConsultado socio)
+        {
+            Nombres = socio.Nombres;
+            Apellidos = socio.Apellidos;
+            FechaNacimiento = socio.FechaNacimiento;
+            Sexo = socio.Sexo;
+            NumeroTelefono = socio.NumeroTelefono;
+            CorreoElectronico = socio.Correo;
+            Calle = socio.Calle;
+            NumeroCasa = socio.NumeroCasa;
+            CodigoPostal = socio.CodigoPostal;
+            OcultarCampos();
+        }
+
         private void Registrar(object obj)
         {
             if (ValidarCampos())
@@ -288,29 +303,37 @@ namespace CineVerCliente.ModeloVista
         {
             var cliente = new SocioServicio.SocioServicioClient();
 
-            var socio = new SocioDTO
+            try
             {
-                Nombres = _nombre,
-                Apellidos = _apellidos,
-                FechaNacimiento = _fechaNacimiento,
-                Sexo = _sexo,
-                NumeroTelefono = _numeroTelefono,
-                Correo = _correoElectronico,
-                Calle = _calle,
-                NumeroCasa = _numeroCasa,
-                CodigoPostal = _codigoPostal,
-                Afiliado = true
-            };
+                var socio = new SocioDTO
+                {
+                    Nombres = _nombres,
+                    Apellidos = _apellidos,
+                    FechaNacimiento = _fechaNacimiento,
+                    Sexo = _sexo,
+                    NumeroTelefono = _numeroTelefono,
+                    Correo = _correoElectronico,
+                    Calle = _calle,
+                    NumeroCasa = _numeroCasa,
+                    CodigoPostal = _codigoPostal,
+                    Afiliado = true
+                };
 
-            var respuesta = cliente.ModificarSocio(socio);
+                var respuesta = cliente.ModificarSocio(socio);
 
-            if (respuesta.EsExitoso)
-            {
-                Notificacion.Mostrar("Socio modificado con éxito", 4000);
-                MostrarMensajeConfirmacion = Visibility.Collapsed;
-                _mainWindowModeloVista.CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
+                if (respuesta.EsExitoso)
+                {
+                    Notificacion.Mostrar("Socio modificado con éxito", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                    _mainWindowModeloVista.CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al modificar al socio", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                }
             }
-            else
+            catch (Exception)
             {
                 Notificacion.Mostrar("Error al modificar al socio", 4000);
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
@@ -336,7 +359,7 @@ namespace CineVerCliente.ModeloVista
         {
             bool valido = true;
 
-            valido &= ValidarNombre();
+            valido &= ValidarNombres();
             valido &= ValidarApellidos();
             valido &= ValidarFechaNacimiento();
             valido &= ValidarSexo();
@@ -354,9 +377,9 @@ namespace CineVerCliente.ModeloVista
             return false;
         }
 
-        private bool ValidarNombre()
+        private bool ValidarNombres()
         {
-            if (string.IsNullOrEmpty(Nombre))
+            if (string.IsNullOrEmpty(Nombres))
             {
                 NombreCampoVacio = Visibility.Visible;
                 return false;

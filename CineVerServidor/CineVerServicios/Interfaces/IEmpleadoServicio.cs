@@ -25,6 +25,6 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ResultDTO> ExisteEmpleado(string matriucla);
         [OperationContract]
-        Task<ResultDTO> VerificarInicioSesion(string matricula, string contrasena);
+        Task<ResultDTO> VerificarInicioSesion(string matricula, byte[] contrasena);
     }
 }

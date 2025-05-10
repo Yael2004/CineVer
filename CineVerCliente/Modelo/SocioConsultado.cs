@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CineVerCliente.Modelo
 {
-    class SocioConsultado
+    public class SocioConsultado
     {
         private int _idSocio;
         private string _folio;

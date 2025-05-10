@@ -10,7 +10,7 @@
         <Viewbox Stretch="Fill">
             <Grid>
                 <Grid Background="{StaticResource Blanco}"/>
-                <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,106"/>
+                <Grid Background="{StaticResource Fondo_Empleados}" Margin="0,0,0,106"/>
 
                 <Grid Margin="50,240,50,0">
                     <Grid Background="{StaticResource Negro}" Margin="30,-226,29,0">
@@ -116,19 +116,28 @@
                     Style="{StaticResource Textbox}" 
                     Margin="369,107,175,610"
                     MaxLength="60"
+                    PreviewTextInput="SoloLetras"
                     Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Apellidos"
                     Style="{StaticResource Textbox}" 
                     Margin="369,167,175,550"
                     MaxLength="60"
+                    PreviewTextInput="SoloLetras"
                     Text="{Binding Apellidos, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <DatePicker Name="FechaNacimiento"
                     SelectedDate="{Binding FechaNacimiento, UpdateSourceTrigger=PropertyChanged}"
-                    Margin="369,221,426,490"/>
+                    Margin="369,221,426,490">
 
-                <ComboBox Name="Sexo" HorizontalAlignment="Left"
+                    <DatePicker.Resources>
+                        <Style TargetType="DatePickerTextBox">
+                            <Setter Property="IsReadOnly" Value="True"/>
+                        </Style>
+                    </DatePicker.Resources>
+                </DatePicker>
+
+                    <ComboBox Name="Sexo" HorizontalAlignment="Left"
                     Margin="369,266,0,0"
                     VerticalAlignment="Top" 
                     Width="120"
@@ -139,49 +148,57 @@
                     Style="{StaticResource Textbox}"
                     Margin="369,311,175,406"
                     MaxLength="60"
+                    PreviewTextInput="SoloNumeros"
                     Text="{Binding NumeroTelefono, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Correo"
                     Style="{StaticResource Textbox}" 
                     Margin="369,367,175,350"
                     MaxLength="60"
+                    PreviewTextInput="CorreoValido"
                     Text="{Binding CorreoElectronico, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Calle"
                     Style="{StaticResource Textbox}" 
                     Margin="369,423,175,294"
                     MaxLength="60"
+                    PreviewTextInput="SoloLetras"
                     Text="{Binding Calle, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="NumeroCasa"
                     Style="{StaticResource Textbox}" 
                     Margin="369,479,175,238"
                     MaxLength="60"
+                    PreviewTextInput="SoloNumeros"
                     Text="{Binding NumeroCasa, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="CodigoPostal"
                     Style="{StaticResource Textbox}" 
                     Margin="369,533,175,184"
                     MaxLength="60"
+                    PreviewTextInput="SoloNumeros"
                     Text="{Binding CodigoPostal, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="RFC"
                     Style="{StaticResource Textbox}" 
                     Margin="152,589,606,129"
                     MaxLength="60"
+                    PreviewTextInput="CampoAlfanumerico"
                     Text="{Binding RFC, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="NSS"
                     Style="{StaticResource Textbox}" 
-                    Margin="369,639,175,77"
+                    Margin="583,589,175,129"
                     MaxLength="60"
+                    PreviewTextInput="SoloNumeros"
                     Text="{Binding NSS, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="Contraseña"
                     Style="{StaticResource Textbox}" 
-                    Margin="583,589,175,129"
+                    Margin="353,644,175,74"
                     MaxLength="60"
-                    Text="{Binding Constraseña, UpdateSourceTrigger=PropertyChanged}"/>
+                    PreviewTextInput="ContraseñaValida"
+                    Text="{Binding Contraseña, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Content="Cancelar"
                     Style="{StaticResource BotonCancelar}" 
@@ -252,6 +269,13 @@
                     Style="{StaticResource TextoCamposVacio}" 
                     Margin="365,400,547,329" 
                     Visibility="{Binding CorreoElectronicoCampoVacio}"/>
+
+                <Label x:Name="CorreoCampoInvalido"
+                    Content="Correo inválido" 
+                    FontSize="8"
+                    Foreground="#EC221F"
+                    Margin="365,400,547,329" 
+                    Visibility="{Binding CorreoElectronicoCampoInvalido}"/>
 
                 <Label x:Name="CalleCampoVacio"
                     Style="{StaticResource TextoCamposVacio}" 

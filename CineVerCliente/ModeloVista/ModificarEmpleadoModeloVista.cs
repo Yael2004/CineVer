@@ -16,7 +16,7 @@ namespace CineVerCliente.ModeloVista
     {
         private ObservableCollection<string> _listaRoles = new ObservableCollection<string>();
         private string _rol;
-        private string _nombre;
+        private string _nombres;
         private string _apellidos;
         private DateTime _fechaNacimiento;
         private ObservableCollection<string> listaSexos = new ObservableCollection<string>();
@@ -37,6 +37,7 @@ namespace CineVerCliente.ModeloVista
         private Visibility _sexoCampoVacio;
         private Visibility _numeroTelefonoCampoVacio;
         private Visibility _correoElectronicoCampoVacio;
+        private Visibility _correoElectronicoCampoInvalido;
         private Visibility _calleCampoVacio;
         private Visibility _numeroCasaCampoVacio;
         private Visibility _codigoPostalCampoVacio;
@@ -78,12 +79,12 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public string Nombre
+        public string Nombres
         {
-            get { return _nombre; }
+            get { return _nombres; }
             set
             {
-                _nombre = value;
+                _nombres = value;
                 OnPropertyChanged();
             }
         }
@@ -278,6 +279,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public Visibility CorreoElectronicoCampoInvalido
+        {
+            get { return _correoElectronicoCampoInvalido; }
+            set
+            {
+                _correoElectronicoCampoInvalido = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Visibility CalleCampoVacio
         {
             get { return _calleCampoVacio; }
@@ -401,6 +412,23 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public void CargarEmpleado(EmpleadoConsultado empleado)
+        {
+            Rol = empleado.Rol;
+            Nombres = empleado.Nombres;
+            Apellidos = empleado.Apellidos;
+            FechaNacimiento = empleado.FechaNacimiento;
+            Sexo = empleado.Sexo;
+            NumeroTelefono = empleado.NumeroTelefono;
+            CorreoElectronico = empleado.Correo;
+            Calle = empleado.Calle;
+            NumeroCasa = empleado.NumeroCasa;
+            CodigoPostal = empleado.CodigoPostal;
+            RFC = empleado.RFC;
+            NSS = empleado.Nss;
+            Foto = empleado.Foto;
+        }
+
         private void Modificar(object obj)
         {
             if (ValidarCampos())
@@ -418,34 +446,42 @@ namespace CineVerCliente.ModeloVista
         {
             var cliente = new EmpleadoServicio.EmpleadoServicioClient();
 
-            var empleado = new EmpleadoDTO
+            try
             {
-                Nombres = _nombre,
-                Apellidos = _apellidos,
-                Nss = _nss,
-                Rol = _rol,
-                FechaNacimiento = _fechaNacimiento,
-                Sexo = _sexo,
-                NumeroTelefono = _numeroTelefono,
-                Correo = _correoElectronico,
-                Calle = _calle,
-                NumeroCasa = _numeroCasa,
-                CodigoPostal = _codigoPostal,
-                RFC = _rfc,
-                Foto = _foto,
-                Contratado = true,
-                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
-            };
+                var empleado = new EmpleadoDTO
+                {
+                    Nombres = _nombres,
+                    Apellidos = _apellidos,
+                    Nss = _nss,
+                    Rol = _rol,
+                    FechaNacimiento = _fechaNacimiento,
+                    Sexo = _sexo,
+                    NumeroTelefono = _numeroTelefono,
+                    Correo = _correoElectronico,
+                    Calle = _calle,
+                    NumeroCasa = _numeroCasa,
+                    CodigoPostal = _codigoPostal,
+                    RFC = _rfc,
+                    Foto = _foto,
+                    Contratado = true,
+                    IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
+                };
 
-            var respuesta = cliente.ModificarEmpleado(empleado);
+                var respuesta = cliente.ModificarEmpleado(empleado);
 
-            if (respuesta.EsExitoso)
-            {
-                Notificacion.Mostrar("Empleado modificado con éxito", 4000);
-                MostrarMensajeConfirmacion = Visibility.Collapsed;
-                _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
+                if (respuesta.EsExitoso)
+                {
+                    Notificacion.Mostrar("Empleado modificado con éxito", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                    _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al modificar al empleado", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                }
             }
-            else
+            catch (Exception)
             {
                 Notificacion.Mostrar("Error al modificar al empleado", 4000);
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
@@ -472,7 +508,7 @@ namespace CineVerCliente.ModeloVista
             bool valido = true;
 
             valido &= ValidarRol();
-            valido &= ValidarNombre();
+            valido &= ValidarNombres();
             valido &= ValidarApellidos();
             valido &= ValidarFechaNacimiento();
             valido &= ValidarSexo();
@@ -507,9 +543,9 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        private bool ValidarNombre()
+        private bool ValidarNombres()
         {
-            if (string.IsNullOrEmpty(Nombre))
+            if (string.IsNullOrEmpty(Nombres))
             {
                 NombreCampoVacio = Visibility.Visible;
                 return false;
@@ -571,11 +607,20 @@ namespace CineVerCliente.ModeloVista
         {
             if (string.IsNullOrEmpty(CorreoElectronico))
             {
+                CorreoElectronicoCampoInvalido = Visibility.Collapsed;
                 CorreoElectronicoCampoVacio = Visibility.Visible;
                 return false;
             }
 
+            if (!Validadores.ValidarCorreo(CorreoElectronico))
+            {
+                CorreoElectronicoCampoVacio = Visibility.Collapsed;
+                CorreoElectronicoCampoInvalido = Visibility.Visible;
+                return false;
+            }
+
             CorreoElectronicoCampoVacio = Visibility.Collapsed;
+            CorreoElectronicoCampoInvalido = Visibility.Collapsed;
             return true;
         }
 
@@ -658,6 +703,7 @@ namespace CineVerCliente.ModeloVista
             SexoCampoVacio = Visibility.Collapsed;
             NumeroTelefonoCampoVacio = Visibility.Collapsed;
             CorreoElectronicoCampoVacio = Visibility.Collapsed;
+            CorreoElectronicoCampoInvalido = Visibility.Collapsed;
             CalleCampoVacio = Visibility.Collapsed;
             NumeroCasaCampoVacio = Visibility.Collapsed;
             CodigoPostalCampoVacio = Visibility.Collapsed;

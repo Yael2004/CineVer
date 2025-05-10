@@ -11,7 +11,7 @@
             <Grid Height="600"
                 Width="1000">
                 <Grid Background="{StaticResource Blanco}"/>
-                <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,106"/>
+                <Grid Background="{StaticResource Fondo_Socios}" Margin="0,0,0,106"/>
 
                 <Grid HorizontalAlignment="Left" VerticalAlignment="Top" 
                 Height="204" Width="400" 

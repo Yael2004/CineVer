@@ -23,6 +23,8 @@ namespace CineVerCliente.Modelo
         private string _rfc;
         private string _matricula;
         private byte[] _foto;
+        private bool _contratado;
+        private byte[] _contraseña;
         private int _idSucursal;
 
         public int IdEmpleado { get; set; }
@@ -40,6 +42,8 @@ namespace CineVerCliente.Modelo
         public string RFC { get; set; }
         public string Matricula { get; set; }
         public byte[] Foto { get; set; }
+        public bool Contratado { get; set; }
+        public byte[] Contraseña { get; set; }
         public int IdSucursal { get; set; }
     }
 }

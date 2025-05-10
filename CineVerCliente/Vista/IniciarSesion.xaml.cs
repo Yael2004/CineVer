@@ -24,5 +24,40 @@ namespace CineVerCliente.Vista
         {
             InitializeComponent();
         }
+
+        private void ContraseñaValida(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !ValidarContraseña(e.Text);
+        }
+
+        private bool ValidarContraseña(string texto)
+        {
+            foreach (char c in texto)
+            {
+                if (!char.IsLetterOrDigit(c) && c != ' ' && !"@$!%?&#_".Contains(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void CampoAlfanumerico(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !ValidarAlfanumerico(e.Text);
+        }
+
+        private bool ValidarAlfanumerico(string texto)
+        {
+            foreach (char c in texto)
+            {
+                if (!char.IsLetterOrDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

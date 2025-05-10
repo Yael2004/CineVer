@@ -21,6 +21,18 @@
                 ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_CorteCaja.png"
                 Stretch="UniformToFill"/>
 
+    <ImageBrush x:Key="Fondo_Empleados"
+            ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Empleados.png"
+            Stretch="UniformToFill"/>
+
+    <ImageBrush x:Key="Fondo_Loggin"
+            ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Loggin.png"
+            Stretch="UniformToFill"/>
+
+    <ImageBrush x:Key="Fondo_Socios"
+            ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Socios.png"
+            Stretch="UniformToFill"/>
+
     <BitmapImage x:Key="Icono_Editar"
                 UriSource="pack://application:,,,/Assets/Imagenes/Iconos/Icono_Editar.png"/>
 

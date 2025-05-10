@@ -84,22 +84,12 @@ namespace CineVerCliente.ModeloVista
             OcultarCampos();
         }
 
-        private string HashContraseña(string contraseña)
+        private byte[] HashContraseña(string contraseña)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] contraseñaBytes = Encoding.UTF8.GetBytes(contraseña);
-
-                byte[] hashBytes = sha256.ComputeHash(contraseñaBytes);
-
-                StringBuilder stringBuilder = new StringBuilder();
-
-                foreach (byte b in hashBytes)
-                {
-                    stringBuilder.Append(b.ToString("x2"));
-                }
-
-                return stringBuilder.ToString();
+                return sha256.ComputeHash(contraseñaBytes);
             }
         }
 
@@ -107,46 +97,55 @@ namespace CineVerCliente.ModeloVista
         {
             if (ValidarCampos())
             {
-                string hashContrasenia = HashContraseña(Contraseña);
+                byte[] hashContrasenia = HashContraseña(Contraseña);
 
                 var cliente = new EmpleadoServicio.EmpleadoServicioClient();
 
-                var empleado = cliente.VerificarInicioSesion(Matricula, hashContrasenia);
-
-                if (empleado.EsExitoso)
+                try
                 {
-                    var empleadoLogueado = cliente.BuscarEmpleadoPorMatricula(Matricula);
+                    var empleado = cliente.VerificarInicioSesion(Matricula, hashContrasenia);
 
-                    var empleadoConsultado = new EmpleadoConsultado
+                    if (empleado.EsExitoso)
                     {
-                        IdEmpleado = empleadoLogueado.empleado.IdEmpleado,
-                        Nombres = empleadoLogueado.empleado.Nombres,
-                        Apellidos = empleadoLogueado.empleado.Apellidos,
-                        Nss = empleadoLogueado.empleado.Nss,
-                        Rol = empleadoLogueado.empleado.Rol,
-                        FechaNacimiento = empleadoLogueado.empleado.FechaNacimiento,
-                        Sexo = empleadoLogueado.empleado.Sexo,
-                        NumeroTelefono = empleadoLogueado.empleado.NumeroTelefono,
-                        Correo = empleadoLogueado.empleado.Correo,
-                        Calle = empleadoLogueado.empleado.Calle,
-                        NumeroCasa = empleadoLogueado.empleado.NumeroCasa,
-                        CodigoPostal = empleadoLogueado.empleado.CodigoPostal,
-                        RFC = empleadoLogueado.empleado.RFC,
-                        Matricula = empleadoLogueado.empleado.Matricula,
-                        IdSucursal = empleadoLogueado.empleado.IdSucursal
-                    };
+                        var empleadoLogueado = cliente.BuscarEmpleadoPorMatricula(Matricula);
 
-                    UsuarioEnLinea.Instancia.EstablecerDatosUsuarioEnSesion(empleadoConsultado);
+                        var empleadoConsultado = new EmpleadoConsultado
+                        {
+                            IdEmpleado = empleadoLogueado.empleado.IdEmpleado,
+                            Nombres = empleadoLogueado.empleado.Nombres,
+                            Apellidos = empleadoLogueado.empleado.Apellidos,
+                            Nss = empleadoLogueado.empleado.Nss,
+                            Rol = empleadoLogueado.empleado.Rol,
+                            FechaNacimiento = empleadoLogueado.empleado.FechaNacimiento,
+                            Sexo = empleadoLogueado.empleado.Sexo,
+                            NumeroTelefono = empleadoLogueado.empleado.NumeroTelefono,
+                            Correo = empleadoLogueado.empleado.Correo,
+                            Calle = empleadoLogueado.empleado.Calle,
+                            NumeroCasa = empleadoLogueado.empleado.NumeroCasa,
+                            CodigoPostal = empleadoLogueado.empleado.CodigoPostal,
+                            RFC = empleadoLogueado.empleado.RFC,
+                            Matricula = empleadoLogueado.empleado.Matricula,
+                            Foto = empleadoLogueado.empleado.Foto,
+                            Contratado = empleadoLogueado.empleado.Contratado,
+                            Contraseña = empleadoLogueado.empleado.Contraseña,
+                            IdSucursal = empleadoLogueado.empleado.IdSucursal
+                        };
 
-                    _mainWindowModeloVista.CambiarModeloVista(new MainWindowModeloVista());
+                        UsuarioEnLinea.Instancia.EstablecerDatosUsuarioEnSesion(empleadoConsultado);
+
+                        _mainWindowModeloVista.CambiarModeloVista(new MainWindowModeloVista());
+                    }
+                }
+                catch (Exception)
+                {
+                    DatosIncorrectos = Visibility.Visible;
                 }
             }
         }
 
         public void Registrarse(Object obj)
         {
-            //Preguntar Yael
-            //_mainWindowModeloVista.CambiarModeloVista(new RegistrarEmpleadoModeloVista());
+            _mainWindowModeloVista.CambiarModeloVista(new RegistrarEmpleadoModeloVista(_mainWindowModeloVista));
         }
 
         private bool ValidarCampos()

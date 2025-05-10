@@ -24,6 +24,9 @@ namespace CineVerCliente.Modelo
         public string CodigoPostal { get; private set; }
         public string RFC { get; private set; }
         public string Matricula { get; private set; }
+        public byte[] Foto { get; private set; }
+        public bool Contratado { get; private set; }
+        public byte[] Contraseña { get; private set; }
         public int IdSucursal { get; private set; }
 
         private UsuarioEnLinea() { }
@@ -55,6 +58,9 @@ namespace CineVerCliente.Modelo
             CodigoPostal = empleado.CodigoPostal;
             RFC = empleado.RFC;
             Matricula = empleado.Matricula;
+            Foto = empleado.Foto;
+            Contratado = empleado.Contratado;
+            Contraseña = empleado.Contraseña;
             IdSucursal = empleado.IdSucursal;
         }
 

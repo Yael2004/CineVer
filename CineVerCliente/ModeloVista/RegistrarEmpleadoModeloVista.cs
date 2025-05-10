@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,6 +39,7 @@ namespace CineVerCliente.ModeloVista
         private Visibility _sexoCampoVacio;
         private Visibility _numeroTelefonoCampoVacio;
         private Visibility _correoElectronicoCampoVacio;
+        private Visibility _correoElectronicoCampoInvalido;
         private Visibility _calleCampoVacio;
         private Visibility _numeroCasaCampoVacio;
         private Visibility _codigoPostalCampoVacio;
@@ -290,6 +292,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public Visibility CorreoElectronicoCampoInvalido
+        {
+            get { return _correoElectronicoCampoInvalido; }
+            set
+            {
+                _correoElectronicoCampoInvalido = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Visibility CalleCampoVacio
         {
             get { return _calleCampoVacio; }
@@ -440,6 +452,8 @@ namespace CineVerCliente.ModeloVista
         {
             var cliente = new EmpleadoServicio.EmpleadoServicioClient();
 
+            byte[] contraseñaHash = HashContraseña(Contraseña);
+
             var empleado = new EmpleadoDTO
             {
                 Nombres = _nombre,
@@ -456,22 +470,39 @@ namespace CineVerCliente.ModeloVista
                 RFC = _rfc,
                 Foto = _foto,
                 Contratado = true,
-                //Falta contraseña
+                Contraseña = contraseñaHash,
                 IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
             };
 
-            var respuesta = cliente.RegistrarEmpleado(empleado);
-
-            if (respuesta.EsExitoso)
+            try
             {
-                Notificacion.Mostrar("Empleado registrado con éxito", 4000);
-                MostrarMensajeConfirmacion = Visibility.Collapsed;
-                _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
+                var respuesta = cliente.RegistrarEmpleado(empleado);
+
+                if (respuesta.EsExitoso)
+                {
+                    Notificacion.Mostrar("Empleado registrado con éxito", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                    _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al registrar al empleado", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                }
             }
-            else
+            catch (Exception)
             {
                 Notificacion.Mostrar("Error al registrar al empleado", 4000);
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
+            }
+        }
+
+        private byte[] HashContraseña(string contraseña)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] contraseñaBytes = Encoding.UTF8.GetBytes(contraseña);
+                return sha256.ComputeHash(contraseñaBytes);
             }
         }
 
@@ -595,11 +626,20 @@ namespace CineVerCliente.ModeloVista
         {
             if (string.IsNullOrEmpty(CorreoElectronico))
             {
+                CorreoElectronicoCampoInvalido = Visibility.Collapsed;
                 CorreoElectronicoCampoVacio = Visibility.Visible;
                 return false;
             }
 
+            if (!Validadores.ValidarCorreo(CorreoElectronico))
+            {
+                CorreoElectronicoCampoVacio = Visibility.Collapsed;
+                CorreoElectronicoCampoInvalido = Visibility.Visible;
+                return false;
+            }
+
             CorreoElectronicoCampoVacio = Visibility.Collapsed;
+            CorreoElectronicoCampoInvalido = Visibility.Collapsed;
             return true;
         }
 
@@ -695,6 +735,7 @@ namespace CineVerCliente.ModeloVista
             SexoCampoVacio = Visibility.Collapsed;
             NumeroTelefonoCampoVacio = Visibility.Collapsed;
             CorreoElectronicoCampoVacio = Visibility.Collapsed;
+            CorreoElectronicoCampoInvalido = Visibility.Collapsed;
             CalleCampoVacio = Visibility.Collapsed;
             NumeroCasaCampoVacio = Visibility.Collapsed;
             CodigoPostalCampoVacio = Visibility.Collapsed;

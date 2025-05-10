@@ -14,6 +14,9 @@ namespace CineVerCliente.ModeloVista
 {
     class ConsultarSociosModeloVista : BaseModeloVista
     {
+        private SocioServicio.SocioServicioClient clienteSocio;
+        private CuentaFidelidadServicio.CuentaFidelidadServicioClient clienteCuenta;
+
         private string _textoBusqueda;
         private string _textoInhabilitar;
         private string _textoDetallesSocio;
@@ -129,6 +132,9 @@ namespace CineVerCliente.ModeloVista
         public ConsultarSociosModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
+            clienteSocio = new SocioServicio.SocioServicioClient();
+            clienteCuenta = new CuentaFidelidadServicio.CuentaFidelidadServicioClient();
+            _todosLosSocios = new ObservableCollection<SocioConsultado>();
             CargarSocios();
             VerDetallesComando = new ComandoModeloVista(VerDetalles);
             EditarComando = new ComandoModeloVista(Editar);
@@ -136,109 +142,55 @@ namespace CineVerCliente.ModeloVista
             AceptarInhabilitarComando = new ComandoModeloVista(AceptarInhabilitar);
             CancelarInhabilitarComando = new ComandoModeloVista(CancelarInhabilitar);
             CerrarDetallesComando = new ComandoModeloVista(CerrarDetalles);
-            //_todosLosSocios = new ObservableCollection<SocioConsultado>
-            //{
-            //    new SocioConsultado
-            //    {
-            //        Nombres = "Gabriel",
-            //        Apellidos = "Armas Viveros",
-            //        Folio = "SCNVX298563",
-            //        FechaNacimiento = new DateTime(1995, 4, 12),
-            //        Sexo = "Masculino",
-            //        NumeroTelefono = "5551234567",
-            //        Correo = "gabriel.armas@example.com",
-            //        Calle = "Av. Reforma",
-            //        NumeroCasa = "123",
-            //        CodigoPostal = "06000",
-            //        PuntosSocio = 20
-            //    },
-            //    new SocioConsultado
-            //    {
-            //        Nombres = "Yael Alfredo",
-            //        Apellidos = "Salazar Aguilar",
-            //        Folio = "SCNVX287650",
-            //        FechaNacimiento = new DateTime(1992, 7, 30),
-            //        Sexo = "Masculino",
-            //        NumeroTelefono = "5512345678",
-            //        Correo = "yael.salazar@example.com",
-            //        Calle = "Calle Hidalgo",
-            //        NumeroCasa = "45-B",
-            //        CodigoPostal = "06100",
-            //        PuntosSocio = 109
-            //    },
-            //    new SocioConsultado
-            //    {
-            //        Nombres = "Daniela",
-            //        Apellidos = "Luna Landa",
-            //        Folio = "SCNVX294652",
-            //        FechaNacimiento = new DateTime(1998, 3, 15),
-            //        Sexo = "Femenino",
-            //        NumeroTelefono = "5523456789",
-            //        Correo = "daniela.luna@example.com",
-            //        Calle = "Insurgentes Sur",
-            //        NumeroCasa = "789",
-            //        CodigoPostal = "06700",
-            //        PuntosSocio = 67
-            //    },
-            //    new SocioConsultado
-            //    {
-            //        Nombres = "Maria Antonieta",
-            //        Apellidos = "Hernandez Torres",
-            //        Folio = "SCNVX274652",
-            //        FechaNacimiento = new DateTime(1985, 11, 5),
-            //        Sexo = "Femenino",
-            //        NumeroTelefono = "5545678910",
-            //        Correo = "maria.hernandez@example.com",
-            //        Calle = "Av. Juárez",
-            //        NumeroCasa = "321",
-            //        CodigoPostal = "06600",
-            //        PuntosSocio = 12
-            //    },
-            //    new SocioConsultado
-            //    {
-            //        Nombres = "Sofia",
-            //        Apellidos = "Suarez Juan",
-            //        Folio = "SCNVX274652",
-            //        FechaNacimiento = new DateTime(1990, 9, 22),
-            //        Sexo = "Femenino",
-            //        NumeroTelefono = "5567890123",
-            //        Correo = "sofia.suarez@example.com",
-            //        Calle = "Calle Morelos",
-            //        NumeroCasa = "56",
-            //        CodigoPostal = "06800",
-            //        PuntosSocio = 87
-            //    }
-            //};
-
-            SociosFiltrados = new ObservableCollection<SocioConsultado>(_todosLosSocios);
         }
 
         private async void CargarSocios()
         {
-            var clienteSocio = new SocioServicio.SocioServicioClient();
-            var clienteCuenta = new CuentaFidelidadServicio.CuentaFidelidadServicioClient();
-
-            var respuesta = await clienteSocio.ObtenerSociosAsync();
-
-            TodosLosSocios = new ObservableCollection<SocioConsultado>();
-            foreach (var socio in respuesta.Socios)
+            try
             {
-                var cuenta = await clienteCuenta.ObtenerCuentaFidelidadPorIdSocioAsync(socio.IdSocio);
-                _todosLosSocios.Add(new SocioConsultado
+                var respuesta = await clienteSocio.ObtenerSociosAsync();
+
+                TodosLosSocios = new ObservableCollection<SocioConsultado>();
+
+                foreach (var socio in respuesta.Socios)
                 {
-                    IdSocio = socio.IdSocio,
-                    Nombres = socio.Nombres,
-                    Apellidos = socio.Apellidos,
-                    Folio = socio.Folio,
-                    FechaNacimiento = socio.FechaNacimiento,
-                    Sexo = socio.Sexo,
-                    NumeroTelefono = socio.NumeroTelefono,
-                    Correo = socio.Correo,
-                    Calle = socio.Calle,
-                    NumeroCasa = socio.NumeroCasa,
-                    CodigoPostal = socio.CodigoPostal,
-                    PuntosSocio = cuenta.cuenta.Puntos
-                });
+                    var cuenta = await clienteCuenta.ObtenerCuentaFidelidadPorIdSocioAsync(socio.IdSocio);
+
+                    _todosLosSocios.Add(new SocioConsultado
+                    {
+                        IdSocio = socio.IdSocio,
+                        Nombres = socio.Nombres,
+                        Apellidos = socio.Apellidos,
+                        Folio = socio.Folio,
+                        FechaNacimiento = socio.FechaNacimiento,
+                        Sexo = socio.Sexo,
+                        NumeroTelefono = socio.NumeroTelefono,
+                        Correo = socio.Correo,
+                        Calle = socio.Calle,
+                        NumeroCasa = socio.NumeroCasa,
+                        CodigoPostal = socio.CodigoPostal,
+                        PuntosSocio = cuenta.cuenta.Puntos
+                    });
+                }
+
+                SociosFiltrados = new ObservableCollection<SocioConsultado>(_todosLosSocios);
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Error al cargar los socios", 4000);
+            }
+            finally
+            {
+                if (TodosLosSocios.Count == 0)
+                {
+                    MostrarSocios = Visibility.Collapsed;
+                    SinResultados = Visibility.Visible;
+                }
+                else
+                {
+                    MostrarSocios = Visibility.Visible;
+                    SinResultados = Visibility.Collapsed;
+                }
             }
         }
 
@@ -274,7 +226,12 @@ namespace CineVerCliente.ModeloVista
 
         private void Editar(object obj)
         {
-            _mainWindowModeloVista.CambiarModeloVista(new ModificarSocioModeloVista(_mainWindowModeloVista));
+            if (obj is SocioConsultado socio)
+            {
+                var modificarSocio = new ModificarSocioModeloVista(_mainWindowModeloVista);
+                modificarSocio.CargarSocio(socio);
+                _mainWindowModeloVista.CambiarModeloVista(modificarSocio);
+            }
         }
 
         private void InhabilitarCuenta(object obj)
@@ -295,35 +252,42 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarInhabilitar(object obj)
         {
-            var clienteCuenta = new CuentaFidelidadServicio.CuentaFidelidadServicioClient();
-            var clienteSocio = new SocioServicio.SocioServicioClient();
-            var socio = (SocioConsultado)obj;
-
-            var respuestaCuenta = clienteCuenta.InhabilitarCuentaFidelidad(socio.IdSocio);
-
-            if (respuestaCuenta.EsExitoso)
+            try
             {
-                var respuestaSocio = clienteSocio.InhabilitarCuentaSocio(socio.IdSocio);
+                var socio = (SocioConsultado)obj;
+                int puntos = socio.PuntosSocio;
 
-                if (respuestaSocio.EsExitoso)
+                var respuestaCuenta = clienteCuenta.InhabilitarCuentaFidelidad(socio.IdSocio);
+
+                if (respuestaCuenta.EsExitoso)
                 {
-                    Notificacion.Mostrar("Cuenta inhabilitada exitosamente", 4000);
-                    CargarSocios();
-                    MostrarMensajeInhabilitar = Visibility.Collapsed;
+                    var respuestaSocio = clienteSocio.InhabilitarCuentaSocio(socio.IdSocio);
+
+                    if (respuestaSocio.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Cuenta inhabilitada exitosamente", 4000);
+                        CargarSocios();
+                        MostrarMensajeInhabilitar = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        var respuestaCuentaNueva = clienteCuenta.RegistrarCuentaFidelidad(new CuentaFidelidadDTO
+                        {
+                            IdSocio = socio.IdSocio,
+                            Puntos = puntos
+                        });
+
+                        Notificacion.Mostrar("Error al inhabilitar la cuenta del socio", 4000);
+                        MostrarMensajeInhabilitar = Visibility.Collapsed;
+                    }
                 }
                 else
                 {
-                    var respuestaCuentaNueva = clienteCuenta.RegistrarCuentaFidelidad(new CuentaFidelidadDTO
-                    {
-                        IdSocio = socio.IdSocio,
-                        Puntos = 0
-                    });
-
-                    Notificacion.Mostrar("Error al inhabilitar la cuenta del socio", 4000);
+                    Notificacion.Mostrar("Error al inhabilitar la cuenta", 4000);
                     MostrarMensajeInhabilitar = Visibility.Collapsed;
                 }
             }
-            else
+            catch (Exception)
             {
                 Notificacion.Mostrar("Error al inhabilitar la cuenta", 4000);
                 MostrarMensajeInhabilitar = Visibility.Collapsed;

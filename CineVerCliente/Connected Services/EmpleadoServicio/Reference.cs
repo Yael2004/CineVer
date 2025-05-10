@@ -554,10 +554,10 @@ namespace CineVerCliente.EmpleadoServicio {
         System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> ExisteEmpleadoAsync(string matriucla);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesion", ReplyAction="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesionResponse")]
-        CineVerCliente.EmpleadoServicio.ResultDTO VerificarInicioSesion(string matricula, string contrasena);
+        CineVerCliente.EmpleadoServicio.ResultDTO VerificarInicioSesion(string matricula, byte[] contrasena);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesion", ReplyAction="http://tempuri.org/IEmpleadoServicio/VerificarInicioSesionResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> VerificarInicioSesionAsync(string matricula, string contrasena);
+        System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> VerificarInicioSesionAsync(string matricula, byte[] contrasena);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -635,11 +635,11 @@ namespace CineVerCliente.EmpleadoServicio {
             return base.Channel.ExisteEmpleadoAsync(matriucla);
         }
         
-        public CineVerCliente.EmpleadoServicio.ResultDTO VerificarInicioSesion(string matricula, string contrasena) {
+        public CineVerCliente.EmpleadoServicio.ResultDTO VerificarInicioSesion(string matricula, byte[] contrasena) {
             return base.Channel.VerificarInicioSesion(matricula, contrasena);
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> VerificarInicioSesionAsync(string matricula, string contrasena) {
+        public System.Threading.Tasks.Task<CineVerCliente.EmpleadoServicio.ResultDTO> VerificarInicioSesionAsync(string matricula, byte[] contrasena) {
             return base.Channel.VerificarInicioSesionAsync(matricula, contrasena);
         }
     }

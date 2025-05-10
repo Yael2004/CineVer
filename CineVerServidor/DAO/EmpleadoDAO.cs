@@ -176,7 +176,7 @@ namespace DAO
             }
         }
 
-        public Result<bool> VerificarInicioSesion(string matricula, string contraseña)
+        public Result<bool> VerificarInicioSesion(string matricula, byte[] contraseña)
         {
             using (CineVerEntities entities = new CineVerEntities())
             {

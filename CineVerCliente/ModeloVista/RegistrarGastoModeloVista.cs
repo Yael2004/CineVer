@@ -106,23 +106,31 @@ namespace CineVerCliente.ModeloVista
         {
             var cliente = new GastoServicio.GastoServicioClient();
 
-            var gasto = new GastoDTO
+            try
             {
-                Motivo = Motivo,
-                Monto = Monto,
-                Fecha = DateTime.Now,
-                IdEmpleado = UsuarioEnLinea.Instancia.IdEmpleado,
-                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
-            };
+                var gasto = new GastoDTO
+                {
+                    Motivo = Motivo,
+                    Monto = Monto,
+                    Fecha = DateTime.Now,
+                    IdEmpleado = UsuarioEnLinea.Instancia.IdEmpleado,
+                    IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
+                };
 
-            var resultado = cliente.RegistrarGasto(gasto);
+                var resultado = cliente.RegistrarGasto(gasto);
 
-            if (resultado.EsExitoso)
-            {
-                Notificacion.Mostrar("Gasto registrado correctamente", 4000);
-                MostrarMensajeConfirmacion = Visibility.Collapsed;
+                if (resultado.EsExitoso)
+                {
+                    Notificacion.Mostrar("Gasto registrado correctamente", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al registrar el gasto", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                }
             }
-            else
+            catch (Exception)
             {
                 Notificacion.Mostrar("Error al registrar el gasto", 4000);
                 MostrarMensajeConfirmacion = Visibility.Collapsed;

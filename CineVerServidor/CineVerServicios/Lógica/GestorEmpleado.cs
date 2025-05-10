@@ -195,7 +195,7 @@ namespace CineVerServicios.Lógica
             }
         }
 
-        public Result<bool> VerificarInicioSesion(string matricula, string contraseña)
+        public Result<bool> VerificarInicioSesion(string matricula, byte[] contraseña)
         {
             var resultado = empleadoDAO.VerificarInicioSesion(matricula, contraseña);
 

@@ -134,9 +134,9 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ResultDTO> VerificarInicioSesion(string matricula, string contrasena)
+        public Task<ResultDTO> VerificarInicioSesion(string matricula, byte[] contraseña)
         {
-            var resultado = _gestorEmpleado.VerificarInicioSesion(matricula, contrasena);
+            var resultado = _gestorEmpleado.VerificarInicioSesion(matricula, contraseña);
 
             if (resultado.EsExitoso)
             {

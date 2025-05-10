@@ -306,40 +306,48 @@ namespace CineVerCliente.ModeloVista
                 Afiliado = true
             };
 
-            var respuestaSocio = clienteSocio.RegistrarSocio(socio);
-
-            if (respuestaSocio.EsExitoso)
+            try
             {
-                var socioRegistrado = clienteSocio.BuscarSocioPorFolio(socio.Folio);
+                var respuestaSocio = clienteSocio.RegistrarSocio(socio);
 
-                if (socioRegistrado == null)
+                if (respuestaSocio.EsExitoso)
                 {
-                    Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio", 4000);
-                    MostrarMensajeConfirmacion = Visibility.Collapsed;
-                }
-                else
-                {
-                    var cuentaFidelidad = new CuentaFidelidadDTO
-                    {
-                        IdSocio = socioRegistrado.socio.IdSocio,
-                        Puntos = 0
-                    };
+                    var socioRegistrado = clienteSocio.BuscarSocioPorFolio(socio.Folio);
 
-                    var respuestaCuenta = clienteCuenta.RegistrarCuentaFidelidad(cuentaFidelidad);
-
-                    if (respuestaCuenta.EsExitoso)
-                    {
-                        Notificacion.Mostrar("Socio registrado con éxito", 4000);
-                        _mainWindowModeloVista.CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
-                    }
-                    else
+                    if (socioRegistrado == null)
                     {
                         Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio", 4000);
                         MostrarMensajeConfirmacion = Visibility.Collapsed;
                     }
+                    else
+                    {
+                        var cuentaFidelidad = new CuentaFidelidadDTO
+                        {
+                            IdSocio = socioRegistrado.socio.IdSocio,
+                            Puntos = 0
+                        };
+
+                        var respuestaCuenta = clienteCuenta.RegistrarCuentaFidelidad(cuentaFidelidad);
+
+                        if (respuestaCuenta.EsExitoso)
+                        {
+                            Notificacion.Mostrar("Socio registrado con éxito", 4000);
+                            _mainWindowModeloVista.CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
+                        }
+                        else
+                        {
+                            Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio", 4000);
+                            MostrarMensajeConfirmacion = Visibility.Collapsed;
+                        }
+                    }
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al registrar el socio", 4000);
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
             }
-            else
+            catch (Exception ex)
             {
                 Notificacion.Mostrar("Error al registrar el socio", 4000);
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
