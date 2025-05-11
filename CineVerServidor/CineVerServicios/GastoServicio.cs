@@ -29,15 +29,15 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ListaGastosDTO> ObtenerGastosDelDia(DateTime fecha)
+        public Task<ListaGastosDTO> ObtenerGastosDelDia(DateTime fecha, int idSucursal)
         {
-            var resultado = _gestorGasto.ObtenerGastosDelDia(fecha);
+            var resultado = _gestorGasto.ObtenerGastosDelDia(fecha, idSucursal);
 
             if (resultado.EsExitoso)
             {
                 return Task.FromResult(new ListaGastosDTO
                 {
-                    Gastos = resultado.Valor,
+                    Gastos = resultado.Valor.Gastos,
                     Result = new ResultDTO(true, string.Empty)
                 });
             }
