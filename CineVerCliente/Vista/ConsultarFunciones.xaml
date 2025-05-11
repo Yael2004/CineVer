@@ -177,6 +177,20 @@ CommandParameter="{Binding}" HorizontalAlignment="Left" Margin="10">
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                         
+                                    <Button Command="{Binding AgregarFuncionComando}"
+            Background="Transparent"
+            BorderBrush="Transparent"
+            
+            VerticalAlignment="Center"
+            Margin="5 8 0 0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Image Source="/Vista/icono-agregar (1).png"
+Width="50"
+Height="50"
+Margin="0,0,0,5"/>
+
+                </StackPanel>
+            </Button>
 
 
                     </StackPanel>
@@ -200,6 +214,7 @@ Command="{Binding CancelarComando}"/>
                     </Grid>
 
                 </Grid>
+                
             </ScrollViewer>
             
         </Border>

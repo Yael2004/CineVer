@@ -21,6 +21,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand EditarFuncionCommand { get; }
         public ICommand EliminarFuncionCommand { get; }
         public ICommand AceptarComando { get; }
+        public ICommand AgregarFuncionComando { get; }
         public ICommand CancelarComando { get; }
         public FuncionDTO FuncionSeleccionada { get; set; }
         private bool _mostrarMensajeConfirmar;
@@ -72,7 +73,7 @@ namespace CineVerCliente.ModeloVista
             _salaServicioCliente = new SalaServicioClient();
             _peliculaServicioCliente = new PelículaServicioClient();
             _funcionServicioCliente = new FuncionServicioClient();
-
+            AgregarFuncionComando = new ComandoModeloVista(AgregarFuncion2);
             AgregarFuncionCommand = new ComandoModeloVista(AgregarFuncion);
             EditarFuncionCommand = new ComandoModeloVista(EditarFuncion);
             EliminarFuncionCommand = new ComandoModeloVista(EliminarFuncion);
@@ -81,6 +82,10 @@ namespace CineVerCliente.ModeloVista
 
             FechaSeleccionada = DateTime.Today;
 
+        }
+        private void AgregarFuncion2(Object obj)
+        {
+            CambiarModeloVista(new AgregarFuncionModeloVista(_mainWindowModeloVista));
         }
         private void CargarPeliculasPorFecha()
         {
