@@ -41,7 +41,7 @@ namespace DAO
             {
                 try
                 {
-                    var cuentaFidelidad = entities.CuentaFidelidad.Where(e => e.idSocio.Equals(idSocio)).FirstOrDefault();
+                    var cuentaFidelidad = entities.CuentaFidelidad.Find(idSocio);
                     if (cuentaFidelidad != null)
                     {
                         return Result<CuentaFidelidad>.Exito(cuentaFidelidad);

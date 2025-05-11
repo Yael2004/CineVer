@@ -495,7 +495,7 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarCancelacion(object obj)
         {
-            _mainWindowModeloVista.CambiarModeloVista(new MainWindowModeloVista());
+            _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
         }
 
         private void CancelarCancelacion(object obj)
