@@ -59,7 +59,7 @@ namespace CineVerServicios.Lógica
                         Motivo = gasto.motivo,
                         Fecha = (DateTime)gasto.fecha,
                         IdSucursal = (int)gasto.idSucursal,
-                        //IdEmpleado = (int)gasto.idEmpleado
+                        IdEmpleado = (int)gasto.idEmpleado
                     };
                     listaGastos.Gastos.Add(gastoDTO);
                 }
