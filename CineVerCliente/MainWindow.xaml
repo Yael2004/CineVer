@@ -205,6 +205,10 @@
             <vista:ConsultarSalas/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vistaModelo:EditarFuncionModeloVista}">
+            <vista:EditarFuncion/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Window.DataContext>

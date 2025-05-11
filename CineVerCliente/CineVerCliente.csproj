@@ -141,6 +141,7 @@
     <Compile Include="ModeloVista\DevolverBoletoModeloVista.cs" />
     <Compile Include="ModeloVista\ConsultarSociosModeloVista.cs" />
     <Compile Include="ModeloVista\EditarDetallesProductoModeloVista.cs" />
+    <Compile Include="ModeloVista\EditarFuncionModeloVista.cs" />
     <Compile Include="ModeloVista\EditarPeliculaModeloVista.cs" />
     <Compile Include="ModeloVista\EditarProductoDulceriaModeloVista.cs" />
     <Compile Include="ModeloVista\EditarPromocionModeloVista.cs" />
@@ -210,6 +211,9 @@
     </Compile>
     <Compile Include="Vista\EditarDetallesProducto.xaml.cs">
       <DependentUpon>EditarDetallesProducto.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\EditarFuncion.xaml.cs">
+      <DependentUpon>EditarFuncion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vista\EditarProductoDulceria.xaml.cs">
       <DependentUpon>EditarProductoDulceria.xaml</DependentUpon>
@@ -336,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\EditarDetallesProducto.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\EditarFuncion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

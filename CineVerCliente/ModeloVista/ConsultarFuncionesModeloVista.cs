@@ -105,8 +105,9 @@ namespace CineVerCliente.ModeloVista
                 {
                     Pelicula = peliculaDto,
                     Funciones = funcionesDto
-                        .Select(f => new FuncionVista { Funcion = f })
-                        .ToArray()
+                .OrderBy(f => f.horaInicio)
+                .Select(f => new FuncionVista { Funcion = f })
+                .ToArray()
                 };
 
                 Peliculas.Add(peliculaConFunciones);
@@ -147,9 +148,21 @@ namespace CineVerCliente.ModeloVista
         }
         private void EditarFuncion(Object obj)
         {
-            if (obj is FuncionVista)
+            if (obj is FuncionVista funcionVisita)
             {
-                Console.WriteLine("Es un objeto FuncionDTO");
+                if (funcionVisita.Funcion.fecha == DateTime.Today && funcionVisita.Funcion.horaInicio <= DateTime.Now.TimeOfDay)
+                {
+                    Notificacion.Mostrar("No se puede eliminar una función que ya empezó o terminó.");
+                }
+                else if (funcionVisita.Funcion.fecha < DateTime.Today)
+                {
+                    Notificacion.Mostrar("No se puede eliminar una función que ya ha pasado.");
+                }
+                else
+                {
+                    var funcionModeloVista = new EditarFuncionModeloVista(_mainWindowModeloVista, funcionVisita.Funcion);
+                    CambiarModeloVista(funcionModeloVista);
+                }
             }
         }
 
@@ -158,8 +171,20 @@ namespace CineVerCliente.ModeloVista
 
             if (obj is FuncionVista funcionVisita)
             {
-                FuncionSeleccionada = funcionVisita.Funcion;
-                MostrarMensajeConfirmar = true;
+                if(funcionVisita.Funcion.fecha == DateTime.Today && funcionVisita.Funcion.horaInicio <= DateTime.Now.TimeOfDay)
+                {
+                    Notificacion.Mostrar("No se puede eliminar una función que ya empezó o terminó.");
+                }
+                else if(funcionVisita.Funcion.fecha < DateTime.Today)
+                {
+                    Notificacion.Mostrar("No se puede eliminar una función que ya ha pasado.");
+                }
+                else{
+                    FuncionSeleccionada = funcionVisita.Funcion;
+                    MostrarMensajeConfirmar = true;
+                }
+
+                    
             }
         }
         private void AceptarEliminar(object obj)

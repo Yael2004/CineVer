@@ -320,7 +320,7 @@ namespace CineVerCliente.ModeloVista
         }
         private bool ValidarPoster()
         {
-            if (string.IsNullOrEmpty(Poster))
+            if (PosterPath == null)
             {
                 PosterVacio = Visibility.Visible;
                 return false;
