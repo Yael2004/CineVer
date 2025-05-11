@@ -19,6 +19,8 @@ namespace CineVerServicios.Lógica
         {
             var promocionEntity = new Promocion
             {
+                idSucursal = promocion.IdSucursal,
+                idPromocion = promocion.IdPromocion,
                 nombre = promocion.Nombre,
                 tipo = promocion.Tipo,
                 producto = promocion.Producto,
@@ -58,6 +60,7 @@ namespace CineVerServicios.Lógica
                     var promocionDTO = new PromocionDTO
                     {
                         IdPromocion = promocion.idPromocion,
+                        IdSucursal = (int)promocion.idSucursal,
                         Nombre = promocion.nombre,
                         Tipo = promocion.tipo,
                         Producto = promocion.producto,
@@ -72,6 +75,7 @@ namespace CineVerServicios.Lógica
                         DomingoAplica = (bool)promocion.domingoAplica
                     };
                     listaPromociones.Promociones.Add(promocionDTO);
+                    listaPromociones.Result = new ResultDTO(true, "Promociones obtenidas correctamente");
                 }
                 return Result<ListaPromocionesDTO>.Exito(listaPromociones);
             }
@@ -92,6 +96,7 @@ namespace CineVerServicios.Lógica
                     var promocionDTO = new PromocionDTO
                     {
                         IdPromocion = promocion.idPromocion,
+                        IdSucursal = (int)promocion.idSucursal,
                         Nombre = promocion.nombre,
                         Tipo = promocion.tipo,
                         Producto = promocion.producto,
@@ -126,6 +131,7 @@ namespace CineVerServicios.Lógica
                     var promocionDTO = new PromocionDTO
                     {
                         IdPromocion = promocion.idPromocion,
+                        IdSucursal = (int)promocion.idSucursal,
                         Nombre = promocion.nombre,
                         Tipo = promocion.tipo,
                         Producto = promocion.producto,

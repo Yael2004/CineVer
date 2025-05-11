@@ -14,5 +14,10 @@ namespace CineVerServicios.DTO
         public List<PromocionDTO> Promociones { get; set; }
         [DataMember]
         public ResultDTO Result { get; set; }
+
+        public ListaPromocionesDTO()
+        {
+            Promociones = new List<PromocionDTO>();
+        }
     }
 }
