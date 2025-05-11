@@ -120,6 +120,7 @@
     <Compile Include="Helpers\ImagenPelicula.cs" />
     <Compile Include="Helpers\Notificacion.cs" />
     <Compile Include="Helpers\PeliculaConFunciones.cs" />
+    <Compile Include="Helpers\TimeSpanToStringConverter.cs" />
     <Compile Include="Helpers\Validadores.cs" />
     <Compile Include="ModeloVista\AgregarFuncionModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarPelículaModeloVista.cs" />
