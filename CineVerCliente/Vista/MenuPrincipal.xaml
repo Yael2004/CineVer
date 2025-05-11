@@ -51,13 +51,15 @@
                        FontSize="14" Foreground="#F2F2F2" Margin="0,0,0,20" TextWrapping="Wrap" />
 
             <!-- Tab Selection -->
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <RadioButton Content="Buy" GroupName="Option" Margin="0,0,20,0"/>
-                <RadioButton Content="Rent" GroupName="Option" IsChecked="True"/>
-            </StackPanel>
+                    <TextBlock Text="Venta rápida de boletos"
+           FontSize="16"
+           FontWeight="Bold"
+           Foreground="Black"
+           Margin="0,10,0,0"/>
 
-            <!-- Search Panel -->
-                    <Grid Margin="0,20,0,20" Height="50">
+
+                    <!-- Search Panel -->
+                    <Grid Margin="0,10,0,20" Height="50">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="3*" />
                             <ColumnDefinition Width="2*" />

@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -31,6 +32,8 @@ namespace CineVerCliente.ModeloVista
         private FuncionServicioClient _funcionServicioClient;
         private PelículaServicioClient _peliculaServicioClient;
         private SalaServicioClient _salaServicioCLiente;
+        public ICommand VenderBoletoCommand;
+
 
         private ObservableCollection<PeliculaDTOs> _peliculas;
         public ObservableCollection<PeliculaDTOs> Peliculas
@@ -70,7 +73,7 @@ namespace CineVerCliente.ModeloVista
 
         private void CargarOpcionesPrimero()
         {
-            // Ejemplo: carga opciones basadas en la fecha seleccionada
+            
             Peliculas.Clear();
 
             if (FechaSeleccionada.HasValue)
@@ -109,6 +112,8 @@ namespace CineVerCliente.ModeloVista
 
             FuncionSeleccionada = null;
         }
+
+        
         public MenuPrincipalModeloVista(MainWindowModeloVista mainWindowModeloVista)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
@@ -117,7 +122,16 @@ namespace CineVerCliente.ModeloVista
             _funcionServicioClient = new FuncionServicioClient();
             Peliculas = new ObservableCollection<PeliculaDTOs>();
             Funciones = new ObservableCollection<FuncionDTO>();
+            VenderBoletoCommand = new ComandoModeloVista(VenderBoleto);
             FechaSeleccionada = DateTime.Today;
+        }
+        private void VenderBoleto(Object obj)
+        {
+            if (FuncionSeleccionada != null)
+            {
+                //Pasar a ventana de vender boleto
+            }
+
         }
     }
 }

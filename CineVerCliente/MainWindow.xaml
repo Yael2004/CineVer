@@ -122,6 +122,10 @@
             <vista:ModificarEmpleado/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarPelículaModeloVista}">
+            <vista:AgregarPeliculaVista/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type vistaModelo:AgregarSalaModeloVista}">
             <vista:AgregarSala/>
         </DataTemplate>
