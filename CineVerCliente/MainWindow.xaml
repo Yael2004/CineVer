@@ -189,8 +189,11 @@
             <vista:EditarDetallesProducto/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vistaModelo:AgregarPelículaModeloVista}">
-            <vista:AgregarPeliculaVista/>
+        
+
+
+        <DataTemplate DataType="{x:Type vistaModelo:MenuPrincipalModeloVista}">
+            <vista:MenuPrincipal/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vistaModelo:EditarPeliculaModeloVista}">

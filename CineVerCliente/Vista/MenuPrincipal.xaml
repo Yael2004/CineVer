@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="CineVerCliente.Vista.MenuPrincipal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             d:DataContext="{d:DesignInstance Type=vistaModelo:MenuPrincipalModeloVista}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <Grid>
+        <Image Source="/Vista/Fondo_MenuPrincipal.jpg"
+               Stretch="Fill"
+               Panel.ZIndex="0"/>
+    
+
+    <Viewbox Stretch="Uniform">
+        <Grid Width="1000" Height="600">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*"/>
+
+
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="9*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+
+            </Grid.ColumnDefinitions>
+            
+        <!-- Main Content -->
+        <StackPanel  VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <!-- Title -->
+            <TextBlock Text="Más que ver, hay que sentir el CineVer"
+                       FontSize="36" FontWeight="Bold"
+                       TextWrapping="Wrap" Margin="0,20,0,10" Foreground="White"/>
+
+            <!-- Subtitle -->
+            <TextBlock Text="En CineVer, no solo miras una película, vives una historia que te acompaña más allá de la pantalla."
+                       FontSize="14" Foreground="#F2F2F2" Margin="0,0,0,20" TextWrapping="Wrap" />
+
+            <!-- Tab Selection -->
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <RadioButton Content="Buy" GroupName="Option" Margin="0,0,20,0"/>
+                <RadioButton Content="Rent" GroupName="Option" IsChecked="True"/>
+            </StackPanel>
+
+            <!-- Search Panel -->
+            <Grid Margin="0,20,0,20" Height="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <xctk:WatermarkTextBox Grid.Column="0" Watermark="Location" Margin="5" VerticalContentAlignment="Center"/>
+                <xctk:WatermarkTextBox Grid.Column="1" Watermark="Start Date/Time" Margin="5" VerticalContentAlignment="Center"/>
+                <xctk:WatermarkTextBox Grid.Column="2" Watermark="End Date/Time" Margin="5" VerticalContentAlignment="Center"/>
+
+                <Button Grid.Column="3" Content="🔍" Background="Black" Foreground="White" Width="50" Margin="5"/>
+            </Grid>
+
+            
+
+
+        </StackPanel>
+        <!-- Stats -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,80,0,0" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+            <!-- Location -->
+            <StackPanel Width="200" Margin="10">
+                <TextBlock Text="5000+" FontSize="24" FontWeight="Bold" Foreground="Black" Padding="38,0,0,0"/>
+                <TextBlock Text="Clientes satisfechos" FontSize="16" Foreground="#F2F2F2"/>
+            </StackPanel>
+
+            <!-- Start -->
+            <StackPanel Width="170" Margin="10">
+                <TextBlock Text="+1 millón" FontSize="24" FontWeight="Bold" Foreground="Black" Padding="2,0,0,0"/>
+                <TextBlock Text="Boletos vendidos" FontSize="16" Foreground="#f2f2f2"/>
+            </StackPanel>
+
+            <!-- End -->
+            <StackPanel Width="200" Margin="10">
+                <TextBlock Text="+200" FontSize="24" FontWeight="Bold" Foreground="Black" Padding="10,0,0,0"/>
+                <TextBlock Text="Reseñas positivas" FontSize="16" Foreground="#D3D3D3"/>
+            </StackPanel>
+        </StackPanel>
+        </Grid>
+    </Viewbox>
+    </Grid>
+</UserControl>

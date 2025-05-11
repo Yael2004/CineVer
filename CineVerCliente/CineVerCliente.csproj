@@ -149,6 +149,7 @@
     <Compile Include="ModeloVista\EditarSucursalModeloVista.cs" />
     <Compile Include="ModeloVista\IniciarSesionModeloVista.cs" />
     <Compile Include="ModeloVista\MainWindowModeloVista.cs" />
+    <Compile Include="ModeloVista\MenuPrincipalModeloVista.cs" />
     <Compile Include="ModeloVista\ModificarEmpleadoModeloVista.cs" />
     <Compile Include="ModeloVista\ObtenerEstadisticasModeloVista.cs" />
     <Compile Include="ModeloVista\RealizarPagoModeloVista.cs" />
@@ -262,6 +263,9 @@
     </Compile>
     <Compile Include="Vista\EditarPelicula.xaml.cs">
       <DependentUpon>EditarPelicula.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vista\MenuPrincipal.xaml.cs">
+      <DependentUpon>MenuPrincipal.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Estilos\Estilos.xaml">
       <SubType>Designer</SubType>
@@ -408,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\EditarPelicula.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\MenuPrincipal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -752,6 +760,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\billete-de-banco %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\Fondo_MenuPrincipal.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\Fondo_MenuPrincipal.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

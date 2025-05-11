@@ -39,6 +39,7 @@ namespace CineVerCliente.ModeloVista
         public MainWindowModeloVista()
         {
             _mainWindowModeloVista = this;
+            CambiarModeloVista(new MenuPrincipalModeloVista(_mainWindowModeloVista));
             SucursalComando = new ComandoModeloVista(Sucursales);
             EmpleadoComando = new ComandoModeloVista(ConsultarEmpleados);
             AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);
