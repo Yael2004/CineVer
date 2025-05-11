@@ -47,12 +47,12 @@
                             <MenuItem Header="Agregar promoción"
                                 Style="{StaticResource MenuItemMain}"
                                 Visibility="{Binding AgregarPromocionMenu}"
-                                Command=""
+                                Command="{Binding AgregarPromocionComando}"
                                 CommandParameter="{Binding}"/>
                             <MenuItem Header="Editar promoción"
                                 Style="{StaticResource MenuItemMain}"
                                 Visibility="{Binding EditarPromocionMenu}"
-                                Command=""
+                                Command="{Binding EditarPromocionComando}"
                                 CommandParameter="{Binding}"/>
                         </MenuItem>
                     </Menu>
@@ -120,17 +120,17 @@
                             <MenuItem Header="Agregar inventario productos"
                                 Style="{StaticResource MenuItemMain}"
                                 Visibility="{Binding AgregarInventarioProductosMenu}"
-                                Command=""
+                                Command="{Binding AgregarProductoDulceriaComando}"
                                 CommandParameter="{Binding}"/>
                             <MenuItem Header="Editar productos"
                                 Style="{StaticResource MenuItemMain}"
                                 Visibility="{Binding EditarProductosMenu}"
-                                Command=""
+                                Command="{Binding EditarProductoDulceriaComando}"
                                 CommandParameter="{Binding}"/>
                             <MenuItem Header="Realizar venta"
                                 Style="{StaticResource MenuItemMain}"
                                 Visibility="{Binding RealizarVentaMenu}"
-                                Command=""
+                                Command="{Binding RealizarVentaDulceriaComando}"
                                 CommandParameter="{Binding}"/>
                             <MenuItem Header="Reportar merma"
                                 Style="{StaticResource MenuItemMain}"
@@ -293,6 +293,18 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:VenderBoletoModeloVista}">
             <vista:VenderBoleto/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarPromocionModeloVista}">
+            <vista:AgregarPromocion/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:EditarPromocionModeloVista}">
+            <vista:EditarPromocion/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:RealizarVentaDulceriaModeloVista}">
+            <vista:RealizarVentaDulceria/>
         </DataTemplate>
     </Window.Resources>
 

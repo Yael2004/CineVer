@@ -54,6 +54,11 @@ namespace CineVerCliente.ModeloVista
         public ICommand RegistrarSocioComando {  get; }
         public ICommand ConsultarSociosComando {  get; }
         public ICommand RegistrarGastoComando {  get; }
+        public ICommand AgregarProductoDulceriaComando { get; }
+        public ICommand EditarProductoDulceriaComando { get; }
+        public ICommand RealizarVentaDulceriaComando { get; }
+        public ICommand AgregarPromocionComando { get; }
+        public ICommand EditarPromocionComando { get; }
 
         public object VistaActualModelo
         {
@@ -323,12 +328,17 @@ namespace CineVerCliente.ModeloVista
             AgregarSucursalComando = new ComandoModeloVista(AgregarSucursal);
             RegistrarEmpleadoComando = new ComandoModeloVista(RegistrarEmpleado);
             ConsultarEmpleadosComando = new ComandoModeloVista(ConsultarEmpleados);
-            ReportarMermaProductoComando = new ComandoModeloVista(AgregarProductoDulceria);
+            ReportarMermaProductoComando = new ComandoModeloVista(ReportarMermaProducto);
             RealizarCorteCajaComando = new ComandoModeloVista(RealizarCorteCaja);
             DevolverBoletoComando = new ComandoModeloVista(DevolverBoleto);
             RegistrarSocioComando = new ComandoModeloVista(RegistrarSocio);
             ConsultarSociosComando = new ComandoModeloVista(ConsultarSocios);
             RegistrarGastoComando = new ComandoModeloVista(RegistrarGasto);
+            AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);
+            EditarProductoDulceriaComando = new ComandoModeloVista(EditarProductoDulceria);
+            RealizarVentaDulceriaComando = new ComandoModeloVista(RealizarVentaDulceria);
+            AgregarPromocionComando = new ComandoModeloVista(AgregarPromocion);
+            EditarPromocionComando = new ComandoModeloVista(EditarPromocion);
         }
 
         public MainWindowModeloVista(MainWindow _mainWindowMV)
@@ -339,12 +349,17 @@ namespace CineVerCliente.ModeloVista
             AgregarSucursalComando = new ComandoModeloVista(AgregarSucursal);
             RegistrarEmpleadoComando = new ComandoModeloVista(RegistrarEmpleado);
             ConsultarEmpleadosComando = new ComandoModeloVista(ConsultarEmpleados);
-            ReportarMermaProductoComando = new ComandoModeloVista(AgregarProductoDulceria);
+            ReportarMermaProductoComando = new ComandoModeloVista(ReportarMermaProducto);
             RealizarCorteCajaComando = new ComandoModeloVista(RealizarCorteCaja);
             DevolverBoletoComando = new ComandoModeloVista(DevolverBoleto);
             RegistrarSocioComando = new ComandoModeloVista(RegistrarSocio);
             ConsultarSociosComando = new ComandoModeloVista(ConsultarSocios);
             RegistrarGastoComando = new ComandoModeloVista(RegistrarGasto);
+            AgregarProductoDulceriaComando = new ComandoModeloVista(AgregarProductoDulceria);
+            EditarProductoDulceriaComando = new ComandoModeloVista(EditarProductoDulceria);
+            RealizarVentaDulceriaComando = new ComandoModeloVista(RealizarVentaDulceria);
+            AgregarPromocionComando = new ComandoModeloVista(AgregarPromocion);
+            EditarPromocionComando = new ComandoModeloVista(EditarPromocion);
         }
 
         private void CrearMenus()
@@ -445,11 +460,6 @@ namespace CineVerCliente.ModeloVista
             CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
         }
 
-        private void AgregarProductoDulceria(object obj)
-        {
-            CambiarModeloVista(new ReportarMermaProductoModeloVista(_mainWindowModeloVista));
-        }
-
         private void RealizarCorteCaja(object obj)
         {
             CambiarModeloVista(new RealizarCorteCajaModeloVista(_mainWindowModeloVista));
@@ -483,6 +493,36 @@ namespace CineVerCliente.ModeloVista
         private void VenderBoleto(object obj)
         {
             CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista));
+        }
+
+        private void AgregarProductoDulceria(object obj)
+        {
+            CambiarModeloVista(new AgregarProductoDulceriaModeloVista(_mainWindowModeloVista));
+        }
+
+        private void EditarProductoDulceria(object obj)
+        {
+            CambiarModeloVista(new EditarProductoDulceriaModeloVista(_mainWindowModeloVista));
+        }
+
+        private void ReportarMermaProducto(object obj)
+        {
+            CambiarModeloVista(new ReportarMermaProductoModeloVista(_mainWindowModeloVista));
+        }
+
+        private void RealizarVentaDulceria(object obj)
+        {
+            CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
+        }
+
+        private void AgregarPromocion(object obj)
+        {
+            CambiarModeloVista(new AgregarPromocionModeloVista(_mainWindowModeloVista));
+        }
+
+        private void EditarPromocion(object obj)
+        {
+            CambiarModeloVista(new EditarPromocionModeloVista(_mainWindowModeloVista));
         }
     }
 }
