@@ -187,5 +187,37 @@ namespace DAO
                 }
             }
         }
+
+        public Result<List<string>> ObtenerNombreProductos(int idSucursal)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var productos = (from p in entities.ProductoDulceria
+                                     where p.idSucursal == idSucursal
+                                     select p.nombre).ToList();
+
+                    if (productos.Count > 0)
+                    {
+                        return Result<List<string>>.Exito(productos);
+                    }
+
+                    return Result<List<string>>.Fallo("No hay productos en la sucursal especificada");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<List<string>>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<List<string>>.Fallo(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    return Result<List<string>>.Fallo(ex.Message);
+                }
+            }
+        }
     }
 }

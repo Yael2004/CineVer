@@ -24,7 +24,8 @@
                             Content="Aceptar" 
                             Margin="171,490,444,54"
                             Style="{StaticResource BotonConfirmarNaranja}"
-                            Command="{Binding AceptarPromocionComando}"/>
+                            Command="{Binding AceptarPromocionComando}"
+                            IsEnabled="{Binding BotonAceptarHabilitado}"/>
 
                         <Button 
                             Height="50"
@@ -83,34 +84,71 @@
                             FontSize="20"
                             Foreground="White" Margin="536,326,0,230"/>
 
-                        <TextBox Text="{Binding Nombre}" Margin="218,161,319,418"/>
-                        <TextBox Text="{Binding ProductosNecesarios}" Margin="330,249,338,327"/>
-                        <TextBox Text="{Binding ProductosAPagar}" Margin="307,294,361,280"/>
-                        <CheckBox Margin="508,173,222,405">
+                        <Label Content="Sábado"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="536,362,0,194"/>
+
+                        <Label Content="Domingo"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="536,402,0,154"/>
+
+                        <TextBox Text="{Binding Nombre}" 
+                                 Margin="218,161,319,418" 
+                                 MaxLength="20"/>
+                        <TextBox Text="{Binding ProductosNecesarios}" 
+                                 Margin="330,249,338,327"
+                                 PreviewTextInput="SoloNumeros"
+                                 LostFocus="ValidarInventarioVacio1"
+                                 MaxLength="1"/>
+                        <TextBox Text="{Binding ProductosAPagar}" 
+                                 Margin="307,294,361,280"
+                                 PreviewTextInput="SoloNumeros"
+                                 LostFocus="ValidarInventarioVacio2"
+                                 MaxLength="1"/>
+                        <CheckBox Margin="508,173,222,405" IsChecked="{Binding Lunes}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
-                        <CheckBox Margin="508,215,220,363">
+
+                        <CheckBox Margin="508,215,220,363" IsChecked="{Binding Martes}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
-                        <CheckBox Margin="508,254,219,322" RenderTransformOrigin="0.366,0.519">
+
+                        <CheckBox Margin="508,254,219,322" IsChecked="{Binding Miercoles}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
-                        <CheckBox Margin="509,332,221,246">
+
+                        <CheckBox Margin="509,286,221,290" IsChecked="{Binding Jueves}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
-                        <CheckBox Margin="508,293,219,285">
+
+                        <CheckBox Margin="509,326,221,250" IsChecked="{Binding Viernes}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
+
+                        <CheckBox Margin="509,366,221,210" IsChecked="{Binding Sabado}">
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+
+                        <CheckBox Margin="509,406,221,170" IsChecked="{Binding Domingo}">
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
+
                         <ComboBox Width="200" 
                                   Margin="193,204,369,374" 
                                   ItemsSource="{Binding TipoPromocion}" 
@@ -157,7 +195,6 @@
                                 Style="{StaticResource BotonNegro}"
                                 Command="{Binding CancelarAceptarPromocionComando}"/>
                         </Grid>
-                        
                     </Grid>
                 </Grid>
             </Grid>

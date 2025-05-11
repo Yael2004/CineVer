@@ -381,6 +381,9 @@
     <None Include="Connected Services\CorteCajaServicio\CorteCajaServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\DulceriaServicio\CineVerCliente.DulceriaServicio.ListaNombresProductosDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\DulceriaServicio\CineVerCliente.DulceriaServicio.ListaProductosDulceriaDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

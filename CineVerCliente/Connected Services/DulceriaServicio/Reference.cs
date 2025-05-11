@@ -337,6 +337,67 @@ namespace CineVerCliente.DulceriaServicio {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ListaNombresProductosDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class ListaNombresProductosDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string[] NombresProductosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.DulceriaServicio.ResultDTO ResultadoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string[] NombresProductos {
+            get {
+                return this.NombresProductosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NombresProductosField, value) != true)) {
+                    this.NombresProductosField = value;
+                    this.RaisePropertyChanged("NombresProductos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.DulceriaServicio.ResultDTO Resultado {
+            get {
+                return this.ResultadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultadoField, value) != true)) {
+                    this.ResultadoField = value;
+                    this.RaisePropertyChanged("Resultado");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DulceriaServicio.IDulceriaServicio")]
     public interface IDulceriaServicio {
@@ -376,6 +437,12 @@ namespace CineVerCliente.DulceriaServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDulceriaServicio/ReportarMerma", ReplyAction="http://tempuri.org/IDulceriaServicio/ReportarMermaResponse")]
         System.Threading.Tasks.Task<CineVerCliente.DulceriaServicio.ResultDTO> ReportarMermaAsync(int idProducto, int cantidadMerma);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDulceriaServicio/ObtenerNombresProductos", ReplyAction="http://tempuri.org/IDulceriaServicio/ObtenerNombresProductosResponse")]
+        CineVerCliente.DulceriaServicio.ListaNombresProductosDTO ObtenerNombresProductos(int idSucursal);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDulceriaServicio/ObtenerNombresProductos", ReplyAction="http://tempuri.org/IDulceriaServicio/ObtenerNombresProductosResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.DulceriaServicio.ListaNombresProductosDTO> ObtenerNombresProductosAsync(int idSucursal);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -451,6 +518,14 @@ namespace CineVerCliente.DulceriaServicio {
         
         public System.Threading.Tasks.Task<CineVerCliente.DulceriaServicio.ResultDTO> ReportarMermaAsync(int idProducto, int cantidadMerma) {
             return base.Channel.ReportarMermaAsync(idProducto, cantidadMerma);
+        }
+        
+        public CineVerCliente.DulceriaServicio.ListaNombresProductosDTO ObtenerNombresProductos(int idSucursal) {
+            return base.Channel.ObtenerNombresProductos(idSucursal);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.DulceriaServicio.ListaNombresProductosDTO> ObtenerNombresProductosAsync(int idSucursal) {
+            return base.Channel.ObtenerNombresProductosAsync(idSucursal);
         }
     }
 }

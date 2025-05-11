@@ -24,7 +24,7 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ResultDTO> ActualizarPromocion(PromocionDTO promocion);
         [OperationContract]
-        Task<ResultDTO> RegistrarPromocion(int idSucursal, PromocionDTO promocion);
+        Task<ResultDTO> RegistrarPromocion(PromocionDTO promocion);
         [OperationContract]
         Task<ListaVentasDTO> ObtenerVentasPorAnio(int anio, int idSucursal);
         [OperationContract]

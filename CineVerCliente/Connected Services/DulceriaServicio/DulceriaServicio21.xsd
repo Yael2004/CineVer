@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:2020/DulceriaServicio?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="ListaProductosDulceriaDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Productos" nillable="true" type="tns:ArrayOfProductoDulceriaDTO" />
@@ -39,4 +40,11 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ProductoDulceriaResponseDTO" nillable="true" type="tns:ProductoDulceriaResponseDTO" />
+  <xs:complexType name="ListaNombresProductosDTO">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="NombresProductos" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Resultado" nillable="true" type="tns:ResultDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListaNombresProductosDTO" nillable="true" type="tns:ListaNombresProductosDTO" />
 </xs:schema>

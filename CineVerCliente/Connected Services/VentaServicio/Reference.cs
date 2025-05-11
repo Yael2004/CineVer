@@ -724,10 +724,10 @@ namespace CineVerCliente.VentaServicio {
         System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> ActualizarPromocionAsync(CineVerCliente.VentaServicio.PromocionDTO promocion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/RegistrarPromocion", ReplyAction="http://tempuri.org/IVentaServicio/RegistrarPromocionResponse")]
-        CineVerCliente.VentaServicio.ResultDTO RegistrarPromocion(int idSucursal, CineVerCliente.VentaServicio.PromocionDTO promocion);
+        CineVerCliente.VentaServicio.ResultDTO RegistrarPromocion(CineVerCliente.VentaServicio.PromocionDTO promocion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/RegistrarPromocion", ReplyAction="http://tempuri.org/IVentaServicio/RegistrarPromocionResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RegistrarPromocionAsync(int idSucursal, CineVerCliente.VentaServicio.PromocionDTO promocion);
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RegistrarPromocionAsync(CineVerCliente.VentaServicio.PromocionDTO promocion);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/ObtenerVentasPorAnio", ReplyAction="http://tempuri.org/IVentaServicio/ObtenerVentasPorAnioResponse")]
         CineVerCliente.VentaServicio.ListaVentasDTO ObtenerVentasPorAnio(int anio, int idSucursal);
@@ -847,12 +847,12 @@ namespace CineVerCliente.VentaServicio {
             return base.Channel.ActualizarPromocionAsync(promocion);
         }
         
-        public CineVerCliente.VentaServicio.ResultDTO RegistrarPromocion(int idSucursal, CineVerCliente.VentaServicio.PromocionDTO promocion) {
-            return base.Channel.RegistrarPromocion(idSucursal, promocion);
+        public CineVerCliente.VentaServicio.ResultDTO RegistrarPromocion(CineVerCliente.VentaServicio.PromocionDTO promocion) {
+            return base.Channel.RegistrarPromocion(promocion);
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RegistrarPromocionAsync(int idSucursal, CineVerCliente.VentaServicio.PromocionDTO promocion) {
-            return base.Channel.RegistrarPromocionAsync(idSucursal, promocion);
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RegistrarPromocionAsync(CineVerCliente.VentaServicio.PromocionDTO promocion) {
+            return base.Channel.RegistrarPromocionAsync(promocion);
         }
         
         public CineVerCliente.VentaServicio.ListaVentasDTO ObtenerVentasPorAnio(int anio, int idSucursal) {

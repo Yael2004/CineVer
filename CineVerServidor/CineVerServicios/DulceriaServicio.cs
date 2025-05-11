@@ -32,6 +32,12 @@ namespace CineVerServicios
             return resultado;
         }
 
+        public Task<ListaNombresProductosDTO> ObtenerNombresProductos(int idSucursal)
+        {
+            var resultado = GestorDulceria.ObtenerNombresProductos(idSucursal);
+            return resultado;
+        }
+
         public async Task<ProductoDulceriaResponseDTO> ObtenerProductoDulceria(int idProducto)
         {
             var resultado = await GestorDulceria.ObtenerProductoDulceria(idProducto);
@@ -64,5 +70,6 @@ namespace CineVerServicios
             var resultado = await GestorDulceria.ReportarMerma(idProducto, cantidadMerma);
             return resultado;
         }
+
     }
 }

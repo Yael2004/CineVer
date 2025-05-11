@@ -29,5 +29,7 @@ namespace CineVerServicios.Interfaces
 
         [OperationContract]
         Task<ResultDTO> ReportarMerma(int idProducto, int cantidadMerma);
+        [OperationContract]
+        Task<ListaNombresProductosDTO> ObtenerNombresProductos(int idSucursal);
     }
 }

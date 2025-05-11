@@ -16,23 +16,59 @@ namespace CineVerServicios
         private GestorVenta _gestorVenta = new GestorVenta();
         public Task<ResultDTO> ActualizarPromocion(PromocionDTO promocion)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorVenta.ActualizarPromocion(promocion);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
         }
 
         public Task<ListaPromocionesDTO> ObtenerPromociones(int idSucursal)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorVenta.ObtenerPromociones(idSucursal);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(resultado.Valor);
+            }
         }
 
         public Task<ListaPromocionesDTO> ObtenerPromocionesBoletos(int idSucursal)
+        {
+            var resultado = _gestorVenta.ObtenerPromocionesBoletos(idSucursal);
+
+            if (resultado.EsExitoso)
             {
-            throw new NotImplementedException();
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(resultado.Valor);
+            }
         }
 
         public Task<ListaPromocionesDTO> ObtenerPromocionesDulceria(int idSucursal)
-                {
-            throw new NotImplementedException();
+        {
+            var resultado = _gestorVenta.ObtenerPromocionesDulceria(idSucursal);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
             }
+            else
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+        }
 
         public Task<ResultDTO> ObtenerVentaPorFolio(string folio)
         {
@@ -119,7 +155,7 @@ namespace CineVerServicios
             }
             else
             {
-                throw new FaultException(resultado.Error);
+                return Task.FromResult(resultado.Valor);
             }
         }
 
@@ -138,18 +174,27 @@ namespace CineVerServicios
         }
 
         public Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta)
-            {
+        {
             throw new NotImplementedException();
         }
 
         public Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta)
-                {
-            throw new NotImplementedException();
-            }
-
-        public Task<ResultDTO> RegistrarPromocion(int idSucursal, PromocionDTO promocion)
         {
             throw new NotImplementedException();
+        }
+
+        public Task<ResultDTO> RegistrarPromocion(PromocionDTO promocion)
+        {
+            var resultado = _gestorVenta.RegistrarPromocion(promocion);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
         }
 
         public Task<ResultDTO> VerificarFechaVentaParaDevolucion(string folio)

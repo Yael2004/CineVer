@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerCliente.ModeloVista;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,34 @@ namespace CineVerCliente.Vista
         public AgregarPromocion()
         {
             InitializeComponent();
+        }
+
+        private void SoloNumeros(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !EsNumero(e.Text);
+        }
+
+        private bool EsNumero(string texto)
+        {
+            return int.TryParse(texto, out _);
+        }
+
+        private void ValidarInventarioVacio1(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "2";
+            }
+        }
+
+        private void ValidarInventarioVacio2(object sender, RoutedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "1";
+            }
         }
     }
 }

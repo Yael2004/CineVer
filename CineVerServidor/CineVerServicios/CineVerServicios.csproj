@@ -72,6 +72,7 @@
     <Compile Include="DTO\GastoDTO.cs" />
     <Compile Include="DTO\ListaEmpleadosDTO.cs" />
     <Compile Include="DTO\ListaGastosDTO.cs" />
+    <Compile Include="DTO\ListaNombresProductosDTO.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
     <Compile Include="DTO\ListaPromocionesDTO.cs" />
     <Compile Include="DTO\ListaSociosDTO.cs" />

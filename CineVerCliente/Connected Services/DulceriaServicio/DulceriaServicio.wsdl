@@ -73,6 +73,12 @@
   <wsdl:message name="IDulceriaServicio_ReportarMerma_OutputMessage">
     <wsdl:part name="parameters" element="tns:ReportarMermaResponse" />
   </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ObtenerNombresProductos_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNombresProductos" />
+  </wsdl:message>
+  <wsdl:message name="IDulceriaServicio_ObtenerNombresProductos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerNombresProductosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDulceriaServicio">
     <wsdl:operation name="ObtenerProductosDulceria">
       <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/ObtenerProductosDulceria" message="tns:IDulceriaServicio_ObtenerProductosDulceria_InputMessage" />
@@ -97,6 +103,10 @@
     <wsdl:operation name="ReportarMerma">
       <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/ReportarMerma" message="tns:IDulceriaServicio_ReportarMerma_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/ReportarMermaResponse" message="tns:IDulceriaServicio_ReportarMerma_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNombresProductos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDulceriaServicio/ObtenerNombresProductos" message="tns:IDulceriaServicio_ObtenerNombresProductos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDulceriaServicio/ObtenerNombresProductosResponse" message="tns:IDulceriaServicio_ObtenerNombresProductos_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IDulceriaServicio" type="tns:IDulceriaServicio">
@@ -149,6 +159,15 @@
     </wsdl:operation>
     <wsdl:operation name="ReportarMerma">
       <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/ReportarMerma" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerNombresProductos">
+      <soap12:operation soapAction="http://tempuri.org/IDulceriaServicio/ObtenerNombresProductos" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

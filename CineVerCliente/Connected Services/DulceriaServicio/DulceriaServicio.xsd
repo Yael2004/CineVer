@@ -85,4 +85,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ObtenerNombresProductos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="idSucursal" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ObtenerNombresProductosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerNombresProductosResult" nillable="true" type="q10:ListaNombresProductosDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

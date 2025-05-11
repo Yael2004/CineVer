@@ -1,4 +1,5 @@
-﻿using CineVerServicios.DTO;
+﻿using CineVerEntidades;
+using CineVerServicios.DTO;
 using DAO;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,167 @@ namespace CineVerServicios.Lógica
     public class GestorVenta
     {
         private VentaDAO ventaDAO = new VentaDAO();
+        private PromocionDAO promocionDAO = new PromocionDAO();
+
+        public Result<ResultDTO> ActualizarPromocion(PromocionDTO promocion)
+        {
+            var promocionEntity = new Promocion
+            {
+                nombre = promocion.Nombre,
+                tipo = promocion.Tipo,
+                producto = promocion.Producto,
+                numeroProductosNecesarios = promocion.NumeroProductosNecesarios,
+                numeroProductosPagar = promocion.NumeroProductosPagar,
+                lunesAplica = promocion.LunesAplica,
+                martesAplica = promocion.MartesAplica,
+                miercolesAplica = promocion.MiercolesAplica,
+                juevesAplica = promocion.JuevesAplica,
+                viernesAplica = promocion.ViernesAplica,
+                sabadoAplica = promocion.SabadoAplica,
+                domingoAplica = promocion.DomingoAplica,
+            };
+            var resultado = promocionDAO.ActualizarPromocion(promocionEntity);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ResultDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<ResultDTO>.Exito(new ResultDTO(true, "Promoción actualizada correctamente"));
+            }
+        }
+
+        public Result<ListaPromocionesDTO> ObtenerPromociones(int idSucursal)
+        {
+            var resultado = promocionDAO.ObtenerPromociones(idSucursal);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ListaPromocionesDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                var listaPromociones = new ListaPromocionesDTO();
+                foreach (var promocion in resultado.Valor)
+                {
+                    var promocionDTO = new PromocionDTO
+                    {
+                        IdPromocion = promocion.idPromocion,
+                        Nombre = promocion.nombre,
+                        Tipo = promocion.tipo,
+                        Producto = promocion.producto,
+                        NumeroProductosNecesarios = (int)promocion.numeroProductosNecesarios,
+                        NumeroProductosPagar = (int)promocion.numeroProductosPagar,
+                        LunesAplica = (bool)promocion.lunesAplica,
+                        MartesAplica = (bool)promocion.martesAplica,
+                        MiercolesAplica = (bool)promocion.miercolesAplica,
+                        JuevesAplica = (bool)promocion.juevesAplica,
+                        ViernesAplica = (bool)promocion.viernesAplica,
+                        SabadoAplica = (bool)promocion.sabadoAplica,
+                        DomingoAplica = (bool)promocion.domingoAplica
+                    };
+                    listaPromociones.Promociones.Add(promocionDTO);
+                }
+                return Result<ListaPromocionesDTO>.Exito(listaPromociones);
+            }
+        }
+
+        public Result<ListaPromocionesDTO> ObtenerPromocionesBoletos(int idSucursal)
+        {
+            var resultado = promocionDAO.ObtenerPromocionesBoletos(idSucursal);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ListaPromocionesDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                var listaPromociones = new ListaPromocionesDTO();
+                foreach (var promocion in resultado.Valor)
+                {
+                    var promocionDTO = new PromocionDTO
+                    {
+                        IdPromocion = promocion.idPromocion,
+                        Nombre = promocion.nombre,
+                        Tipo = promocion.tipo,
+                        Producto = promocion.producto,
+                        NumeroProductosNecesarios = (int)promocion.numeroProductosNecesarios,
+                        NumeroProductosPagar = (int)promocion.numeroProductosPagar,
+                        LunesAplica = (bool)promocion.lunesAplica,
+                        MartesAplica = (bool)promocion.martesAplica,
+                        MiercolesAplica = (bool)promocion.miercolesAplica,
+                        JuevesAplica = (bool)promocion.juevesAplica,
+                        ViernesAplica = (bool)promocion.viernesAplica,
+                        SabadoAplica = (bool)promocion.sabadoAplica,
+                        DomingoAplica = (bool)promocion.domingoAplica
+                    };
+                    listaPromociones.Promociones.Add(promocionDTO);
+                }
+                return Result<ListaPromocionesDTO>.Exito(listaPromociones);
+            }
+        }
+
+        public Result<ListaPromocionesDTO> ObtenerPromocionesDulceria(int idSucursal)
+        {
+            var resultado = promocionDAO.ObtenerPromocionesDulceria(idSucursal);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ListaPromocionesDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                var listaPromociones = new ListaPromocionesDTO();
+                foreach (var promocion in resultado.Valor)
+                {
+                    var promocionDTO = new PromocionDTO
+                    {
+                        IdPromocion = promocion.idPromocion,
+                        Nombre = promocion.nombre,
+                        Tipo = promocion.tipo,
+                        Producto = promocion.producto,
+                        NumeroProductosNecesarios = (int)promocion.numeroProductosNecesarios,
+                        NumeroProductosPagar = (int)promocion.numeroProductosPagar,
+                        LunesAplica = (bool)promocion.lunesAplica,
+                        MartesAplica = (bool)promocion.martesAplica,
+                        MiercolesAplica = (bool)promocion.miercolesAplica,
+                        JuevesAplica = (bool)promocion.juevesAplica,
+                        ViernesAplica = (bool)promocion.viernesAplica,
+                        SabadoAplica = (bool)promocion.sabadoAplica,
+                        DomingoAplica = (bool)promocion.domingoAplica
+                    };
+                    listaPromociones.Promociones.Add(promocionDTO);
+                }
+                return Result<ListaPromocionesDTO>.Exito(listaPromociones);
+            }
+        }
+
+        public Result<ResultDTO> RegistrarPromocion(PromocionDTO promocion)
+        {
+            var promocionEntity = new Promocion
+            {
+                idSucursal = promocion.IdSucursal,
+                nombre = promocion.Nombre,
+                tipo = promocion.Tipo,
+                producto = promocion.Producto,
+                numeroProductosNecesarios = promocion.NumeroProductosNecesarios,
+                numeroProductosPagar = promocion.NumeroProductosPagar,
+                lunesAplica = promocion.LunesAplica,
+                martesAplica = promocion.MartesAplica,
+                miercolesAplica = promocion.MiercolesAplica,
+                juevesAplica = promocion.JuevesAplica,
+                viernesAplica = promocion.ViernesAplica,
+                sabadoAplica = promocion.SabadoAplica,
+                domingoAplica = promocion.DomingoAplica
+            };
+            var resultado = promocionDAO.RegistrarPromocion(promocionEntity);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ResultDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<ResultDTO>.Exito(new ResultDTO(true, "Promoción registrada correctamente"));
+            }
+        }
+
         public Result<ListaVentasDTO> ObtenerVentasPorAnio(int anio, int idSucursal)
         {
             var resultado = ventaDAO.ObtenerVentasPorAnio(anio, idSucursal);

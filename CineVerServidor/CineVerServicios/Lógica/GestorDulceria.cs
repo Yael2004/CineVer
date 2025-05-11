@@ -141,5 +141,26 @@ namespace CineVerServicios.Lógica
                 return Task.FromResult(ResultDTO.Fallo(resultado.Error));
             }
         }
+
+        public static Task<ListaNombresProductosDTO> ObtenerNombresProductos(int idSucursal)
+        {
+            var resultado = productoDulceriaDAO.ObtenerNombreProductos(idSucursal);
+            if (resultado.EsExitoso == true)
+            {
+                return Task.FromResult(new ListaNombresProductosDTO
+                {
+                    NombresProductos = resultado.Valor,
+                    Resultado = ResultDTO.Exito()
+                });
+            }
+            else
+            {
+                return Task.FromResult(new ListaNombresProductosDTO
+                {
+                    NombresProductos = new List<string>(),
+                    Resultado = ResultDTO.Fallo(resultado.Error)
+                });
+            }
+        }
     }
 }
