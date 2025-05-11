@@ -322,6 +322,7 @@ namespace CineVerCliente.ModeloVista
 
         public MainWindowModeloVista()
         {
+            _mainWindowModeloVista = this;
             VistaActualModelo = new IniciarSesionModeloVista(this);
             CrearMenus();
             ConsultarSucursalesComando = new ComandoModeloVista(Sucursales);
@@ -343,6 +344,7 @@ namespace CineVerCliente.ModeloVista
 
         public MainWindowModeloVista(MainWindow _mainWindowMV)
         {
+            _mainWindowModeloVista = this;
             VistaActualModelo = new IniciarSesionModeloVista(this);
             CrearMenus();
             ConsultarSucursalesComando = new ComandoModeloVista(Sucursales);
