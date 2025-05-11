@@ -4,24 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d0b137f6a17f49e1bb50921fa5a5dcfe" Name="Diagram1">
-        <EntityTypeShape EntityType="cineverModel.Actor" Width="1.5" PointX="6" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.ActorEnPelicula" Width="1.5" PointX="8.25" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Asiento" Width="1.5" PointX="7.5" PointY="26.125" IsExpanded="true" />
+      <Diagram DiagramId="c33e9e0169164226860070b4df359144" Name="Diagram1">
+        <EntityTypeShape EntityType="cineverModel.Actor" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.ActorEnPelicula" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Asiento" Width="1.5" PointX="7.5" PointY="26.25" IsExpanded="true" />
         <EntityTypeShape EntityType="cineverModel.Boleto" Width="1.5" PointX="10.5" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.CorteCaja" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.CuentaFidelidad" Width="1.5" PointX="8.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Empleado" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Fila" Width="1.5" PointX="5.25" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Función" Width="1.5" PointX="5.25" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.CorteCaja" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.CuentaFidelidad" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Empleado" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Fila" Width="1.5" PointX="5.25" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Función" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
         <EntityTypeShape EntityType="cineverModel.Gasto" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Película" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Película" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="cineverModel.ProductoDulceria" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
         <EntityTypeShape EntityType="cineverModel.Promocion" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Sala" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Socio" Width="1.5" PointX="6" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Sala" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Socio" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="cineverModel.Sucursal" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Venta" Width="1.5" PointX="8.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cineverModel.Venta" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="cineverModel.VentaEnDulceria" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
         <AssociationConnector Association="cineverModel.FK_ActorEnPelicula_Actor" ManuallyRouted="false" />
         <AssociationConnector Association="cineverModel.FK_ActorEnPelicula_Película" ManuallyRouted="false" />

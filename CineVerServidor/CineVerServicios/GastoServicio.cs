@@ -9,8 +9,10 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace CineVerServicios
 {
+    /*
     public class GastoServicio : IGastoServicio
     {
         private GestorGasto _gestorGasto = new GestorGasto();
@@ -50,4 +52,5 @@ namespace CineVerServicios
             }
         }
     }
+    */
 }

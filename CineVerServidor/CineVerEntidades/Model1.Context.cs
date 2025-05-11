@@ -18,7 +18,7 @@ namespace CineVerEntidades
     public partial class CineVerEntities : DbContext
     {
         public CineVerEntities()
-            : base("name=cineverEntities")
+            : base("name=CineVerEntities")
         {
         }
     

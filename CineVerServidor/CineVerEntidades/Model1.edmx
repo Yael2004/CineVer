@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="cineverModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="cineverModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actor">
           <Key>
             <PropertyRef Name="idActor" />
@@ -605,7 +605,8 @@
             <End Role="VentaEnDulceria" EntitySet="VentaEnDulceria" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="cineverModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -696,10 +697,10 @@
           <Property Name="idSucursal" Type="Int32" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="contratado" Type="Boolean" />
+          <Property Name="contraseña" Type="Binary" MaxLength="64" FixedLength="false" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_Empleado_Sucursal" FromRole="Empleado" ToRole="Sucursal" />
           <NavigationProperty Name="Gasto" Relationship="Self.FK_Gasto_Empleado" FromRole="Empleado" ToRole="Gasto" />
           <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Empleado" FromRole="Empleado" ToRole="Venta" />
-          <Property Name="contraseña" Type="Binary" MaxLength="64" FixedLength="false" />
         </EntityType>
         <EntityType Name="Fila">
           <Key>
@@ -1136,7 +1137,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="cineverEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CineVerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actor" EntityType="Self.Actor" />
           <EntitySet Name="ActorEnPelicula" EntityType="Self.ActorEnPelicula" />
           <EntitySet Name="Asiento" EntityType="Self.Asiento" />
@@ -1258,7 +1259,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="cineverModelStoreContainer" CdmEntityContainer="cineverEntities">
+        <EntityContainerMapping StorageEntityContainer="cineverModelStoreContainer" CdmEntityContainer="CineVerEntities">
           <EntitySetMapping Name="Actor">
             <EntityTypeMapping TypeName="cineverModel.Actor">
               <MappingFragment StoreEntitySet="Actor">
@@ -1324,7 +1325,6 @@
           <EntitySetMapping Name="Empleado">
             <EntityTypeMapping TypeName="cineverModel.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
-                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
                 <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
@@ -1342,6 +1342,7 @@
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
                 <ScalarProperty Name="contratado" ColumnName="contratado" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
