@@ -45,24 +45,23 @@
                         <ItemsControl ItemsSource="{Binding Productos}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button Margin="10" Height="130" Background="White"
-                                        Command="{Binding DataContext.SeleccionarProductoComando, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                        CommandParameter="{Binding}">
+                                    <Grid Margin="10" Height="130" Background="White">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="110"/>
                                                 <ColumnDefinition Width="120"/>
-                                                <ColumnDefinition Width="120"/>
-                                                <ColumnDefinition Width="120"/>
-                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="40"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Image Source="{Binding Imagen}" Width="100" Height="100" Margin="0" Grid.Column="0" VerticalAlignment="Center"/>
+                                            <Image Source="{Binding Imagen}" Width="60" Height="60" Margin="0" Grid.Column="0" VerticalAlignment="Center"/>
 
                                             <TextBlock Text="{Binding Nombre}" 
-                                           FontWeight="Bold" FontSize="16"
+                                           FontWeight="Bold" FontSize="10"
                                            VerticalAlignment="Center"
-                                           Margin="10,0,0,0"
+                                           Margin="5,0,0,0"
                                            Grid.Column="1"/>
 
                                             <TextBlock Text="{Binding CostoUnitario}"
@@ -80,8 +79,15 @@
                                            HorizontalAlignment="Center"
                                            Width="50"
                                            Grid.Column="4"/>
+
+                                            <TextBox Text="{Binding CantidadAVender, UpdateSourceTrigger=PropertyChanged}" 
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"
+                                                 Width="30"
+                                                 MaxLength="3"
+                                                 Grid.Column="5"/>
                                         </Grid>
-                                    </Button>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
@@ -118,17 +124,17 @@
                             <Button Margin="74,126,215,37"
                                 Content="Aceptar"
                                 Style="{StaticResource BotonConfirmarBlanco}"
-                                Command="{Binding ConfirmarVentaComando}"/>
+                                Command="{Binding ConfirmarCancelacionComando}"/>
 
                             <Button Margin="218,126,71,37"
                                 Content="Cancelar"
                                 Style="{StaticResource BotonNegro}"
-                                Command="{Binding CancelarVentaComando}"/>
+                                Command="{Binding CancelarCancelacionComando}"/>
                         </Grid>
                     </Grid>
 
                     <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Height="300" Width="400" Margin="0,51,0,0" Grid.RowSpan="2">
-                        <Grid Visibility="{Binding MostrarMensajeCancelarOperacion}">
+                        <Grid Visibility="{Binding MostrarVentanaVenta}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}" Height="250"/>
                             <TextBlock Text="Agregar cuenta de socio"
                                 FontSize="15"
@@ -166,6 +172,12 @@
                            Margin="169,0,737,76"
                            Foreground="White"/>
                     <ComboBox Margin="246,-1,591,70"/>
+                    <Label Content="Total:" 
+                           Margin="701,-9,262,85"
+                           Foreground="White"/>
+                    <Label Content="{Binding TotalAPagar}" 
+                           Margin="733,-9,160,85"
+                           Foreground="White"/>
                     <Button Height="50" Width="150"
                         Content="Aceptar"
                         Style="{StaticResource BotonConfirmarNaranja}"

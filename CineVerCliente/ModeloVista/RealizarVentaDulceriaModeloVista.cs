@@ -19,6 +19,7 @@ namespace CineVerCliente.ModeloVista
         private Visibility _mostrarMensajeCancelarOperacion = Visibility.Collapsed;
         private Visibility _mostrarMensajeConfirmarCambio = Visibility.Collapsed;
         private Visibility _mostrarVentanaVenta = Visibility.Collapsed;
+        private double _totalAPagar;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
         private DulceriaServicioClient DulceriaServicioCliente;
@@ -80,6 +81,19 @@ namespace CineVerCliente.ModeloVista
             _mainWindowModeloVista = mainWindowModeloVista;
             DulceriaServicioCliente = new DulceriaServicioClient();
             Productos = new ObservableCollection<ProductoDulceria>();
+            Productos.CollectionChanged += (s, e) =>
+            {
+                foreach (var item in Productos)
+                {
+                    item.PropertyChanged += (s2, e2) =>
+                    {
+                        if (e2.PropertyName == nameof(ProductoDulceria.TotalProducto))
+                        {
+                            RecalcularTotal();
+                        }
+                    };
+                }
+            };
             RealizarVentaComando = new ComandoModeloVista(RealizarVenta);
             ConfirmarVentaComando = new ComandoModeloVista(ConfirmarVenta);
             CancelarVentaComando = new ComandoModeloVista(CancelarVenta);
@@ -90,6 +104,11 @@ namespace CineVerCliente.ModeloVista
             CancelarVentanaVentaComando = new ComandoModeloVista(CancelarVentanaVenta);
             CrearCuentaComando = new ComandoModeloVista(CrearCuenta);
             InicializarListaProductos();
+        }
+
+        private void RecalcularTotal()
+        {
+            TotalAPagar = Productos.Sum(p => p.TotalProducto);
         }
 
         private void InicializarListaProductos()
@@ -118,22 +137,62 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public double TotalAPagar
+        {
+            get { return _totalAPagar; }
+            set
+            {
+                _totalAPagar = value;
+                OnPropertyChanged(nameof(TotalAPagar));
+            }
+        }
+
         public void RealizarVenta(object obj)
         {
             MostrarVentanaVenta = Visibility.Visible;
         }
 
-        public void ConfirmarVenta(object obj)
+        private void ConfirmarVenta(object obj)
         {
-            // Aquí puedes agregar la lógica para confirmar la venta
-            // Por ejemplo, enviar la información al servicio o realizar alguna acción adicional
-            MostrarVentanaVenta = Visibility.Collapsed;
+            Dictionary<int, int> productosVendidos = new Dictionary<int, int>();
+
+            foreach (var producto in Productos)
+            {
+                if (producto.CantidadAVender > 0 && int.TryParse(producto.CantidadInventario, out int inventarioActual))
+                {
+                    if (producto.CantidadAVender <= inventarioActual)
+                    {
+                        productosVendidos.Add(producto.Id, producto.CantidadAVender);
+                    }
+                }
+
+            }
+
+            /*
+            try
+            {
+                var respuesta = DulceriaServicioCliente.RealizarVenta(productosVendidos);
+                if (respuesta != null && respuesta.EsExitoso)
+                {
+                    Notificacion.Mostrar("Venta realizada correctamente");
+                }
+                else
+                {
+                    Notificacion.Mostrar("No se pudo completar la venta");
+                }
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Error al realizar la venta");
+            }
+            */
+
+            Notificacion.Mostrar("Venta realizada correctamente");
         }
+
 
         public void CancelarVenta(object obj)
         {
-            // Aquí puedes agregar la lógica para cancelar la venta
-            // Por ejemplo, restablecer los campos o realizar alguna acción adicional
             MostrarVentanaVenta = Visibility.Collapsed;
         }
 
@@ -154,23 +213,17 @@ namespace CineVerCliente.ModeloVista
 
         public void AceptarVentanaVenta(object obj)
         {
-            // Aquí puedes agregar la lógica para aceptar la ventana de venta
-            // Por ejemplo, enviar la información al servicio o realizar alguna acción adicional
             MostrarVentanaVenta = Visibility.Collapsed;
         }
 
         public void CancelarVentanaVenta(object obj)
         {
-            // Aquí puedes agregar la lógica para cancelar la ventana de venta
-            // Por ejemplo, restablecer los campos o realizar alguna acción adicional
             MostrarVentanaVenta = Visibility.Collapsed;
         }
 
         private void CrearCuenta(object obj)
         {
-            // Aquí puedes agregar la lógica para crear una cuenta
-            // Por ejemplo, abrir una ventana de registro o realizar alguna acción adicional
-            //_mainWindowModeloVista.CambiarModeloVista(new CrearCuentaModeloVista(_mainWindowModeloVista));
+            _mainWindowModeloVista.CambiarModeloVista(new RegistrarSocioModeloVista(_mainWindowModeloVista));
         }
     }
 }
