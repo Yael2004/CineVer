@@ -60,6 +60,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand AgregarPromocionComando { get; }
         public ICommand EditarPromocionComando { get; }
         public ICommand CerrarSesionComando { get; }
+        public ICommand ObtenerEstadisticasComando { get; }
 
         public object VistaActualModelo
         {
@@ -342,6 +343,7 @@ namespace CineVerCliente.ModeloVista
             AgregarPromocionComando = new ComandoModeloVista(AgregarPromocion);
             EditarPromocionComando = new ComandoModeloVista(EditarPromocion);
             CerrarSesionComando = new ComandoModeloVista(CerrarSesion);
+            ObtenerEstadisticasComando = new ComandoModeloVista(ObtenerEstadisticas);
         }
 
         public MainWindowModeloVista(MainWindow _mainWindowMV)
@@ -555,6 +557,11 @@ namespace CineVerCliente.ModeloVista
             UsuarioEnLinea.Instancia.CerrarSesionActual();
             CrearMenus();
             CambiarModeloVista(new IniciarSesionModeloVista(_mainWindowModeloVista));
+        }
+
+        private void ObtenerEstadisticas(object obj)
+        {
+            CambiarModeloVista(new ObtenerEstadisticasModeloVista(_mainWindowModeloVista));
         }
     }
 }

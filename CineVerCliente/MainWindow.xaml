@@ -103,7 +103,7 @@
                             <MenuItem Header="Obtener Estadísticas"
                                 Style="{StaticResource MenuItemMain}"
                                 Visibility="{Binding ObtenerEstadisticasMenu}"
-                                Command=""
+                                Command="{Binding ObtenerEstadisticasComando}"
                                 CommandParameter="{Binding}"/>
                             <MenuItem Header="Registrar gasto"
                                 Style="{StaticResource MenuItemMain}"
