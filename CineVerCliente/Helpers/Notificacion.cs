@@ -23,5 +23,16 @@ namespace CineVerCliente.Helpers
                 notiPanel?.Children.Add(noti);
             });
         }
+
+        public static void MostrarExcepcion(int duracionMs = 3000)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                var noti = new NotificacionExcepcion(duracionMs);
+                var mainWindow = Application.Current.MainWindow as MainWindow;
+                var notiPanel = mainWindow?.FindName("NotiPanel") as Panel;
+                notiPanel?.Children.Add(noti);
+            });
+        }
     }
 }

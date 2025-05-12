@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Modelo;
+﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -135,7 +136,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar las ventas del mes: {ex.Message}", "¡Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
+                Notificacion.MostrarExcepcion();
             }
         }
 
@@ -198,6 +199,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception ex)
             {
+                Notificacion.MostrarExcepcion();
                 MessageBox.Show($"Error al cargar las ventas del año: {ex.Message}", "¡Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
