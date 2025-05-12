@@ -200,7 +200,6 @@ namespace CineVerCliente.ModeloVista
             catch (Exception ex)
             {
                 Notificacion.MostrarExcepcion();
-                MessageBox.Show($"Error al cargar las ventas del año: {ex.Message}", "¡Oops!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

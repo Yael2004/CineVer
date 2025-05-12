@@ -136,18 +136,25 @@ namespace CineVerCliente.ModeloVista
         {
             MostrarMensajeConfirmacion = Visibility.Collapsed;
 
-            var cliente = new SucursalServicio.SucursalServicioClient();
-            var respuesta = cliente.CerrarSucursal(_idSucursal);
+            try { 
+                var cliente = new SucursalServicio.SucursalServicioClient();
+                var respuesta = cliente.CerrarSucursal(_idSucursal);
 
-            if (respuesta.EsExitoso)
-            {
-                Notificacion.Mostrar("Sucursal eliminada exitosamente.");
-                MostrarMensajeConfirmacion = Visibility.Collapsed;
-                CargarSucursales();
+                if (respuesta.EsExitoso)
+                {
+                    Notificacion.Mostrar("Sucursal eliminada exitosamente.");
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                    CargarSucursales();
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al eliminar la sucursal.");
+                    MostrarMensajeConfirmacion = Visibility.Collapsed;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Notificacion.Mostrar("Error al eliminar la sucursal.");
+                Notificacion.MostrarExcepcion();
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
             }
         }
@@ -159,24 +166,30 @@ namespace CineVerCliente.ModeloVista
 
         private async void CargarSucursales()
         {
-            var cliente = new SucursalServicio.SucursalServicioClient();
-            var respuesta = await cliente.ObtenerSucursalesAsync();
+            try { 
+                var cliente = new SucursalServicio.SucursalServicioClient();
+                var respuesta = await cliente.ObtenerSucursalesAsync();
 
-            Sucursales = new ObservableCollection<SucursalConsultada>();
-            foreach (var sucursal in respuesta.Sucursales)
-            {
-                Sucursales.Add(new SucursalConsultada
+                Sucursales = new ObservableCollection<SucursalConsultada>();
+                foreach (var sucursal in respuesta.Sucursales)
                 {
-                    IdSucursal = sucursal.IdSucursal,
-                    Nombre = sucursal.Nombre,
-                    Estado = sucursal.Estado,
-                    Ciudad = sucursal.Ciudad,
-                    Calle = sucursal.Calle,
-                    CodigoPostal = sucursal.CodigoPostal,
-                    Numero = sucursal.NumeroEnLaCalle,
-                    HoraApertura = sucursal.HoraApertura,
-                    HoraCierre = sucursal.HoraCierre
-                });
+                    Sucursales.Add(new SucursalConsultada
+                    {
+                        IdSucursal = sucursal.IdSucursal,
+                        Nombre = sucursal.Nombre,
+                        Estado = sucursal.Estado,
+                        Ciudad = sucursal.Ciudad,
+                        Calle = sucursal.Calle,
+                        CodigoPostal = sucursal.CodigoPostal,
+                        Numero = sucursal.NumeroEnLaCalle,
+                        HoraApertura = sucursal.HoraApertura,
+                        HoraCierre = sucursal.HoraCierre
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificacion.MostrarExcepcion();
             }
         }
     }

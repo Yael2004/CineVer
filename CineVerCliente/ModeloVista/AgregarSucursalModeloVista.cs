@@ -295,7 +295,7 @@ namespace CineVerCliente.ModeloVista
             catch (Exception ex)
             {
                 MostrarMensajeConfirmar = Visibility.Collapsed;
-                Notificacion.Mostrar("Error al conectar con el servicio: " + ex.Message);
+                Notificacion.MostrarExcepcion();
             }
         }
 

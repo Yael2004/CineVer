@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Modelo;
+﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -187,41 +188,47 @@ namespace CineVerCliente.ModeloVista
 
         private void CargarFilas()
         {
-            var cliente = new SucursalServicio.SucursalServicioClient();
-            var resultado = cliente.ObtenerAsientosPorFila(1);
+            try {
+                var cliente = new SucursalServicio.SucursalServicioClient();
+                var resultado = cliente.ObtenerAsientosPorFila(1);
 
-            Asientos.Clear();
+                Asientos.Clear();
 
-            int maxColumnas = 0;
+                int maxColumnas = 0;
 
-            foreach (var fila in resultado.Filas)
-            {
-                var filaAsientos = new ObservableCollection<Asiento>();
-                int idFila = fila.NumeroFila;
-                int numeroAsientos = fila.CantidadAsientos;
-
-                for (int j = 0; j < numeroAsientos; j++)
+                foreach (var fila in resultado.Filas)
                 {
-                    var asiento = new Asiento
-                    {
-                        IdFila = idFila,
-                        LetraColumna = j,
-                        Estado = EstadoAsiento.Disponible
-                    };
+                    var filaAsientos = new ObservableCollection<Asiento>();
+                    int idFila = fila.NumeroFila;
+                    int numeroAsientos = fila.CantidadAsientos;
 
-                    filaAsientos.Add(asiento);
-                    Asientos.Add(asiento);
+                    for (int j = 0; j < numeroAsientos; j++)
+                    {
+                        var asiento = new Asiento
+                        {
+                            IdFila = idFila,
+                            LetraColumna = j,
+                            Estado = EstadoAsiento.Disponible
+                        };
+
+                        filaAsientos.Add(asiento);
+                        Asientos.Add(asiento);
+                    }
+
+                    AsientosAgrupados.Add(filaAsientos);
                 }
 
-                AsientosAgrupados.Add(filaAsientos);
+                LetrasColumnas = new ObservableCollection<string>();
+                for (int j = 0; j < maxColumnas; j++)
+                {
+                    LetrasColumnas.Add(((char)('A' + j)).ToString());
+                }
             }
-
-            LetrasColumnas = new ObservableCollection<string>();
-            for (int j = 0; j < maxColumnas; j++)
+            catch (Exception ex)
             {
-                LetrasColumnas.Add(((char)('A' + j)).ToString());
+                Notificacion.MostrarExcepcion();
             }
-        }
+        }           
 
 
         private void CambiarEstado(object obj)
@@ -255,21 +262,27 @@ namespace CineVerCliente.ModeloVista
 
             MostrarNumeroCampoVacio = Visibility.Collapsed;
 
-            var clienteSocio = new SocioServicio.SocioServicioClient();
-            var resultadoSocio = clienteSocio.ExisteSocio(NumeroCuenta);
-
-            if (!resultadoSocio.EsExitoso)
+            try
             {
-                MostrarCuentaNoExiste = Visibility.Visible;
-            }
-            else
-            {
-                MostrarMensajeAgregarSocio = Visibility.Collapsed;
-                MostrarNumeroCampoVacio = Visibility.Collapsed;
-                MostrarCuentaNoExiste = Visibility.Collapsed;
+                var clienteSocio = new SocioServicio.SocioServicioClient();
+                var resultadoSocio = clienteSocio.ExisteSocio(NumeroCuenta);
 
-                CalcularPrecio();
-                MostrarMensajeTotalPagar = Visibility.Visible;
+                if (!resultadoSocio.EsExitoso)
+                {
+                    MostrarCuentaNoExiste = Visibility.Visible;
+                }
+                else
+                {
+                    MostrarMensajeAgregarSocio = Visibility.Collapsed;
+                    MostrarNumeroCampoVacio = Visibility.Collapsed;
+                    MostrarCuentaNoExiste = Visibility.Collapsed;
+
+                    CalcularPrecio();
+                    MostrarMensajeTotalPagar = Visibility.Visible;
+                }
+            
+            } catch (Exception ex) {
+                Notificacion.MostrarExcepcion();
             }
         }
 

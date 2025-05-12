@@ -214,25 +214,31 @@ namespace CineVerCliente.ModeloVista
         {
             if (ValidarInicioSiguienteDia())
             {
-                var clienteCorteCaja = new CorteCajaServicio.CorteCajaServicioClient();
-                var corteCaja = new CorteCajaServicio.CorteCajaDTO
-                {
-                    DiferenciaEfectivo = DiferenciaEfectivo,
-                    EfectivoCaja = EfectivoCaja,
-                    EfectivoEsperado = EfectivoEsperado,
-                    FechaCorte = DateTime.Now,
-                    Ganancias = Ganancias,
-                    Gastos = Gastos,
-                    VentaTotal = VentasTotales,
-                    InicioDia = decimal.Parse(InicioSiguienteDiaTexto),
-                    IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,
-                };
+                try { 
+                    var clienteCorteCaja = new CorteCajaServicio.CorteCajaServicioClient();
+                    var corteCaja = new CorteCajaServicio.CorteCajaDTO
+                    {
+                        DiferenciaEfectivo = DiferenciaEfectivo,
+                        EfectivoCaja = EfectivoCaja,
+                        EfectivoEsperado = EfectivoEsperado,
+                        FechaCorte = DateTime.Now,
+                        Ganancias = Ganancias,
+                        Gastos = Gastos,
+                        VentaTotal = VentasTotales,
+                        InicioDia = decimal.Parse(InicioSiguienteDiaTexto),
+                        IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,
+                    };
 
-                var resultado = clienteCorteCaja.GuardarCorteCaja(corteCaja);
+                    var resultado = clienteCorteCaja.GuardarCorteCaja(corteCaja);
 
-                if (resultado.EsExitoso)
+                    if (resultado.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Corte de caja realizado con éxito");
+                    }
+                }
+                catch (Exception ex)
                 {
-                    Notificacion.Mostrar("Corte de caja realizado con éxito");
+                    Notificacion.MostrarExcepcion();
                 }
             }
         }
@@ -304,8 +310,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al cargar los datos: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                Notificacion.MostrarExcepcion();
             }
 
         }

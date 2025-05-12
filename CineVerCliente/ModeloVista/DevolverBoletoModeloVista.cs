@@ -138,41 +138,46 @@ namespace CineVerCliente.ModeloVista
 
         public void AceptarDevolucion(object obj)
         {
-            var clienteVenta = new VentaServicio.VentaServicioClient();
-            var clienteSocio = new SocioServicio.SocioServicioClient();
+            try { 
+                var clienteVenta = new VentaServicio.VentaServicioClient();
+                var clienteSocio = new SocioServicio.SocioServicioClient();
 
-            var resultado = clienteVenta.ObtenerVentaPorFolio(FolioVenta);
-            var resultadoSocio = clienteSocio.ExisteSocio(NumeroSocio);
+                var resultado = clienteVenta.ObtenerVentaPorFolio(FolioVenta);
+                var resultadoSocio = clienteSocio.ExisteSocio(NumeroSocio);
 
-            if (!resultadoSocio.EsExitoso)
-            {
-                NumeroSocioNoExiste = Visibility.Visible;
-            }
-            else if (!resultado.EsExitoso)
-            {
-                NumeroSocioNoExiste = Visibility.Collapsed;
-                FolioVentaNoExiste = Visibility.Visible;
-            }
-            else
-            {
-                MostrarVentanaConfirmacion = Visibility.Collapsed;
-                FolioVentaNoExiste = Visibility.Collapsed;
-                FolioVentaCampoVacio = Visibility.Collapsed;
-
-                clienteVenta.VerificarFechaVentaParaDevolucion(FolioVenta);
-                
                 if (!resultadoSocio.EsExitoso)
                 {
-                    MostrarVentanaDevolucionNoPosible = Visibility.Visible;
-                    return;
+                    NumeroSocioNoExiste = Visibility.Visible;
                 }
+                else if (!resultado.EsExitoso)
+                {
+                    NumeroSocioNoExiste = Visibility.Collapsed;
+                    FolioVentaNoExiste = Visibility.Visible;
+                }
+                else
+                {
+                    MostrarVentanaConfirmacion = Visibility.Collapsed;
+                    FolioVentaNoExiste = Visibility.Collapsed;
+                    FolioVentaCampoVacio = Visibility.Collapsed;
 
-                //Agregar puntos al socio
+                    clienteVenta.VerificarFechaVentaParaDevolucion(FolioVenta);
+                
+                    if (!resultadoSocio.EsExitoso)
+                    {
+                        MostrarVentanaDevolucionNoPosible = Visibility.Visible;
+                        return;
+                    }
 
-                Notificacion.Mostrar("El boleto ha sido devuelto exitosamente.");
-                MostrarVentanaConfirmacion = Visibility.Collapsed;
+                    //Agregar puntos al socio
+
+                    Notificacion.Mostrar("El boleto ha sido devuelto exitosamente.");
+                    MostrarVentanaConfirmacion = Visibility.Collapsed;
+                }
             }
-
+            catch (Exception ex)
+            {
+                Notificacion.MostrarExcepcion();
+            }
         }
 
         public void CancelarDevolucion(object obj)

@@ -234,33 +234,39 @@ namespace CineVerCliente.ModeloVista
 
         private async void AceptarEdicion(object obj)
         {
-            var cliente = new SucursalServicio.SucursalServicioClient();
+            try { 
+                var cliente = new SucursalServicio.SucursalServicioClient();
 
-            if (ValidarCampos())
+                if (ValidarCampos())
+                {
+                    var sucursalEditada = new SucursalServicio.SucursalDTO
+                    {
+                        Nombre = NombreSucursal,
+                        CodigoPostal = CodigoPostal,
+                        Estado = Estado,
+                        Ciudad = Ciudad,
+                        Calle = Calle,
+                        NumeroEnLaCalle = Numero,
+                        HoraApertura = HoraApertura,
+                        HoraCierre = HoraCierre
+                    };
+
+                    var resultado = await cliente.ActualizarSucursalAsync(IdSucursal, sucursalEditada);
+
+                    if (resultado.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Sucursal actualizada con éxito");
+                    }
+                    else
+                    {
+                        Notificacion.Mostrar("Error al actualizar la sucursal: " + resultado.Error);
+                    }
+                        _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
+                }
+            }
+            catch (Exception ex)
             {
-                var sucursalEditada = new SucursalServicio.SucursalDTO
-                {
-                    Nombre = NombreSucursal,
-                    CodigoPostal = CodigoPostal,
-                    Estado = Estado,
-                    Ciudad = Ciudad,
-                    Calle = Calle,
-                    NumeroEnLaCalle = Numero,
-                    HoraApertura = HoraApertura,
-                    HoraCierre = HoraCierre
-                };
-
-                var resultado = await cliente.ActualizarSucursalAsync(IdSucursal, sucursalEditada);
-
-                if (resultado.EsExitoso)
-                {
-                    Notificacion.Mostrar("Sucursal actualizada con éxito");
-                }
-                else
-                {
-                    Notificacion.Mostrar("Error al actualizar la sucursal: " + resultado.Error);
-                }
-                    _mainWindowModeloVista.CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
+                Notificacion.MostrarExcepcion();
             }
         }
 
@@ -278,11 +284,6 @@ namespace CineVerCliente.ModeloVista
         private void CancelarConfirmacion(object obj)
         {
             MostrarMensajeConfirmacion = Visibility.Collapsed;
-        }
-
-        private void ActualizarSucursal(object obj)
-        {
-            var sucursal = new Sucursal();
         }
 
         public void CargarSucursal(SucursalConsultada sucursal)
