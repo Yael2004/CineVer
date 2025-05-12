@@ -79,8 +79,10 @@
     <Compile Include="DTO\CuentaFidelidadResponseDTO.cs" />
     <Compile Include="DTO\EmpleadoDTO.cs" />
     <Compile Include="DTO\EmpleadoResponseDTO.cs" />
+    <Compile Include="DTO\FilasPruebaDTO.cs" />
     <Compile Include="DTO\GastoDTO.cs" />
     <Compile Include="DTO\ListaEmpleadosDTO.cs" />
+    <Compile Include="DTO\ListaFilasDTO.cs" />
     <Compile Include="DTO\ListaGastosDTO.cs" />
     <Compile Include="DTO\ListaNombresProductosDTO.cs" />
     <Compile Include="DTO\AsientoDTO.cs" />

@@ -34,10 +34,5 @@ namespace Utilidades
         {
             return new Result<T>(default, false, error);
         }
-
-        public static Result<decimal> Exito(decimal? v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

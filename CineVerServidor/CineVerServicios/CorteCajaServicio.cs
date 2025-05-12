@@ -4,12 +4,14 @@ using CineVerServicios.Lógica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Utilidades;
 
 namespace CineVerServicios
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class CorteCajaServicio : ICorteCajaServicio
     {
         private GestorCorteCaja _gestorCorteCaja = new GestorCorteCaja();
@@ -24,25 +26,6 @@ namespace CineVerServicios
             else
             {
                 return Task.FromResult(new ResultDTO(false, resultado.Error));
-            }
-        }
-
-        public Task<CorteCajaInicioFinDTO> ObtenerInicioFinDia(DateTime fecha)
-        {
-            var resultado = _gestorCorteCaja.ObtenerInicioFinDia(fecha);
-
-            if (resultado.Result.ResultDTO.EsExitoso)
-            {
-                var corteCaja = new CorteCajaInicioFinDTO
-                {
-                    InicioDia = (decimal)resultado.Result.InicioDia,
-                    VentaTotal = (decimal)resultado.Result.VentaTotal
-                };
-                return Task.FromResult(corteCaja);
-            }
-            else
-            {
-                return Task.FromResult<CorteCajaInicioFinDTO>(null);
             }
         }
 

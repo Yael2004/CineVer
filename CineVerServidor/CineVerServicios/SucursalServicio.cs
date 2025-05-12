@@ -71,5 +71,21 @@ namespace CineVerServicios
                 });
             }
         }
+
+        public Task<ListaFilasDTO> ObtenerAsientosPorFila(int idSala)
+        {
+            var resultado = _gestorSucursal.ObtenerAsientosPorFila(idSala);
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(resultado.Valor);
+            }
+            else
+            {
+                return Task.FromResult(new ListaFilasDTO
+                {
+                    Result = new ResultDTO(false, resultado.Error)
+                });
+            }
+        }
     }
 }

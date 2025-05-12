@@ -15,8 +15,6 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ResultDTO> GuardarCorteCaja(CorteCajaDTO corteCajaDTO);
         [OperationContract]
-        Task<CorteCajaInicioFinDTO> ObtenerInicioFinDia(DateTime fecha);
-        [OperationContract]
         Task<CorteCajaResponseDTO> ObtenerMontoInicioDia(int idSucursal);
     }
 }

@@ -34,35 +34,6 @@ namespace DAO
                 }
             }
         }
-        
-        public Result<CorteCaja> ObtenerInicioYFinDia(DateTime fecha)
-        {
-            using (CineVerEntities entities = new CineVerEntities())
-            {
-                try
-                {
-                    var corteCaja = entities.CorteCaja
-                        .FirstOrDefault(c => DbFunctions.TruncateTime(c.fechaCorte) == fecha.Date);
-
-                    if (corteCaja != null)
-                    {
-                        return Result<CorteCaja>.Exito(corteCaja);
-                    }
-                    else
-                    {
-                        return Result<CorteCaja>.Fallo("No se encontró el corte de caja para la fecha especificada.");
-                    }
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    return Result<CorteCaja>.Fallo(ex.Message);
-                }
-                catch (SqlException sqlEx)
-                {
-                    return Result<CorteCaja>.Fallo(sqlEx.Message);
-                }
-            }
-        }
 
         public Result<decimal> ObtenerMontoInicioDia(int idSucursal)
         {
@@ -74,7 +45,7 @@ namespace DAO
                     var corteCaja = entities.CorteCaja.FirstOrDefault(c => DbFunctions.TruncateTime(c.fechaCorte) == fechaAyer && c.idSucursal == idSucursal);
                     if (corteCaja != null)
                     {
-                        return Result<decimal>.Exito(corteCaja.inicioDia);
+                        return Result<decimal>.Exito((decimal)corteCaja.inicioDia);
                     }
                     else
                     {

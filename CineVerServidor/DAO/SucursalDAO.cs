@@ -38,29 +38,26 @@ namespace DAO
             }
         }
 
-        public Result<bool> ExisteSucursal(string nombreSucursal)
+        public Result<List<Fila>> ObtenerAsientosPorFila(int idSala)
         {
             using (CineVerEntities entities = new CineVerEntities())
             {
                 try
                 {
-                    var sucursal = entities.Sucursal.Where(e => e.nombre.Equals(nombreSucursal)).FirstOrDefault();
-                    if (sucursal != null)
+                    var filas = entities.Fila.Where(f => f.idSala == idSala).ToList();
+                    if (filas.Count == 0)
                     {
-                        return Result<bool>.Exito(true);
+                        return Result<List<Fila>>.Fallo("No hay filas registradas");
                     }
-                    else
-                    {
-                        return Result<bool>.Exito(false);
-                    }
+                    return Result<List<Fila>>.Exito(filas);
                 }
                 catch (DbEntityValidationException ex)
                 {
-                    return Result<bool>.Fallo(ex.Message);
+                    return Result<List<Fila>>.Fallo(ex.Message);
                 }
                 catch (SqlException sqlEx)
                 {
-                    return Result<bool>.Fallo(sqlEx.Message);
+                    return Result<List<Fila>>.Fallo(sqlEx.Message);
                 }
             }
         }

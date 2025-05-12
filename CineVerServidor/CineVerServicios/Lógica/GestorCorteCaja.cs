@@ -42,26 +42,6 @@ namespace CineVerServicios.Lógica
             }
         }
 
-        public Task<CorteCajaInicioFinDTO> ObtenerInicioFinDia(DateTime fecha)
-        {
-            var resultado = corteCajaDAO.ObtenerInicioYFinDia(fecha);
-
-            if (resultado.EsExitoso)
-            {
-                var corteCaja = new CorteCajaInicioFinDTO
-                {
-                    InicioDia = (decimal)resultado.Valor.inicioDia,
-                    VentaTotal = (decimal)resultado.Valor.ventaTotal
-                };
-
-                return Task.FromResult(corteCaja);
-            }
-            else
-            {
-                return Task.FromResult<CorteCajaInicioFinDTO>(null);
-            }
-        }
-
         public Result<decimal> ObtenerMontoInicioDia(int idSucursal)
         {
             var resultado = corteCajaDAO.ObtenerMontoInicioDia(idSucursal);
