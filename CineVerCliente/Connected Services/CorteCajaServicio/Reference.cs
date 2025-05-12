@@ -265,83 +265,6 @@ namespace CineVerCliente.CorteCajaServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CorteCajaInicioFinDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
-    [System.SerializableAttribute()]
-    public partial class CorteCajaInicioFinDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal InicioDiaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private CineVerCliente.CorteCajaServicio.ResultDTO ResultDTOField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private decimal VentaTotalField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal InicioDia {
-            get {
-                return this.InicioDiaField;
-            }
-            set {
-                if ((this.InicioDiaField.Equals(value) != true)) {
-                    this.InicioDiaField = value;
-                    this.RaisePropertyChanged("InicioDia");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public CineVerCliente.CorteCajaServicio.ResultDTO ResultDTO {
-            get {
-                return this.ResultDTOField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ResultDTOField, value) != true)) {
-                    this.ResultDTOField = value;
-                    this.RaisePropertyChanged("ResultDTO");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public decimal VentaTotal {
-            get {
-                return this.VentaTotalField;
-            }
-            set {
-                if ((this.VentaTotalField.Equals(value) != true)) {
-                    this.VentaTotalField = value;
-                    this.RaisePropertyChanged("VentaTotal");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CorteCajaResponseDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
     [System.SerializableAttribute()]
     public partial class CorteCajaResponseDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -411,12 +334,6 @@ namespace CineVerCliente.CorteCajaServicio {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICorteCajaServicio/GuardarCorteCaja", ReplyAction="http://tempuri.org/ICorteCajaServicio/GuardarCorteCajaResponse")]
         System.Threading.Tasks.Task<CineVerCliente.CorteCajaServicio.ResultDTO> GuardarCorteCajaAsync(CineVerCliente.CorteCajaServicio.CorteCajaDTO corteCajaDTO);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICorteCajaServicio/ObtenerInicioFinDia", ReplyAction="http://tempuri.org/ICorteCajaServicio/ObtenerInicioFinDiaResponse")]
-        CineVerCliente.CorteCajaServicio.CorteCajaInicioFinDTO ObtenerInicioFinDia(System.DateTime fecha);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICorteCajaServicio/ObtenerInicioFinDia", ReplyAction="http://tempuri.org/ICorteCajaServicio/ObtenerInicioFinDiaResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.CorteCajaServicio.CorteCajaInicioFinDTO> ObtenerInicioFinDiaAsync(System.DateTime fecha);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICorteCajaServicio/ObtenerMontoInicioDia", ReplyAction="http://tempuri.org/ICorteCajaServicio/ObtenerMontoInicioDiaResponse")]
         CineVerCliente.CorteCajaServicio.CorteCajaResponseDTO ObtenerMontoInicioDia(int idSucursal);
         
@@ -457,14 +374,6 @@ namespace CineVerCliente.CorteCajaServicio {
         
         public System.Threading.Tasks.Task<CineVerCliente.CorteCajaServicio.ResultDTO> GuardarCorteCajaAsync(CineVerCliente.CorteCajaServicio.CorteCajaDTO corteCajaDTO) {
             return base.Channel.GuardarCorteCajaAsync(corteCajaDTO);
-        }
-        
-        public CineVerCliente.CorteCajaServicio.CorteCajaInicioFinDTO ObtenerInicioFinDia(System.DateTime fecha) {
-            return base.Channel.ObtenerInicioFinDia(fecha);
-        }
-        
-        public System.Threading.Tasks.Task<CineVerCliente.CorteCajaServicio.CorteCajaInicioFinDTO> ObtenerInicioFinDiaAsync(System.DateTime fecha) {
-            return base.Channel.ObtenerInicioFinDiaAsync(fecha);
         }
         
         public CineVerCliente.CorteCajaServicio.CorteCajaResponseDTO ObtenerMontoInicioDia(int idSucursal) {

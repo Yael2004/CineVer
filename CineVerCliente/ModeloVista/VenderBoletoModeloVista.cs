@@ -30,6 +30,8 @@ namespace CineVerCliente.ModeloVista
 
         private ObservableCollection<string> _letrasColumnas;
         private ObservableCollection<Asiento> _asientos;
+        public ObservableCollection<ObservableCollection<Asiento>> AsientosAgrupados { get; set; }
+
         private MainWindowModeloVista _mainWindowModeloVista;
 
         public ICommand ElegirAsientoComando { get; }
@@ -171,49 +173,56 @@ namespace CineVerCliente.ModeloVista
             CancelarPagoComando = new ComandoModeloVista(CancelarPago);
 
             Asientos = new ObservableCollection<Asiento>();
+            AsientosAgrupados = new ObservableCollection<ObservableCollection<Asiento>>();
 
             MostrarMensajeAgregarSocio = Visibility.Collapsed;
             MostrarNumeroCampoVacio = Visibility.Collapsed;
             MostrarCuentaNoExiste = Visibility.Collapsed;
             MostrarMensajeTotalPagar = Visibility.Collapsed;
 
-            var filas = new Dictionary<int, int>
-            {
-                { 0, 6 },
-                { 1, 8 },
-                { 2, 7 },
-                { 3, 5 },
-                { 4, 8 }
-            };
+            CargarFilas();
 
-            foreach (var fila in filas)
+            _mainWindowModeloVista = mainWindowModeloVista;
+        }
+
+        private void CargarFilas()
+        {
+            var cliente = new SucursalServicio.SucursalServicioClient();
+            var resultado = cliente.ObtenerAsientosPorFila(1);
+
+            Asientos.Clear();
+
+            int maxColumnas = 0;
+
+            foreach (var fila in resultado.Filas)
             {
-                for (int j = 0; j < fila.Value; j++)
+                var filaAsientos = new ObservableCollection<Asiento>();
+                int idFila = fila.NumeroFila;
+                int numeroAsientos = fila.CantidadAsientos;
+
+                for (int j = 0; j < numeroAsientos; j++)
                 {
-                    EstadoAsiento estado = EstadoAsiento.Disponible;
-
-                    if (fila.Key == 0 && j == 1) estado = EstadoAsiento.Mantenimiento;
-                    if (fila.Key == 1 && j == 3) estado = EstadoAsiento.Ocupado;
-
-                    Asientos.Add(new Asiento
+                    var asiento = new Asiento
                     {
-                        IdFila = fila.Key,
+                        IdFila = idFila,
                         LetraColumna = j,
-                        Estado = estado
-                    });
-                }
-            }
+                        Estado = EstadoAsiento.Disponible
+                    };
 
-            int maxColumnas = filas.Values.Max();
+                    filaAsientos.Add(asiento);
+                    Asientos.Add(asiento);
+                }
+
+                AsientosAgrupados.Add(filaAsientos);
+            }
 
             LetrasColumnas = new ObservableCollection<string>();
             for (int j = 0; j < maxColumnas; j++)
             {
                 LetrasColumnas.Add(((char)('A' + j)).ToString());
             }
-
-            _mainWindowModeloVista = mainWindowModeloVista;
         }
+
 
         private void CambiarEstado(object obj)
         {
@@ -229,7 +238,7 @@ namespace CineVerCliente.ModeloVista
                         break;
                 }
             }
-        }
+        }   
 
         private void AceptarAsientos(object obj)
         {
@@ -286,7 +295,9 @@ namespace CineVerCliente.ModeloVista
 
         private int ContarAsientosSeleccionados()
         {
-            return Asientos.Count(a => a.Estado == EstadoAsiento.Seleccionado);
+            return AsientosAgrupados
+                .SelectMany(fila => fila)
+                .Count(a => a.Estado == EstadoAsiento.Seleccionado);
         }
 
         private void ProcederPago(object obj)

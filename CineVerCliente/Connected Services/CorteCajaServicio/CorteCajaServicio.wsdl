@@ -42,12 +42,6 @@
   <wsdl:message name="ICorteCajaServicio_GuardarCorteCaja_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarCorteCajaResponse" />
   </wsdl:message>
-  <wsdl:message name="ICorteCajaServicio_ObtenerInicioFinDia_InputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerInicioFinDia" />
-  </wsdl:message>
-  <wsdl:message name="ICorteCajaServicio_ObtenerInicioFinDia_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ObtenerInicioFinDiaResponse" />
-  </wsdl:message>
   <wsdl:message name="ICorteCajaServicio_ObtenerMontoInicioDia_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerMontoInicioDia" />
   </wsdl:message>
@@ -59,10 +53,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICorteCajaServicio/GuardarCorteCaja" message="tns:ICorteCajaServicio_GuardarCorteCaja_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICorteCajaServicio/GuardarCorteCajaResponse" message="tns:ICorteCajaServicio_GuardarCorteCaja_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ObtenerInicioFinDia">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICorteCajaServicio/ObtenerInicioFinDia" message="tns:ICorteCajaServicio_ObtenerInicioFinDia_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICorteCajaServicio/ObtenerInicioFinDiaResponse" message="tns:ICorteCajaServicio_ObtenerInicioFinDia_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ObtenerMontoInicioDia">
       <wsdl:input wsaw:Action="http://tempuri.org/ICorteCajaServicio/ObtenerMontoInicioDia" message="tns:ICorteCajaServicio_ObtenerMontoInicioDia_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICorteCajaServicio/ObtenerMontoInicioDiaResponse" message="tns:ICorteCajaServicio_ObtenerMontoInicioDia_OutputMessage" />
@@ -73,15 +63,6 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GuardarCorteCaja">
       <soap12:operation soapAction="http://tempuri.org/ICorteCajaServicio/GuardarCorteCaja" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="ObtenerInicioFinDia">
-      <soap12:operation soapAction="http://tempuri.org/ICorteCajaServicio/ObtenerInicioFinDia" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

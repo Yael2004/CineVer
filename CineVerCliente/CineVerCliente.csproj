@@ -496,9 +496,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\CorteCajaServicio\CineVerCliente.CorteCajaServicio.CorteCajaInicioFinDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\CorteCajaServicio\CineVerCliente.CorteCajaServicio.CorteCajaResponseDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -683,6 +680,9 @@
     </None>
     <None Include="Connected Services\FilaServicio\FilaServicio2.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaFilasDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaSucursalesDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

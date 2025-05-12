@@ -308,6 +308,128 @@ namespace CineVerCliente.SucursalServicio {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ListaFilasDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class ListaFilasDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.SucursalServicio.FilasPruebaDTO[] FilasField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.SucursalServicio.ResultDTO ResultField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.SucursalServicio.FilasPruebaDTO[] Filas {
+            get {
+                return this.FilasField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FilasField, value) != true)) {
+                    this.FilasField = value;
+                    this.RaisePropertyChanged("Filas");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.SucursalServicio.ResultDTO Result {
+            get {
+                return this.ResultField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ResultField, value) != true)) {
+                    this.ResultField = value;
+                    this.RaisePropertyChanged("Result");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FilasPruebaDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class FilasPruebaDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int CantidadAsientosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NumeroFilaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int CantidadAsientos {
+            get {
+                return this.CantidadAsientosField;
+            }
+            set {
+                if ((this.CantidadAsientosField.Equals(value) != true)) {
+                    this.CantidadAsientosField = value;
+                    this.RaisePropertyChanged("CantidadAsientos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NumeroFila {
+            get {
+                return this.NumeroFilaField;
+            }
+            set {
+                if ((this.NumeroFilaField.Equals(value) != true)) {
+                    this.NumeroFilaField = value;
+                    this.RaisePropertyChanged("NumeroFila");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="SucursalServicio.ISucursalServicio")]
     public interface ISucursalServicio {
@@ -335,6 +457,12 @@ namespace CineVerCliente.SucursalServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerSucursales", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerSucursalesResponse")]
         System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaSucursalesDTO> ObtenerSucursalesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFila", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFilaResponse")]
+        CineVerCliente.SucursalServicio.ListaFilasDTO ObtenerAsientosPorFila(int idSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFila", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFilaResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasDTO> ObtenerAsientosPorFilaAsync(int idSala);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -394,6 +522,14 @@ namespace CineVerCliente.SucursalServicio {
         
         public System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaSucursalesDTO> ObtenerSucursalesAsync() {
             return base.Channel.ObtenerSucursalesAsync();
+        }
+        
+        public CineVerCliente.SucursalServicio.ListaFilasDTO ObtenerAsientosPorFila(int idSala) {
+            return base.Channel.ObtenerAsientosPorFila(idSala);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasDTO> ObtenerAsientosPorFilaAsync(int idSala) {
+            return base.Channel.ObtenerAsientosPorFilaAsync(idSala);
         }
     }
 }

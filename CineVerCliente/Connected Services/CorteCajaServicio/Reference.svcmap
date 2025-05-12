@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="02d9ed63-fc62-49c1-aee6-6ce8993fe54b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="14dca5f7-59f3-4f71-bae4-252a9510268f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:2020/CorteCajaServicio" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CorteCajaServicio.disco" MetadataType="Disco" ID="c8d8d453-a304-40ee-8e6c-74d5b291883b" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?disco" />
-    <MetadataFile FileName="CorteCajaServicio.xsd" MetadataType="Schema" ID="5d4d1ed6-71c9-4c86-a5de-7fcbc36d6756" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd2" />
-    <MetadataFile FileName="CorteCajaServicio.wsdl" MetadataType="Wsdl" ID="c60c214b-95c8-4325-a602-eab0977ebf9f" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?wsdl" />
-    <MetadataFile FileName="CorteCajaServicio1.xsd" MetadataType="Schema" ID="cc0eb249-6cb4-453f-91ea-85c0f54e1713" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd0" />
-    <MetadataFile FileName="CorteCajaServicio2.xsd" MetadataType="Schema" ID="3d0415ed-8a86-4b10-b187-c075c27d8e70" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd1" />
+    <MetadataFile FileName="CorteCajaServicio.disco" MetadataType="Disco" ID="dac78ad5-08f4-4d1c-aa68-e8b2dbbc44ac" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?disco" />
+    <MetadataFile FileName="CorteCajaServicio.xsd" MetadataType="Schema" ID="5b1bec67-095f-4031-aa42-0221555aecfb" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd2" />
+    <MetadataFile FileName="CorteCajaServicio.wsdl" MetadataType="Wsdl" ID="cd8d0969-bf6f-4c8c-baf9-9fc62d2054ba" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?wsdl" />
+    <MetadataFile FileName="CorteCajaServicio1.xsd" MetadataType="Schema" ID="89f9ae00-e6a7-4f4b-9906-8f5c2726fe45" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd0" />
+    <MetadataFile FileName="CorteCajaServicio2.xsd" MetadataType="Schema" ID="2bb5af99-1a06-49e4-9763-ad6686d32ab2" SourceId="1" SourceUrl="http://localhost:2020/CorteCajaServicio?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

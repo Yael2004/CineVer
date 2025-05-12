@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -212,7 +214,26 @@ namespace CineVerCliente.ModeloVista
         {
             if (ValidarInicioSiguienteDia())
             {
-                VerSegundaVista = Visibility.Collapsed;
+                var clienteCorteCaja = new CorteCajaServicio.CorteCajaServicioClient();
+                var corteCaja = new CorteCajaServicio.CorteCajaDTO
+                {
+                    DiferenciaEfectivo = DiferenciaEfectivo,
+                    EfectivoCaja = EfectivoCaja,
+                    EfectivoEsperado = EfectivoEsperado,
+                    FechaCorte = DateTime.Now,
+                    Ganancias = Ganancias,
+                    Gastos = Gastos,
+                    VentaTotal = VentasTotales,
+                    InicioDia = decimal.Parse(InicioSiguienteDiaTexto),
+                    IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,
+                };
+
+                var resultado = clienteCorteCaja.GuardarCorteCaja(corteCaja);
+
+                if (resultado.EsExitoso)
+                {
+                    Notificacion.Mostrar("Corte de caja realizado con éxito");
+                }
             }
         }
 
@@ -266,16 +287,17 @@ namespace CineVerCliente.ModeloVista
                     VentasTotales = resultadoBoletos.Total + resultadoDulceria.Total;
                     EfectivoCaja = decimal.Parse(MontoFinalDiaTexto);
                     Gastos = resultadoGastos.Gastos.Sum(g => g.Monto);
-                    DiferenciaEfectivo = EfectivoEsperado - EfectivoCaja;
-                
+
                     if (resultadoCorteCaja.Monto == 0)
                     {
-                        MontoFinalDiaTexto = "0,00";
+                        EfectivoEsperado = resultadoEfectivo.Total;
                     }
                     else
                     {
                         EfectivoEsperado = resultadoEfectivo.Total + resultadoCorteCaja.Monto;
                     }
+                    
+                    DiferenciaEfectivo = EfectivoEsperado - EfectivoCaja;
 
                     Ganancias = VentasTotales - Gastos;
                 }   

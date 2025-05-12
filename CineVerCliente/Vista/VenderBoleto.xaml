@@ -79,40 +79,65 @@
                             VerticalAlignment="Top"
                             Margin="30,50,0,0"/>
 
-                    <ItemsControl ItemsSource="{Binding LetrasColumnas}" Margin="18,231,169,196">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Rows="1" Columns="8"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Label Content="{Binding}" 
-                                       FontWeight="Bold" 
-                                       Foreground="White" 
-                                       HorizontalContentAlignment="Center"
-                                       VerticalContentAlignment="Center"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Auto"
+                                  Width="500" Height="200"
+                                  Margin="0,231,157,0">
+                        <StackPanel Orientation="Vertical">
+                            <ItemsControl ItemsSource="{Binding LetrasColumnas}" 
+                                          HorizontalAlignment="Center" 
+                                          Margin="20,0,0,10">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" 
+                               Width="40" 
+                               TextAlignment="Center" 
+                               FontWeight="Bold"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
 
-                    <ItemsControl ItemsSource="{Binding Asientos}" Margin="30,253,169,6">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Rows="5" Columns="8"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button Command="{Binding DataContext.ElegirAsientoComando, RelativeSource={RelativeSource AncestorType=UserControl}}" 
-                                        CommandParameter="{Binding}"
-                                        Margin="2"
-                                        Background="{Binding Estado, Converter={StaticResource EstadoAColorConvertidor}}">
-                                    <Image Source="{StaticResource Icono_Asiento}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                            <ItemsControl ItemsSource="{Binding AsientosAgrupados}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <ItemsControl ItemsSource="{Binding}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button Width="40" Height="40"
+                                                                Margin="2"
+                                                                Background="{Binding Estado, Converter={StaticResource EstadoAColorConvertidor}}"
+                                                                Command="{Binding DataContext.ElegirAsientoComando, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                CommandParameter="{Binding}">
+                                                            <Image Source="/Assets/Imagenes/Iconos/Icono_Asiento.png"/>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+
+
+
 
                     <Button Style="{StaticResource BotonConfirmarNaranja}"
                             Content="Aceptar"

@@ -60,6 +60,12 @@
   <wsdl:message name="ISucursalServicio_ObtenerSucursales_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerSucursalesResponse" />
   </wsdl:message>
+  <wsdl:message name="ISucursalServicio_ObtenerAsientosPorFila_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAsientosPorFila" />
+  </wsdl:message>
+  <wsdl:message name="ISucursalServicio_ObtenerAsientosPorFila_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerAsientosPorFilaResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISucursalServicio">
     <wsdl:operation name="GuardarSucursal">
       <wsdl:input wsaw:Action="http://tempuri.org/ISucursalServicio/GuardarSucursal" message="tns:ISucursalServicio_GuardarSucursal_InputMessage" />
@@ -76,6 +82,10 @@
     <wsdl:operation name="ObtenerSucursales">
       <wsdl:input wsaw:Action="http://tempuri.org/ISucursalServicio/ObtenerSucursales" message="tns:ISucursalServicio_ObtenerSucursales_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISucursalServicio/ObtenerSucursalesResponse" message="tns:ISucursalServicio_ObtenerSucursales_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAsientosPorFila">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFila" message="tns:ISucursalServicio_ObtenerAsientosPorFila_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFilaResponse" message="tns:ISucursalServicio_ObtenerAsientosPorFila_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_ISucursalServicio" type="tns:ISucursalServicio">
@@ -110,6 +120,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerSucursales">
       <soap12:operation soapAction="http://tempuri.org/ISucursalServicio/ObtenerSucursales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerAsientosPorFila">
+      <soap12:operation soapAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFila" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

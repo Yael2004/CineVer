@@ -248,6 +248,7 @@ namespace CineVerCliente.ModeloVista
 
             VerPrimeraVista = Visibility.Visible;
             VerSegundaVista = Visibility.Collapsed;
+            MostrarMensajeConfirmar = Visibility.Collapsed;
 
             OcultarCamposVacios();
         }

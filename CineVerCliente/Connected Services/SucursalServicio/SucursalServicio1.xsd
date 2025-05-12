@@ -35,4 +35,24 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSucursalDTO" nillable="true" type="tns:ArrayOfSucursalDTO" />
+  <xs:complexType name="ListaFilasDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Filas" nillable="true" type="tns:ArrayOfFilasPruebaDTO" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ListaFilasDTO" nillable="true" type="tns:ListaFilasDTO" />
+  <xs:complexType name="ArrayOfFilasPruebaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FilasPruebaDTO" nillable="true" type="tns:FilasPruebaDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFilasPruebaDTO" nillable="true" type="tns:ArrayOfFilasPruebaDTO" />
+  <xs:complexType name="FilasPruebaDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CantidadAsientos" type="xs:int" />
+      <xs:element minOccurs="0" name="NumeroFila" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FilasPruebaDTO" nillable="true" type="tns:FilasPruebaDTO" />
 </xs:schema>

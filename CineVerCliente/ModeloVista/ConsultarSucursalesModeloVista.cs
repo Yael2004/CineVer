@@ -33,6 +33,8 @@ namespace CineVerCliente.ModeloVista
         private readonly MainWindowModeloVista _mainWindowModeloVista;
         public ConsultarSucursalesModeloVista(MainWindowModeloVista mainWindowModeloVista) 
         { 
+            MostrarMensajeConfirmacion = Visibility.Collapsed;
+
             _mainWindowModeloVista = mainWindowModeloVista;
 
             AgregarSucursalComando = new ComandoModeloVista(AgregarSucursal);
@@ -41,7 +43,6 @@ namespace CineVerCliente.ModeloVista
             AceptarComando = new ComandoModeloVista(AceptarEliminarSucursal);
             CancelarComando = new ComandoModeloVista(CancelarEliminarSucursal);
 
-            MostrarMensajeConfirmacion = Visibility.Collapsed;
 
             CargarSucursales();
         }

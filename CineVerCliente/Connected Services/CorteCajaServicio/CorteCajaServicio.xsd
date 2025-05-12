@@ -22,14 +22,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ResultDTO" nillable="true" type="tns:ResultDTO" />
-  <xs:complexType name="CorteCajaInicioFinDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="InicioDia" type="xs:decimal" />
-      <xs:element minOccurs="0" name="ResultDTO" nillable="true" type="tns:ResultDTO" />
-      <xs:element minOccurs="0" name="VentaTotal" type="xs:decimal" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CorteCajaInicioFinDTO" nillable="true" type="tns:CorteCajaInicioFinDTO" />
   <xs:complexType name="CorteCajaResponseDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Monto" type="xs:decimal" />
