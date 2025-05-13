@@ -178,7 +178,10 @@
                     <Label Content="Promoción: " 
                            Margin="169,0,737,76"
                            Foreground="White"/>
-                    <ComboBox Margin="246,-1,591,70"/>
+                    <ComboBox Margin="246,-1,591,70"
+                              ItemsSource="{Binding Promociones}"
+                              DisplayMemberPath="Nombre"
+                              SelectedItem="{Binding PromocionSeleccionada, Mode=TwoWay}"/>
                     <Label Content="Total:" 
                            Margin="701,-9,262,85"
                            Foreground="White"/>

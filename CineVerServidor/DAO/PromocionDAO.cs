@@ -52,7 +52,7 @@ namespace DAO
                 try
                 {
                     var promociones = (from p in entities.Promocion
-                                       where p.idSucursal == idSucursal && p.tipo == "Dulceria"
+                                       where p.idSucursal == idSucursal && p.tipo == "Dulcería"
                                        select p).ToList();
                     if (promociones.Count > 0)
                     {

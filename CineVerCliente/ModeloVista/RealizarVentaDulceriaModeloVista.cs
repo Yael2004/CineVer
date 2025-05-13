@@ -1,9 +1,11 @@
 ﻿using CineVerCliente.DulceriaServicio;
 using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
+using CineVerCliente.VentaServicio;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace CineVerCliente.ModeloVista
     public class RealizarVentaDulceriaModeloVista : BaseModeloVista
     {
         public ObservableCollection<ProductoDulceria> Productos { get; set; }
+        public ObservableCollection<PromocionDTO> Promociones { get; set; }
         private string _promocion;
         private Visibility _mostrarMensajeCancelarOperacion = Visibility.Collapsed;
         private Visibility _mostrarMensajeConfirmarCambio = Visibility.Collapsed;
@@ -23,6 +26,7 @@ namespace CineVerCliente.ModeloVista
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
         private DulceriaServicioClient DulceriaServicioCliente;
+        private VentaServicioClient VentaServicioCliente;
 
         public ICommand RealizarVentaComando { get; }
         public ICommand ConfirmarVentaComando { get; }
@@ -35,6 +39,19 @@ namespace CineVerCliente.ModeloVista
         public ICommand AceptarVentanaVentaComando { get; }
         public ICommand CancelarVentanaVentaComando { get; }
         public ICommand CrearCuentaComando { get; }
+
+        private PromocionDTO _promocionSeleccionada;
+
+        public PromocionDTO PromocionSeleccionada
+        {
+            get { return _promocionSeleccionada; }
+            set
+            {
+                _promocionSeleccionada = value;
+                OnPropertyChanged(nameof(PromocionSeleccionada));
+                RecalcularTotal();
+            }
+        }
 
         public Visibility MostrarMensajeCancelarOperacion
         {
@@ -80,7 +97,10 @@ namespace CineVerCliente.ModeloVista
         {
             _mainWindowModeloVista = mainWindowModeloVista;
             DulceriaServicioCliente = new DulceriaServicioClient();
+            VentaServicioCliente = new VentaServicioClient();
             Productos = new ObservableCollection<ProductoDulceria>();
+            Promociones = new ObservableCollection<PromocionDTO>();
+
             Productos.CollectionChanged += (s, e) =>
             {
                 foreach (var item in Productos)
@@ -104,11 +124,41 @@ namespace CineVerCliente.ModeloVista
             CancelarVentanaVentaComando = new ComandoModeloVista(CancelarVentanaVenta);
             CrearCuentaComando = new ComandoModeloVista(CrearCuenta);
             InicializarListaProductos();
+            InicializarListaPromociones();
         }
 
         private void RecalcularTotal()
         {
-            TotalAPagar = Productos.Sum(p => p.TotalProducto);
+            double totalSinDescuento = Productos.Sum(p => p.TotalProducto);
+            double totalConDescuento = totalSinDescuento;
+
+            if (PromocionSeleccionada != null)
+            {
+                var productosAplicables = Productos
+                    .Where(p => p.Nombre.Equals(PromocionSeleccionada.Producto, StringComparison.OrdinalIgnoreCase)
+                                && p.CantidadAVender > 0)
+                    .ToList();
+
+                int totalCantidad = productosAplicables.Sum(p => p.CantidadAVender);
+
+                if (totalCantidad >= PromocionSeleccionada.NumeroProductosNecesarios)
+                {
+                    int vecesPromocion = 1;
+
+                    double precioUnitario = double.Parse(productosAplicables.First().PrecioVentaUnitario, CultureInfo.InvariantCulture);
+
+                    int productosQueSeCobraran = PromocionSeleccionada.NumeroProductosPagar;
+                    int productosQueNoSeCobraran = PromocionSeleccionada.NumeroProductosNecesarios - PromocionSeleccionada.NumeroProductosPagar;
+
+                    double totalConPromocion = (totalCantidad - productosQueNoSeCobraran) * precioUnitario;
+
+                    totalConDescuento = totalConPromocion;
+
+                    Notificacion.Mostrar($"¡Aplicada promoción '{PromocionSeleccionada.Nombre}' 1 vez!");
+                }
+            }
+
+            TotalAPagar = totalConDescuento;
         }
 
         private void InicializarListaProductos()
@@ -127,6 +177,41 @@ namespace CineVerCliente.ModeloVista
                             CostoUnitario = producto.CostoUnitario.ToString(),
                             PrecioVentaUnitario = producto.PrecioVentaUnitario.ToString(),
                             CantidadInventario = producto.CantidadInventario.ToString()
+                        });
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+            }
+        }
+
+        private void InicializarListaPromociones()
+        {
+            try
+            {
+                var promociones = VentaServicioCliente.ObtenerPromocionesDulceria(2);
+                if (promociones != null)
+                {
+                    foreach (var promocion in promociones.Promociones)
+                    {
+                        Promociones.Add(new PromocionDTO
+                        {
+                            IdPromocion = promocion.IdPromocion,
+                            Nombre = promocion.Nombre,
+                            Tipo = promocion.Tipo,
+                            Producto = promocion.Producto,
+                            NumeroProductosNecesarios = promocion.NumeroProductosNecesarios,
+                            NumeroProductosPagar = promocion.NumeroProductosPagar,
+                            LunesAplica = promocion.LunesAplica,
+                            MartesAplica = promocion.MartesAplica,
+                            MiercolesAplica = promocion.MiercolesAplica,
+                            JuevesAplica = promocion.JuevesAplica,
+                            ViernesAplica = promocion.ViernesAplica,
+                            SabadoAplica = promocion.SabadoAplica,
+                            DomingoAplica = promocion.DomingoAplica,
+                            IdSucursal = promocion.IdSucursal
                         });
                     }
                 }
@@ -170,7 +255,7 @@ namespace CineVerCliente.ModeloVista
 
             /*
             try
-            {
+            { 
                 var respuesta = DulceriaServicioCliente.RealizarVenta(productosVendidos);
                 if (respuesta != null && respuesta.EsExitoso)
                 {
