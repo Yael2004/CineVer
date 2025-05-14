@@ -134,32 +134,40 @@ namespace CineVerCliente.ModeloVista
 
             if (PromocionSeleccionada != null)
             {
-                var productosAplicables = Productos
-                    .Where(p => p.Nombre.Equals(PromocionSeleccionada.Producto, StringComparison.OrdinalIgnoreCase)
-                                && p.CantidadAVender > 0)
-                    .ToList();
-
-                int totalCantidad = productosAplicables.Sum(p => p.CantidadAVender);
-
-                if (totalCantidad >= PromocionSeleccionada.NumeroProductosNecesarios)
+                if (!EsDiaValidoParaPromocion(PromocionSeleccionada))
                 {
-                    int vecesPromocion = 1;
+                    Notificacion.Mostrar($"La promoción '{PromocionSeleccionada.Nombre}' no aplica hoy.");
+                }
+                else
+                {
+                    var productosAplicables = Productos
+                        .Where(p => p.Nombre.Equals(PromocionSeleccionada.Producto, StringComparison.OrdinalIgnoreCase)
+                                    && p.CantidadAVender > 0)
+                        .ToList();
 
-                    double precioUnitario = double.Parse(productosAplicables.First().PrecioVentaUnitario, CultureInfo.InvariantCulture);
+                    int totalCantidad = productosAplicables.Sum(p => p.CantidadAVender);
 
-                    int productosQueSeCobraran = PromocionSeleccionada.NumeroProductosPagar;
-                    int productosQueNoSeCobraran = PromocionSeleccionada.NumeroProductosNecesarios - PromocionSeleccionada.NumeroProductosPagar;
+                    if (totalCantidad >= PromocionSeleccionada.NumeroProductosNecesarios)
+                    {
+                        int vecesPromocion = 1;
 
-                    double totalConPromocion = (totalCantidad - productosQueNoSeCobraran) * precioUnitario;
+                        double precioUnitario = double.Parse(productosAplicables.First().PrecioVentaUnitario, CultureInfo.InvariantCulture);
 
-                    totalConDescuento = totalConPromocion;
+                        int productosQueSeCobraran = PromocionSeleccionada.NumeroProductosPagar;
+                        int productosQueNoSeCobraran = PromocionSeleccionada.NumeroProductosNecesarios - PromocionSeleccionada.NumeroProductosPagar;
 
-                    Notificacion.Mostrar($"¡Aplicada promoción '{PromocionSeleccionada.Nombre}' 1 vez!");
+                        double totalConPromocion = (totalCantidad - productosQueNoSeCobraran) * precioUnitario;
+
+                        totalConDescuento = totalConPromocion;
+
+                        Notificacion.Mostrar($"¡Aplicada promoción '{PromocionSeleccionada.Nombre}' 1 vez!");
+                    }
                 }
             }
 
             TotalAPagar = totalConDescuento;
         }
+
 
         private void InicializarListaProductos()
         {
@@ -253,25 +261,6 @@ namespace CineVerCliente.ModeloVista
 
             }
 
-            /*
-            try
-            { 
-                var respuesta = DulceriaServicioCliente.RealizarVenta(productosVendidos);
-                if (respuesta != null && respuesta.EsExitoso)
-                {
-                    Notificacion.Mostrar("Venta realizada correctamente");
-                }
-                else
-                {
-                    Notificacion.Mostrar("No se pudo completar la venta");
-                }
-            }
-            catch (Exception)
-            {
-                Notificacion.Mostrar("Error al realizar la venta");
-            }
-            */
-
             Notificacion.Mostrar("Venta realizada correctamente");
         }
 
@@ -310,5 +299,19 @@ namespace CineVerCliente.ModeloVista
         {
             _mainWindowModeloVista.CambiarModeloVista(new RegistrarSocioModeloVista(_mainWindowModeloVista));
         }
+
+        private bool EsDiaValidoParaPromocion(PromocionDTO promocion)
+        {
+            var diaHoy = DateTime.Now.DayOfWeek;
+
+            return (diaHoy == DayOfWeek.Monday && promocion.LunesAplica) ||
+                   (diaHoy == DayOfWeek.Tuesday && promocion.MartesAplica) ||
+                   (diaHoy == DayOfWeek.Wednesday && promocion.MiercolesAplica) ||
+                   (diaHoy == DayOfWeek.Thursday && promocion.JuevesAplica) ||
+                   (diaHoy == DayOfWeek.Friday && promocion.ViernesAplica) ||
+                   (diaHoy == DayOfWeek.Saturday && promocion.SabadoAplica) ||
+                   (diaHoy == DayOfWeek.Sunday && promocion.DomingoAplica);
+        }
+
     }
 }
