@@ -93,7 +93,7 @@
                             Style="{StaticResource BotonConfirmarBlanco}"
                             Command="{Binding AceptarNuevoProductoComando}"/>
 
-                            <TextBlock Text="¿Está seguro de realizar el pago?"
+                            <TextBlock Text="¿Está seguro de realizar esta operación?"
                             Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
 
                             <Button Margin="218,126,71,37" 

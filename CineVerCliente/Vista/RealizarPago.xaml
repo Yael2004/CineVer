@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="CineVerCliente.Vista.RealizarPago"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" d:DataContext="{d:DesignInstance Type=vistaModelo:RealizarPagoModeloVista}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Viewbox Stretch="Fill">
+            <Grid>
+                <Grid Background="{StaticResource Blanco}"/>
+                <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,106"/>
+
+                <Grid Margin="0,0,108,72">
+                    <Grid Background="{StaticResource Negro}" Margin="147,71,28,-71">
+                        <Label Content="Método de pago"
+                    HorizontalAlignment="Center"
+                    FontSize="20"
+                    Foreground="White" Margin="0,10,0,546"/>
+
+                        <Button
+                    Content="Aplicar puntos"
+                    FontSize="12"
+                    Margin="392,251,258,313"
+                    Style="{StaticResource BotonConfirmarNaranja}"
+                    Command="{Binding AplicarPuntosComando}"/>
+
+                        <Button 
+                    Height="50"
+                    Content="Cancelar operacion" 
+                    Style="{StaticResource BotonCancelar}"
+                    Margin="441,490,171,54"
+                    Command="{Binding CancelarOperacionComando}"/>
+
+                        <Label Content="Total a pagar: "
+                    HorizontalAlignment="Left"
+                    FontSize="20"
+                    Foreground="White" Margin="42,105,0,451"/>
+
+                        <Label Content="Promoción:"
+                    HorizontalAlignment="Left"
+                    FontSize="20"
+                    Foreground="White" Margin="330,105,0,451"/>
+
+                        <Label Content="Aplicar puntos"
+                    HorizontalAlignment="Left"
+                    FontSize="20"
+                    Foreground="White" Margin="200,199,0,357"/>
+
+                        <Label Content="{Binding PuntosRestantes}"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Center"
+                    FontSize="13"
+                    Foreground="White" Margin="361,167,0,389" Width="154" RenderTransformOrigin="0.167,0.506"/>
+
+                        <Button Content="Tarjeta"
+                                Style="{StaticResource BotonConfirmarBlanco}"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                                Margin="0,341,0,215" Width="98"
+                                Command="{Binding TarjetaComando}"/>
+
+                        <TextBox Text="{Binding PuntosAUtilizar}" Margin="361,205,227,357" />
+                        <Button Content="Efectivo"
+                            Style="{StaticResource BotonConfirmarBlanco}"
+                            HorizontalAlignment="Center"
+                            FontSize="20"
+                            Margin="0,393,0,163" Width="98"
+                            Command="{Binding EfectivoComando}"/>
+                        <Label Content="{Binding CantidadAPagar}"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="176,105,0,451" Width="110"/>
+                        <Label Content="{Binding NombrePromocion}"
+                            HorizontalAlignment="Left"
+                            FontSize="20"
+                            Foreground="White" Margin="445,105,0,451" Width="168"/>
+
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
+                            <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                       Height="200"
+                       Margin="0,0,0,0"/>
+
+                            <Button Margin="74,126,215,37" 
+                        Content="Aceptar"
+                        Style="{StaticResource BotonConfirmarBlanco}"
+                        Command="{Binding ConfirmarCancelacionComando}"/>
+
+                            <TextBlock Text="¿Está seguro de cancelar el pago?"
+                        Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
+
+                            <Button Margin="218,126,71,37" 
+                        Content="Cancelar"
+                        Style="{StaticResource BotonNegro}"
+                        Command="{Binding CancelarCancelacionComando}"/>
+                        </Grid>
+
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeConfirmarProducto}">
+                            <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                       Height="200"
+                       Margin="0,0,0,0"/>
+
+                            <Button Margin="74,126,215,37" 
+                        Content="Aceptar"
+                        Style="{StaticResource BotonConfirmarBlanco}"
+                        Command="{Binding AceptarNuevoProductoComando}"/>
+
+                            <TextBlock Text="¿Está seguro de realizar el pago?"
+                        Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
+
+                            <Button Margin="218,126,71,37" 
+                        Content="Cancelar"
+                        Style="{StaticResource BotonNegro}"
+                        Command="{Binding CancelarNuevoProductoComando}"/>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>

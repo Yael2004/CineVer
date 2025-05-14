@@ -302,18 +302,49 @@ namespace CineVerCliente.ModeloVista
 
         public void AceptarVentanaVenta(object obj)
         {
+            Dictionary<int, int> productosVendidos = new Dictionary<int, int>();
+
+            foreach (var producto in Productos)
+            {
+                if (producto.CantidadAVender > 0 && int.TryParse(producto.CantidadInventario, out int inventarioActual))
+                {
+                    if (producto.CantidadAVender <= inventarioActual)
+                    {
+                        productosVendidos.Add(producto.Id, producto.CantidadAVender);
+                    }
+                }
+
+            }
+
             try
             {
-                if (!string.IsNullOrEmpty(TelefonoSocio))
+                if (string.IsNullOrEmpty(TelefonoSocio))
+                {
+                    if (PromocionSeleccionada == null)
+                    {
+                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, "Ninguna", TotalAPagar, new SocioDTO()));
+                    }
+                    else
+                    {
+                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, PromocionSeleccionada.Nombre, TotalAPagar, new SocioDTO()));
+                    }
+                }
+                else if (!string.IsNullOrEmpty(TelefonoSocio))
                 {
                     var socio = SocioServicioCliente.BuscarSocioPorFolio(TelefonoSocio);
                     if (socio.ResultDTO.EsExitoso)
                     {
-                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista));
+                        if (PromocionSeleccionada == null)
+                        {
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, "Ninguna", TotalAPagar, socio.socio));
+                        }
+                        else
+                        {
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, PromocionSeleccionada.Nombre, TotalAPagar, socio.socio));
+                        }
                     }
                     else
                     {
-                        //label rojo
                         Notificacion.Mostrar("El teléfono no es válido");
                     }
                 }

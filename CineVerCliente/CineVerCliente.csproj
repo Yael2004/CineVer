@@ -205,6 +205,9 @@
     <Compile Include="Vista\RealizarCorteCaja.xaml.cs">
       <DependentUpon>RealizarCorteCaja.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vista\RealizarPago.xaml.cs">
+      <DependentUpon>RealizarPago.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vista\RealizarVentaDulceria.xaml.cs">
       <DependentUpon>RealizarVentaDulceria.xaml</DependentUpon>
     </Compile>
@@ -316,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vista\RealizarCorteCaja.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vista\RealizarPago.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
