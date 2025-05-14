@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace CineVerCliente.ModeloVista
 {
-    public class RealizarPagoModeloVista
+    public class RealizarPagoModeloVista : BaseModeloVista
     {
         private string _totalPagar;
         private string _nombrePromocion;
@@ -21,5 +21,30 @@ namespace CineVerCliente.ModeloVista
         private Visibility _cancelarPagoConEfectivo;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
+
+        public string TotalPagar
+        {
+            get { return _totalPagar; }
+            set
+            {
+                _totalPagar = value;
+                OnPropertyChanged(nameof(TotalPagar));
+            }
+        }
+
+        public string NombrePromocion
+        {
+            get { return _nombrePromocion; }
+            set
+            {
+                _nombrePromocion = value;
+                OnPropertyChanged(nameof(NombrePromocion));
+            }
+        }
+
+        public RealizarPagoModeloVista(MainWindowModeloVista mainWindowModeloVista) 
+        { 
+            _mainWindowModeloVista = mainWindowModeloVista;
+        }
     }
 }

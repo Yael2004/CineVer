@@ -148,12 +148,13 @@
                                 Style="{StaticResource TextoMensajes}"
                                 Height="21" Width="400" Margin="0,18,0,0"
                                 VerticalAlignment="Top"/>
-                            <TextBlock Text="Numero de celular:"
+                            <TextBlock Text="folio:"
                                        FontSize="13"
-                                       Margin="38,112,230,163"/>
+                                       Margin="86,111,280,164"/>
 
-                            <TextBox Margin="159,106,41,163"
-                                     MaxLength="10"/>
+                            <TextBox Margin="125,106,75,163"
+                                     MaxLength="16"
+                                     Text="{Binding TelefonoSocio, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                             <Button Margin="17,198,272,73"
                                 Content="Aceptar"

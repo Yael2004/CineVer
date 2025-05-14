@@ -1,6 +1,7 @@
 ﻿using CineVerCliente.DulceriaServicio;
 using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
+using CineVerCliente.SocioServicio;
 using CineVerCliente.VentaServicio;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace CineVerCliente.ModeloVista
         private readonly MainWindowModeloVista _mainWindowModeloVista;
         private DulceriaServicioClient DulceriaServicioCliente;
         private VentaServicioClient VentaServicioCliente;
+        private SocioServicioClient SocioServicioCliente;
 
         public ICommand RealizarVentaComando { get; }
         public ICommand ConfirmarVentaComando { get; }
@@ -41,6 +43,18 @@ namespace CineVerCliente.ModeloVista
         public ICommand CrearCuentaComando { get; }
 
         private PromocionDTO _promocionSeleccionada;
+
+        private string _telefonoSocio;
+
+        public string TelefonoSocio
+        {
+            get => _telefonoSocio;
+            set
+            {
+                _telefonoSocio = value;
+                OnPropertyChanged(nameof(TelefonoSocio));
+            }
+        }
 
         public PromocionDTO PromocionSeleccionada
         {
@@ -98,6 +112,7 @@ namespace CineVerCliente.ModeloVista
             _mainWindowModeloVista = mainWindowModeloVista;
             DulceriaServicioCliente = new DulceriaServicioClient();
             VentaServicioCliente = new VentaServicioClient();
+            SocioServicioCliente = new SocioServicioClient();
             Productos = new ObservableCollection<ProductoDulceria>();
             Promociones = new ObservableCollection<PromocionDTO>();
 
@@ -287,7 +302,27 @@ namespace CineVerCliente.ModeloVista
 
         public void AceptarVentanaVenta(object obj)
         {
-            MostrarVentanaVenta = Visibility.Collapsed;
+            try
+            {
+                if (!string.IsNullOrEmpty(TelefonoSocio))
+                {
+                    var socio = SocioServicioCliente.BuscarSocioPorFolio(TelefonoSocio);
+                    if (socio.ResultDTO.EsExitoso)
+                    {
+                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista));
+                    }
+                    else
+                    {
+                        //label rojo
+                        Notificacion.Mostrar("El teléfono no es válido");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                MostrarVentanaVenta = Visibility.Collapsed;
+            }
         }
 
         public void CancelarVentanaVenta(object obj)

@@ -306,6 +306,10 @@
         <DataTemplate DataType="{x:Type vistaModelo:RealizarVentaDulceriaModeloVista}">
             <vista:RealizarVentaDulceria/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:RealizarPagoModeloVista}">
+            <vista:RealizarPagoModeloVista/>
+        </DataTemplate>
     </Window.Resources>
 
     <Window.DataContext>
