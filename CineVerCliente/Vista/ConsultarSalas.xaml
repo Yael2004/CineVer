@@ -1,0 +1,175 @@
+﻿<UserControl x:Class="CineVerCliente.Vista.ConsultarSalas"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        d:DataContext="{d:DesignInstance Type=vistaModelo:ConsultarSalasModeloVista}"
+        mc:Ignorable="d" 
+        d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="8*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+
+        <!-- Fondo de pantalla con imagen -->
+        <Image Source="/Vista/fondo_Sala.jpg"
+               Stretch="UniformToFill" Grid.ColumnSpan="3"
+               Panel.ZIndex="0" Grid.Row="0" Grid.RowSpan="3" />
+
+
+        <!-- Contenedor del formulario centrado -->
+        <Border MinWidth="700"
+        Grid.Column="1"
+        Background="#dF1E1E1E"
+        Grid.Row="1"
+        Grid.RowSpan="3"
+        CornerRadius="12"
+        Padding="20"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Panel.ZIndex="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.ColumnSpan="2" Text="Salas"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="White"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 10"/>
+                    <StackPanel Grid.Column="0" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="1">
+                        <TextBlock Text="Buscar Sala por nombre:" Foreground="White" />
+                        <TextBox Text="{Binding NombreSala, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource Textbox}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Grid.Row="1" Grid.ColumnSpan="1">
+                        
+
+
+                    </StackPanel>
+
+                    <ItemsControl Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" ItemsSource="{Binding Salas}" Margin="0,20,0,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray" BorderThickness="1" CornerRadius="8" Padding="10" Margin="5" Background="#FF2E2E2E">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="3*" />
+                                        <ColumnDefinition Width="1*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.ColumnSpan="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 0 0 10">
+                                        <TextBlock Text="{Binding nombre}"
+                                        FontSize="18"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        VerticalAlignment="Center"
+                                        Margin="0,0,10,0"/>
+                                        <Image Source="/Vista/icono-Sala.png" Width="40" Height="40" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <TextBlock Grid.Column="1" Text="{Binding descripcion}" Foreground="White" FontSize="14" VerticalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding estadoSala}" Foreground="White" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                                        <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <Button Margin="0,0,5,0"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="0"
+                                            Command="{Binding DataContext.EditarSalaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <Image Source="/Vista/Icono_Editar.png" Width="26" Height="26" Margin="0,0,5,0"/>
+                                                </StackPanel>
+                                            </Button>
+
+                                            <Button Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="0"
+                                            Command="{Binding DataContext.EliminarSalaCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}">
+                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                    <Image Source="/Vista/Icono_Eliminar.png" Width="26" Height="26" Margin="0,0,5,0"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+
+                                    </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Grid Visibility="{Binding MostrarMensajeConfirmar, Converter={StaticResource BoolToVis}}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                        <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                        Height="200"
+                        Margin="0,0,0,0"/>
+
+                        <Button Margin="74,153,215,10" 
+     Content="Aceptar"
+     Style="{StaticResource BotonConfirmarBlanco}"
+     Command="{Binding AceptarComando}"/>
+
+                        <TextBlock Text="¿Esta seguro de querer eliminar la Sala?"
+         Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,36,0,0" VerticalAlignment="Top"/>
+
+                        <Button Margin="218,153,71,10" 
+     Content="Cancelar"
+     Style="{StaticResource BotonNegro}"
+     Command="{Binding CancelarComando}"/>
+                    </Grid>
+                    <Button Command="{Binding AgregarSalaCommand}"
+                    Background="Transparent"
+                    BorderBrush="Transparent"
+                    
+                    VerticalAlignment="Center"
+                    Margin="5 8 0 0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Source="/Vista/icono-agregar (1).png"
+        Width="50"
+        Height="50"
+        Margin="0,0,0,5"/>
+
+                        </StackPanel>
+                    </Button>
+
+
+
+                </Grid>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl> 

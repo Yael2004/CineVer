@@ -21,10 +21,7 @@ namespace DAO
                 try
                 {
                     var peliculas = entities.Película.Where(p => p.idSucursal == idSucursal).ToList();
-                    if(peliculas.Count > 0)
-                    {
-                        return Result<List<Película>>.Fallo("No hay películas agregadas a la sucursal que consulta");
-                    }
+                    
                     return Result<List<Película>>.Exito(peliculas);
                 }
                 catch(DbEntityValidationException ex)
@@ -88,6 +85,10 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch(Exception ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
             }
         }
         public Result<int> ObtenerIdPelicula(string nombre, string director)
@@ -120,6 +121,7 @@ namespace DAO
                     if (peliculaNueva != null)
                     {
                         peliculaNueva.nombre = peliculaEditada.nombre;
+                        peliculaNueva.poster = peliculaEditada.poster;
                         peliculaNueva.director = peliculaEditada.director;
                         peliculaNueva.duracion = peliculaEditada.duracion;
                         peliculaNueva.genero = peliculaEditada.genero;
@@ -170,13 +172,40 @@ namespace DAO
                 }
             }
         }
+
+        public Result<Película> ObtenerPeliculaPorID(int id)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var pelicula = entities.Película.Find(id);
+                    if (pelicula != null)
+                    {
+                        return Result<Película>.Exito(pelicula);
+                    }
+                    else
+                    {
+                        return Result<Película>.Fallo("Pelicula no encontrada");
+                    }
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<Película>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<Película>.Fallo(sqlEx.Message);
+                }
+            }
+        }
         public Result<List <Película>> ObtenerPeliculasPorNombre(int idSucursal, string nombre)
         {
             using (CineVerEntities entities = new CineVerEntities())
             {
                 try
                 {
-                    List <Película> listaPeliculas = entities.Película.Where(e=>e.nombre.Equals(nombre)&&e.idSucursal == idSucursal).ToList();
+                    List <Película> listaPeliculas = entities.Película.Where(e=>e.nombre.Contains(nombre)&&e.idSucursal == idSucursal).ToList();
                     return Result<List<Película>>.Exito(listaPeliculas);
                 }
                 catch (DbEntityValidationException ex)

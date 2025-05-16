@@ -11,11 +11,9 @@ namespace CineVerServicios.DTO
     public class ListaAsientosDTO
     {
         [DataMember]
-        public List<AsientoDTO> Asientos { get; set; }
-
+        public List<AsientoDTO> Asientos;
         [DataMember]
-        public ResultDTO Result { get; set; }
-
+        public ResultDTO Result;
         public ListaAsientosDTO()
         {
             Asientos = new List<AsientoDTO>();

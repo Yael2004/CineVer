@@ -219,6 +219,10 @@
             <vista:EditarSucursal/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarPeliculasModeloVista}">
+            <vista:ConsultarPeliculas/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type vistaModelo:RegistrarEmpleadoModeloVista}">
             <vista:RegistrarEmpleado/>
         </DataTemplate>
@@ -227,9 +231,20 @@
             <vista:ModificarEmpleado/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vistaModelo:ConsultarEmpleadosModeloVista}">
-            <vista:ConsultarEmpleados/>
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarPelículaModeloVista}">
+            <vista:AgregarPeliculaVista/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarSalaModeloVista}">
+            <vista:AgregarSala/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:AgregarFuncionModeloVista}">
+            <vista:AgregarFuncion/>
+        </DataTemplate>
+
+
+        
 
         <DataTemplate DataType="{x:Type vistaModelo:AgregarProductoDulceriaModeloVista}">
             <vista:AgregarProductoDulceria/>
@@ -265,6 +280,10 @@
 
         <DataTemplate DataType="{x:Type vistaModelo:ConsultarSociosModeloVista}">
             <vista:ConsultarSocios/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:EditarSalaModeloVista}">
+            <vista:EditarSala/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type vistaModelo:RegistrarGastoModeloVista}">
@@ -310,6 +329,30 @@
         <DataTemplate DataType="{x:Type vistaModelo:RealizarPagoModeloVista}">
             <vista:RealizarPago/>
         </DataTemplate>
+
+        
+
+
+        <DataTemplate DataType="{x:Type vistaModelo:MenuPrincipalModeloVista}">
+            <vista:MenuPrincipal/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:EditarPeliculaModeloVista}">
+            <vista:EditarPelicula/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarFuncionesModeloVista}">
+            <vista:ConsultarFunciones/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarSalasModeloVista}">
+            <vista:ConsultarSalas/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vistaModelo:EditarFuncionModeloVista}">
+            <vista:EditarFuncion/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Window.DataContext>

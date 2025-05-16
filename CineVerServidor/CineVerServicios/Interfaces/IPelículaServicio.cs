@@ -13,11 +13,19 @@ namespace CineVerServicios.Interfaces
     public interface IPelículaServicio
     {
         [OperationContract]
+        Task<PeliculaDTOs> ObtenerPeliculaPorID(int idPelicula);
+        [OperationContract]
         Task<ListaPeliculasDTO> ObtenerListaPeliculas(int idSucursal);
         [OperationContract]
-        Task<ListaPeliculasDTO> ObtenerPeliculasPorNombre();
+        Task<ListaPeliculasDTO> ObtenerPeliculasPorNombre(int idSucursal, string nombre);
         [OperationContract]
         Task<int> ObtenerIdPelicula(string nombre, string director);
+        [OperationContract]
+        Task<string> AgregarPelicula(PeliculaDTOs pelicula);
+        [OperationContract]
+        Task<string> EditarPelicula(PeliculaDTOs peliculaEditada, PeliculaDTOs peliculaOriginal);
+        [OperationContract]
+        Task<string> EliminarPelicula(PeliculaDTOs pelicula);
 
     }
 }

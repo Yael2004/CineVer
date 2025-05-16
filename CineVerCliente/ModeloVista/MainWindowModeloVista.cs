@@ -436,15 +436,36 @@ namespace CineVerCliente.ModeloVista
         {
             VistaActualModelo = nuevoModeloVista;
         }
+        public void ConsultarFunciones(object obj)
+        {
+            CambiarModeloVista(new ConsultarFuncionesModeloVista(_mainWindowModeloVista));
+        }
 
+        public void AgregarFuncion(object obj)
+        {
+            CambiarModeloVista(new AgregarFuncionModeloVista(_mainWindowModeloVista));
+        }
+
+        public void ConsultarSalas(object obj)
+        {
+            CambiarModeloVista(new ConsultarSalasModeloVista(_mainWindowModeloVista));
+        }
         public void Sucursales(object obj)
         {
             CambiarModeloVista(new ConsultarSucursalesModeloVista(_mainWindowModeloVista));
+        }
+        private void ConsultarPeliculas(object obj)
+        {
+            CambiarModeloVista(new ConsultarPeliculasModeloVista(_mainWindowModeloVista));
         }
 
         private void AgregarSucursal(object obj)
         {
             CambiarModeloVista(new AgregarSucursalModeloVista(_mainWindowModeloVista));
+        }
+        private void AgregarPelicula(object obj)
+        {
+            CambiarModeloVista(new AgregarPelículaModeloVista(_mainWindowModeloVista));
         }
 
         private void EditarSucursal(object obj)

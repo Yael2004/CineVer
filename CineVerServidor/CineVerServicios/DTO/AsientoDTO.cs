@@ -11,15 +11,13 @@ namespace CineVerServicios.DTO
     public class AsientoDTO
     {
         [DataMember]
-        public int IdAsiento { get; set; }
-
+        public Nullable<int> idFila { get; set; }
         [DataMember]
-        public int IdFila { get; set; }
-
+        public string letraColumna { get; set; }
         [DataMember]
-        public string LetraColumna { get; set; }
-
+        public int idAsiento { get; set; }
         [DataMember]
-        public string Estado { get; set; }
+        public string estado { get; set; }
+        public AsientoDTO() { }
     }
 }

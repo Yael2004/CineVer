@@ -32,7 +32,6 @@ namespace CineVerEntidades
         public string calle { get; set; }
         public string numeroCasa { get; set; }
         public string codigoPostal { get; set; }
-        public Nullable<bool> afiliado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CuentaFidelidad> CuentaFidelidad { get; set; }

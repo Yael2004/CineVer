@@ -51,6 +51,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Duplex, Version=8.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Primitives.8.1.2\lib\net462\System.ServiceModel.Duplex.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Primitives, Version=8.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Primitives.8.1.2\lib\net462\System.ServiceModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Security, Version=8.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ServiceModel.Primitives.8.1.2\lib\net462\System.ServiceModel.Security.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsientoServicio.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CorteCajaServicio.cs" />
     <Compile Include="DTO\CorteCajaDTO.cs" />
@@ -73,9 +83,16 @@
     <Compile Include="DTO\ListaEmpleadosDTO.cs" />
     <Compile Include="DTO\ListaGastosDTO.cs" />
     <Compile Include="DTO\ListaNombresProductosDTO.cs" />
+    <Compile Include="DTO\AsientoDTO.cs" />
+    <Compile Include="DTO\FilaDTO.cs" />
+    <Compile Include="DTO\FuncionDTO.cs" />
+    <Compile Include="DTO\ListaAsientosDTO.cs" />
+    <Compile Include="DTO\ListaFilasDTO.cs" />
+    <Compile Include="DTO\ListaFuncionesDTO.cs" />
     <Compile Include="DTO\ListaPeliculasDTO.cs" />
     <Compile Include="DTO\ListaPromocionesDTO.cs" />
     <Compile Include="DTO\ListaSociosDTO.cs" />
+    <Compile Include="DTO\ListaSalaDTO.cs" />
     <Compile Include="DTO\ListaSucursalesDTO.cs" />
     <Compile Include="DTO\ListaProductosDulceriaDTO.cs" />
     <Compile Include="DTO\ListaVentasDTO.cs" />
@@ -86,6 +103,7 @@
     <Compile Include="DTO\ResultDTO.cs" />
     <Compile Include="DTO\SocioDTO.cs" />
     <Compile Include="DTO\SocioResponseDTO.cs" />
+    <Compile Include="DTO\SalaDTO.cs" />
     <Compile Include="DTO\SucursalDTO.cs" />
     <Compile Include="DTO\VentaTipoResponseDTO.cs" />
     <Compile Include="DTO\VentaDTO.cs" />
@@ -94,11 +112,20 @@
     <Compile Include="EmpleadoServicio.cs" />
     <Compile Include="GastoServicio.cs" />
     <Compile Include="Interfaces\ICuentaFidelidadServicio.cs" />
+    <Compile Include="FilaServicio.cs" />
+    <Compile Include="FuncionServicio.cs" />
+    <Compile Include="Interfaces\IAsientoServicio.cs" />
     <Compile Include="Interfaces\IDulceriaServicio.cs" />
     <Compile Include="Interfaces\IEmpleadoServicio.cs" />
     <Compile Include="Interfaces\IGastoServicio.cs" />
+    <Compile Include="Interfaces\IFilaServicio.cs" />
+    <Compile Include="Interfaces\IFuncionServicio.cs" />
     <Compile Include="Interfaces\IPelículaServicio.cs" />
     <Compile Include="Interfaces\ISocioServicio.cs" />
+    <Compile Include="Interfaces\ISalaServicio.cs" />
+    <Compile Include="Lógica\GestorAsiento.cs" />
+    <Compile Include="Lógica\GestorFila.cs" />
+    <Compile Include="Lógica\GestorFuncion.cs" />
     <Compile Include="Interfaces\ISucursalServicio.cs" />
     <Compile Include="Interfaces\IVentaServicio.cs" />
     <Compile Include="Lógica\GestorCorteCaja.cs" />
@@ -109,11 +136,13 @@
     <Compile Include="Lógica\GestorPelícula.cs" />
     <Compile Include="Lógica\GestorPromociones.cs" />
     <Compile Include="Lógica\GestorSocio.cs" />
+    <Compile Include="Lógica\GestorSala.cs" />
     <Compile Include="Lógica\GestorSucursal.cs" />
     <Compile Include="Lógica\GestorVenta.cs" />
     <Compile Include="PelículaServicio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocioServicio.cs" />
+    <Compile Include="SalaServicio.cs" />
     <Compile Include="SucursalServicio.cs" />
     <Compile Include="VentaServicio.cs" />
   </ItemGroup>
