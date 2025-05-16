@@ -36,6 +36,7 @@ namespace CineVerEntidades
         public string codigoPostal { get; set; }
         public Nullable<System.TimeSpan> horaApertura { get; set; }
         public Nullable<System.TimeSpan> horaCierre { get; set; }
+        public string estadoSucursal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CorteCaja> CorteCaja { get; set; }

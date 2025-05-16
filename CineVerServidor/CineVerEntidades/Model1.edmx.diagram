@@ -4,47 +4,47 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c33e9e0169164226860070b4df359144" Name="Diagram1">
-        <EntityTypeShape EntityType="cineverModel.Actor" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.ActorEnPelicula" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Asiento" Width="1.5" PointX="7.5" PointY="26.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Boleto" Width="1.5" PointX="10.5" PointY="18.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.CorteCaja" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.CuentaFidelidad" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Empleado" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Fila" Width="1.5" PointX="5.25" PointY="26.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Función" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Gasto" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Película" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.ProductoDulceria" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Promocion" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Sala" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Socio" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Sucursal" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.Venta" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="cineverModel.VentaEnDulceria" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
-        <AssociationConnector Association="cineverModel.FK_ActorEnPelicula_Actor" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_ActorEnPelicula_Película" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Asiento_Fila" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Boleto_Asiento" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Boleto_Función" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Boleto_Venta" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_CorteCaja_Sucursal" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_CuentaFidelidad_Socio" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Empleado_Sucursal" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Gasto_Empleado" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Venta_Empleado" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Fila_Sala" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Función_Película" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Función_Sala" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Gasto_Sucursal" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Película_Sucursal" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_ProductoDulceria_Sucursal" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_VentaEnDulceria_ProductoDulceria" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Promocion_Sucursal" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Sala_Sucursal" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Venta_Socio" ManuallyRouted="false" />
-        <AssociationConnector Association="cineverModel.FK_Venta_Sucursal" ManuallyRouted="false" />
+      <Diagram DiagramId="bfcb32ed9d34437186a404e1c4faaae5" Name="Diagram1">
+        <EntityTypeShape EntityType="CineVerModel.Actor" Width="1.5" PointX="6" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.ActorEnPelicula" Width="1.5" PointX="8.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Asiento" Width="1.5" PointX="7.5" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Boleto" Width="1.5" PointX="10.5" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.CorteCaja" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.CuentaFidelidad" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Empleado" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Fila" Width="1.5" PointX="5.25" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Función" Width="1.5" PointX="5.25" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Gasto" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Película" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.ProductoDulceria" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Promocion" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Sala" Width="1.5" PointX="3" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Socio" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Sucursal" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.Venta" Width="1.5" PointX="8.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CineVerModel.VentaEnDulceria" Width="1.5" PointX="5.25" PointY="18.125" IsExpanded="true" />
+        <AssociationConnector Association="CineVerModel.FK_ActorEnPelicula_Actor" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_ActorEnPelicula_Película" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Asiento_Fila" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Boleto_Asiento" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Boleto_Función" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Boleto_Venta" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_CorteCaja_Sucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_CuentaFidelidad_Socio" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Empleado_Sucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Gasto_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Venta_Empleado" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Fila_Sala" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Función_Película" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Función_Sala" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Gasto_Sucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Película_Sucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_ProductoDulceria_Sucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_VentaEnDulceria_ProductoDulceria" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Promocion_Sucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Sala_Sucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Venta_Socio" ManuallyRouted="false" />
+        <AssociationConnector Association="CineVerModel.FK_Venta_Sucursal" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
