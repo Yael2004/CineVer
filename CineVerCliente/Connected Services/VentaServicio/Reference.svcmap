@@ -22,11 +22,12 @@
     <MetadataSource Address="http://localhost:2020/VentaServicio" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="VentaServicio.wsdl" MetadataType="Wsdl" ID="a59e2241-18ff-4c41-bf1d-d29ad5151850" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?wsdl" />
+    <MetadataFile FileName="VentaServicio3.xsd" MetadataType="Schema" ID="602ca6c4-23f0-4c07-a41b-f8de37d503ff" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?xsd=xsd3" />
+    <MetadataFile FileName="VentaServicio2.xsd" MetadataType="Schema" ID="14ac73d9-40de-41f8-bab9-297ac69fad55" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?xsd=xsd0" />
+    <MetadataFile FileName="VentaServicio1.xsd" MetadataType="Schema" ID="99ec29c0-c2e6-4256-95b6-6d6ea2436b17" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?xsd=xsd2" />
     <MetadataFile FileName="VentaServicio.xsd" MetadataType="Schema" ID="c1d0f87f-a23b-48fe-b164-ad4382d4182c" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?xsd=xsd1" />
     <MetadataFile FileName="VentaServicio.disco" MetadataType="Disco" ID="84e0fbae-c788-48b7-8f22-aa2ef566458c" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?disco" />
-    <MetadataFile FileName="VentaServicio1.xsd" MetadataType="Schema" ID="99ec29c0-c2e6-4256-95b6-6d6ea2436b17" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?xsd=xsd2" />
-    <MetadataFile FileName="VentaServicio2.xsd" MetadataType="Schema" ID="14ac73d9-40de-41f8-bab9-297ac69fad55" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?xsd=xsd0" />
-    <MetadataFile FileName="VentaServicio.wsdl" MetadataType="Wsdl" ID="a59e2241-18ff-4c41-bf1d-d29ad5151850" SourceId="1" SourceUrl="http://localhost:2020/VentaServicio?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

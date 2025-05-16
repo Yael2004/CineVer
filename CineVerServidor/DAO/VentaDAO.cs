@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -223,5 +225,74 @@ namespace DAO
                 }
             }
         }
+
+        public Result<string> RealizarPagoDulceria(Venta venta, Dictionary<int, int> productos)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            using (var transaction = entities.Database.BeginTransaction())
+            {
+                try
+                {
+                    venta.fecha = DateTime.Now;
+                    entities.Venta.Add(venta);
+                    entities.SaveChanges();
+
+                    if (venta.idSocio != 0)
+                    {
+                        var cuentaFidelidad = entities.CuentaFidelidad
+                            .FirstOrDefault(c => c.idSocio == venta.idSocio);
+
+                        if (cuentaFidelidad != null)
+                        {
+                            decimal puntosGanados = venta.total.GetValueOrDefault() * 0.10m;
+                            cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault() + puntosGanados;
+                        }
+
+                    }
+
+                    foreach (var item in productos)
+                    {
+                        int idProducto = item.Key;
+                        int cantidadVendida = item.Value;
+
+                        var producto = entities.ProductoDulceria.Find(idProducto);
+                        if (producto == null)
+                        {
+                            transaction.Rollback();
+                            return Result<string>.Fallo($"Producto con ID {idProducto} no encontrado");
+                        }
+
+                        if (producto.cantidadInventario < cantidadVendida)
+                        {
+                            transaction.Rollback();
+                            return Result<string>.Fallo($"Inventario insuficiente para el producto con ID {idProducto}");
+                        }
+
+                        producto.cantidadInventario -= cantidadVendida;
+                    }
+
+                    entities.SaveChanges();
+                    transaction.Commit();
+
+                    return Result<string>.Exito("Venta registrada correctamente");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    transaction.Rollback();
+                    return Result<string>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    transaction.Rollback();
+                    return Result<string>.Fallo(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return Result<string>.Fallo(ex.Message);
+                }
+            }
+        }
+
     }
 }

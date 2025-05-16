@@ -178,9 +178,18 @@ namespace CineVerServicios
             throw new NotImplementedException();
         }
 
-        public Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta)
+        public Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos)
         {
-            throw new NotImplementedException();
+            var resultado = _gestorVenta.RealizarPagoDulceria(venta, productos);
+
+            if (resultado.EsExitoso)
+            {
+                return Task.FromResult(new ResultDTO(true, string.Empty));
+            }
+            else
+            {
+                return Task.FromResult(new ResultDTO(false, resultado.Error));
+            }
         }
 
         public Task<ResultDTO> RegistrarPromocion(PromocionDTO promocion)

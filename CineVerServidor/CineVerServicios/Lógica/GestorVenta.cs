@@ -302,5 +302,29 @@ namespace CineVerServicios.Lógica
                 return Result<decimal>.Exito(resultado.Valor);
             }
         }
+
+        public Result<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos)
+        {
+            var ventaEntity = new Venta
+            {
+                idEmpleado = venta.IdEmpleado,
+                idSocio = venta.IdSocio,
+                idSucursal = venta.IdSucursal,
+                total = venta.Total,
+                metodoPago = venta.MetodoPago,
+                fecha = DateTime.Now,
+                tipoVenta = venta.TIpoVenta,
+                folioVenta = venta.FolioVenta
+            };
+            var resultado = ventaDAO.RealizarPagoDulceria(ventaEntity, productos);
+            if (!resultado.EsExitoso)
+            {
+                return Result<ResultDTO>.Fallo(resultado.Error);
+            }
+            else
+            {
+                return Result<ResultDTO>.Exito(new ResultDTO(true, "Venta registrada correctamente"));
+            }
+        }
     }
 }

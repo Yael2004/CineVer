@@ -688,10 +688,10 @@ namespace CineVerCliente.VentaServicio {
     public interface IVentaServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/RealizarPagoDulceria", ReplyAction="http://tempuri.org/IVentaServicio/RealizarPagoDulceriaResponse")]
-        CineVerCliente.VentaServicio.ResultDTO RealizarPagoDulceria(CineVerCliente.VentaServicio.VentaDTO venta);
+        CineVerCliente.VentaServicio.ResultDTO RealizarPagoDulceria(CineVerCliente.VentaServicio.VentaDTO venta, System.Collections.Generic.Dictionary<int, int> productos);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/RealizarPagoDulceria", ReplyAction="http://tempuri.org/IVentaServicio/RealizarPagoDulceriaResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RealizarPagoDulceriaAsync(CineVerCliente.VentaServicio.VentaDTO venta);
+        System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RealizarPagoDulceriaAsync(CineVerCliente.VentaServicio.VentaDTO venta, System.Collections.Generic.Dictionary<int, int> productos);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IVentaServicio/RealizarPagoBoletos", ReplyAction="http://tempuri.org/IVentaServicio/RealizarPagoBoletosResponse")]
         CineVerCliente.VentaServicio.ResultDTO RealizarPagoBoletos(CineVerCliente.VentaServicio.VentaDTO venta);
@@ -799,12 +799,12 @@ namespace CineVerCliente.VentaServicio {
                 base(binding, remoteAddress) {
         }
         
-        public CineVerCliente.VentaServicio.ResultDTO RealizarPagoDulceria(CineVerCliente.VentaServicio.VentaDTO venta) {
-            return base.Channel.RealizarPagoDulceria(venta);
+        public CineVerCliente.VentaServicio.ResultDTO RealizarPagoDulceria(CineVerCliente.VentaServicio.VentaDTO venta, System.Collections.Generic.Dictionary<int, int> productos) {
+            return base.Channel.RealizarPagoDulceria(venta, productos);
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RealizarPagoDulceriaAsync(CineVerCliente.VentaServicio.VentaDTO venta) {
-            return base.Channel.RealizarPagoDulceriaAsync(venta);
+        public System.Threading.Tasks.Task<CineVerCliente.VentaServicio.ResultDTO> RealizarPagoDulceriaAsync(CineVerCliente.VentaServicio.VentaDTO venta, System.Collections.Generic.Dictionary<int, int> productos) {
+            return base.Channel.RealizarPagoDulceriaAsync(venta, productos);
         }
         
         public CineVerCliente.VentaServicio.ResultDTO RealizarPagoBoletos(CineVerCliente.VentaServicio.VentaDTO venta) {

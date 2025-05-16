@@ -1,6 +1,8 @@
 ﻿using CineVerCliente.CuentaFidelidadServicio;
 using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using CineVerCliente.SocioServicio;
+using CineVerCliente.VentaServicio;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -16,10 +18,13 @@ namespace CineVerCliente.ModeloVista
         private string _puntosRestantes;
         private Visibility _mostrarMensajeCancelarOperacion = Visibility.Collapsed;
         private Visibility _mostrarMensajeConfirmarProducto = Visibility.Collapsed;
-        Dictionary<int, int> productosVendidos = new Dictionary<int, int>();
+        private Visibility mostrarTerminal = Visibility.Collapsed;
+        Dictionary<int, int> ProductosVendidos = new Dictionary<int, int>();
         private SocioDTO Socio;
-        CuentaFidelidadServicioClient CuentaFidelidadServicioCliente = new CuentaFidelidadServicioClient();
+        private CuentaFidelidadServicioClient CuentaFidelidadServicioCliente = new CuentaFidelidadServicioClient();
+        private VentaServicioClient VentaServicioCliente = new VentaServicioClient();
         private double _puntosOriginales;
+        private double _totalOriginal;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
@@ -34,10 +39,14 @@ namespace CineVerCliente.ModeloVista
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
             AceptarNuevoProductoComando = new ComandoModeloVista(AceptarPago);
             CancelarNuevoProductoComando = new ComandoModeloVista(CancelarPago);
+            ConfirmarPagoConTarjetaComando = new ComandoModeloVista(ConfirmarPagoConTarjeta);
+            CancelarPagoConTarjetaComando = new ComandoModeloVista(CancelarPagoConTarjeta);
             TarjetaComando = new ComandoModeloVista(SeleccionarTarjeta);
             EfectivoComando = new ComandoModeloVista(SeleccionarEfectivo);
             NombrePromocion = promocion;
+            _totalOriginal = totalAPagar;
             CantidadAPagar = totalAPagar.ToString("F2");
+            ProductosVendidos = productosVendidos;
             Socio = socio;
             InicializarPuntos();
         }
@@ -133,6 +142,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public Visibility MostrarTerminal
+        {
+            get => mostrarTerminal;
+            set
+            {
+                mostrarTerminal = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AplicarPuntosComando { get; }
         public ICommand CancelarOperacionComando { get; }
         public ICommand ConfirmarCancelacionComando { get; }
@@ -141,6 +160,8 @@ namespace CineVerCliente.ModeloVista
         public ICommand CancelarNuevoProductoComando { get; }
         public ICommand TarjetaComando { get; }
         public ICommand EfectivoComando { get; }
+        public ICommand ConfirmarPagoConTarjetaComando { get; }
+        public ICommand CancelarPagoConTarjetaComando { get; }
 
         private void AplicarPuntos(object obj)
         {
@@ -176,7 +197,7 @@ namespace CineVerCliente.ModeloVista
                     return;
                 }
 
-                double nuevoTotal = totalActual - puntosUsados;
+                double nuevoTotal = _totalOriginal - puntosUsados;
                 CantidadAPagar = nuevoTotal.ToString("F2");
                 PuntosRestantes = (_puntosOriginales - puntosUsados).ToString("F2");
 
@@ -205,11 +226,33 @@ namespace CineVerCliente.ModeloVista
             MostrarMensajeCancelarOperacion = Visibility.Collapsed;
         }
 
-        private void AceptarPago(object obj)
+        private async void AceptarPago(object obj)
         {
             try
             {
-                Notificacion.Mostrar("Pago realizado con éxito");
+                if (Socio.IdSocio > 0)
+                {
+                    var venta = new VentaDTO
+                    {
+                        IdEmpleado = 1, 
+                        IdSocio = Socio.IdSocio, 
+                        IdSucursal = 2,    
+                        Total = decimal.Parse(CantidadAPagar),
+                        MetodoPago = "Efectivo",    
+                        TIpoVenta = "Dulcería"
+                    };
+
+                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
+
+                    if (resultado != null && resultado.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Pago realizado con éxito");
+                    }
+                    else
+                    {
+                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                    }
+                }
             }
             catch (Exception)
             {
@@ -219,6 +262,7 @@ namespace CineVerCliente.ModeloVista
             MostrarMensajeConfirmarProducto = Visibility.Collapsed;
         }
 
+
         private void CancelarPago(object obj)
         {
             MostrarMensajeConfirmarProducto = Visibility.Collapsed;
@@ -226,12 +270,53 @@ namespace CineVerCliente.ModeloVista
 
         private void SeleccionarTarjeta(object obj)
         {
-            MostrarMensajeConfirmarProducto = Visibility.Visible;
+            MostrarTerminal = Visibility.Visible;
         }
 
         private void SeleccionarEfectivo(object obj)
         {
             MostrarMensajeConfirmarProducto = Visibility.Visible;
+        }
+
+        public async void ConfirmarPagoConTarjeta(object obj)
+        {
+            try
+            {
+                if (Socio.IdSocio > 0)
+                {
+                    var venta = new VentaDTO
+                    {
+                        IdEmpleado = 1,
+                        IdSocio = Socio.IdSocio,
+                        IdSucursal = 2,
+                        Total = decimal.Parse(CantidadAPagar),
+                        MetodoPago = "Tarjeta",
+                        TIpoVenta = "Dulcería",
+                    };
+
+                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
+
+                    if (resultado != null && resultado.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Pago realizado con éxito");
+                    }
+                    else
+                    {
+                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Ha ocurrido un error al realizar el pago");
+            }
+
+            MostrarTerminal = Visibility.Collapsed;
+        }
+
+        public void CancelarPagoConTarjeta(object obj)
+        {
+            MostrarTerminal = Visibility.Collapsed;
         }
     }
 }

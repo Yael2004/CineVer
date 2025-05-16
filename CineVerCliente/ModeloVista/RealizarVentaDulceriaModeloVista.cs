@@ -329,7 +329,7 @@ namespace CineVerCliente.ModeloVista
                         _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, PromocionSeleccionada.Nombre, TotalAPagar, new SocioDTO()));
                     }
                 }
-                else if (!string.IsNullOrEmpty(TelefonoSocio))
+                else
                 {
                     var socio = SocioServicioCliente.BuscarSocioPorFolio(TelefonoSocio);
                     if (socio.ResultDTO.EsExitoso)

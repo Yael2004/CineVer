@@ -115,6 +115,25 @@
                         Command="{Binding CancelarNuevoProductoComando}"/>
                         </Grid>
 
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarTerminal}">
+                            <Rectangle Fill="{StaticResource Negro}"
+                                Margin="-12,-16,-12,-59"/>
+
+                            <Button Margin="74,143,215,20" 
+                                 Content="Aceptar"
+                                 Style="{StaticResource BotonConfirmarNaranja}"
+                                 Command="{Binding ConfirmarPagoConTarjetaComando}"/>
+
+                            <TextBlock Text="Introduzca la tarjeta"
+                                Foreground="White"
+                                Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
+
+                            <Button Margin="218,143,71,20" 
+                                 Content="Cancelar"
+                                 Style="{StaticResource BotonCancelar}"
+                                 Command="{Binding CancelarPagoConTarjetaComando}"/>
+                        </Grid>
+
                     </Grid>
                 </Grid>
             </Grid>
