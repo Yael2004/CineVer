@@ -199,7 +199,9 @@ namespace CineVerCliente.ModeloVista
                             Nombre = producto.Nombre,
                             CostoUnitario = producto.CostoUnitario.ToString(),
                             PrecioVentaUnitario = producto.PrecioVentaUnitario.ToString(),
-                            CantidadInventario = producto.CantidadInventario.ToString()
+                            CantidadInventario = producto.CantidadInventario.ToString(),
+                            Imagen = producto.Imagen,
+                            IdSucursal = producto.IdSucursal
                         });
                     }
                 }

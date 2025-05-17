@@ -63,29 +63,49 @@
                                Foreground="White"
                                Margin="321,336,0,220"/>
 
-                        <Image Source="{Binding ImagenProducto}" Margin="82,203,482,204"/>
+                        <Border Margin="82,203,482,204"
+                                Width="200" Height="200"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top">
+                            <Image Source="{Binding ImagenPreview}"
+                                   Stretch="Uniform"
+                                   StretchDirection="DownOnly"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                        </Border>
+
 
                         <TextBox Text="{Binding NombreProducto}" 
-                                 Margin="411,147,58,415"
+                                 Margin="411,147,58,425"
                                  MaxLength="20"/>
 
                         <TextBox Text="{Binding CantidadInventario}" 
-                                 Margin="329,229,338,333"
+                                 Margin="329,229,338,344"
                                  MaxLength="5"
                                  PreviewTextInput="SoloNumeros"
                                  LostFocus="ValidarVacio"/>
 
                         <TextBox Text="{Binding CostoUnitario}" 
-                                 Margin="329,303,338,259"
+                                 Margin="329,303,338,271"
                                  MaxLength="4"
                                  PreviewTextInput="SoloNumeros"
                                  LostFocus="ValidarVacio"/>
 
                         <TextBox Text="{Binding PrecioVentaUnitario}" 
-                                 Margin="329,377,338,185"
+                                 Margin="329,377,338,191"
                                  MaxLength="4"
                                  PreviewTextInput="SoloNumeros"
                                  LostFocus="ValidarVacio"/>
+
+                        <Button Content=""
+                                ToolTip="Subir imagen"
+                                Background="Transparent"
+                                Margin="82,0,482,0"
+                                VerticalAlignment="Center"
+                                Height="200"
+                                Command="{Binding CargarImagenComando}"/>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}" Height="200"/>

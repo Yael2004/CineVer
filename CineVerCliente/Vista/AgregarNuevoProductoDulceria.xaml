@@ -59,7 +59,12 @@
                         FontSize="20"
                         Foreground="White" Margin="321,336,0,220"/>
 
-                        <Image Source="{Binding ImagenProducto}" Margin="82,203,482,204"/>
+                        <Image Source="{Binding ImagenProductoPreview}" Margin="82,203,482,204"/>
+                        <Button Content=""
+                                Background="Transparent"
+                                Margin="82,205,482,201"
+                                Command="{Binding SeleccionarImagenComando}"
+                                ToolTip="Seleccionar imagen"/>
                         <TextBox Text="{Binding NombreProducto}" Margin="411,147,58,415" TextChanged="TextBox_TextChanged"/>
                         <TextBox Text="{Binding CantidadInventario}" Margin="329,229,338,333" TextChanged="TextBox_TextChanged"/>
                         <TextBox Text="{Binding CostoUnitario}" Margin="329,303,338,259" TextChanged="TextBox_TextChanged"/>

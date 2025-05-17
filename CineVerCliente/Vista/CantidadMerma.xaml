@@ -19,9 +19,9 @@
                             FontSize="20"
                             Foreground="White" Margin="0,10,0,546"/>
 
-                        <Image Margin="112,181,471,248">
-
-                        </Image>
+                        <Image Source="{Binding ImagenProducto}" Height="189" 
+                               Margin="85,187,491,0" Grid.Column="0" 
+                               VerticalAlignment="Top"/>
 
                         <Label Content="{Binding Nombre}" 
                                Margin="370,147,67,399"
@@ -65,7 +65,7 @@
                             Style="{StaticResource BotonConfirmarNaranja}"
                             Margin="171,494,442,50"
                             Command="{Binding ConfirmarComando}"/>
-                        
+
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeAceptarOperacion}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}"
                                Height="200"
@@ -103,7 +103,7 @@
                                 Style="{StaticResource BotonNegro}"
                                 Command="{Binding CancelarCancelacionComando}"/>
                         </Grid>
-                        
+
                     </Grid>
                 </Grid>
             </Grid>

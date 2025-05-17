@@ -2,11 +2,14 @@
 using CineVerCliente.Helpers;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -29,6 +32,8 @@ namespace CineVerCliente.ModeloVista
         public ICommand CancelarOperacionComando { get; }
         public ICommand ConfirmarCancelacionComando { get; }
         public ICommand CancelarCancelacionComando { get; }
+        public ICommand SeleccionarImagenComando { get; }
+
 
         public string NombreProducto
         {
@@ -77,6 +82,27 @@ namespace CineVerCliente.ModeloVista
             {
                 _imagenProducto = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ImagenProductoPreview));
+            }
+        }
+
+        public ImageSource ImagenProductoPreview
+        {
+            get
+            {
+                if (_imagenProducto == null || _imagenProducto.Length == 0)
+                    return null;
+
+                var image = new BitmapImage();
+                using (var ms = new MemoryStream(_imagenProducto))
+                {
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = ms;
+                    image.EndInit();
+                    image.Freeze();
+                }
+                return image;
             }
         }
 
@@ -110,11 +136,22 @@ namespace CineVerCliente.ModeloVista
             CancelarOperacionComando = new ComandoModeloVista(CancelarOperacion);
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
+            SeleccionarImagenComando = new ComandoModeloVista(SeleccionarImagen);
         }
 
         private void AgregarNuevoProducto(object obj)
         {
             MostrarMensajeConfirmarProducto = Visibility.Visible;
+        }
+
+        private void SeleccionarImagen(object obj)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ImagenProducto = System.IO.File.ReadAllBytes(openFileDialog.FileName);
+            }
         }
 
         private void AceptarNuevoProducto(object obj)
@@ -128,7 +165,7 @@ namespace CineVerCliente.ModeloVista
                     CantidadInventario = CantidadInventario,
                     CostoUnitario = (decimal)CostoUnitario,
                     PrecioVentaUnitario = (decimal)PrecioVentaUnitario,
-                    //Imagen = ImagenProducto
+                    Imagen = ImagenProducto
                 };
                 var resultado = DulceriaServicioCliente.AgregarProductoDulceria(nuevoProducto);
                 if (resultado.EsExitoso)

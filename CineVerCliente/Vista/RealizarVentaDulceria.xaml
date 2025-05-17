@@ -48,8 +48,8 @@
                                     <Grid Margin="7" Height="130" Background="White">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="100"/>
-                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="120"/>
+                                                <ColumnDefinition Width="80"/>
                                                 <ColumnDefinition Width="100"/>
                                                 <ColumnDefinition Width="110"/>
                                                 <ColumnDefinition Width="120"/>
@@ -57,11 +57,14 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Image Source="{Binding Imagen}" Width="60" Height="60" Margin="0" Grid.Column="0" VerticalAlignment="Center"/>
-
+                                            <Image Source="{Binding Imagen}" 
+                                                   Width="80" Height="80" 
+                                                   Margin="0" Grid.Column="0" 
+                                                   VerticalAlignment="Center"/>
                                             <TextBlock Text="{Binding Nombre}" 
                                            FontWeight="Bold" FontSize="10"
                                            VerticalAlignment="Center"
+                                           TextAlignment="Center"
                                            Grid.Column="1"/>
 
                                             <TextBlock Text="{Binding CostoUnitario}"

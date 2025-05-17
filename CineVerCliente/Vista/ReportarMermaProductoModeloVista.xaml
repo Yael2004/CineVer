@@ -38,7 +38,8 @@
                                 Command="{Binding DataContext.SeleccionarProductoComando, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                 CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Width="100" Height="100" Margin="0,0,10,0"/>
+                                    <Image Source="{Binding Imagen}" 
+                                            Width="100" Height="100" />
                                     <StackPanel>
                                         <TextBlock Text="{Binding Nombre}" FontWeight="Bold" FontSize="16"/>
                                         <TextBlock Text="{Binding CantidadInventario, StringFormat='Inventario: {0}'}" FontSize="12"/>

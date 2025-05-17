@@ -57,7 +57,10 @@
                                                 <ColumnDefinition Width="120"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Image Source="{Binding Imagen}" Width="100" Height="100" Margin="0" Grid.Column="0" VerticalAlignment="Center"/>
+                                            <Image Source="{Binding Imagen}" 
+                                                   Width="100" Height="100" 
+                                                   Margin="0" Grid.Column="0" 
+                                                   VerticalAlignment="Center"/>
 
                                             <TextBlock Text="{Binding Nombre}" 
                                                FontWeight="Bold" FontSize="16"

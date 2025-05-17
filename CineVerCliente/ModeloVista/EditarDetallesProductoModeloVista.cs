@@ -8,6 +8,9 @@ using System.Windows.Input;
 using System.Windows;
 using CineVerCliente.Modelo;
 using CineVerCliente.DulceriaServicio;
+using System.IO;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -32,6 +35,18 @@ namespace CineVerCliente.ModeloVista
         public ICommand CancelarOperacionComando { get; }
         public ICommand ConfirmarCancelacionComando { get; }
         public ICommand CancelarCancelacionComando { get; }
+        public ICommand CargarImagenComando { get; }
+
+        private ImageSource _imagenPreview;
+        public ImageSource ImagenPreview
+        {
+            get => _imagenPreview;
+            set
+            {
+                _imagenPreview = value;
+                OnPropertyChanged(nameof(ImagenPreview));
+            }
+        }
 
         public int IdProducto
         {
@@ -85,11 +100,12 @@ namespace CineVerCliente.ModeloVista
 
         public byte[] ImagenProducto
         {
-            get { return _imagenProducto; }
+            get => _imagenProducto;
             set
             {
                 _imagenProducto = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(ImagenProducto));
+                ImagenPreview = CargarImagenPreview(_imagenProducto);
             }
         }
 
@@ -140,6 +156,7 @@ namespace CineVerCliente.ModeloVista
             CancelarOperacionComando = new ComandoModeloVista(CancelarOperacion);
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
+            CargarImagenComando = new ComandoModeloVista(CargarImagen);
         }
 
         private void ConfirmarCambios(object obj)
@@ -199,5 +216,34 @@ namespace CineVerCliente.ModeloVista
         {
             MostrarMensajeCancelarOperacion = Visibility.Collapsed;
         }
+
+        private void CargarImagen(object obj)
+        {
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string rutaImagen = openFileDialog.FileName;
+                ImagenProducto = System.IO.File.ReadAllBytes(rutaImagen);
+            }
+        }
+
+        private ImageSource CargarImagenPreview(byte[] datosImagen)
+        {
+            if (datosImagen == null || datosImagen.Length == 0)
+                return null;
+
+            using (var stream = new MemoryStream(datosImagen))
+            {
+                var image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = stream;
+                image.EndInit();
+                return image;
+            }
+        }
+
     }
 }

@@ -3,11 +3,14 @@ using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -23,6 +26,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand CancelarConfirmacionComando { get; set; }
         public int IdProducto { get; set; }
         public string Nombre { get; set; }
+        public byte[] Imagen { get; set; }
         public string CantidadInventario { get; set; }
         public string CostoUnitario { get; set; }
         public string PrecioVentaUnitario { get; set; }
@@ -57,6 +61,7 @@ namespace CineVerCliente.ModeloVista
             _dulceriaServicioCliente = new DulceriaServicioClient();
             IdProducto = producto.Id;
             Nombre = producto.Nombre;
+            Imagen = producto.Imagen;
             CantidadInventario = producto.CantidadInventario;
             CostoUnitario = producto.CostoUnitario;
             PrecioVentaUnitario = producto.PrecioVentaUnitario;
@@ -134,6 +139,27 @@ namespace CineVerCliente.ModeloVista
         public void CancelarConfirmacion(object obj)
         {
             MostrarMensajeAceptarOperacion = Visibility.Collapsed;
+        }
+
+        public ImageSource ImagenProducto
+        {
+            get
+            {
+                if (Imagen == null || Imagen.Length == 0)
+                    return null;
+
+                var image = new BitmapImage();
+                using (var mem = new MemoryStream(Imagen))
+                {
+                    mem.Position = 0;
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = mem;
+                    image.EndInit();
+                    image.Freeze();
+                }
+                return image;
+            }
         }
     }
 }
