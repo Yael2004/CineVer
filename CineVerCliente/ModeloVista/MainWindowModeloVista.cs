@@ -59,6 +59,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand RealizarVentaDulceriaComando { get; }
         public ICommand AgregarPromocionComando { get; }
         public ICommand EditarPromocionComando { get; }
+        public ICommand CerrarSesionComando { get; }
 
         public object VistaActualModelo
         {
@@ -340,6 +341,7 @@ namespace CineVerCliente.ModeloVista
             RealizarVentaDulceriaComando = new ComandoModeloVista(RealizarVentaDulceria);
             AgregarPromocionComando = new ComandoModeloVista(AgregarPromocion);
             EditarPromocionComando = new ComandoModeloVista(EditarPromocion);
+            CerrarSesionComando = new ComandoModeloVista(CerrarSesion);
         }
 
         public MainWindowModeloVista(MainWindow _mainWindowMV)
@@ -362,12 +364,13 @@ namespace CineVerCliente.ModeloVista
             RealizarVentaDulceriaComando = new ComandoModeloVista(RealizarVentaDulceria);
             AgregarPromocionComando = new ComandoModeloVista(AgregarPromocion);
             EditarPromocionComando = new ComandoModeloVista(EditarPromocion);
+            CerrarSesionComando = new ComandoModeloVista(CerrarSesion);
         }
 
         private void CrearMenus()
         {
             //string rol = UsuarioEnLinea.Instancia.Rol;
-            string rol = "Gerente"; // Solo es para probar
+            string rol = "Gerente"; // Cambiar a la forma correcta de obtener el rol del usuario en línea
 
             if (string.IsNullOrEmpty(rol))
             {
@@ -380,8 +383,7 @@ namespace CineVerCliente.ModeloVista
                 FuncionesMenu = Visibility.Collapsed;
                 SucursalesMenu = Visibility.Collapsed;
                 SalasMenu = Visibility.Collapsed;
-                SesionMenu = Visibility.Collapsed;
-                //Aqui regresarlo al loggin
+                SesionMenu = Visibility.Visible;
             }
             else if (rol.Equals("Gerente"))
             {
@@ -546,6 +548,13 @@ namespace CineVerCliente.ModeloVista
         private void EditarPromocion(object obj)
         {
             CambiarModeloVista(new EditarPromocionModeloVista(_mainWindowModeloVista));
+        }
+
+        private void CerrarSesion(object obj)
+        {
+            UsuarioEnLinea.Instancia.CerrarSesionActual();
+            CrearMenus();
+            CambiarModeloVista(new IniciarSesionModeloVista(_mainWindowModeloVista));
         }
     }
 }

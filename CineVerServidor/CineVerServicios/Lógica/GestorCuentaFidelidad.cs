@@ -50,7 +50,7 @@ namespace CineVerServicios.Lógica
             {
                 IdCuenta = cuentaFidelidad.idCuenta,
                 IdSocio = (int)cuentaFidelidad.idSocio,
-                Puntos = (int)cuentaFidelidad.puntos
+                Puntos = (decimal)cuentaFidelidad.puntos
             };
 
             return Result<CuentaFidelidadDTO>.Exito(cuentaFidelidadDTO);

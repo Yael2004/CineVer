@@ -19,53 +19,53 @@
 
                 <Label Content="Nombre"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="247,180,637,523"/>
 
                 <Label Content="Apeliidos"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="238,230,639,473"/>
 
                 <Label Content="Fecha de nacimiento"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="137,281,638,422"/>
 
                 <Label Content="Sexo"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="277,330,636,373"/>
 
                 <Label Content="Número de teléfono"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="140,377,635,326"/>
 
                 <Label Content="Correo eletrónico"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="165,426,637,277"/>
 
                 <Label Content="Calle"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="278,477,637,226"/>
 
                 <Label Content="Número de casa"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="178,531,637,172"/>
 
                 <Label Content="Código Postal"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="200,582,722,121"/>
 
                 <Label Content="Modificar Socio"
                     HorizontalAlignment="Center"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="0,91,0,608"/>
 
                 <TextBox Name="Nombre"

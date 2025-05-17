@@ -15,6 +15,6 @@ namespace CineVerServicios.DTO
         [DataMember]
         public int IdSocio { get; set; }
         [DataMember]
-        public int Puntos { get; set; }
+        public decimal Puntos { get; set; }
     }
 }

@@ -19,72 +19,72 @@
 
                 <Label Content="Rol"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="291,49,639,653"/>
 
                 <Label Content="Nombre"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="247,100,637,603"/>
 
                 <Label Content="Apellidos"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="239,160,638,543"/>
 
                 <Label Content="Fecha de nacimiento"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="140,217,635,486"/>
 
                 <Label Content="Sexo"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="278,258,635,445"/>
 
                 <Label Content="Número de teléfono"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="140,304,635,399"/>
 
                 <Label Content="Correo eletrónico"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="167,360,635,343"/>
 
                 <Label Content="Calle"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="278,416,637,287"/>
 
                 <Label Content="Número de casa"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="178,472,637,231"/>
 
                 <Label Content="Código postal"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="194,530,630,172"/>
 
                 <Label Content="RFC"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="88,589,834,114"/>
 
                 <Label Content="NSS"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="513,589,405,114"/>
 
                 <Label Content="Constraseña"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="216,640,701,63"/>
 
                 <Label Content="Foto de empleado"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="161,697,638,6"/>
 
                 <Button Content="Subir foto"
@@ -102,7 +102,7 @@
                 <Label Content="Registrar Empleado"
                     HorizontalAlignment="Left"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="396,10,0,689"/>
 
                 <ComboBox Name="Roles" HorizontalAlignment="Left" 
@@ -273,7 +273,7 @@
                 <Label x:Name="CorreoCampoInvalido"
                     Content="Correo inválido" 
                     FontSize="8"
-                    Foreground="#EC221F"
+                    Foreground="{StaticResource Rojo}"
                     Margin="365,400,547,329" 
                     Visibility="{Binding CorreoElectronicoCampoInvalido}"/>
 

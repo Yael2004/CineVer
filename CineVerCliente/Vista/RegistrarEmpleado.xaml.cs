@@ -98,7 +98,7 @@ namespace CineVerCliente.Vista
         {
             foreach (char c in texto)
             {
-                if (!char.IsLetter(c) && c != ' ' && !"@_".Contains(c))
+                if (!char.IsLetter(c) && c != ' ' && !"@_.".Contains(c))
                 {
                     return false;
                 }

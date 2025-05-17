@@ -19,18 +19,18 @@
 
                 <Label Content="Nombre del gasto"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="192,404,692,299"/>
 
                 <Label Content="Total del gasto"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="222,515,686,188"/>
 
                 <Label Content="Registrar gasto"
                     HorizontalAlignment="Center"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="0,271,0,428"/>
 
                 <TextBox Name="NombreGasto"

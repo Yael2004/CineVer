@@ -18,19 +18,19 @@
             <Viewbox Stretch="Fill">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="10"/>
 
                     </Grid.ColumnDefinitions>
 
@@ -185,7 +185,9 @@
 
                     <Menu Grid.Column="11"
                         Style="{StaticResource MenuMain}"
-                        Visibility="{Binding SesionMenu}">
+                        Visibility="{Binding SesionMenu}"
+                        Width="90"
+                        Margin="0,0,10,0">
                         <MenuItem Header="Cerrar sesión"
                             Command="{Binding CerrarSesionComando}"
                             CommandParameter="{Binding}"/>
@@ -243,8 +245,9 @@
             <vista:AgregarFuncion/>
         </DataTemplate>
 
-
-        
+        <DataTemplate DataType="{x:Type vistaModelo:ConsultarEmpleadosModeloVista}">
+            <vista:ConsultarEmpleados/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type vistaModelo:AgregarProductoDulceriaModeloVista}">
             <vista:AgregarProductoDulceria/>
@@ -329,9 +332,6 @@
         <DataTemplate DataType="{x:Type vistaModelo:RealizarPagoModeloVista}">
             <vista:RealizarPago/>
         </DataTemplate>
-
-        
-
 
         <DataTemplate DataType="{x:Type vistaModelo:MenuPrincipalModeloVista}">
             <vista:MenuPrincipal/>

@@ -13,23 +13,23 @@
                 <Grid Background="{StaticResource Fondo_Loggin}" Margin="0,0,603,0"/>
 
                 <Grid Margin="445,0,0,0">
-                    <Grid Background="#FEAD34"/>
+                    <Grid Background="{StaticResource Amarillo}"/>
                 </Grid>
 
                 <Label Content="Matrícula de empleado"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="666,194,218,521"/>
 
                 <Label Content="Contraseña"
                     FontSize="20"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="714,403,267,311"/>
 
                 <Label Content="Iniciar sesión"
                     HorizontalAlignment="Left"
                     FontSize="40"
-                    Foreground="White" 
+                    Foreground="{StaticResource Blanco}" 
                     Margin="641,19,0,680"/>
 
                 <TextBox Name="Matricula"
@@ -69,7 +69,7 @@
                 <Label x:Name="DatosIncorrectos"
                     Content="La matrícula o constraseña son incorrectos"
                     FontSize="8"
-                    Foreground="Red"
+                    Foreground="{StaticResource Rojo}"
                     Margin="694,561,246,174"
                     Visibility="{Binding DatosIncorrectos}"/>
             </Grid>

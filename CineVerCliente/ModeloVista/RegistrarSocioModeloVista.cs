@@ -287,13 +287,24 @@ namespace CineVerCliente.ModeloVista
             MostrarMensajeCancelacion = Visibility.Visible;
         }
 
+        private string GenerarCodigoFolio()
+        {
+            var random = new Random();
+            string numero = random.Next(10000, 99999).ToString();
+            string codigoFolio = "SCNVX" + numero;
+            return codigoFolio;
+        }
+
         private void AceptarConfirmacion(object obj)
         {
             var clienteSocio = new SocioServicio.SocioServicioClient();
             var clienteCuenta = new CuentaFidelidadServicio.CuentaFidelidadServicioClient();
 
+            string folio = GenerarCodigoFolio();
+
             var socio = new SocioDTO
             {
+                Folio = folio,
                 Nombres = _nombre,
                 Apellidos = _apellidos,
                 FechaNacimiento = _fechaNacimiento,

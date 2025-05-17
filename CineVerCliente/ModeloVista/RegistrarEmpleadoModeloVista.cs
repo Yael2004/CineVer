@@ -443,6 +443,14 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        private string GenerarCodigoMatricula()
+        {
+            var random = new Random();
+            string numero = random.Next(100000, 999999).ToString();
+            string codigoMatricula = "CNVX" + numero;
+            return codigoMatricula;
+        }
+
         private void Cancelar(object obj)
         {
             MostrarMensajeCancelacion = Visibility.Visible;
@@ -454,8 +462,11 @@ namespace CineVerCliente.ModeloVista
 
             byte[] contraseñaHash = HashContraseña(Contraseña);
 
+            string matricula = GenerarCodigoMatricula();
+
             var empleado = new EmpleadoDTO
             {
+                Matricula = matricula,
                 Nombres = _nombre,
                 Apellidos = _apellidos,
                 Nss = _nss,

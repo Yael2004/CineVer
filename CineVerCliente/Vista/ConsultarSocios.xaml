@@ -72,7 +72,7 @@
                 <Grid Margin="10"
                     Height="450"
                     Width="800"
-                    Background="White">
+                    Background="{StaticResource Blanco}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -80,6 +80,7 @@
 
                     <TextBox Grid.Row="0" 
                         Margin="0,0,0,10"
+                        BorderBrush="{StaticResource Negro}"
                         Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <Label x:Name="SinResultados"
@@ -94,7 +95,7 @@
                 
                         ItemsSource="{Binding SociosFiltrados}"
                         BorderBrush="LightGray"
-                        Background="White"
+                        Background="{StaticResource Blanco}"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         Visibility="{Binding MostrarSocios}">
 
