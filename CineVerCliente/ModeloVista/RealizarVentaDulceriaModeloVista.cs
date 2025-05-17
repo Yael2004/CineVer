@@ -332,7 +332,7 @@ namespace CineVerCliente.ModeloVista
                 else
                 {
                     var socio = SocioServicioCliente.BuscarSocioPorFolio(TelefonoSocio);
-                    if (socio.ResultDTO.EsExitoso)
+                    if (socio != null || socio.ResultDTO.EsExitoso)
                     {
                         if (PromocionSeleccionada == null)
                         {
@@ -345,7 +345,7 @@ namespace CineVerCliente.ModeloVista
                     }
                     else
                     {
-                        Notificacion.Mostrar("El teléfono no es válido");
+                        Notificacion.Mostrar("Error al cencontrar al socio");
                     }
                 }
             }
