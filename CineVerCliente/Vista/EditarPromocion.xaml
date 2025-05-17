@@ -42,52 +42,52 @@
                         <Label Content="Tipo"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="128,198,0,358"/>
+                        Foreground="White" Margin="215,200,0,356"/>
 
                         <Label Content="Productos necesarios"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="128,244,0,312"/>
+                        Foreground="White" Margin="177,245,0,311"/>
 
                         <Label Content="Productos a pagar"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="128,293,0,263"/>
+                        Foreground="White" Margin="202,286,0,270"/>
 
                         <Label Content="Producto"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="128,336,0,220"/>
+                        Foreground="White" Margin="171,339,0,216"/>
 
                         <Label Content="Lunes"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="535,162,0,394"/>
+                        Foreground="White" Margin="536,167,0,389"/>
 
                         <Label Content="Martes"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="535,204,0,352"/>
+                        Foreground="White" Margin="536,204,0,352"/>
 
                         <Label Content="Miércoles"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="535,245,0,311"/>
+                        Foreground="White" Margin="536,245,0,311"/>
 
                         <Label Content="Jueves"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="536,286,0,270"/>
+                        Foreground="White" Margin="537,284,0,272"/>
 
                         <Label Content="Viernes"
                         HorizontalAlignment="Left"
                         FontSize="20"
-                        Foreground="White" Margin="536,326,0,230"/>
+                        Foreground="White" Margin="538,322,0,234"/>
 
                         <Label Content="Sábado"
                             HorizontalAlignment="Left"
                             FontSize="20"
-                            Foreground="White" Margin="536,362,0,194"/>
+                            Foreground="White" Margin="537,363,0,193"/>
 
                         <Label Content="Domingo"
                             HorizontalAlignment="Left"
@@ -98,34 +98,34 @@
                                   SelectedItem="{Binding NombrePromocionSeleccionado}"
                                   Margin="224,159,283,414"/>
                         <TextBox Text="{Binding ProductosNecesarios}" 
-                                 Margin="330,249,338,327"
+                                 Margin="383,251,285,329"
                                  PreviewTextInput="SoloNumeros"
                                  LostFocus="ValidarInventarioVacio1"
                                  MaxLength="1"/>
                         <TextBox Text="{Binding ProductosAPagar}" 
-                                 Margin="307,294,361,280"
+                                 Margin="383,294,285,282"
                                  PreviewTextInput="SoloNumeros"
                                  LostFocus="ValidarInventarioVacio1"
                                  MaxLength="2"/>
-                        <CheckBox Margin="508,173,222,405" IsChecked="{Binding Lunes}">
+                        <CheckBox Margin="509,171,221,407" IsChecked="{Binding Lunes}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
 
-                        <CheckBox Margin="508,215,220,363" IsChecked="{Binding Martes}">
+                        <CheckBox Margin="509,210,219,368" IsChecked="{Binding Martes}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
 
-                        <CheckBox Margin="508,254,219,322" IsChecked="{Binding Miercoles}">
+                        <CheckBox Margin="509,249,218,327" IsChecked="{Binding Miercoles}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
                         </CheckBox>
 
-                        <CheckBox Margin="509,286,221,290" IsChecked="{Binding Jueves}">
+                        <CheckBox Margin="509,287,221,289" IsChecked="{Binding Jueves}">
                             <CheckBox.LayoutTransform>
                                 <ScaleTransform ScaleX="2" ScaleY="2"/>
                             </CheckBox.LayoutTransform>
@@ -149,14 +149,14 @@
                             </CheckBox.LayoutTransform>
                         </CheckBox>
                         <ComboBox Width="200" 
-                              Margin="193,204,369,374" 
+                              Margin="277,207,285,371" 
                               ItemsSource="{Binding TipoPromocion}" 
                               SelectedItem="{Binding TipoPromocionSeleccionado, Mode=TwoWay}"/>
                         <ComboBox Width="200" 
-                              Margin="235,343,327,234"
+                              Margin="277,343,285,234"
                               ItemsSource="{Binding Producto}" 
                               SelectedItem="{Binding ProductoSeleccionado, Mode=TwoWay}"/>
-
+                        
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}"
                            Height="200"
@@ -194,7 +194,7 @@
                             Style="{StaticResource BotonNegro}"
                             Command="{Binding CancelarEditarPromocionComando}"/>
                         </Grid>
-
+                        
                     </Grid>
                 </Grid>
             </Grid>
