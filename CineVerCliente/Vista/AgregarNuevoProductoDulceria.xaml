@@ -62,8 +62,8 @@
                         <Image Source="{Binding ImagenProducto}" Margin="82,203,482,204"/>
                         <TextBox Text="{Binding NombreProducto}" Margin="411,147,58,415" TextChanged="TextBox_TextChanged"/>
                         <TextBox Text="{Binding CantidadInventario}" Margin="329,229,338,333" TextChanged="TextBox_TextChanged"/>
-                        <TextBox Text="{Binding CantidadInventario}" Margin="329,303,338,259" TextChanged="TextBox_TextChanged"/>
-                        <TextBox Text="{Binding CantidadInventario}" Margin="329,377,338,185" TextChanged="TextBox_TextChanged"/>
+                        <TextBox Text="{Binding CostoUnitario}" Margin="329,303,338,259" TextChanged="TextBox_TextChanged"/>
+                        <TextBox Text="{Binding PrecioVentaUnitario}" Margin="329,377,338,185" TextChanged="TextBox_TextChanged"/>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}"

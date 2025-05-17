@@ -165,7 +165,7 @@ namespace CineVerCliente.ModeloVista
                 if (respuesta.EsExitoso)
                 {
                     MostrarMensajeConfirmarProducto = Visibility.Collapsed;
-                    Notificacion.Mostrar("Pago realizado correctamente");
+                    Notificacion.Mostrar("Modificacion realizada correctamente");
                     _mainWindowModeloVista.CambiarModeloVista(new EditarProductoDulceriaModeloVista(_mainWindowModeloVista));
                 }
                 else

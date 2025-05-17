@@ -124,6 +124,7 @@ namespace CineVerCliente.ModeloVista
                 ProductoDulceriaDTO nuevoProducto = new ProductoDulceriaDTO
                 {
                     Nombre = NombreProducto,
+                    IdSucursal = 2,
                     CantidadInventario = CantidadInventario,
                     CostoUnitario = (decimal)CostoUnitario,
                     PrecioVentaUnitario = (decimal)PrecioVentaUnitario,
@@ -140,9 +141,9 @@ namespace CineVerCliente.ModeloVista
                     Notificacion.Mostrar("Error al agregar el producto.");
                 }
             } 
-            catch (Exception ex)
+            catch (Exception)
             {
-                Notificacion.Mostrar("Error al agregar el producto: " + ex.Message);
+                Notificacion.Mostrar("Error al agregar el producto" );
                 return;
             }
 
