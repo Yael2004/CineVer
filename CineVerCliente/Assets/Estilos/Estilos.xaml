@@ -9,6 +9,14 @@
     <SolidColorBrush x:Key="Toronja" Color="#FFA053"/>
     <SolidColorBrush x:Key="Azul" Color="#441FEC"/>
 
+    <ImageBrush x:Key="Fondo_Promociones"
+            ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Promociones.png"
+            Stretch="UniformToFill"/>
+
+    <ImageBrush x:Key="Fondo_Dulceria"
+            ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Dulceria.png"
+            Stretch="UniformToFill"/>
+
     <ImageBrush x:Key="Fondo_Sucursal"
                 ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Sucursal.png"
                 Stretch="UniformToFill"/>

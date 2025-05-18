@@ -10,7 +10,7 @@
         <Viewbox Stretch="Fill">
             <Grid>
                 <Grid Background="{StaticResource Blanco}"/>
-                <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,106"/>
+                <Grid Background="{StaticResource Fondo_Dulceria}" Margin="0,0,0,106"/>
 
                 <Grid Margin="0,0,108,72">
                     <Grid Background="{StaticResource Negro}" Margin="147,71,28,-71">

@@ -1050,5 +1050,11 @@
   <ItemGroup>
     <Resource Include="Vista\Fondo_MenuPrincipal.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\Fondo_Promociones.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\Fondo_Dulceria.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

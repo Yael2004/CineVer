@@ -7,77 +7,82 @@
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1000">
 
-    <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Viewbox Stretch="Fill">
+            <Grid Background="{StaticResource Fondo_Dulceria}" Margin="0,0,0,0"
+                  Height="600" Width="1000">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <Border Background="White" Padding="20" Margin="0,443,0,0" Grid.RowSpan="2">
-        </Border>
+                <Border Background="White" Padding="20" Margin="0,443,0,0" Grid.RowSpan="2">
+                </Border>
 
-        <Grid Grid.Row="1" Margin="150,52,150,10" Background="{StaticResource Negro}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+                <Grid Grid.Row="1" Margin="150,52,150,10" Background="{StaticResource Negro}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-            <Label Content="Reportar merma"
-               HorizontalAlignment="Center"
-               FontSize="20"
-               Foreground="White"
-               Margin="0,20,0,10"/>
+                    <Label Content="Reportar merma"
+           HorizontalAlignment="Center"
+           FontSize="20"
+           Foreground="White"
+           Margin="0,20,0,10"/>
 
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="20,75,20,0" Grid.Row="0">
-                <ItemsControl ItemsSource="{Binding Productos}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Margin="10" Padding="10" Height="130"
-                                Background="White"
-                                Command="{Binding DataContext.SeleccionarProductoComando, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                CommandParameter="{Binding}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Imagen}" 
-                                            Width="100" Height="100" />
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Nombre}" FontWeight="Bold" FontSize="16"/>
-                                        <TextBlock Text="{Binding CantidadInventario, StringFormat='Inventario: {0}'}" FontSize="12"/>
-                                        <TextBlock Text="{Binding CostoUnitario, StringFormat='Costo: {0}'}" FontSize="12"/>
-                                        <TextBlock Text="{Binding PrecioVentaUnitario, StringFormat='Precio: {0}'}" FontSize="12"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="20,75,20,0" Grid.Row="0">
+                        <ItemsControl ItemsSource="{Binding Productos}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Margin="10" Padding="10" Height="130"
+                            Background="White"
+                            Command="{Binding DataContext.SeleccionarProductoComando, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                            CommandParameter="{Binding}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{Binding Imagen}" 
+                                        Width="100" Height="100" />
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Nombre}" FontWeight="Bold" FontSize="16"/>
+                                                <TextBlock Text="{Binding CantidadInventario, StringFormat='Inventario: {0}'}" FontSize="12"/>
+                                                <TextBlock Text="{Binding CostoUnitario, StringFormat='Costo: {0}'}" FontSize="12"/>
+                                                <TextBlock Text="{Binding PrecioVentaUnitario, StringFormat='Precio: {0}'}" FontSize="12"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
 
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
-                <Rectangle Style="{StaticResource RectanguloAmarillo}"
-                    Height="200"
-                    Margin="0,0,0,0"/>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
+                        <Rectangle Style="{StaticResource RectanguloAmarillo}"
+                Height="200"
+                Margin="0,0,0,0"/>
 
-                <Button Margin="74,126,215,37" 
-                    Content="Aceptar"
-                    Style="{StaticResource BotonConfirmarBlanco}"
-                    Command="{Binding ConfirmarCancelacionComando}"/>
+                        <Button Margin="74,126,215,37" 
+                Content="Aceptar"
+                Style="{StaticResource BotonConfirmarBlanco}"
+                Command="{Binding ConfirmarCancelacionComando}"/>
 
-                <TextBlock Text="¿Está seguro de realizar esta operación?"
-                    Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
+                        <TextBlock Text="¿Está seguro de realizar esta operación?"
+                Style="{StaticResource TextoMensajes}" Height="64" Width="400" Margin="0,46,0,0" VerticalAlignment="Top"/>
 
-                <Button Margin="218,126,71,37" 
-                    Content="Cancelar"
-                    Style="{StaticResource BotonNegro}"
-                    Command="{Binding CancelarCancelacionComando}"/>
+                        <Button Margin="218,126,71,37" 
+                Content="Cancelar"
+                Style="{StaticResource BotonNegro}"
+                Command="{Binding CancelarCancelacionComando}"/>
+                    </Grid>
+
+                    <Button Grid.Row="1"
+            Margin="541,20,20,20"
+            Height="50"
+            Content="Cancelar operación"
+            Style="{StaticResource BotonCancelar}"
+            Command="{Binding CancelarComando}"/>
+                </Grid>
             </Grid>
-
-            <Button Grid.Row="1"
-                Margin="541,20,20,20"
-                Height="50"
-                Content="Cancelar operación"
-                Style="{StaticResource BotonCancelar}"
-                Command="{Binding CancelarComando}"/>
-        </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

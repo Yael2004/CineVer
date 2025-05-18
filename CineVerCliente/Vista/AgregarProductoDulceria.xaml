@@ -8,7 +8,7 @@
              d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
         <Viewbox Stretch="Fill">
-            <Grid Background="{StaticResource Fondo_Sucursal}" Margin="0,0,0,0"
+            <Grid Background="{StaticResource Fondo_Dulceria}" Margin="0,0,0,0"
                   Height="600" Width="1000">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
