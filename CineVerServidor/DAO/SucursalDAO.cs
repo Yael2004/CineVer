@@ -44,7 +44,7 @@ namespace DAO
             {
                 try
                 {
-                    var filas = entities.Fila.Where(f => f.idSala == idSala).ToList();
+                    var filas = entities.Fila.Include("Asiento").Where(f => f.idSala == idSala).ToList();
                     if (filas.Count == 0)
                     {
                         return Result<List<Fila>>.Fallo("No hay filas registradas");

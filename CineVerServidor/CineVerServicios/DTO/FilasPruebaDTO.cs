@@ -14,5 +14,7 @@ namespace CineVerServicios.DTO
         public int NumeroFila { get; set; }
         [DataMember]
         public int CantidadAsientos { get; set; }
+        [DataMember]
+        public List<AsientoDTO> Asientos { get; set; } = new List<AsientoDTO>();
     }
 }

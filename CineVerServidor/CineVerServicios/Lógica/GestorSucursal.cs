@@ -113,27 +113,35 @@ namespace CineVerServicios.Lógica
             }
         }
 
-        public Result<ListaFilasDTO> ObtenerAsientosPorFila(int idSala)
+        public Result<ListaFilasAsientosDTO> ObtenerAsientosPorFila(int idSala)
         {
             var resultado = sucursalDAO.ObtenerAsientosPorFila(idSala);
 
             if (!resultado.EsExitoso)
             {
-                return Result<ListaFilasDTO>.Fallo(resultado.Error);
+                return Result<ListaFilasAsientosDTO>.Fallo(resultado.Error);
             }
             else
             {
-                var listaFilas = new ListaFilasDTO();
+                var listaFilas = new ListaFilasAsientosDTO();
                 foreach (var fila in resultado.Valor)
                 {
                     var filaDTO = new FilasPruebaDTO
                     {
                         NumeroFila = (int)fila.númeroFila,
-                        CantidadAsientos = (int)fila.numeroAsientos
+                        CantidadAsientos = fila.numeroAsientos ?? 0,
+                        Asientos = fila.Asiento.Select(a => new AsientoDTO
+                        {
+                            idAsiento = a.idAsiento,
+                            letraColumna = a.letraColumna,
+                            estado = a.estado
+                        }).ToList()
+
+
                     };
                     listaFilas.Filas.Add(filaDTO);
                 }
-                return Result<ListaFilasDTO>.Exito(listaFilas);
+                return Result<ListaFilasAsientosDTO>.Exito(listaFilas);
             }
         }
     }

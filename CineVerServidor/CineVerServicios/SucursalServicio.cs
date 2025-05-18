@@ -72,7 +72,7 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ListaFilasDTO> ObtenerAsientosPorFila(int idSala)
+        public Task<ListaFilasAsientosDTO> ObtenerAsientosPorFila(int idSala)
         {
             var resultado = _gestorSucursal.ObtenerAsientosPorFila(idSala);
             if (resultado.EsExitoso)
@@ -81,7 +81,7 @@ namespace CineVerServicios
             }
             else
             {
-                return Task.FromResult(new ListaFilasDTO
+                return Task.FromResult(new ListaFilasAsientosDTO
                 {
                     Result = new ResultDTO(false, resultado.Error)
                 });
