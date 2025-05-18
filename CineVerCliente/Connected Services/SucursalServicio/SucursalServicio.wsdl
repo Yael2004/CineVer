@@ -139,11 +139,11 @@
   </wsdl:binding>
   <wsdl:service name="SucursalServicio">
     <wsdl:port name="NetTcpBinding_ISucursalServicio" binding="tns:NetTcpBinding_ISucursalServicio">
-      <soap12:address location="net.tcp://localhost:1012/SucursalServicio/SucursalServicio" />
+      <soap12:address location="net.tcp://localhost:1010/SucursalServicio/SucursalServicio" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://localhost:1012/SucursalServicio/SucursalServicio</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:1010/SucursalServicio/SucursalServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>ESTUDIANTES\zS22013626</Upn>
+          <Upn>LAPTOP-4SRV2TJ2\yaela</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

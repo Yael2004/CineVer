@@ -1,5 +1,6 @@
 ﻿using CineVerCliente.FuncionServicio;
 using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using CineVerCliente.PeliculaServicio;
 using CineVerCliente.SalaServicio;
 using System;
@@ -22,7 +23,8 @@ namespace CineVerCliente.ModeloVista
         public ICommand EliminarFuncionCommand { get; }
         public ICommand AceptarComando { get; }
         public ICommand AgregarFuncionComando { get; }
-        public ICommand CancelarComando { get; }
+        public ICommand CancelarComando { get; } 
+        public ICommand VenderComando { get; }
         public FuncionDTO FuncionSeleccionada { get; set; }
         private bool _mostrarMensajeConfirmar;
         public bool MostrarMensajeConfirmar
@@ -79,6 +81,7 @@ namespace CineVerCliente.ModeloVista
             EliminarFuncionCommand = new ComandoModeloVista(EliminarFuncion);
             AceptarComando = new ComandoModeloVista(AceptarEliminar);
             CancelarComando = new ComandoModeloVista(CancelarEliminar);
+            VenderComando = new ComandoModeloVista(Vender);
 
             FechaSeleccionada = DateTime.Today;
 
@@ -192,6 +195,34 @@ namespace CineVerCliente.ModeloVista
                     
             }
         }
+
+        private void Vender(object obj)
+        {
+            if (obj is FuncionVista funcionVista)
+            {
+                var idPelicula = funcionVista.Funcion.idPelicula ?? 0;
+                var cliente = _peliculaServicioCliente.ObtenerPeliculaPorID(idPelicula);
+
+                var pelicula = new Pelicula
+                {
+                    Nombre = cliente.nombre,
+                    Duracion = (TimeSpan)cliente.duracion,
+                    Poster = cliente.poster
+                };
+
+                var funcion = new Funcion
+                {
+                    Fecha = (DateTime)funcionVista.Funcion.fecha,
+                    HoraInicio = (TimeSpan)funcionVista.Funcion.horaInicio,
+                    Precio = (decimal)funcionVista.Funcion.precioBoleto,
+                    IdSala = (int)funcionVista.Funcion.idSala
+                };
+
+                var ventaModeloVista = new VenderBoletoModeloVista(_mainWindowModeloVista, pelicula, funcion);
+                CambiarModeloVista(ventaModeloVista);
+            }
+        }
+
         private void AceptarEliminar(object obj)
         {
             if (FuncionSeleccionada != null)

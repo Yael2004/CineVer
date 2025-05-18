@@ -103,17 +103,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\GastoServicio\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\SocioServicio\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Connected Services\FuncionServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\GastoServicio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -124,6 +119,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Connected Services\SalaServicio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\SocioServicio\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -195,6 +195,9 @@
     <Compile Include="ModeloVista\VenderBoletoModeloVista.cs" />
     <Compile Include="Modelo\Asiento.cs" />
     <Compile Include="Modelo\EmpleadoConsultado.cs" />
+    <Compile Include="Modelo\Funcion.cs" />
+    <Compile Include="Modelo\Pelicula.cs" />
+    <Compile Include="Modelo\Sala.cs" />
     <Compile Include="Modelo\SingletonUsuarioEnLinea.cs" />
     <Compile Include="Modelo\SocioConsultado.cs" />
     <Compile Include="Modelo\ProductoDulceria.cs" />
@@ -589,24 +592,6 @@
     <None Include="Connected Services\FuncionServicio\FuncionServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FuncionServicio\FuncionServicio3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\PeliculaServicio\CineVerCliente.PeliculaServicio.ListaPeliculasDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\PeliculaServicio\CineVerCliente.PeliculaServicio.PeliculaDTOs.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\PeliculaServicio\PeliculaServicio.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\PeliculaServicio\PeliculaServicio1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\PeliculaServicio\PeliculaServicio2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.EmpleadoResponseDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -642,23 +627,19 @@
     <None Include="Connected Services\GastoServicio\GastoServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\SocioServicio\CineVerCliente.SocioServicio.ListaSociosDTO.datasource">
+    <None Include="Connected Services\PeliculaServicio\CineVerCliente.PeliculaServicio.ListaPeliculasDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\SocioServicio\CineVerCliente.SocioServicio.ResultDTO.datasource">
+    <None Include="Connected Services\PeliculaServicio\CineVerCliente.PeliculaServicio.PeliculaDTOs.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\SocioServicio\CineVerCliente.SocioServicio.SocioResponseDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\SocioServicio\SocioServicio.wsdl" />
-    <None Include="Connected Services\SocioServicio\SocioServicio.xsd">
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\SocioServicio\SocioServicio1.xsd">
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\SocioServicio\SocioServicio2.xsd">
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\PeliculaServicio\PelículaServicio.wsdl" />
@@ -678,6 +659,25 @@
     <None Include="Connected Services\SalaServicio\SalaServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\SocioServicio\CineVerCliente.SocioServicio.ListaSociosDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SocioServicio\CineVerCliente.SocioServicio.ResultDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SocioServicio\CineVerCliente.SocioServicio.SocioResponseDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\SocioServicio\SocioServicio.wsdl" />
+    <None Include="Connected Services\SocioServicio\SocioServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SocioServicio\SocioServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\SocioServicio\SocioServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\FilaServicio\FilaServicio.wsdl" />
     <None Include="Connected Services\FilaServicio\FilaServicio.xsd">
       <SubType>Designer</SubType>
@@ -688,7 +688,7 @@
     <None Include="Connected Services\FilaServicio\FilaServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaFilasDTO.datasource">
+    <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaFilasAsientosDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\SucursalServicio\CineVerCliente.SucursalServicio.ListaSucursalesDTO.datasource">
@@ -759,11 +759,11 @@
     <WCFMetadataStorage Include="Connected Services\AsientoServicio\" />
     <WCFMetadataStorage Include="Connected Services\DulceriaServicio\" />
     <WCFMetadataStorage Include="Connected Services\EmpleadoServicio\" />
-    <WCFMetadataStorage Include="Connected Services\GastoServicio\" />
-    <WCFMetadataStorage Include="Connected Services\SocioServicio\" />
     <WCFMetadataStorage Include="Connected Services\FuncionServicio\" />
+    <WCFMetadataStorage Include="Connected Services\GastoServicio\" />
     <WCFMetadataStorage Include="Connected Services\PeliculaServicio\" />
     <WCFMetadataStorage Include="Connected Services\SalaServicio\" />
+    <WCFMetadataStorage Include="Connected Services\SocioServicio\" />
     <WCFMetadataStorage Include="Connected Services\FilaServicio\" />
     <WCFMetadataStorage Include="Connected Services\SucursalServicio\" />
     <WCFMetadataStorage Include="Connected Services\VentaServicio\" />
@@ -838,21 +838,6 @@
     <Resource Include="Vista\cinever logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\PeliculaServicio\PeliculaServicio.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PeliculaServicio\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PeliculaServicio\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\PeliculaServicio\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="cinever logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -882,21 +867,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Vista\fondo_Sala.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\SalaServicio\SalaServicio.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\SalaServicio\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\SalaServicio\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\SalaServicio\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio.disco" />
@@ -983,21 +953,6 @@
     <Resource Include="Assets\Imagenes\Fondos\Fondo_Empleados.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\FuncionServicio\FuncionServicio.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\FuncionServicio\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\FuncionServicio\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\FuncionServicio\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\FilaServicio\FilaServicio.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -1062,6 +1017,51 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Imagenes\Fondos\Fondo_Dulceria.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FuncionServicio\FuncionServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FuncionServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FuncionServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FuncionServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SalaServicio\SalaServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SalaServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SalaServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\SalaServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\PeliculaServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\PeliculaServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

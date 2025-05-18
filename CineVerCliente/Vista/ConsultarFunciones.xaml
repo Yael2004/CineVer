@@ -153,7 +153,8 @@
 
                                                                             <Button ToolTip="Vender" Width="20" Height="20" Margin="2"
                         Background="Transparent" BorderBrush="Transparent" BorderThickness="0"
-                        Padding="0" Focusable="False" >
+                        Padding="0" Focusable="False" Command="{Binding DataContext.VenderComando, ElementName=RaizControl}"
+            CommandParameter="{Binding}">
                                                                                 <Image Source="/Vista/billete-de-banco (1).png"/>
                                                                             </Button>
                                                                         </StackPanel>

@@ -24,7 +24,7 @@ namespace CineVerCliente.ModeloVista
         private SalaServicioClient _salaServicio = new SalaServicioClient();
         private AsientoServicioClient _asientoServicio = new AsientoServicioClient();
         private FilaServicioClient _filaServicio = new FilaServicioClient();
-        private SalaDTO _salaSeleccionada;
+        private SalaServicio.SalaDTO _salaSeleccionada;
         public ICommand RegresarCommand { get; }
 
         private Visibility _nombreSalaVacio;
@@ -122,7 +122,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public EditarSalaModeloVista(MainWindowModeloVista mainWindowModeloVista, SalaDTO sala)
+        public EditarSalaModeloVista(MainWindowModeloVista mainWindowModeloVista, SalaServicio.SalaDTO sala)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
             GuardarCommand = new ComandoModeloVista(Guardar);
@@ -263,7 +263,7 @@ namespace CineVerCliente.ModeloVista
         {
             if (ValidarCampos())
             {
-                SalaDTO sala = new SalaDTO();
+                SalaServicio.SalaDTO sala = new SalaServicio.SalaDTO();
                 sala.nombre = NombreSala;
                 sala.descripcion = DescripcionSala;
                 sala.estadoSala = EstadoSala;

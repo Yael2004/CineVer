@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="BMUUwBk5E/5BnRUVwYTyvZveBgyloX//TXd0DF4A8hQ=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="vma6vkChnktH/ry/QCvV+63fct63kyxqtPXzVMYiFts=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IPelículaServicio">
       <properties>
@@ -121,10 +121,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IPelículaServicio" contract="PeliculaServicio.IPelículaServicio" bindingType="netTcpBinding" address="net.tcp://localhost:1011/PeliculaServicio/PeliculaServicio" bindingConfiguration="NetTcpBinding_IPelículaServicio">
+    <endpoint name="NetTcpBinding_IPelículaServicio" contract="PeliculaServicio.IPelículaServicio" bindingType="netTcpBinding" address="net.tcp://localhost:1010/PeliculaServicio/PeliculaServicio" bindingConfiguration="NetTcpBinding_IPelículaServicio">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://localhost:1011/PeliculaServicio/PeliculaServicio</serializedValue>
+          <serializedValue>net.tcp://localhost:1010/PeliculaServicio/PeliculaServicio</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -151,7 +151,7 @@
           <serializedValue>System.ServiceModel.Configuration.UserPrincipalNameElement</serializedValue>
         </property>
         <property path="/identity/userPrincipalName/value" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ESTUDIANTES\zS22013626</serializedValue>
+          <serializedValue>LAPTOP-4SRV2TJ2\yaela</serializedValue>
         </property>
         <property path="/identity/servicePrincipalName" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.ServicePrincipalNameElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.ServicePrincipalNameElement</serializedValue>

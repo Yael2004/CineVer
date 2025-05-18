@@ -153,7 +153,9 @@
                         Visibility="{Binding FuncionesMenu}">
                         <MenuItem Header="Funciones">
                             <MenuItem Header="Cartelera y películas"
-                                Style="{StaticResource MenuItemMain}"/>
+                                Style="{StaticResource MenuItemMain}"
+                                Command="{Binding ConsultarFuncionesComando}"
+                                CommandParameter="{Binding}"/>
                         </MenuItem>
                     </Menu>
 
@@ -179,7 +181,9 @@
                         Visibility="{Binding SalasMenu}">
                         <MenuItem Header="Salas">
                             <MenuItem Header="Administrar salas"
-                                Style="{StaticResource MenuItemMain}"/>
+                                Style="{StaticResource MenuItemMain}"
+                                Command="{Binding ConsultarSalasComando}"
+                                CommandParameter="{Binding}"/>
                         </MenuItem>
                     </Menu>
 

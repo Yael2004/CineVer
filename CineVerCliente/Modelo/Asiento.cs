@@ -13,7 +13,7 @@ namespace CineVerCliente.Modelo
         private EstadoAsiento estado;
         public int IdAsiento { get; set; }
         public int IdFila { get; set; }
-        public int LetraColumna { get; set; }
+        public string LetraColumna { get; set; }
         public EstadoAsiento Estado
         {
             get => estado;
@@ -30,9 +30,9 @@ namespace CineVerCliente.Modelo
 
     public enum EstadoAsiento
     {
-        Disponible,
-        Ocupado,
-        Seleccionado,
-        Mantenimiento
+        DISPONIBLE,
+        OCUPADO,
+        SELECCIONADO,
+        MANTENIMIENTO
     }
 }

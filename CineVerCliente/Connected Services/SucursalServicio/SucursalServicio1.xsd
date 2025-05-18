@@ -35,13 +35,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfSucursalDTO" nillable="true" type="tns:ArrayOfSucursalDTO" />
-  <xs:complexType name="ListaFilasDTO">
+  <xs:complexType name="ListaFilasAsientosDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Filas" nillable="true" type="tns:ArrayOfFilasPruebaDTO" />
       <xs:element minOccurs="0" name="Result" nillable="true" type="tns:ResultDTO" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ListaFilasDTO" nillable="true" type="tns:ListaFilasDTO" />
+  <xs:element name="ListaFilasAsientosDTO" nillable="true" type="tns:ListaFilasAsientosDTO" />
   <xs:complexType name="ArrayOfFilasPruebaDTO">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="FilasPruebaDTO" nillable="true" type="tns:FilasPruebaDTO" />
@@ -50,9 +50,25 @@
   <xs:element name="ArrayOfFilasPruebaDTO" nillable="true" type="tns:ArrayOfFilasPruebaDTO" />
   <xs:complexType name="FilasPruebaDTO">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Asientos" nillable="true" type="tns:ArrayOfAsientoDTO" />
       <xs:element minOccurs="0" name="CantidadAsientos" type="xs:int" />
       <xs:element minOccurs="0" name="NumeroFila" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FilasPruebaDTO" nillable="true" type="tns:FilasPruebaDTO" />
+  <xs:complexType name="ArrayOfAsientoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AsientoDTO" nillable="true" type="tns:AsientoDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAsientoDTO" nillable="true" type="tns:ArrayOfAsientoDTO" />
+  <xs:complexType name="AsientoDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="idAsiento" type="xs:int" />
+      <xs:element minOccurs="0" name="idFila" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="letraColumna" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AsientoDTO" nillable="true" type="tns:AsientoDTO" />
 </xs:schema>

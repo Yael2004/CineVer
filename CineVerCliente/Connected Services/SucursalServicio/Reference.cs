@@ -310,9 +310,9 @@ namespace CineVerCliente.SucursalServicio {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ListaFilasDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ListaFilasAsientosDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
     [System.SerializableAttribute()]
-    public partial class ListaFilasDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ListaFilasAsientosDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -379,6 +379,9 @@ namespace CineVerCliente.SucursalServicio {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private CineVerCliente.SucursalServicio.AsientoDTO[] AsientosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int CantidadAsientosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -391,6 +394,19 @@ namespace CineVerCliente.SucursalServicio {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public CineVerCliente.SucursalServicio.AsientoDTO[] Asientos {
+            get {
+                return this.AsientosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AsientosField, value) != true)) {
+                    this.AsientosField = value;
+                    this.RaisePropertyChanged("Asientos");
+                }
             }
         }
         
@@ -416,6 +432,99 @@ namespace CineVerCliente.SucursalServicio {
                 if ((this.NumeroFilaField.Equals(value) != true)) {
                     this.NumeroFilaField = value;
                     this.RaisePropertyChanged("NumeroFila");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AsientoDTO", Namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO")]
+    [System.SerializableAttribute()]
+    public partial class AsientoDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string estadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idAsientoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> idFilaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string letraColumnaField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string estado {
+            get {
+                return this.estadoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.estadoField, value) != true)) {
+                    this.estadoField = value;
+                    this.RaisePropertyChanged("estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idAsiento {
+            get {
+                return this.idAsientoField;
+            }
+            set {
+                if ((this.idAsientoField.Equals(value) != true)) {
+                    this.idAsientoField = value;
+                    this.RaisePropertyChanged("idAsiento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> idFila {
+            get {
+                return this.idFilaField;
+            }
+            set {
+                if ((this.idFilaField.Equals(value) != true)) {
+                    this.idFilaField = value;
+                    this.RaisePropertyChanged("idFila");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string letraColumna {
+            get {
+                return this.letraColumnaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.letraColumnaField, value) != true)) {
+                    this.letraColumnaField = value;
+                    this.RaisePropertyChanged("letraColumna");
                 }
             }
         }
@@ -459,10 +568,10 @@ namespace CineVerCliente.SucursalServicio {
         System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaSucursalesDTO> ObtenerSucursalesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFila", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFilaResponse")]
-        CineVerCliente.SucursalServicio.ListaFilasDTO ObtenerAsientosPorFila(int idSala);
+        CineVerCliente.SucursalServicio.ListaFilasAsientosDTO ObtenerAsientosPorFila(int idSala);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFila", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFilaResponse")]
-        System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasDTO> ObtenerAsientosPorFilaAsync(int idSala);
+        System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasAsientosDTO> ObtenerAsientosPorFilaAsync(int idSala);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -524,11 +633,11 @@ namespace CineVerCliente.SucursalServicio {
             return base.Channel.ObtenerSucursalesAsync();
         }
         
-        public CineVerCliente.SucursalServicio.ListaFilasDTO ObtenerAsientosPorFila(int idSala) {
+        public CineVerCliente.SucursalServicio.ListaFilasAsientosDTO ObtenerAsientosPorFila(int idSala) {
             return base.Channel.ObtenerAsientosPorFila(idSala);
         }
         
-        public System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasDTO> ObtenerAsientosPorFilaAsync(int idSala) {
+        public System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasAsientosDTO> ObtenerAsientosPorFilaAsync(int idSala) {
             return base.Channel.ObtenerAsientosPorFilaAsync(idSala);
         }
     }

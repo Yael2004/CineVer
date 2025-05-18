@@ -34,7 +34,6 @@
       <xsd:import schemaLocation="http://localhost:2020/FuncionServicio?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:2020/FuncionServicio?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:2020/FuncionServicio?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" />
-      <xsd:import schemaLocation="http://localhost:2020/FuncionServicio?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/CineVerEntidades" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IFuncionServicio_ObtenerFuncionesPorPeliculaYFecha_InputMessage">
@@ -163,7 +162,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:1010/FuncionServicio/FuncionServicio</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>ESTUDIANTES\zS22013626</Upn>
+          <Upn>LAPTOP-4SRV2TJ2\yaela</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

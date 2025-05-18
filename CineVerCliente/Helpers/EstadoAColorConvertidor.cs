@@ -18,13 +18,13 @@ namespace CineVerCliente.Helpers
             {
                 switch (estado)
                 {
-                    case EstadoAsiento.Disponible:
+                    case EstadoAsiento.DISPONIBLE:
                         return Brushes.LightGreen;
-                    case EstadoAsiento.Ocupado:
+                    case EstadoAsiento.OCUPADO:
                         return Brushes.Red;
-                    case EstadoAsiento.Seleccionado:
+                    case EstadoAsiento.SELECCIONADO:
                         return Brushes.Blue;
-                    case EstadoAsiento.Mantenimiento:
+                    case EstadoAsiento.MANTENIMIENTO:
                         return Brushes.Gray;
                     default:
                         return Brushes.White;

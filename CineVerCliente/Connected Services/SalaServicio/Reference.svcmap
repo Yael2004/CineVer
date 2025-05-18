@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="c52d283a-cd55-4212-8c2d-ed8ef8eb830b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="ebe86744-35ef-4073-8ea3-06e6728f5f47" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:2020/SalaServicio" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SalaServicio.wsdl" MetadataType="Wsdl" ID="5f08fec4-62fc-4ef1-869d-28846a4c292b" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?wsdl" />
-    <MetadataFile FileName="SalaServicio.xsd" MetadataType="Schema" ID="f0b0566e-a021-444f-a9ea-7fb54467d73c" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?xsd=xsd1" />
-    <MetadataFile FileName="SalaServicio1.xsd" MetadataType="Schema" ID="aff3103e-bd00-4518-aa13-dfaaf0e562f5" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?xsd=xsd0" />
-    <MetadataFile FileName="SalaServicio.disco" MetadataType="Disco" ID="1ff5ab7c-2a0b-4876-906a-a9903700d0b4" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?disco" />
-    <MetadataFile FileName="SalaServicio2.xsd" MetadataType="Schema" ID="3fb09b7b-06ef-407b-ac95-015795251583" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?xsd=xsd2" />
+    <MetadataFile FileName="SalaServicio.wsdl" MetadataType="Wsdl" ID="1ee3392b-2cb6-4913-9311-07635b362a1d" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?wsdl" />
+    <MetadataFile FileName="SalaServicio.xsd" MetadataType="Schema" ID="8b687779-6d23-475e-9e05-26f6eb9da664" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?xsd=xsd1" />
+    <MetadataFile FileName="SalaServicio1.xsd" MetadataType="Schema" ID="577e1375-58b8-4025-9c76-b901c6016adf" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?xsd=xsd0" />
+    <MetadataFile FileName="SalaServicio.disco" MetadataType="Disco" ID="6ba6a775-9992-42c2-86e3-c1e94ab1cab9" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?disco" />
+    <MetadataFile FileName="SalaServicio2.xsd" MetadataType="Schema" ID="6624f186-fc68-42d9-99e9-456749417bb4" SourceId="1" SourceUrl="http://localhost:2020/SalaServicio?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

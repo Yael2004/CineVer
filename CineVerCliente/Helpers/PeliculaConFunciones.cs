@@ -13,7 +13,7 @@ namespace CineVerCliente.Helpers
 {
     public class PeliculaConFunciones
     {
-        public PeliculaDTOs Pelicula { get; set; }
+        public PeliculaServicio.PeliculaDTOs Pelicula { get; set; }
 
         public FuncionVista[] Funciones { get; set; }
 

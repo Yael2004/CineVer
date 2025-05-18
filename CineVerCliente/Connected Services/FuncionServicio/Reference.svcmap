@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="c33d8420-2894-4977-bc94-bf20823f2693" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="1397951f-1666-43ad-b32e-2a49e40bb198" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,11 @@
     <MetadataSource Address="http://localhost:2020/FuncionServicio" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="FuncionServicio.xsd" MetadataType="Schema" ID="b9a11082-3799-4567-b773-c7c847072d2c" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?xsd=xsd0" />
-    <MetadataFile FileName="FuncionServicio1.xsd" MetadataType="Schema" ID="1edf0e20-24f6-4691-9396-3315062134f6" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?xsd=xsd1" />
-    <MetadataFile FileName="FuncionServicio.wsdl" MetadataType="Wsdl" ID="9de0bb77-28db-4c43-b7e9-e4200fdc0047" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?wsdl" />
-    <MetadataFile FileName="FuncionServicio2.xsd" MetadataType="Schema" ID="5e14a366-d370-4675-ad2d-1a08650c2769" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?xsd=xsd3" />
-    <MetadataFile FileName="FuncionServicio3.xsd" MetadataType="Schema" ID="c1bdb52a-e671-4d67-80cd-e804a2a50ce0" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?xsd=xsd2" />
-    <MetadataFile FileName="FuncionServicio.disco" MetadataType="Disco" ID="c99f5780-71d5-4077-89d6-79e7fd218190" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?disco" />
+    <MetadataFile FileName="FuncionServicio.disco" MetadataType="Disco" ID="3227099e-a264-4ff3-ae97-49391710087f" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?disco" />
+    <MetadataFile FileName="FuncionServicio.xsd" MetadataType="Schema" ID="61d4177f-c0b1-4d59-a27d-437ec1ce5769" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?xsd=xsd1" />
+    <MetadataFile FileName="FuncionServicio1.xsd" MetadataType="Schema" ID="85b40603-b3f5-465c-987d-f37646784fcb" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?xsd=xsd0" />
+    <MetadataFile FileName="FuncionServicio2.xsd" MetadataType="Schema" ID="e1783131-b3d3-4aa6-b45c-c6199e54c3cc" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?xsd=xsd2" />
+    <MetadataFile FileName="FuncionServicio.wsdl" MetadataType="Wsdl" ID="b1fd6c87-c11b-4e6f-b913-faf7404aa710" SourceId="1" SourceUrl="http://localhost:2020/FuncionServicio?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

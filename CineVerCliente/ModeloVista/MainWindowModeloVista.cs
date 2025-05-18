@@ -61,6 +61,8 @@ namespace CineVerCliente.ModeloVista
         public ICommand EditarPromocionComando { get; }
         public ICommand CerrarSesionComando { get; }
         public ICommand ObtenerEstadisticasComando { get; }
+        public ICommand ConsultarFuncionesComando { get; }
+        public ICommand ConsultarSalasComando { get; }
 
         public object VistaActualModelo
         {
@@ -344,6 +346,8 @@ namespace CineVerCliente.ModeloVista
             EditarPromocionComando = new ComandoModeloVista(EditarPromocion);
             CerrarSesionComando = new ComandoModeloVista(CerrarSesion);
             ObtenerEstadisticasComando = new ComandoModeloVista(ObtenerEstadisticas);
+            ConsultarFuncionesComando = new ComandoModeloVista(ConsultarFunciones);
+            ConsultarSalasComando = new ComandoModeloVista(ConsultarSalas);
         }
 
         public MainWindowModeloVista(MainWindow _mainWindowMV)
@@ -515,11 +519,6 @@ namespace CineVerCliente.ModeloVista
         private void IniciarSesion(object obj)
         {
             CambiarModeloVista(new IniciarSesionModeloVista(_mainWindowModeloVista));
-        }
-
-        private void VenderBoleto(object obj)
-        {
-            CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista));
         }
 
         private void AgregarProductoDulceria(object obj)

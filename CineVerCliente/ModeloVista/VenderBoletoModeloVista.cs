@@ -1,4 +1,5 @@
-﻿using CineVerCliente.Helpers;
+﻿using CineVerCliente.FuncionServicio;
+using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace CineVerCliente.ModeloVista
         private string _hora;
         private string _numeroCuenta;
         private string _mensajeTotalPagar;
+        private Byte[] _poster;
 
         private Visibility _mostrarMensajeAgregarSocio;
         private Visibility _mostrarNumeroCampoVacio;
@@ -30,8 +32,8 @@ namespace CineVerCliente.ModeloVista
         private Visibility _mostrarMensajeTotalPagar;
 
         private ObservableCollection<string> _letrasColumnas;
-        private ObservableCollection<Asiento> _asientos;
-        public ObservableCollection<ObservableCollection<Asiento>> AsientosAgrupados { get; set; }
+        private ObservableCollection<Modelo.Asiento> _asientos;
+        public ObservableCollection<ObservableCollection<Modelo.Asiento>> AsientosAgrupados { get; set; }
 
         private MainWindowModeloVista _mainWindowModeloVista;
 
@@ -93,6 +95,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public Byte[] Poster
+        {
+            get { return _poster; }
+            set
+            {
+                _poster = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string MensajeTotalPagar
         {
             get { return _mensajeTotalPagar; }
@@ -143,7 +155,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public ObservableCollection<Asiento> Asientos
+        public ObservableCollection<Modelo.Asiento> Asientos
         {
             get { return _asientos; }
             set
@@ -163,7 +175,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public VenderBoletoModeloVista(MainWindowModeloVista mainWindowModeloVista)
+        public VenderBoletoModeloVista(MainWindowModeloVista mainWindowModeloVista, Pelicula pelicula, Funcion funcion)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
             ElegirAsientoComando = new ComandoModeloVista(CambiarEstado);
@@ -173,24 +185,25 @@ namespace CineVerCliente.ModeloVista
             ProcederPagoComando = new ComandoModeloVista(ProcederPago);
             CancelarPagoComando = new ComandoModeloVista(CancelarPago);
 
-            Asientos = new ObservableCollection<Asiento>();
-            AsientosAgrupados = new ObservableCollection<ObservableCollection<Asiento>>();
+            Asientos = new ObservableCollection<Modelo.Asiento>();
+            AsientosAgrupados = new ObservableCollection<ObservableCollection<Modelo.Asiento>>();
 
             MostrarMensajeAgregarSocio = Visibility.Collapsed;
             MostrarNumeroCampoVacio = Visibility.Collapsed;
             MostrarCuentaNoExiste = Visibility.Collapsed;
             MostrarMensajeTotalPagar = Visibility.Collapsed;
 
-            CargarFilas();
+            CargarDatos(pelicula, funcion);
+            CargarFilas(funcion.IdSala);
 
             _mainWindowModeloVista = mainWindowModeloVista;
         }
 
-        private void CargarFilas()
+        private void CargarFilas(int idSala)
         {
             try {
                 var cliente = new SucursalServicio.SucursalServicioClient();
-                var resultado = cliente.ObtenerAsientosPorFila(1);
+                var resultado = cliente.ObtenerAsientosPorFila(idSala);
 
                 Asientos.Clear();
 
@@ -198,17 +211,23 @@ namespace CineVerCliente.ModeloVista
 
                 foreach (var fila in resultado.Filas)
                 {
-                    var filaAsientos = new ObservableCollection<Asiento>();
+                    var filaAsientos = new ObservableCollection<Modelo.Asiento>();
                     int idFila = fila.NumeroFila;
                     int numeroAsientos = fila.CantidadAsientos;
 
-                    for (int j = 0; j < numeroAsientos; j++)
+                    if (numeroAsientos > maxColumnas)
                     {
-                        var asiento = new Asiento
+                        maxColumnas = numeroAsientos;
+                    }
+
+                    foreach (var asientoDTO in fila.Asientos)
+                    {
+                        var asiento = new Modelo.Asiento
                         {
+                            IdAsiento = asientoDTO.idAsiento,
                             IdFila = idFila,
-                            LetraColumna = j,
-                            Estado = EstadoAsiento.Disponible
+                            LetraColumna = asientoDTO.letraColumna,
+                            Estado = (EstadoAsiento)Enum.Parse(typeof(EstadoAsiento), asientoDTO.estado)
                         };
 
                         filaAsientos.Add(asiento);
@@ -226,6 +245,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 Notificacion.MostrarExcepcion();
             }
         }           
@@ -233,15 +253,15 @@ namespace CineVerCliente.ModeloVista
 
         private void CambiarEstado(object obj)
         {
-            if (obj is Asiento asiento)
+            if (obj is Modelo.Asiento asiento)
             {
                 switch (asiento.Estado)
                 {
-                    case EstadoAsiento.Disponible:
-                        asiento.Estado = EstadoAsiento.Seleccionado;
+                    case EstadoAsiento.DISPONIBLE:
+                        asiento.Estado = EstadoAsiento.SELECCIONADO;
                         break;
-                    case EstadoAsiento.Seleccionado:
-                        asiento.Estado = EstadoAsiento.Disponible;
+                    case EstadoAsiento.SELECCIONADO:
+                        asiento.Estado = EstadoAsiento.DISPONIBLE;
                         break;
                 }
             }
@@ -297,6 +317,14 @@ namespace CineVerCliente.ModeloVista
             MensajeTotalPagar = $"Total a pagar: {total:C}";
         }
 
+        private void CargarDatos(Pelicula pelicula, Funcion funcion)
+        {
+            NombrePelicula = pelicula.Nombre;
+            FechaFuncion = funcion.Fecha;
+            Hora = funcion.HoraInicio.ToString(@"hh\:mm");
+            Poster = pelicula.Poster;
+        }
+
         private void ComprarComoInvitado(object obj)
         {
             MostrarMensajeAgregarSocio = Visibility.Collapsed;
@@ -310,7 +338,7 @@ namespace CineVerCliente.ModeloVista
         {
             return AsientosAgrupados
                 .SelectMany(fila => fila)
-                .Count(a => a.Estado == EstadoAsiento.Seleccionado);
+                .Count(a => a.Estado == EstadoAsiento.SELECCIONADO);
         }
 
         private void ProcederPago(object obj)

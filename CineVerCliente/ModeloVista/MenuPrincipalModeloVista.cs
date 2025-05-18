@@ -35,15 +35,15 @@ namespace CineVerCliente.ModeloVista
         public ICommand VenderBoletoCommand;
 
 
-        private ObservableCollection<PeliculaDTOs> _peliculas;
-        public ObservableCollection<PeliculaDTOs> Peliculas
+        private ObservableCollection<PeliculaServicio.PeliculaDTOs> _peliculas;
+        public ObservableCollection<PeliculaServicio.PeliculaDTOs> Peliculas
         {
             get => _peliculas;
             set { _peliculas = value; OnPropertyChanged(); }
         }
 
-        private PeliculaDTOs _peliculaSeleccionada;
-        public PeliculaDTOs PeliculaSeleccionada
+        private PeliculaServicio.PeliculaDTOs _peliculaSeleccionada;
+        public PeliculaServicio.PeliculaDTOs PeliculaSeleccionada
         {
             get => _peliculaSeleccionada;
             set
@@ -88,7 +88,7 @@ namespace CineVerCliente.ModeloVista
                     .ToList();
                 foreach (var id in listaIdPeliculas)
                 {
-                    PeliculaDTOs peliculaInsertar = _peliculaServicioClient.ObtenerPeliculaPorID(id.Value);
+                    PeliculaServicio.PeliculaDTOs peliculaInsertar = _peliculaServicioClient.ObtenerPeliculaPorID(id.Value);
                     Peliculas.Add(peliculaInsertar);
                 }
                 }
@@ -120,7 +120,7 @@ namespace CineVerCliente.ModeloVista
             _peliculaServicioClient = new PelículaServicioClient();
             _salaServicioCLiente = new SalaServicioClient();
             _funcionServicioClient = new FuncionServicioClient();
-            Peliculas = new ObservableCollection<PeliculaDTOs>();
+            Peliculas = new ObservableCollection<PeliculaServicio.PeliculaDTOs>();
             Funciones = new ObservableCollection<FuncionDTO>();
             VenderBoletoCommand = new ComandoModeloVista(VenderBoleto);
             FechaSeleccionada = DateTime.Today;

@@ -122,8 +122,8 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        private SalaDTO _salaSeleccionada;
-        public SalaDTO SalaSeleccionada
+        private SalaServicio.SalaDTO _salaSeleccionada;
+        public SalaServicio.SalaDTO SalaSeleccionada
         {
             get => _salaSeleccionada;
             set
@@ -132,8 +132,8 @@ namespace CineVerCliente.ModeloVista
                 OnPropertyChanged(nameof(SalaSeleccionada));
             }
         }
-        private ObservableCollection<SalaDTO> _salas;
-        public ObservableCollection<SalaDTO> Salas
+        private ObservableCollection<SalaServicio.SalaDTO> _salas;
+        public ObservableCollection<SalaServicio.SalaDTO> Salas
         {
             get => _salas;
             set
@@ -142,8 +142,8 @@ namespace CineVerCliente.ModeloVista
                 OnPropertyChanged(nameof(Salas));
             }
         }
-        private ObservableCollection<PeliculaDTOs> _peliculas;
-        public ObservableCollection<PeliculaDTOs> Peliculas
+        private ObservableCollection<PeliculaServicio.PeliculaDTOs> _peliculas;
+        public ObservableCollection<PeliculaServicio.PeliculaDTOs> Peliculas
         {
             get => _peliculas;
             set
@@ -152,8 +152,8 @@ namespace CineVerCliente.ModeloVista
                 OnPropertyChanged(nameof(Peliculas));
             }
         }
-        private PeliculaDTOs _peliculaSeleccionada;
-        public PeliculaDTOs PeliculaSeleccionada
+        private PeliculaServicio.PeliculaDTOs _peliculaSeleccionada;
+        public PeliculaServicio.PeliculaDTOs PeliculaSeleccionada
         {
             get => _peliculaSeleccionada;
             set
@@ -207,9 +207,9 @@ namespace CineVerCliente.ModeloVista
             
 
             var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(1);    //Cambiar por el id de la sucursal
-            _peliculas = new ObservableCollection<PeliculaDTOs>(peliculasBase.Peliculas);
+            _peliculas = new ObservableCollection<PeliculaServicio.PeliculaDTOs>(peliculasBase.Peliculas);
             var salasBase = _salaServicio.ObtenerSalasPorSucursal(1);    //Cambiar por el id de la sucursal
-            _salas = new ObservableCollection<SalaDTO>(salasBase.Salas);
+            _salas = new ObservableCollection<SalaServicio.SalaDTO>(salasBase.Salas);
             SalaSeleccionada = _salas.FirstOrDefault(s => s.idSala == SalaSeleccionada.idSala);
             PeliculaSeleccionada = _peliculaServicioClient.ObtenerPeliculaPorID(funcion.idPelicula.Value);
             PeliculaSeleccionada = _peliculas.FirstOrDefault(p => p.idPelicula == PeliculaSeleccionada.idPelicula);
@@ -309,7 +309,7 @@ namespace CineVerCliente.ModeloVista
                             continue;
 
                         var horaInicioExistente = funcionExistente.fecha + funcionExistente.horaInicio.Value; // ya es DateTime
-                            PeliculaDTOs peliculaExistente = _peliculaServicioClient.ObtenerPeliculaPorID(funcionExistente.idPelicula.Value);
+                            PeliculaServicio.PeliculaDTOs peliculaExistente = _peliculaServicioClient.ObtenerPeliculaPorID(funcionExistente.idPelicula.Value);
                             var duracionExistente = peliculaExistente.duracion;
                             var horaFinExistente = horaInicioExistente + duracionExistente;
 

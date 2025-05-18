@@ -30,7 +30,7 @@
                            FontSize="20"
                            HorizontalAlignment="Center" Margin="0,6,0,408"/>
 
-                    <Label Content="Nombre Pelicula"
+                    <Label Content="{Binding NombrePelicula}"
                            Foreground="{StaticResource Blanco}" 
                            Margin="343,66,0,349"
                            FontSize="15"
@@ -54,7 +54,7 @@
                            FontSize="15"
                            HorizontalAlignment="Left"/>
 
-                    <Label Content="Fecha Funcion"
+                    <Label Content="{Binding FechaFuncion}"
                            Foreground="{StaticResource Blanco}" 
                            Margin="391,102,0,313"
                            FontSize="15"
@@ -66,13 +66,13 @@
                            FontSize="15"
                            HorizontalAlignment="Left"/>
 
-                    <Label Content="Hora"
+                    <Label Content="{Binding Hora}"
                         Foreground="{StaticResource Blanco}" 
                         Margin="394,165,0,250"
                         FontSize="15"
                         HorizontalAlignment="Left"/>
 
-                    <Image Source="/Assets/Imagenes/Fondos/Fondo_Boleto.png"
+                    <Image Source="{Binding Poster}"
                             Width="250"
                             Height="176"
                             HorizontalAlignment="Left"

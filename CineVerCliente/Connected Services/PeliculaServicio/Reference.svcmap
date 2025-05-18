@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="ccbaf907-10f5-4e7c-a50d-2c5f9750b5d4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="d917e31e-0eb8-48c6-80b8-de916c203bea" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:2020/PeliculaServicio" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="PelículaServicio.wsdl" MetadataType="Wsdl" ID="629f4c58-bc82-40b3-8af3-7c2af2fb5c02" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?wsdl" />
-    <MetadataFile FileName="PeliculaServicio.xsd" MetadataType="Schema" ID="71422fe8-552e-4095-a7e9-fada1e643a54" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?xsd=xsd2" />
-    <MetadataFile FileName="PeliculaServicio.disco" MetadataType="Disco" ID="2ce637f4-34ff-4f26-bf5f-9024d83c5311" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?disco" />
-    <MetadataFile FileName="PeliculaServicio1.xsd" MetadataType="Schema" ID="8e4565cc-c316-4398-8f39-1b26fed2b61d" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?xsd=xsd1" />
-    <MetadataFile FileName="PeliculaServicio2.xsd" MetadataType="Schema" ID="ffcb65dc-8915-4ae3-91a6-ca7db2028abe" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?xsd=xsd0" />
+    <MetadataFile FileName="PelículaServicio.wsdl" MetadataType="Wsdl" ID="319da1e4-6a61-4bc9-b950-29ca0e3a6328" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?wsdl" />
+    <MetadataFile FileName="PeliculaServicio.xsd" MetadataType="Schema" ID="10eeca6f-e3b4-427f-8da6-760df6142173" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?xsd=xsd2" />
+    <MetadataFile FileName="PeliculaServicio.disco" MetadataType="Disco" ID="ab6a36f4-58e0-40d5-9cd4-e67bd6298e80" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?disco" />
+    <MetadataFile FileName="PeliculaServicio1.xsd" MetadataType="Schema" ID="888e5ab8-1b14-4443-914c-f60c009575eb" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?xsd=xsd1" />
+    <MetadataFile FileName="PeliculaServicio2.xsd" MetadataType="Schema" ID="5cc32b7f-8635-4002-b816-df6fc66fcf25" SourceId="1" SourceUrl="http://localhost:2020/PeliculaServicio?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
