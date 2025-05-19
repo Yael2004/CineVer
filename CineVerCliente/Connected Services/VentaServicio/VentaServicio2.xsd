@@ -21,13 +21,14 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="venta" nillable="true" type="q4:VentaDTO" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="asientosIds" nillable="true" type="q5:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RealizarPagoBoletosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="RealizarPagoBoletosResult" nillable="true" type="q5:ResultDTO" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="RealizarPagoBoletosResult" nillable="true" type="q6:ResultDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -41,7 +42,7 @@
   <xs:element name="ObtenerPromocionesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerPromocionesResult" nillable="true" type="q6:ListaPromocionesDTO" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerPromocionesResult" nillable="true" type="q7:ListaPromocionesDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -55,7 +56,7 @@
   <xs:element name="ObtenerPromocionesDulceriaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerPromocionesDulceriaResult" nillable="true" type="q7:ListaPromocionesDTO" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerPromocionesDulceriaResult" nillable="true" type="q8:ListaPromocionesDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -69,35 +70,35 @@
   <xs:element name="ObtenerPromocionesBoletosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerPromocionesBoletosResult" nillable="true" type="q8:ListaPromocionesDTO" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerPromocionesBoletosResult" nillable="true" type="q9:ListaPromocionesDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ActualizarPromocion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="promocion" nillable="true" type="q9:PromocionDTO" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="promocion" nillable="true" type="q10:PromocionDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ActualizarPromocionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ActualizarPromocionResult" nillable="true" type="q10:ResultDTO" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ActualizarPromocionResult" nillable="true" type="q11:ResultDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegistrarPromocion">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="promocion" nillable="true" type="q11:PromocionDTO" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="promocion" nillable="true" type="q12:PromocionDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RegistrarPromocionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="RegistrarPromocionResult" nillable="true" type="q12:ResultDTO" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="RegistrarPromocionResult" nillable="true" type="q13:ResultDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -112,7 +113,7 @@
   <xs:element name="ObtenerVentasPorAnioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasPorAnioResult" nillable="true" type="q13:ListaVentasDTO" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasPorAnioResult" nillable="true" type="q14:ListaVentasDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -128,7 +129,7 @@
   <xs:element name="ObtenerVentasPorMesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasPorMesResult" nillable="true" type="q14:ListaVentasDTO" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasPorMesResult" nillable="true" type="q15:ListaVentasDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -142,7 +143,7 @@
   <xs:element name="ObtenerVentaPorFolioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentaPorFolioResult" nillable="true" type="q15:ResultDTO" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentaPorFolioResult" nillable="true" type="q16:ResultDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -156,7 +157,7 @@
   <xs:element name="VerificarFechaVentaParaDevolucionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="VerificarFechaVentaParaDevolucionResult" nillable="true" type="q16:ResultDTO" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="VerificarFechaVentaParaDevolucionResult" nillable="true" type="q17:ResultDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -170,7 +171,7 @@
   <xs:element name="ObtenerVentasDeBoletosDelDiaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasDeBoletosDelDiaResult" nillable="true" type="q17:VentaTipoResponseDTO" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasDeBoletosDelDiaResult" nillable="true" type="q18:VentaTipoResponseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -184,7 +185,7 @@
   <xs:element name="ObtenerVentasDeDulceriaDelDiaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasDeDulceriaDelDiaResult" nillable="true" type="q18:VentaTipoResponseDTO" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasDeDulceriaDelDiaResult" nillable="true" type="q19:VentaTipoResponseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -198,7 +199,7 @@
   <xs:element name="ObtenerVentasEnEfectivoDelDiaResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasEnEfectivoDelDiaResult" nillable="true" type="q19:VentaTipoResponseDTO" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/CineVerServicios.DTO" minOccurs="0" name="ObtenerVentasEnEfectivoDelDiaResult" nillable="true" type="q20:VentaTipoResponseDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

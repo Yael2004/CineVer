@@ -14,7 +14,7 @@ namespace CineVerServicios.Interfaces
         [OperationContract]
         Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos);
         [OperationContract]
-        Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta);
+        Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta, List<int> asientosIds);
         [OperationContract]
         Task<ListaPromocionesDTO> ObtenerPromociones(int idSucursal);
         [OperationContract]

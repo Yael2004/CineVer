@@ -1,6 +1,7 @@
 ﻿using CineVerCliente.FuncionServicio;
 using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
+using CineVerCliente.Vista;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,6 +27,7 @@ namespace CineVerCliente.ModeloVista
         private string _mensajeTotalPagar;
         private Byte[] _poster;
         private decimal _precio;
+        private List<int> AsientosIds { get; set; } 
 
         private Visibility _mostrarMensajeAgregarSocio;
         private Visibility _mostrarNumeroCampoVacio;
@@ -273,6 +275,10 @@ namespace CineVerCliente.ModeloVista
         private void AceptarAsientos(object obj)
         {
             MostrarMensajeAgregarSocio = Visibility.Visible;
+            AsientosIds = Asientos
+                .Where(a => a.Estado == EstadoAsiento.SELECCIONADO)
+                .Select(a => a.IdAsiento)
+                .ToList();
         }
 
         private void AceptarCuenta(object obj)
@@ -344,8 +350,8 @@ namespace CineVerCliente.ModeloVista
 
         private void ProcederPago(object obj)
         {
-            // Aquí puedes implementar la lógica para proceder con el pago
-            // Por ejemplo, abrir una ventana de pago o realizar una transacción
+            //string promocion, double totalAPagar, SocioDTO socio, string tipoVenta
+            //_mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, ));
         }
 
         private void CancelarPago(object obj)

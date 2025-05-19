@@ -1,10 +1,12 @@
-﻿using CineVerCliente.CuentaFidelidadServicio;
+﻿using CineVerCliente.AsientoServicio;
+using CineVerCliente.CuentaFidelidadServicio;
 using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
 using CineVerCliente.SocioServicio;
 using CineVerCliente.VentaServicio;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -25,11 +27,13 @@ namespace CineVerCliente.ModeloVista
         private VentaServicioClient VentaServicioCliente = new VentaServicioClient();
         private double _puntosOriginales;
         private double _totalOriginal;
+        private string _tipoVenta;
+        private List<int> AsientosIds { get; set; }
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
 
-        public RealizarPagoModeloVista(MainWindowModeloVista mainWindowModeloVista, Dictionary<int, int> productosVendidos, string promocion, double totalAPagar, SocioDTO socio)
+        public RealizarPagoModeloVista(MainWindowModeloVista mainWindowModeloVista, Dictionary<int, int> productosVendidos, string promocion, double totalAPagar, SocioDTO socio, string tipoVenta)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
 
@@ -49,6 +53,30 @@ namespace CineVerCliente.ModeloVista
             ProductosVendidos = productosVendidos;
             Socio = socio;
             InicializarPuntos();
+            _tipoVenta = tipoVenta;
+        }
+
+        public RealizarPagoModeloVista(MainWindowModeloVista mainWindowModeloVista, List<int> asientosIds, string promocion, double totalAPagar, SocioDTO socio, string tipoVenta)
+        {
+            _mainWindowModeloVista = mainWindowModeloVista;
+
+            AplicarPuntosComando = new ComandoModeloVista(AplicarPuntos);
+            CancelarOperacionComando = new ComandoModeloVista(MostrarConfirmacionCancelar);
+            ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
+            CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
+            AceptarNuevoProductoComando = new ComandoModeloVista(AceptarPago);
+            CancelarNuevoProductoComando = new ComandoModeloVista(CancelarPago);
+            ConfirmarPagoConTarjetaComando = new ComandoModeloVista(ConfirmarPagoConTarjeta);
+            CancelarPagoConTarjetaComando = new ComandoModeloVista(CancelarPagoConTarjeta);
+            TarjetaComando = new ComandoModeloVista(SeleccionarTarjeta);
+            EfectivoComando = new ComandoModeloVista(SeleccionarEfectivo);
+            NombrePromocion = promocion;
+            _totalOriginal = totalAPagar;
+            CantidadAPagar = totalAPagar.ToString("F2");
+            Socio = socio;
+            InicializarPuntos();
+            _tipoVenta = tipoVenta;
+            AsientosIds = asientosIds;
         }
 
         public void InicializarPuntos()
@@ -239,18 +267,32 @@ namespace CineVerCliente.ModeloVista
                         IdSucursal = 2,    
                         Total = decimal.Parse(CantidadAPagar),
                         MetodoPago = "Efectivo",    
-                        TIpoVenta = "Dulcería"
+                        TIpoVenta = _tipoVenta
                     };
 
-                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
-
-                    if (resultado != null && resultado.EsExitoso)
+                    if (_tipoVenta == "Dulcería")
                     {
-                        Notificacion.Mostrar("Pago realizado con éxito");
+                        var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
+                        if (resultado != null && resultado.EsExitoso)
+                        {
+                            Notificacion.Mostrar("Pago realizado con éxito");
+                        }
+                        else
+                        {
+                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                        }
                     }
-                    else
+                    else if (_tipoVenta == "Taquilla")
                     {
-                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                        var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray());
+                        if (resultado != null && resultado.EsExitoso)
+                        {
+                            Notificacion.Mostrar("Pago realizado con éxito");
+                        }
+                        else
+                        {
+                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                        }
                     }
                 }
             }
@@ -291,18 +333,32 @@ namespace CineVerCliente.ModeloVista
                         IdSucursal = 2,
                         Total = decimal.Parse(CantidadAPagar),
                         MetodoPago = "Tarjeta",
-                        TIpoVenta = "Dulcería",
+                        TIpoVenta = _tipoVenta,
                     };
 
-                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
-
-                    if (resultado != null && resultado.EsExitoso)
+                    if (_tipoVenta == "Dulcería")
                     {
-                        Notificacion.Mostrar("Pago realizado con éxito");
+                        var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
+                        if (resultado != null && resultado.EsExitoso)
+                        {
+                            Notificacion.Mostrar("Pago realizado con éxito");
+                        }
+                        else
+                        {
+                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                        }
                     }
-                    else
+                    else if (_tipoVenta == "Taquilla")
                     {
-                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                        var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray());
+                        if (resultado != null && resultado.EsExitoso)
+                        {
+                            Notificacion.Mostrar("Pago realizado con éxito");
+                        }
+                        else
+                        {
+                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                        }
                     }
                 }
             }

@@ -324,11 +324,11 @@ namespace CineVerCliente.ModeloVista
                 {
                     if (PromocionSeleccionada == null)
                     {
-                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, "Ninguna", TotalAPagar, new SocioDTO()));
+                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, "Ninguna", TotalAPagar, new SocioDTO(), "Dulcería"));
                     }
                     else
                     {
-                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, PromocionSeleccionada.Nombre, TotalAPagar, new SocioDTO()));
+                        _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, PromocionSeleccionada.Nombre, TotalAPagar, new SocioDTO(), "Dulcería"));
                     }
                 }
                 else
@@ -338,11 +338,11 @@ namespace CineVerCliente.ModeloVista
                     {
                         if (PromocionSeleccionada == null)
                         {
-                            _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, "Ninguna", TotalAPagar, socio.socio));
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, "Ninguna", TotalAPagar, socio.socio, "Dulcería"));
                         }
                         else
                         {
-                            _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, PromocionSeleccionada.Nombre, TotalAPagar, socio.socio));
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, productosVendidos, PromocionSeleccionada.Nombre, TotalAPagar, socio.socio, "Dulcería"));
                         }
                     }
                     else

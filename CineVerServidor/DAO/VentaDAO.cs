@@ -15,26 +15,6 @@ namespace DAO
     {
         public VentaDAO() { }
 
-        //public Result<string> GetAsientosPorFuncion(int idFuncion)
-        //{
-        //    using (CineVerEntities entities = new CineVerEntities())
-        //    {
-        //        try
-        //        {
-        //            var asientos = entities.Asiento.Where(a => a.idFuncion == idFuncion).ToList();
-        //            if (asientos.Count == 0)
-        //            {
-        //                return Result<string>.Fallo("No hay asientos registrados para esta función");
-        //            }
-        //            return Result<string>.Exito(string.Join(", ", asientos.Select(a => a.numeroAsiento)));
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return Result<string>.Fallo(ex.Message);
-        //        }
-        //    }
-        //}
-
         public Result<string> CambiarEstadoAsiento(int idAsiento, string nuevoEstado)
         {
             using (CineVerEntities entities = new CineVerEntities())
@@ -275,6 +255,71 @@ namespace DAO
                     transaction.Commit();
 
                     return Result<string>.Exito("Venta registrada correctamente");
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    transaction.Rollback();
+                    return Result<string>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    transaction.Rollback();
+                    return Result<string>.Fallo(sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    return Result<string>.Fallo(ex.Message);
+                }
+            }
+        }
+
+        public Result<string> RealizarPagoBoletos(Venta venta, List<int> boletosIds)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            using (var transaction = entities.Database.BeginTransaction())
+            {
+                try
+                {
+                    venta.fecha = DateTime.Now;
+                    entities.Venta.Add(venta);
+                    entities.SaveChanges();
+
+                    if (venta.idSocio != 0)
+                    {
+                        var cuentaFidelidad = entities.CuentaFidelidad
+                            .FirstOrDefault(c => c.idSocio == venta.idSocio);
+
+                        if (cuentaFidelidad != null)
+                        {
+                            decimal puntosGanados = venta.total.GetValueOrDefault() * 0.10m;
+                            cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault() + puntosGanados;
+                        }
+                    }
+
+                    foreach (int idBoleto in boletosIds)
+                    {
+                        var boleto = entities.Boleto.Find(idBoleto);
+                        if (boleto == null)
+                        {
+                            transaction.Rollback();
+                            return Result<string>.Fallo($"Boleto con ID {idBoleto} no encontrado");
+                        }
+
+                        if (boleto.Asiento.estado == "OCUPADO")
+                        {
+                            transaction.Rollback();
+                            return Result<string>.Fallo($"El boleto con ID {idBoleto} ya está ocupado");
+                        }
+
+                        boleto.Asiento.estado = "OCUPADO";
+                        boleto.idVenta = venta.idVenta;
+                    }
+
+                    entities.SaveChanges();
+                    transaction.Commit();
+
+                    return Result<string>.Exito("Boletos pagados y registrados correctamente");
                 }
                 catch (DbEntityValidationException ex)
                 {
