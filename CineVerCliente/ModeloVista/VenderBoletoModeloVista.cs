@@ -25,6 +25,7 @@ namespace CineVerCliente.ModeloVista
         private string _numeroCuenta;
         private string _mensajeTotalPagar;
         private Byte[] _poster;
+        private decimal _precio;
 
         private Visibility _mostrarMensajeAgregarSocio;
         private Visibility _mostrarNumeroCampoVacio;
@@ -193,6 +194,8 @@ namespace CineVerCliente.ModeloVista
             MostrarCuentaNoExiste = Visibility.Collapsed;
             MostrarMensajeTotalPagar = Visibility.Collapsed;
 
+            _precio = funcion.Precio;
+
             CargarDatos(pelicula, funcion);
             CargarFilas(funcion.IdSala);
 
@@ -308,10 +311,8 @@ namespace CineVerCliente.ModeloVista
 
         private void CalcularPrecio()
         {
-            //Falta ver si hay promociones
-            //Falta comprobar el precio de los boletos de la funcion
             int cantidad = ContarAsientosSeleccionados();
-            decimal precio = 50;
+            decimal precio = _precio;
             decimal total = cantidad * precio;
             MostrarMensajeTotalPagar = Visibility.Visible;
             MensajeTotalPagar = $"Total a pagar: {total:C}";
