@@ -97,6 +97,81 @@ namespace Pruebas.PruebasDAO
                 poster = new byte[] { 0x00 } // Simula una imagen
             };
         }
+        [TestMethod]
+        public void EditarPelicula_Exito()
+        {
+            var peliculaOriginal = CrearPeliculaPrueba();
+            dao.AgregarPelicula(peliculaOriginal);
+
+            var id = dao.ObtenerIdPelicula(peliculaOriginal.nombre, peliculaOriginal.director).Valor;
+            peliculasDePrueba.Add(id);
+
+            var peliculaEditada = new Película
+            {
+                nombre = "Pelicula Test Editada",
+                director = "Director Test Editado",
+                genero = "Acción",
+                duracion = new System.TimeSpan(2, 0, 0),
+                sinopsis = "Sinopsis actualizada",
+                idSucursal = 1,
+                poster = new byte[] { 0x01 }
+            };
+
+            var resultado = dao.EditarPelicula(peliculaEditada, peliculaOriginal);
+
+            Assert.IsTrue(resultado.EsExitoso);
+            Assert.AreEqual("Pelicula editada exitosamente", resultado.Valor);
+
+            var peliculaBD = dao.ObtenerPeliculaPorID(id).Valor;
+            Assert.AreEqual("Pelicula Test Editada", peliculaBD.nombre);
+            Assert.AreEqual("Director Test Editado", peliculaBD.director);
+        }
+
+        [TestMethod]
+        public void ObtenerPeliculasPorNombre_Exito()
+        {
+            var pelicula = CrearPeliculaPrueba();
+            dao.AgregarPelicula(pelicula);
+
+            var id = dao.ObtenerIdPelicula(pelicula.nombre, pelicula.director).Valor;
+            peliculasDePrueba.Add(id);
+
+            var resultado = dao.ObtenerPeliculasPorNombre(1, "Pelicula Test");
+            Assert.IsTrue(resultado.EsExitoso);
+            Assert.IsTrue(resultado.Valor.Any());
+            Assert.IsTrue(resultado.Valor.Any(p => p.nombre.Contains("Pelicula Test")));
+        }
+
+        [TestMethod]
+        public void ObtenerPeliculasPorNombre_SinCoincidencias()
+        {
+            var resultado = dao.ObtenerPeliculasPorNombre(1, "NombreQueNoExiste");
+            Assert.IsTrue(resultado.EsExitoso);
+            Assert.AreEqual(0, resultado.Valor.Count);
+        }
+
+        [TestMethod]
+        public void ExistePelicula_Existe()
+        {
+            var pelicula = CrearPeliculaPrueba();
+            dao.AgregarPelicula(pelicula);
+
+            var id = dao.ObtenerIdPelicula(pelicula.nombre, pelicula.director).Valor;
+            peliculasDePrueba.Add(id);
+
+            var resultado = dao.ExistePelicula(pelicula.nombre, pelicula.director);
+            Assert.IsTrue(resultado.EsExitoso);
+            Assert.IsTrue(resultado.Valor);
+        }
+
+        [TestMethod]
+        public void ExistePelicula_NoExiste()
+        {
+            var resultado = dao.ExistePelicula("No existe", "Tampoco");
+            Assert.IsTrue(resultado.EsExitoso);
+            Assert.IsFalse(resultado.Valor);
+        }
+
 
         [TestCleanup]
         public void CleanUp()
