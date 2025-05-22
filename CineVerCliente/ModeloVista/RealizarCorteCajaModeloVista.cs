@@ -280,11 +280,11 @@ namespace CineVerCliente.ModeloVista
                 var clienteGastos = new GastoServicio.GastoServicioClient();
                 var clienteCorteCaja = new CorteCajaServicio.CorteCajaServicioClient();
 
-                var resultadoBoletos = clienteVenta.ObtenerVentasDeBoletosDelDia(1);
-                var resultadoDulceria = clienteVenta.ObtenerVentasDeDulceriaDelDia(1);
-                var resultadoGastos = clienteGastos.ObtenerGastosDelDia(DateTime.Now, 1);
-                var resultadoEfectivo = clienteVenta.ObtenerVentasEnEfectivoDelDia(1);
-                var resultadoCorteCaja = clienteCorteCaja.ObtenerMontoInicioDia(1);
+                var resultadoBoletos = clienteVenta.ObtenerVentasDeBoletosDelDia(UsuarioEnLinea.Instancia.IdSucursal);
+                var resultadoDulceria = clienteVenta.ObtenerVentasDeDulceriaDelDia(UsuarioEnLinea.Instancia.IdSucursal);
+                var resultadoGastos = clienteGastos.ObtenerGastosDelDia(DateTime.Now, UsuarioEnLinea.Instancia.IdSucursal);
+                var resultadoEfectivo = clienteVenta.ObtenerVentasEnEfectivoDelDia(UsuarioEnLinea.Instancia.IdSucursal);
+                var resultadoCorteCaja = clienteCorteCaja.ObtenerMontoInicioDia(UsuarioEnLinea.Instancia.IdSucursal);
                 
                 if (resultadoBoletos.ResultDTO.EsExitoso && resultadoDulceria.ResultDTO.EsExitoso)
                 {

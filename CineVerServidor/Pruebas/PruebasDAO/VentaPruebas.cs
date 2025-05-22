@@ -20,6 +20,91 @@ namespace Pruebas.PruebasDAO
             dao = new VentaDAO();
         }
 
+
+        [TestMethod]
+        public void CambiarEstadoAsiento_AsientoExistente_DeberiaActualizarEstado()
+        {
+            int idAsiento = 2;
+            string nuevoEstado = "OCUPADO";
+
+            var resultado = dao.CambiarEstadoAsiento(idAsiento, nuevoEstado);
+
+            Assert.IsTrue(resultado.EsExitoso, $"No se pudo cambiar estado: {resultado.Error}");
+        }
+
+        [TestMethod]
+        public void ObtenerVentasPorAnio_ConDatos_DeberiaDevolverLista()
+        {
+            int anio = 2025;
+            int idSucursal = 1;
+
+            var resultado = dao.ObtenerVentasPorAnio(anio, idSucursal);
+
+            Assert.IsTrue(resultado.EsExitoso, resultado.Error);
+        }
+
+        [TestMethod]
+        public void ObtenerVentasPorMes_ConDatos_DeberiaDevolverLista()
+        {
+            int mes = 5;
+            int anio = 2025;
+            int idSucursal = 1;
+
+            var resultado = dao.ObtenerVentasPorMes(mes, anio, idSucursal);
+
+            Assert.IsTrue(resultado.EsExitoso, resultado.Error);
+        }
+
+        [TestMethod]
+        public void ObtenerVentaPorFolio_Existe_DeberiaDevolverExito()
+        {
+            string folio = "00000022";
+
+            var resultado = dao.ObtenerVentaPorFolio(folio);
+
+            Assert.IsTrue(resultado.EsExitoso, resultado.Error);
+        }
+
+        [TestMethod]
+        public void VerificarFechaVentaParaDevolucion_VentaReciente_DeberiaPermitir()
+        {
+            string folio = "00000032";
+
+            var resultado = dao.VerificarFechaVentaParaDevolucion(folio);
+
+            Assert.IsTrue(resultado.EsExitoso, resultado.Error);
+        }
+
+        [TestMethod]
+        public void ObtenerVentasDeBoletosDelDia_DeberiaFuncionar()
+        {
+            int idSucursal = 1;
+
+            var resultado = dao.ObtenerVentasDeBoletosDelDia(idSucursal);
+
+            Assert.IsTrue(resultado.EsExitoso, resultado.Error);
+        }
+
+        [TestMethod]
+        public void ObtenerVentasDeDulceriaDelDia_DeberiaFuncionar()
+        {
+            int idSucursal = 1;
+
+            var resultado = dao.ObtenerVentasDeDulceriaDelDia(idSucursal);
+
+            Assert.IsTrue(resultado.EsExitoso, resultado.Error);
+        }
+
+        [TestMethod]
+        public void ObtenerVentasEnEfectivoDelDia_DeberiaFuncionar()
+        {
+            int idSucursal = 1;
+
+            var resultado = dao.ObtenerVentasEnEfectivoDelDia(idSucursal);
+
+            Assert.IsTrue(resultado.EsExitoso, resultado.Error);
+        }
+
         [TestMethod]
         public void RealizarPagoDulceria_DeberiaRegistrarVenta()
         {

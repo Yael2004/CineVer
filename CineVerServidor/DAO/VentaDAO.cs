@@ -137,7 +137,7 @@ namespace DAO
                 {
                     var fechaHoy = DateTime.Now.Date;
                     var ventas = entities.Venta
-                        .Where(v => DbFunctions.TruncateTime(v.fecha) == fechaHoy && v.idSucursal == idSucursal && v.tipoVenta.Contains("Bole"))
+                        .Where(v => DbFunctions.TruncateTime(v.fecha) == fechaHoy && v.idSucursal == idSucursal && v.tipoVenta == "Taquilla")
                         .ToList();
 
                     if (ventas.Count == 0)
