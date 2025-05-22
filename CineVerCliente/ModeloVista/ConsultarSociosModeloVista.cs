@@ -177,7 +177,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al cargar los socios", 4000);
+                Notificacion.MostrarExcepcion();
             }
             finally
             {
@@ -198,7 +198,7 @@ namespace CineVerCliente.ModeloVista
         {
             if (obj == null)
             {
-                Notificacion.Mostrar("No se ha seleccionado un socio", 4000);
+                Notificacion.Mostrar("No se ha seleccionado un socio");
             }
             else
             {
@@ -238,7 +238,7 @@ namespace CineVerCliente.ModeloVista
         {
             if (obj == null)
             {
-                Notificacion.Mostrar("No se ha seleccionado un socio", 4000);
+                Notificacion.Mostrar("No se ha seleccionado un socio");
             }
             else
             {
@@ -265,7 +265,7 @@ namespace CineVerCliente.ModeloVista
 
                     if (respuestaSocio.EsExitoso)
                     {
-                        Notificacion.Mostrar("Cuenta inhabilitada exitosamente", 4000);
+                        Notificacion.Mostrar("Cuenta inhabilitada exitosamente");
                         CargarSocios();
                         MostrarMensajeInhabilitar = Visibility.Collapsed;
                     }
@@ -277,19 +277,19 @@ namespace CineVerCliente.ModeloVista
                             Puntos = puntos
                         });
 
-                        Notificacion.Mostrar("Error al inhabilitar la cuenta del socio", 4000);
+                        Notificacion.Mostrar("Error al inhabilitar la cuenta del socio");
                         MostrarMensajeInhabilitar = Visibility.Collapsed;
                     }
                 }
                 else
                 {
-                    Notificacion.Mostrar("Error al inhabilitar la cuenta", 4000);
+                    Notificacion.Mostrar("Error al inhabilitar la cuenta");
                     MostrarMensajeInhabilitar = Visibility.Collapsed;
                 }
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al inhabilitar la cuenta", 4000);
+                Notificacion.MostrarExcepcion();
                 MostrarMensajeInhabilitar = Visibility.Collapsed;
             }
         }

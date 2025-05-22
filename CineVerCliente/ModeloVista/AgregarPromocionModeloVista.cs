@@ -1,5 +1,6 @@
 ﻿using CineVerCliente.DulceriaServicio;
 using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using CineVerCliente.VentaServicio;
 using System;
 using System.Collections.Generic;
@@ -158,7 +159,7 @@ namespace CineVerCliente.ModeloVista
                         }
                         catch (Exception)
                         {
-                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                            Notificacion.MostrarExcepcion();
                         }
                     }
                     else if (value == "Taquilla")
@@ -277,7 +278,7 @@ namespace CineVerCliente.ModeloVista
                 var producto = new PromocionDTO
                 {
                     Tipo = TipoPromocionSeleccionado,
-                    IdSucursal = 2,
+                    IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,
                     Producto = ProductoSeleccionado,
                     NumeroProductosNecesarios = ProductosNecesarios,
                     NumeroProductosPagar = ProductosAPagar,
@@ -303,7 +304,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                Notificacion.MostrarExcepcion();
             }
         }
 

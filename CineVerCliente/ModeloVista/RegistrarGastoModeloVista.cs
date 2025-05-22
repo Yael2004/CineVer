@@ -104,7 +104,7 @@ namespace CineVerCliente.ModeloVista
 
         public void AceptarConfirmacion(Object obj)
         {
-            var cliente = new GastoServicio.GastoServicioClient();
+            var cliente = new GastoServicioClient();
 
             try
             {
@@ -121,18 +121,18 @@ namespace CineVerCliente.ModeloVista
 
                 if (resultado.EsExitoso)
                 {
-                    Notificacion.Mostrar("Gasto registrado correctamente", 4000);
+                    Notificacion.Mostrar("Gasto registrado correctamente");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
                 else
                 {
-                    Notificacion.Mostrar("Error al registrar el gasto", 4000);
+                    Notificacion.Mostrar("Error al registrar el gasto");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al registrar el gasto", 4000);
+                Notificacion.MostrarExcepcion();
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
             }
         }

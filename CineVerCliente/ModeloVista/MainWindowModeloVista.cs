@@ -400,7 +400,6 @@ namespace CineVerCliente.ModeloVista
         public void CrearMenus()
         {
             string rol = UsuarioEnLinea.Instancia.Rol;
-            //string rol = "Gerente"; // Cambiar a la forma correcta de obtener el rol del usuario en línea
 
             if (string.IsNullOrEmpty(rol))
             {
@@ -498,15 +497,6 @@ namespace CineVerCliente.ModeloVista
         {
             CambiarModeloVista(new AgregarSucursalModeloVista(_mainWindowModeloVista));
         }
-        private void AgregarPelicula(object obj)
-        {
-            CambiarModeloVista(new AgregarPelículaModeloVista(_mainWindowModeloVista));
-        }
-
-        private void EditarSucursal(object obj)
-        {
-            CambiarModeloVista(new EditarSucursalModeloVista(_mainWindowModeloVista));
-        }
 
         private void RegistrarEmpleado(object obj)
         {
@@ -541,11 +531,6 @@ namespace CineVerCliente.ModeloVista
         private void RegistrarGasto(object obj)
         {
             CambiarModeloVista(new RegistrarGastoModeloVista(_mainWindowModeloVista));
-        }
-
-        private void IniciarSesion(object obj)
-        {
-            CambiarModeloVista(new IniciarSesionModeloVista(_mainWindowModeloVista));
         }
 
         private void AgregarProductoDulceria(object obj)

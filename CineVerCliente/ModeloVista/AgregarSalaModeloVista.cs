@@ -1,6 +1,7 @@
 ﻿using CineVerCliente.AsientoServicio;
 using CineVerCliente.FilaServicio;
 using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using CineVerCliente.SalaServicio;
 using System;
 using System.Collections.Generic;
@@ -197,7 +198,7 @@ namespace CineVerCliente.ModeloVista
                 sala.descripcion = DescripcionSala;
                 sala.estadoSala = "DISPONIBLE";
                 sala.numeroFilas = NumeroFilas;
-                sala.idSucursal = 1; // Cambia esto por el ID de la sucursal correspondiente
+                sala.idSucursal = UsuarioEnLinea.Instancia.IdSucursal;
                 string mensaje = _salaServicio.AgregarSala(sala);
                 int idSala = _salaServicio.ObtenerIdSala(1, sala.nombre);
                 foreach(var fila in Filas)
@@ -257,18 +258,18 @@ namespace CineVerCliente.ModeloVista
             NumeroFilasVacio = Visibility.Collapsed;
         }
 
-        public ObservableCollection<ObservableCollection<Asiento>> MapaSala { get; set; }
+        public ObservableCollection<ObservableCollection<Helpers.Asiento>> MapaSala { get; set; }
 
         private void GenerarMapaSala()
         {
-            MapaSala = new ObservableCollection<ObservableCollection<Asiento>>();
+            MapaSala = new ObservableCollection<ObservableCollection<Helpers.Asiento>>();
 
             foreach (var fila in Filas)
             {
-                var filaAsientos = new ObservableCollection<Asiento>();
+                var filaAsientos = new ObservableCollection<Helpers.Asiento>();
                 for (int i = 1; i <= fila.CantidadAsientos; i++)
                 {
-                    filaAsientos.Add(new Asiento
+                    filaAsientos.Add(new Helpers.Asiento
                     {
                         Fila = fila.NumeroFila,
                         Numero = i

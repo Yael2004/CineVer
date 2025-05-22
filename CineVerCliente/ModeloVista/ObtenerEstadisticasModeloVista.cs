@@ -101,7 +101,7 @@ namespace CineVerCliente.ModeloVista
             try
             {
                 var cliente = new VentaServicio.VentaServicioClient();
-                var resultado = await cliente.ObtenerVentasPorMesAsync(mes, AnioSeleccionado, 1);
+                var resultado = await cliente.ObtenerVentasPorMesAsync(mes, AnioSeleccionado, UsuarioEnLinea.Instancia.IdSucursal);
 
                 if (resultado == null)
                 {
@@ -146,7 +146,7 @@ namespace CineVerCliente.ModeloVista
             try
             {
                 var cliente = new VentaServicio.VentaServicioClient();
-                var resultado = await cliente.ObtenerVentasPorAnioAsync(AnioSeleccionado, 1);
+                var resultado = await cliente.ObtenerVentasPorAnioAsync(AnioSeleccionado, UsuarioEnLinea.Instancia.IdSucursal);
 
                 if (resultado == null)
                 {
@@ -170,7 +170,7 @@ namespace CineVerCliente.ModeloVista
                         int mes = venta.Fecha.Month - 1;
                         if (venta.Tipo.Contains("Dulce"))
                             valoresDulceria[mes] += venta.Total;
-                        else if (venta.Tipo.Contains("Bole"))
+                        else if (venta.Tipo.Contains("Taquilla"))
                             valoresBoletos[mes] += venta.Total;
                     }
                 }
@@ -187,7 +187,7 @@ namespace CineVerCliente.ModeloVista
                     },
                     new ColumnSeries
                     {
-                        Title = "Boletos",
+                        Title = "Taquilla",
                         Values = new ChartValues<decimal>(valoresBoletos),
                         Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#441FEC")),
                         MaxColumnWidth = 30,

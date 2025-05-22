@@ -180,8 +180,7 @@ namespace CineVerCliente.ModeloVista
             } 
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al agregar el producto" );
-                return;
+                Notificacion.MostrarExcepcion();
             }
 
             MostrarMensajeConfirmarProducto = Visibility.Collapsed;

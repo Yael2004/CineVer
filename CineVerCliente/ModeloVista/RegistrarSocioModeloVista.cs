@@ -297,10 +297,19 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarConfirmacion(object obj)
         {
-            var clienteSocio = new SocioServicio.SocioServicioClient();
-            var clienteCuenta = new CuentaFidelidadServicio.CuentaFidelidadServicioClient();
+            var clienteSocio = new SocioServicioClient();
+            var clienteCuenta = new CuentaFidelidadServicioClient();
 
             string folio = GenerarCodigoFolio();
+
+            if (Sexo == "Masculino")
+            {
+                _sexo = "M";
+            }
+            else
+            {
+                _sexo = "F";
+            }
 
             var socio = new SocioDTO
             {
@@ -327,7 +336,7 @@ namespace CineVerCliente.ModeloVista
 
                     if (socioRegistrado == null)
                     {
-                        Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio", 4000);
+                        Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio");
                         MostrarMensajeConfirmacion = Visibility.Collapsed;
                     }
                     else
@@ -342,25 +351,25 @@ namespace CineVerCliente.ModeloVista
 
                         if (respuestaCuenta.EsExitoso)
                         {
-                            Notificacion.Mostrar("Socio registrado con éxito", 4000);
+                            Notificacion.Mostrar("Socio registrado con éxito");
                             _mainWindowModeloVista.CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
                         }
                         else
                         {
-                            Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio", 4000);
+                            Notificacion.Mostrar("Error al registrar cuenta de fidelidad del socio");
                             MostrarMensajeConfirmacion = Visibility.Collapsed;
                         }
                     }
                 }
                 else
                 {
-                    Notificacion.Mostrar("Error al registrar el socio", 4000);
+                    Notificacion.Mostrar("Error al registrar el socio");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
             }
             catch (Exception ex)
             {
-                Notificacion.Mostrar("Error al registrar el socio", 4000);
+                Notificacion.MostrarExcepcion();
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
             }
         }

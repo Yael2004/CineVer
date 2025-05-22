@@ -22,7 +22,7 @@
                     Foreground="{StaticResource Blanco}" 
                     Margin="247,180,637,523"/>
 
-                <Label Content="Apeliidos"
+                <Label Content="Apellidos"
                     FontSize="20"
                     Foreground="{StaticResource Blanco}" 
                     Margin="238,230,639,473"/>

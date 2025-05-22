@@ -12,7 +12,7 @@ using CineVerCliente.Vista;
 
 namespace CineVerCliente.ModeloVista
 {
-    class IniciarSesionModeloVista : BaseModeloVista
+    public class IniciarSesionModeloVista : BaseModeloVista
     {
         private string _matricula;
         private string _contraseña;
@@ -144,6 +144,7 @@ namespace CineVerCliente.ModeloVista
                 }
                 catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                     Notificacion.MostrarExcepcion();
                 }
             }

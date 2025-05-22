@@ -160,7 +160,6 @@
     <Compile Include="ModeloVista\AgregarPromocionModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSalaModeloVista.cs" />
     <Compile Include="ModeloVista\AgregarSucursalModeloVista.cs" />
-    <Compile Include="ModeloVista\AgregarSucursalSalasModeloVista.cs" />
     <Compile Include="ModeloVista\BaseModeloVista.cs" />
     <Compile Include="ModeloVista\CantidadMermaModeloVista.cs" />
     <Compile Include="ModeloVista\ComandoGenericoModeloVista.cs" />
@@ -576,22 +575,6 @@
     <None Include="Connected Services\DulceriaServicio\DulceriaServicio21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FilaServicio\CineVerCliente.FilaServicio.ListaFilasDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\FuncionServicio\CineVerCliente.FuncionServicio.ListaFuncionesDTO.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\FuncionServicio\FuncionServicio.wsdl" />
-    <None Include="Connected Services\FuncionServicio\FuncionServicio.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\FuncionServicio\FuncionServicio1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\FuncionServicio\FuncionServicio2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\EmpleadoServicio\CineVerCliente.EmpleadoServicio.EmpleadoResponseDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -609,6 +592,22 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FilaServicio\CineVerCliente.FilaServicio.ListaFilasDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FuncionServicio\CineVerCliente.FuncionServicio.ListaFuncionesDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FuncionServicio\FuncionServicio.wsdl" />
+    <None Include="Connected Services\FuncionServicio\FuncionServicio.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FuncionServicio\FuncionServicio1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\FuncionServicio\FuncionServicio2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\GastoServicio\CineVerCliente.GastoServicio.ListaGastosDTO.datasource">
@@ -869,21 +868,6 @@
     <Resource Include="Vista\fondo_Sala.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmpleadoServicio\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmpleadoServicio\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\EmpleadoServicio\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\SocioServicio\SocioServicio.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -1059,6 +1043,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\PeliculaServicio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\EmpleadoServicio.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\EmpleadoServicio\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

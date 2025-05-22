@@ -99,7 +99,7 @@ namespace CineVerCliente.ModeloVista
                 }
                 catch (Exception)
                 {
-                    Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                    Notificacion.MostrarExcepcion();
                     PuntosAUtilizar = "0";
                     PuntosRestantes = "0";
                 }
@@ -233,7 +233,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Ocurrió un error al aplicar los puntos");
+                Notificacion.MostrarExcepcion();
             }
         }
 
@@ -262,9 +262,9 @@ namespace CineVerCliente.ModeloVista
                 {
                     var venta = new VentaDTO
                     {
-                        IdEmpleado = 1, 
+                        IdEmpleado = UsuarioEnLinea.Instancia.IdEmpleado, 
                         IdSocio = Socio.IdSocio, 
-                        IdSucursal = 2,    
+                        IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,    
                         Total = decimal.Parse(CantidadAPagar),
                         MetodoPago = "Efectivo",    
                         TIpoVenta = _tipoVenta
@@ -298,7 +298,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Ha ocurrido un error al realizar el pago");
+                Notificacion.MostrarExcepcion();
             }
 
             MostrarMensajeConfirmarProducto = Visibility.Collapsed;
@@ -326,9 +326,9 @@ namespace CineVerCliente.ModeloVista
             {
                 var venta = new VentaDTO
                 {
-                    IdEmpleado = 1,
+                    IdEmpleado = UsuarioEnLinea.Instancia.IdEmpleado,
                     IdSocio = Socio.IdSocio,
-                    IdSucursal = 2,
+                    IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,
                     Total = decimal.Parse(CantidadAPagar),
                     MetodoPago = "Tarjeta",
                     TIpoVenta = _tipoVenta,
@@ -362,7 +362,7 @@ namespace CineVerCliente.ModeloVista
             
             catch (Exception)
             {
-                Notificacion.Mostrar("Ha ocurrido un error al realizar el pago");
+                Notificacion.MostrarExcepcion();
             }
 
             MostrarTerminal = Visibility.Collapsed;

@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using CineVerCliente.Modelo;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -251,7 +252,7 @@ namespace CineVerCliente.ModeloVista
                 pelicula.duracion = duracion;
                 pelicula.director = Director;
                 pelicula.sinopsis = Sinopsis;
-                pelicula.idSucursal = 1; // Cambiar por la sucursal actual
+                pelicula.idSucursal = UsuarioEnLinea.Instancia.IdSucursal;
                 pelicula.genero = Genero;
                 pelicula.nombre = Titulo;
                 pelicula.poster = File.Exists(Poster) ? File.ReadAllBytes(Poster) : null;

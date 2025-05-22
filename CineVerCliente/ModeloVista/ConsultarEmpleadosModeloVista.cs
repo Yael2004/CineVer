@@ -146,7 +146,7 @@ namespace CineVerCliente.ModeloVista
         {
             if(obj == null)
             {
-                Notificacion.Mostrar("No se ha seleccionado un empleado", 4000);
+                Notificacion.Mostrar("No se ha seleccionado un empleado");
             }
             else
             {
@@ -201,7 +201,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al cargar los empleados", 4000);
+                Notificacion.MostrarExcepcion();
             }
             finally
             {
@@ -254,19 +254,19 @@ namespace CineVerCliente.ModeloVista
 
                 if (respuesta.EsExitoso)
                 {
-                    Notificacion.Mostrar("Cuenta inhabilitada exitosamente", 4000);
+                    Notificacion.Mostrar("Cuenta inhabilitada exitosamente");
                     CargarEmpleados();
                     MostrarMensajeInhabilitar = Visibility.Collapsed;
                 }
                 else
                 {
-                    Notificacion.Mostrar("Error al inhabilitar la cuenta", 4000);
+                    Notificacion.Mostrar("Error al inhabilitar la cuenta");
                     MostrarMensajeInhabilitar = Visibility.Collapsed;
                 }
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al inhabilitar la cuenta", 4000);
+                Notificacion.MostrarExcepcion(); 
                 MostrarMensajeInhabilitar = Visibility.Collapsed;
             }
         }

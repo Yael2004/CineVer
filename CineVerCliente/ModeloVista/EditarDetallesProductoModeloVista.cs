@@ -192,7 +192,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                Notificacion.MostrarExcepcion();
             }
         }
 

@@ -301,10 +301,19 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarConfirmacion(object obj)
         {
-            var cliente = new SocioServicio.SocioServicioClient();
+            var cliente = new SocioServicioClient();
 
             try
             {
+                if (Sexo == "Masculino")
+                {
+                    _sexo = "M";
+                }
+                else if (Sexo == "Femenino")
+                {
+                    _sexo = "F";
+                }
+
                 var socio = new SocioDTO
                 {
                     Nombres = _nombres,
@@ -323,19 +332,19 @@ namespace CineVerCliente.ModeloVista
 
                 if (respuesta.EsExitoso)
                 {
-                    Notificacion.Mostrar("Socio modificado con éxito", 4000);
+                    Notificacion.Mostrar("Socio modificado con éxito");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                     _mainWindowModeloVista.CambiarModeloVista(new ConsultarSociosModeloVista(_mainWindowModeloVista));
                 }
                 else
                 {
-                    Notificacion.Mostrar("Error al modificar al socio", 4000);
+                    Notificacion.Mostrar("Error al modificar al socio");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al modificar al socio", 4000);
+                Notificacion.MostrarExcepcion();
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
             }
         }

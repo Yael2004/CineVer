@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows;
+using CineVerCliente.Modelo;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -206,9 +207,9 @@ namespace CineVerCliente.ModeloVista
             SalaSeleccionada = _salaServicio.ObtenerSalaPorID(funcion.idSala.Value);
             
 
-            var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(1);    //Cambiar por el id de la sucursal
+            var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(UsuarioEnLinea.Instancia.IdSucursal);
             _peliculas = new ObservableCollection<PeliculaServicio.PeliculaDTOs>(peliculasBase.Peliculas);
-            var salasBase = _salaServicio.ObtenerSalasPorSucursal(1);    //Cambiar por el id de la sucursal
+            var salasBase = _salaServicio.ObtenerSalasPorSucursal(UsuarioEnLinea.Instancia.IdSucursal);
             _salas = new ObservableCollection<SalaServicio.SalaDTO>(salasBase.Salas);
             SalaSeleccionada = _salas.FirstOrDefault(s => s.idSala == SalaSeleccionada.idSala);
             PeliculaSeleccionada = _peliculaServicioClient.ObtenerPeliculaPorID(funcion.idPelicula.Value);

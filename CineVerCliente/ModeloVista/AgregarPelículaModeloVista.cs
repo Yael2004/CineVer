@@ -1,4 +1,5 @@
 ﻿using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using CineVerCliente.PeliculaServicio;
 using Microsoft.Win32;
 using System;
@@ -204,7 +205,7 @@ namespace CineVerCliente.ModeloVista
                 pelicula.duracion = duracion;
                 pelicula.director = Director;
                 pelicula.sinopsis = Sinopsis;
-                pelicula.idSucursal = 1; // Cambiar por la sucursal actual
+                pelicula.idSucursal = UsuarioEnLinea.Instancia.IdSucursal;
                 pelicula.genero = Genero;
                 pelicula.nombre = Titulo;
                 pelicula.poster = File.Exists(PosterPath) ? File.ReadAllBytes(PosterPath) : null;

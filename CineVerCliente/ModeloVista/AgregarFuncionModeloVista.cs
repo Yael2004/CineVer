@@ -1,5 +1,6 @@
 ﻿using CineVerCliente.FuncionServicio;
 using CineVerCliente.Helpers;
+using CineVerCliente.Modelo;
 using CineVerCliente.PeliculaServicio;
 using CineVerCliente.SalaServicio;
 using System;
@@ -203,9 +204,9 @@ namespace CineVerCliente.ModeloVista
             RegresarCommand = new ComandoModeloVista(Regresar);
             _peliculaServicioClient = new PelículaServicioClient();
 
-            var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(1);    //Cambiar por el id de la sucursal
+            var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(UsuarioEnLinea.Instancia.IdSucursal);
             _peliculas = new ObservableCollection<PeliculaServicio.PeliculaDTOs>(peliculasBase.Peliculas);
-            var salasBase = _salaServicio.ObtenerSalasPorSucursal(1);    //Cambiar por el id de la sucursal
+            var salasBase = _salaServicio.ObtenerSalasPorSucursal(UsuarioEnLinea.Instancia.IdSucursal);
             _salas = new ObservableCollection<SalaServicio.SalaDTO>(salasBase.Salas);
             Poster = new BitmapImage(new Uri("pack://application:,,,/Vista/Icono_Imagen.png"));
             OcultarCamposVacios();
@@ -218,9 +219,9 @@ namespace CineVerCliente.ModeloVista
             RegresarCommand = new ComandoModeloVista(Regresar);
             _peliculaServicioClient = new PelículaServicioClient();
 
-            var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(1);    //Cambiar por el id de la sucursal
+            var peliculasBase = _peliculaServicio.ObtenerListaPeliculas(UsuarioEnLinea.Instancia.IdSucursal);
             _peliculas = new ObservableCollection<PeliculaServicio.PeliculaDTOs>(peliculasBase.Peliculas);
-            var salasBase = _salaServicio.ObtenerSalasPorSucursal(1);    //Cambiar por el id de la sucursal
+            var salasBase = _salaServicio.ObtenerSalasPorSucursal(UsuarioEnLinea.Instancia.IdSucursal);
             _salas = new ObservableCollection<SalaServicio.SalaDTO>(salasBase.Salas);
             PeliculaSeleccionada = pelicula;
             PeliculaSeleccionada = _peliculas.FirstOrDefault(p => p.idPelicula == pelicula.idPelicula);

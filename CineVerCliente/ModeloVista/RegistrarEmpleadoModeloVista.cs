@@ -458,11 +458,20 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarConfirmacion(object obj)
         {
-            var cliente = new EmpleadoServicio.EmpleadoServicioClient();
+            var cliente = new EmpleadoServicioClient();
 
             byte[] contraseñaHash = HashContraseña(Contraseña);
 
             string matricula = GenerarCodigoMatricula();
+
+            if (Sexo == "Masculino")
+            {
+                _sexo = "M";
+            }
+            else
+            {
+                _sexo = "F";
+            }
 
             var empleado = new EmpleadoDTO
             {
@@ -472,7 +481,7 @@ namespace CineVerCliente.ModeloVista
                 Nss = _nss,
                 Rol = _rol,
                 FechaNacimiento = _fechaNacimiento,
-                Sexo = "F",
+                Sexo = _sexo,
                 NumeroTelefono = _numeroTelefono,
                 Correo = _correoElectronico,
                 Calle = _calle,
@@ -482,7 +491,7 @@ namespace CineVerCliente.ModeloVista
                 Foto = _foto,
                 Contratado = true,
                 Contraseña = contraseñaHash,
-                IdSucursal = 1  //UsuarioEnLinea.Instancia.IdSucursal
+                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
             };
 
             try
@@ -491,19 +500,19 @@ namespace CineVerCliente.ModeloVista
 
                 if (respuesta.EsExitoso)
                 {
-                    Notificacion.Mostrar("Empleado registrado con éxito", 4000);
+                    Notificacion.Mostrar("Empleado registrado con éxito");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                     _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
                 }
                 else
                 {
-                    Notificacion.Mostrar("Error al registrar al empleado", 4000);
+                    Notificacion.Mostrar("Error al registrar al empleado");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
             }
             catch (Exception ex)
             {
-                Notificacion.Mostrar("Error al registrar al empleado", 4000);
+                Notificacion.MostrarExcepcion();
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
             }
         }

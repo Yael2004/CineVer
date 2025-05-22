@@ -309,7 +309,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                Notificacion.MostrarExcepcion();
             }
         }
 
@@ -384,7 +384,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Ha ocurrido un error inesperado al editar la promoción.");
+                Notificacion.MostrarExcepcion();
             }
         }
 

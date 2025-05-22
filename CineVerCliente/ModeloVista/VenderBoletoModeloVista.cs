@@ -318,7 +318,7 @@ namespace CineVerCliente.ModeloVista
 
             try
             {
-                var clienteSocio = new SocioServicio.SocioServicioClient();
+                var clienteSocio = new SocioServicioClient();
                 var resultadoSocio = clienteSocio.ExisteSocio(NumeroCuenta);
 
                 if (!resultadoSocio.EsExitoso)
@@ -342,8 +342,6 @@ namespace CineVerCliente.ModeloVista
 
         private void CalcularPrecio()
         {
-            var usuario = UsuarioEnLinea.Instancia;
-
             int cantidad = ContarAsientosSeleccionados();
             
             if (promocion != null)
@@ -392,7 +390,7 @@ namespace CineVerCliente.ModeloVista
             }
             else
             {
-                var clienteSocio = new SocioServicio.SocioServicioClient();
+                var clienteSocio = new SocioServicioClient();
                 var resultadoSocio = clienteSocio.BuscarSocioPorFolio(NumeroCuenta);
 
                 if (!resultadoSocio.ResultDTO.EsExitoso)
@@ -414,8 +412,8 @@ namespace CineVerCliente.ModeloVista
         {
             try
             {
-                var cliente = new VentaServicio.VentaServicioClient();
-                var promociones = cliente.ObtenerPromocionesBoletos(2);
+                var cliente = new VentaServicioClient();
+                var promociones = cliente.ObtenerPromocionesBoletos(UsuarioEnLinea.Instancia.IdSucursal);
 
                 if (promociones != null)
                 {
@@ -431,7 +429,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                Notificacion.MostrarExcepcion();
             }
         }
 

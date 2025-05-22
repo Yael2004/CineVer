@@ -11,6 +11,7 @@ using System.Windows.Media;
 using CineVerCliente.PeliculaServicio;
 using System.Windows.Input;
 using System.Windows;
+using CineVerCliente.Modelo;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -32,7 +33,7 @@ namespace CineVerCliente.ModeloVista
             {
                 _busqueda = value;
                 OnPropertyChanged(nameof(Busqueda));
-                CargarImagenesDesdeBytes(peliculaServicio.ObtenerPeliculasPorNombre(1,_busqueda)); //Arreglar id sucursal
+                CargarImagenesDesdeBytes(peliculaServicio.ObtenerPeliculasPorNombre(UsuarioEnLinea.Instancia.IdSucursal,_busqueda));
             }
         }
         public ObservableCollection<ImagenGrupo> GruposDeImagenes { get; set; } = new ObservableCollection<ImagenGrupo>();

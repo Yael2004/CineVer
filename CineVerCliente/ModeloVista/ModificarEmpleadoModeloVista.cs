@@ -444,10 +444,19 @@ namespace CineVerCliente.ModeloVista
 
         private void AceptarConfirmacion(object obj)
         {
-            var cliente = new EmpleadoServicio.EmpleadoServicioClient();
+            var cliente = new EmpleadoServicioClient();
 
             try
             {
+                if (Sexo == "Masculino")
+                {
+                    _sexo = "M";
+                }
+                else
+                {
+                    _sexo = "F";
+                }
+
                 var empleado = new EmpleadoDTO
                 {
                     Nombres = _nombres,
@@ -471,19 +480,19 @@ namespace CineVerCliente.ModeloVista
 
                 if (respuesta.EsExitoso)
                 {
-                    Notificacion.Mostrar("Empleado modificado con éxito", 4000);
+                    Notificacion.Mostrar("Empleado modificado con éxito");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                     _mainWindowModeloVista.CambiarModeloVista(new ConsultarEmpleadosModeloVista(_mainWindowModeloVista));
                 }
                 else
                 {
-                    Notificacion.Mostrar("Error al modificar al empleado", 4000);
+                    Notificacion.Mostrar("Error al modificar al empleado");
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
             }
             catch (Exception)
             {
-                Notificacion.Mostrar("Error al modificar al empleado", 4000);
+                Notificacion.MostrarExcepcion();
                 MostrarMensajeConfirmacion = Visibility.Collapsed;
             }
         }

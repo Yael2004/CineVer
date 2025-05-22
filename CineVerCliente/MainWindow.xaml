@@ -222,10 +222,6 @@
             <vista:AgregarSucursal/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type vistaModelo:AgregarSucursalSalasModeloVista}">
-            <vista:AgregarSucursalSalas/>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type vistaModelo:EditarSucursalModeloVista}">
             <vista:EditarSucursal/>
         </DataTemplate>
