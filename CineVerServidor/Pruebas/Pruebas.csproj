@@ -82,9 +82,11 @@
     <Compile Include="PruebasDAO\FilaPruebas.cs" />
     <Compile Include="PruebasDAO\FuncionPruebas.cs" />
     <Compile Include="PruebasDAO\PeliculaPruebas.cs" />
+    <Compile Include="PruebasDAO\CorteCajaPruebas.cs" />
     <Compile Include="PruebasDAO\ProductoDulceriaPruebas.cs" />
     <Compile Include="PruebasDAO\PromocionPruebas.cs" />
     <Compile Include="PruebasDAO\SalaPruebas.cs" />
+    <Compile Include="PruebasDAO\SucursalPruebas.cs" />
     <Compile Include="PruebasDAO\VentaPruebas.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

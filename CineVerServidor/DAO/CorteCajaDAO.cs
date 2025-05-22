@@ -20,8 +20,19 @@ namespace DAO
             {
                 try
                 {
+
+                    bool yaExiste = entities.CorteCaja.Any(c =>
+                        c.idSucursal == corteCaja.idSucursal &&
+                        DbFunctions.TruncateTime(c.fechaCorte) == DbFunctions.TruncateTime(corteCaja.fechaCorte));
+
+                    if (yaExiste)
+                    {
+                        return Result<string>.Fallo("Ya existe un corte de caja para esta sucursal en esta fecha");
+                    }
+
                     entities.CorteCaja.Add(corteCaja);
                     entities.SaveChanges();
+
                     return Result<string>.Exito("Corte de caja guardado correctamente");
                 }
                 catch (DbEntityValidationException ex)
@@ -32,8 +43,13 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo(ex.Message);
+                }
             }
         }
+
 
         public Result<decimal> ObtenerMontoInicioDia(int idSucursal)
         {
