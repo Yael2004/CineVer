@@ -43,6 +43,7 @@ namespace CineVerCliente.ModeloVista
         public Visibility _reportarMermaMenu;
         public Visibility _consultarSucursalesMenu;
         public Visibility _agregarSucursalMenu;
+        public Visibility _carteleraMenu;
 
         public ICommand ConsultarSucursalesComando {  get; }
         public ICommand AgregarSucursalComando {  get; }
@@ -63,6 +64,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand ObtenerEstadisticasComando { get; }
         public ICommand ConsultarFuncionesComando { get; }
         public ICommand ConsultarSalasComando { get; }
+        public ICommand ConsultarPeliculasComando { get; }
 
         public object VistaActualModelo
         {
@@ -80,6 +82,16 @@ namespace CineVerCliente.ModeloVista
             set
             {
                 _promocionesMenu = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility CarteleraMenu
+        {
+            get { return _carteleraMenu; }
+            set
+            {
+                _carteleraMenu = value;
                 OnPropertyChanged();
             }
         }
@@ -328,7 +340,6 @@ namespace CineVerCliente.ModeloVista
         {
             _mainWindowModeloVista = this;
             VistaActualModelo = new IniciarSesionModeloVista(this);
-            CrearMenus();
             ConsultarSucursalesComando = new ComandoModeloVista(Sucursales);
             AgregarSucursalComando = new ComandoModeloVista(AgregarSucursal);
             RegistrarEmpleadoComando = new ComandoModeloVista(RegistrarEmpleado);
@@ -348,13 +359,26 @@ namespace CineVerCliente.ModeloVista
             ObtenerEstadisticasComando = new ComandoModeloVista(ObtenerEstadisticas);
             ConsultarFuncionesComando = new ComandoModeloVista(ConsultarFunciones);
             ConsultarSalasComando = new ComandoModeloVista(ConsultarSalas);
+            ConsultarPeliculasComando = new ComandoModeloVista(ConsultarPeliculas);
+
+
+            PromocionesMenu = Visibility.Collapsed;
+            EmpleadosMenu = Visibility.Collapsed;
+            SociosMenu = Visibility.Collapsed;
+            DulceriaMenu = Visibility.Collapsed;
+            VentasMenu = Visibility.Collapsed;
+            BoletosMenu = Visibility.Collapsed;
+            FuncionesMenu = Visibility.Collapsed;
+            SucursalesMenu = Visibility.Collapsed;
+            SalasMenu = Visibility.Collapsed;
+            SesionMenu = Visibility.Collapsed;
+
         }
 
         public MainWindowModeloVista(MainWindow _mainWindowMV)
         {
             _mainWindowModeloVista = this;
             VistaActualModelo = new IniciarSesionModeloVista(this);
-            CrearMenus();
             ConsultarSucursalesComando = new ComandoModeloVista(Sucursales);
             AgregarSucursalComando = new ComandoModeloVista(AgregarSucursal);
             RegistrarEmpleadoComando = new ComandoModeloVista(RegistrarEmpleado);
@@ -373,10 +397,10 @@ namespace CineVerCliente.ModeloVista
             CerrarSesionComando = new ComandoModeloVista(CerrarSesion);
         }
 
-        private void CrearMenus()
+        public void CrearMenus()
         {
-            //string rol = UsuarioEnLinea.Instancia.Rol;
-            string rol = "Gerente"; // Cambiar a la forma correcta de obtener el rol del usuario en línea
+            string rol = UsuarioEnLinea.Instancia.Rol;
+            //string rol = "Gerente"; // Cambiar a la forma correcta de obtener el rol del usuario en línea
 
             if (string.IsNullOrEmpty(rol))
             {
@@ -389,7 +413,7 @@ namespace CineVerCliente.ModeloVista
                 FuncionesMenu = Visibility.Collapsed;
                 SucursalesMenu = Visibility.Collapsed;
                 SalasMenu = Visibility.Collapsed;
-                SesionMenu = Visibility.Visible;
+                SesionMenu = Visibility.Collapsed;
             }
             else if (rol.Equals("Gerente"))
             {
@@ -403,6 +427,7 @@ namespace CineVerCliente.ModeloVista
                 SucursalesMenu = Visibility.Visible;
                 SalasMenu = Visibility.Visible;
                 SesionMenu = Visibility.Visible;
+                CarteleraMenu = Visibility.Visible;
             }
             else if (rol.Equals("Empleado administrativo"))
             {
@@ -420,6 +445,7 @@ namespace CineVerCliente.ModeloVista
                 SucursalesMenu = Visibility.Collapsed;
                 SalasMenu = Visibility.Collapsed;
                 SesionMenu = Visibility.Visible;
+                CarteleraMenu = Visibility.Collapsed;
             }
             else if (rol.Equals("Empleado operativo"))
             {
@@ -437,6 +463,7 @@ namespace CineVerCliente.ModeloVista
                 SucursalesMenu = Visibility.Collapsed;
                 SalasMenu = Visibility.Collapsed;
                 SesionMenu = Visibility.Visible;
+                CarteleraMenu = Visibility.Collapsed;
             }
         }
 
@@ -554,8 +581,9 @@ namespace CineVerCliente.ModeloVista
         private void CerrarSesion(object obj)
         {
             UsuarioEnLinea.Instancia.CerrarSesionActual();
-            CrearMenus();
             CambiarModeloVista(new IniciarSesionModeloVista(_mainWindowModeloVista));
+
+            CrearMenus();
         }
 
         private void ObtenerEstadisticas(object obj)

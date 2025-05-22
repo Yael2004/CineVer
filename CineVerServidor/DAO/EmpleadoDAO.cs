@@ -79,7 +79,17 @@ namespace DAO
                 }
                 catch (DbEntityValidationException ex)
                 {
-                    return Result<string>.Fallo(ex.Message);
+                    var errores = new StringBuilder();
+
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            errores.AppendLine($"✧ Campo: {validationError.PropertyName} — Error: {validationError.ErrorMessage}");
+                        }
+                    }
+
+                    return Result<string>.Fallo(errores.ToString());
                 }
                 catch (SqlException sqlEx)
                 {
@@ -186,13 +196,13 @@ namespace DAO
 
                     if (empleado != null)
                     {
-                        if (empleado.contraseña.Equals(contraseña))
+                        if (empleado.contraseña.SequenceEqual(contraseña))
                         {
                             return Result<bool>.Exito(true);
                         }
                         else
                         {
-                            return Result<bool>.Exito(false);
+                            return Result<bool>.Fallo("Empleado no encontrado");
                         }
                     }
                     else

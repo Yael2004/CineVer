@@ -39,12 +39,12 @@
                     PreviewTextInput="CampoAlfanumerico"
                     Text="{Binding Matricula, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <TextBox Name="Contrasenia"
-                    Style="{StaticResource Textbox}" 
+                <PasswordBox Name="Contrasenia"
+                    Style="{StaticResource PasswordBox}"
                     Margin="503,456,57,271"
                     MaxLength="60"
                     PreviewTextInput="ContraseñaValida"
-                    Text="{Binding Contraseña, UpdateSourceTrigger=PropertyChanged}"/>
+                    PasswordChanged="PasswordBox_PasswordChanged"/>
 
                 <Button Content="Iniciar sesión"
                     Style="{StaticResource BotonConfirmarBlanco}" 

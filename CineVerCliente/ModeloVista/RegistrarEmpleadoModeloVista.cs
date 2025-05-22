@@ -472,7 +472,7 @@ namespace CineVerCliente.ModeloVista
                 Nss = _nss,
                 Rol = _rol,
                 FechaNacimiento = _fechaNacimiento,
-                Sexo = _sexo,
+                Sexo = "F",
                 NumeroTelefono = _numeroTelefono,
                 Correo = _correoElectronico,
                 Calle = _calle,
@@ -482,7 +482,7 @@ namespace CineVerCliente.ModeloVista
                 Foto = _foto,
                 Contratado = true,
                 Contraseña = contraseñaHash,
-                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
+                IdSucursal = 1  //UsuarioEnLinea.Instancia.IdSucursal
             };
 
             try
@@ -501,7 +501,7 @@ namespace CineVerCliente.ModeloVista
                     MostrarMensajeConfirmacion = Visibility.Collapsed;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Notificacion.Mostrar("Error al registrar al empleado", 4000);
                 MostrarMensajeConfirmacion = Visibility.Collapsed;

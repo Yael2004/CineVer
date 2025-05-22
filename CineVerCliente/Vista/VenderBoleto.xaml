@@ -72,6 +72,12 @@
                         FontSize="15"
                         HorizontalAlignment="Left"/>
 
+                    <Label Content="{Binding Promocion}"
+                        Foreground="{StaticResource Amarillo}" 
+                        Margin="343,200,0,215"
+                        FontSize="15"
+                        HorizontalAlignment="Left"/>
+
                     <Image Source="{Binding Poster}"
                             Width="250"
                             Height="176"
@@ -80,9 +86,8 @@
                             Margin="30,50,0,0"/>
 
                     <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  Width="500" Height="200"
-                                  Margin="0,231,157,0">
+                                  HorizontalScrollBarVisibility="Auto" Height="200"
+                                  Margin="0,240,137,10">
                         <StackPanel Orientation="Vertical">
                             <ItemsControl ItemsSource="{Binding LetrasColumnas}" 
                                           HorizontalAlignment="Center" 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineVerCliente.ModeloVista;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,5 +60,14 @@ namespace CineVerCliente.Vista
             }
             return true;
         }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is IniciarSesionModeloVista vm)
+            {
+                vm.Contraseña = (sender as PasswordBox)?.Password;
+            }
+        }
+
     }
 }

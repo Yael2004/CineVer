@@ -94,6 +94,40 @@
         </Setter>
     </Style>
 
+    <Style x:Key="PasswordBox" TargetType="PasswordBox">
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="#2C2C2C"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="8"
+                        SnapsToDevicePixels="True">
+                        <ScrollViewer x:Name="PART_ContentHost" VerticalScrollBarVisibility="Auto"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Black"
+                              Direction="270"
+                              ShadowDepth="0"
+                              BlurRadius="6"
+                              Opacity="0.5"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="BotonConfirmarAmarillo" TargetType="Button">
         <Setter Property="Background" Value="#E5A000"/>
         <Setter Property="BorderBrush" Value="#232020"/>

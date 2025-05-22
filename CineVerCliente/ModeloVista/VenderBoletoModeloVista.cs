@@ -1,6 +1,8 @@
 ﻿using CineVerCliente.FuncionServicio;
 using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
+using CineVerCliente.SocioServicio;
+using CineVerCliente.VentaServicio;
 using CineVerCliente.Vista;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,12 @@ namespace CineVerCliente.ModeloVista
         private string _mensajeTotalPagar;
         private Byte[] _poster;
         private decimal _precio;
+        private decimal _totalPagar;
+        private int _productosPagar;
+        private int _productosNecesarios;
+        private string _promocion;
+        private string _nombrePromocion;
+        PromocionDTO promocion;
         private List<int> AsientosIds { get; set; } 
 
         private Visibility _mostrarMensajeAgregarSocio;
@@ -36,7 +44,10 @@ namespace CineVerCliente.ModeloVista
 
         private ObservableCollection<string> _letrasColumnas;
         private ObservableCollection<Modelo.Asiento> _asientos;
+        public ObservableCollection<PromocionDTO> Promociones { get; set; }
+
         public ObservableCollection<ObservableCollection<Modelo.Asiento>> AsientosAgrupados { get; set; }
+        private VentaServicioClient clienteVenta;
 
         private MainWindowModeloVista _mainWindowModeloVista;
 
@@ -118,6 +129,16 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public string Promocion
+        {
+            get { return _promocion; }
+            set
+            {
+                _promocion = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Visibility MostrarMensajeAgregarSocio
         {
             get { return _mostrarMensajeAgregarSocio; }
@@ -190,16 +211,20 @@ namespace CineVerCliente.ModeloVista
 
             Asientos = new ObservableCollection<Modelo.Asiento>();
             AsientosAgrupados = new ObservableCollection<ObservableCollection<Modelo.Asiento>>();
+            Promociones = new ObservableCollection<PromocionDTO>();
 
             MostrarMensajeAgregarSocio = Visibility.Collapsed;
             MostrarNumeroCampoVacio = Visibility.Collapsed;
             MostrarCuentaNoExiste = Visibility.Collapsed;
             MostrarMensajeTotalPagar = Visibility.Collapsed;
 
+            clienteVenta = new VentaServicioClient();
             _precio = funcion.Precio;
 
             CargarDatos(pelicula, funcion);
             CargarFilas(funcion.IdSala);
+
+            InicializarPromocion();
 
             _mainWindowModeloVista = mainWindowModeloVista;
         }
@@ -317,11 +342,22 @@ namespace CineVerCliente.ModeloVista
 
         private void CalcularPrecio()
         {
+            var usuario = UsuarioEnLinea.Instancia;
+
             int cantidad = ContarAsientosSeleccionados();
+            
+            if (promocion != null)
+            {
+                if (cantidad == promocion.NumeroProductosNecesarios)
+                {
+                    cantidad = promocion.NumeroProductosPagar;
+                }
+            }
+
             decimal precio = _precio;
-            decimal total = cantidad * precio;
+            _totalPagar = cantidad * precio;
             MostrarMensajeTotalPagar = Visibility.Visible;
-            MensajeTotalPagar = $"Total a pagar: {total:C}";
+            MensajeTotalPagar = $"Total a pagar: {_totalPagar:C}";
         }
 
         private void CargarDatos(Pelicula pelicula, Funcion funcion)
@@ -350,13 +386,66 @@ namespace CineVerCliente.ModeloVista
 
         private void ProcederPago(object obj)
         {
-            //string promocion, double totalAPagar, SocioDTO socio, string tipoVenta
-            //_mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, ));
+            if (NumeroCuenta == null)
+            {
+                _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, _nombrePromocion, (double)_totalPagar, new SocioDTO(), "Taquilla"));
+            }
+            else
+            {
+                var clienteSocio = new SocioServicio.SocioServicioClient();
+                var resultadoSocio = clienteSocio.BuscarSocioPorFolio(NumeroCuenta);
+
+                if (!resultadoSocio.ResultDTO.EsExitoso)
+                {
+                    MostrarCuentaNoExiste = Visibility.Visible;
+                    return;
+                }
+
+                _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, _nombrePromocion, (double)_totalPagar, resultadoSocio.socio, "Taquilla"));
+            }
         }
 
         private void CancelarPago(object obj)
         {
             MostrarMensajeTotalPagar = Visibility.Collapsed;
+        }
+
+        private void InicializarPromocion()
+        {
+            try
+            {
+                var cliente = new VentaServicio.VentaServicioClient();
+                var promociones = cliente.ObtenerPromocionesBoletos(2);
+
+                if (promociones != null)
+                {
+                    promocion = promociones.Promociones.FirstOrDefault(p => EsDiaValidoParaPromocion(p));
+
+                    _productosNecesarios = promocion.NumeroProductosNecesarios;
+                    _productosPagar = promocion.NumeroProductosPagar;
+
+                    _nombrePromocion = promocion.Nombre;
+
+                    Promocion = $"Compra {_productosNecesarios} y paga {_productosPagar}";
+                }
+            }
+            catch (Exception)
+            {
+                Notificacion.Mostrar("Ha ocurrido un error inesperado");
+            }
+        }
+
+        private bool EsDiaValidoParaPromocion(PromocionDTO promocion)
+        {
+            var diaHoy = DateTime.Now.DayOfWeek;
+
+            return (diaHoy == DayOfWeek.Monday && promocion.LunesAplica) ||
+                   (diaHoy == DayOfWeek.Tuesday && promocion.MartesAplica) ||
+                   (diaHoy == DayOfWeek.Wednesday && promocion.MiercolesAplica) ||
+                   (diaHoy == DayOfWeek.Thursday && promocion.JuevesAplica) ||
+                   (diaHoy == DayOfWeek.Friday && promocion.ViernesAplica) ||
+                   (diaHoy == DayOfWeek.Saturday && promocion.SabadoAplica) ||
+                   (diaHoy == DayOfWeek.Sunday && promocion.DomingoAplica);
         }
     }
 }

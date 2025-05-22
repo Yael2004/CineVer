@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Security.Cryptography;
 using CineVerCliente.Modelo;
+using CineVerCliente.Vista;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -133,12 +134,17 @@ namespace CineVerCliente.ModeloVista
 
                         UsuarioEnLinea.Instancia.EstablecerDatosUsuarioEnSesion(empleadoConsultado);
 
-                        _mainWindowModeloVista.CambiarModeloVista(new MainWindowModeloVista());
+                        _mainWindowModeloVista.CambiarModeloVista(new ConsultarFuncionesModeloVista(_mainWindowModeloVista));
+                        _mainWindowModeloVista.CrearMenus();
+                    }
+                    else
+                    {
+                        DatosIncorrectos = Visibility.Visible;
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    DatosIncorrectos = Visibility.Visible;
+                    Notificacion.MostrarExcepcion();
                 }
             }
         }

@@ -117,7 +117,7 @@
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarTerminal}">
                             <Rectangle Fill="{StaticResource Negro}"
-                                Margin="-12,-16,-12,-59"/>
+                                Margin="-12,-47,-12,-53"/>
 
                             <Button Margin="74,143,215,20" 
                                  Content="Aceptar"

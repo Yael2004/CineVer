@@ -324,44 +324,42 @@ namespace CineVerCliente.ModeloVista
         {
             try
             {
-                if (Socio.IdSocio > 0)
+                var venta = new VentaDTO
                 {
-                    var venta = new VentaDTO
-                    {
-                        IdEmpleado = 1,
-                        IdSocio = Socio.IdSocio,
-                        IdSucursal = 2,
-                        Total = decimal.Parse(CantidadAPagar),
-                        MetodoPago = "Tarjeta",
-                        TIpoVenta = _tipoVenta,
-                    };
+                    IdEmpleado = 1,
+                    IdSocio = Socio.IdSocio,
+                    IdSucursal = 2,
+                    Total = decimal.Parse(CantidadAPagar),
+                    MetodoPago = "Tarjeta",
+                    TIpoVenta = _tipoVenta,
+                };
 
-                    if (_tipoVenta == "Dulcería")
+                if (_tipoVenta == "Dulcería")
+                {
+                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
+                    if (resultado != null && resultado.EsExitoso)
                     {
-                        var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
-                        if (resultado != null && resultado.EsExitoso)
-                        {
-                            Notificacion.Mostrar("Pago realizado con éxito");
-                        }
-                        else
-                        {
-                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
-                        }
+                        Notificacion.Mostrar("Pago realizado con éxito");
                     }
-                    else if (_tipoVenta == "Taquilla")
+                    else
                     {
-                        var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray());
-                        if (resultado != null && resultado.EsExitoso)
-                        {
-                            Notificacion.Mostrar("Pago realizado con éxito");
-                        }
-                        else
-                        {
-                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
-                        }
+                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                    }
+                }
+                else if (_tipoVenta == "Taquilla")
+                {
+                    var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray());
+                    if (resultado != null && resultado.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Pago realizado con éxito");
+                    }
+                    else
+                    {
+                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
                     }
                 }
             }
+            
             catch (Exception)
             {
                 Notificacion.Mostrar("Ha ocurrido un error al realizar el pago");
