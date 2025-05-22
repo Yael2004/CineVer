@@ -60,6 +60,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand ComprarComoInvitadoComando { get; }
         public ICommand ProcederPagoComando { get; }
         public ICommand CancelarPagoComando { get; }
+        public ICommand CrearCuentaComando { get; }
 
         public string NombrePelicula
         {
@@ -210,6 +211,7 @@ namespace CineVerCliente.ModeloVista
             ComprarComoInvitadoComando = new ComandoModeloVista(ComprarComoInvitado);
             ProcederPagoComando = new ComandoModeloVista(ProcederPago);
             CancelarPagoComando = new ComandoModeloVista(CancelarPago);
+            CrearCuentaComando = new ComandoModeloVista(CrearCuenta);
 
             Asientos = new ObservableCollection<Modelo.Asiento>();
             AsientosAgrupados = new ObservableCollection<ObservableCollection<Modelo.Asiento>>();
@@ -407,6 +409,11 @@ namespace CineVerCliente.ModeloVista
 
                 _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, _nombrePromocion, (double)_totalPagar, resultadoSocio.socio, "Taquilla", Pelicula, Funcion));
             }
+        }
+
+        private void CrearCuenta(object obj)
+        {
+            _mainWindowModeloVista.CambiarModeloVista(new RegistrarSocioModeloVista(_mainWindowModeloVista));
         }
 
         private void CancelarPago(object obj)
