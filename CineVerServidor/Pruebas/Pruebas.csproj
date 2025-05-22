@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PruebasDAO\EmpledoPrueba.cs" />
     <Compile Include="PruebasDAO\ProductoDulceriaPruebas.cs" />
     <Compile Include="PruebasDAO\PromocionPruebas.cs" />
     <Compile Include="PruebasDAO\VentaPruebas.cs" />

@@ -274,7 +274,7 @@ namespace DAO
             }
         }
 
-        public Result<string> RealizarPagoBoletos(Venta venta, List<int> boletosIds)
+        public Result<string> RealizarPagoBoletos(Venta venta, List<int> asientosIds)
         {
             using (CineVerEntities entities = new CineVerEntities())
             using (var transaction = entities.Database.BeginTransaction())
@@ -297,23 +297,22 @@ namespace DAO
                         }
                     }
 
-                    foreach (int idBoleto in boletosIds)
+                    foreach (int idBoleto in asientosIds)
                     {
-                        var boleto = entities.Boleto.Find(idBoleto);
+                        var boleto = entities.Asiento.Find(idBoleto);
                         if (boleto == null)
                         {
                             transaction.Rollback();
                             return Result<string>.Fallo($"Boleto con ID {idBoleto} no encontrado");
                         }
 
-                        if (boleto.Asiento.estado == "OCUPADO")
+                        if (boleto.estado == "OCUPADO")
                         {
                             transaction.Rollback();
                             return Result<string>.Fallo($"El boleto con ID {idBoleto} ya está ocupado");
                         }
 
-                        boleto.Asiento.estado = "OCUPADO";
-                        boleto.idVenta = venta.idVenta;
+                        boleto.estado = "OCUPADO";
                     }
 
                     entities.SaveChanges();
