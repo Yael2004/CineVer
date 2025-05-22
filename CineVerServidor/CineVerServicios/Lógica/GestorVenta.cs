@@ -303,7 +303,7 @@ namespace CineVerServicios.Lógica
             }
         }
 
-        public Result<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos)
+        public Result<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos, double puntosUsados)
         {
             var ventaEntity = new Venta
             {
@@ -316,7 +316,7 @@ namespace CineVerServicios.Lógica
                 tipoVenta = venta.TIpoVenta,
                 folioVenta = venta.FolioVenta
             };
-            var resultado = ventaDAO.RealizarPagoDulceria(ventaEntity, productos);
+            var resultado = ventaDAO.RealizarPagoDulceria(ventaEntity, productos, puntosUsados);
             if (!resultado.EsExitoso)
             {
                 return Result<ResultDTO>.Fallo(resultado.Error);
@@ -327,7 +327,7 @@ namespace CineVerServicios.Lógica
             }
         }
 
-        public Result<ResultDTO> RealizarPagoBoletos(VentaDTO venta, List<int> asientosIds)
+        public Result<ResultDTO> RealizarPagoBoletos(VentaDTO venta, List<int> asientosIds, double puntosUsados)
         {
             var ventaEntity = new Venta
             {
@@ -340,7 +340,7 @@ namespace CineVerServicios.Lógica
                 tipoVenta = venta.TIpoVenta,
                 folioVenta = venta.FolioVenta
             };
-            var resultado = ventaDAO.RealizarPagoBoletos(ventaEntity, asientosIds);
+            var resultado = ventaDAO.RealizarPagoBoletos(ventaEntity, asientosIds, puntosUsados);
             if (!resultado.EsExitoso)
             {
                 return Result<ResultDTO>.Fallo(resultado.Error);

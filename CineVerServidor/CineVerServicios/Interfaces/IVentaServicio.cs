@@ -12,9 +12,9 @@ namespace CineVerServicios.Interfaces
     public interface IVentaServicio
     {
         [OperationContract]
-        Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos);
+        Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos, double puntosUsados);
         [OperationContract]
-        Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta, List<int> asientosIds);
+        Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta, List<int> asientosIds, double puntosUsados);
         [OperationContract]
         Task<ListaPromocionesDTO> ObtenerPromociones(int idSucursal);
         [OperationContract]

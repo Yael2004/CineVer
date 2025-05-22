@@ -60,7 +60,7 @@
                            FontSize="15"
                            HorizontalAlignment="Left"/>
 
-                    <Label Content="Numero Sala"
+                    <Label Content="1"
                            Foreground="{StaticResource Blanco}" 
                            Margin="383,135,0,280"
                            FontSize="15"
@@ -90,7 +90,7 @@
                                   Margin="0,240,137,10">
                         <StackPanel Orientation="Vertical">
                             <ItemsControl ItemsSource="{Binding LetrasColumnas}" 
-                                          HorizontalAlignment="Center" 
+                                          HorizontalAlignment="Left" 
                                           Margin="20,0,0,10">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>

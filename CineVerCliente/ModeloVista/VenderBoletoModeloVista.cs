@@ -34,8 +34,10 @@ namespace CineVerCliente.ModeloVista
         private int _productosNecesarios;
         private string _promocion;
         private string _nombrePromocion;
+        private Pelicula Pelicula { get; set; }
+        private Funcion Funcion { get; set; }
         PromocionDTO promocion;
-        private List<int> AsientosIds { get; set; } 
+        private List<int> AsientosIds { get; set; }
 
         private Visibility _mostrarMensajeAgregarSocio;
         private Visibility _mostrarNumeroCampoVacio;
@@ -227,6 +229,9 @@ namespace CineVerCliente.ModeloVista
             InicializarPromocion();
 
             _mainWindowModeloVista = mainWindowModeloVista;
+
+            Pelicula = pelicula;
+            Funcion = funcion;
         }
 
         private void CargarFilas(int idSala)
@@ -278,7 +283,7 @@ namespace CineVerCliente.ModeloVista
                 MessageBox.Show(ex.Message);
                 Notificacion.MostrarExcepcion();
             }
-        }           
+        }
 
 
         private void CambiarEstado(object obj)
@@ -295,7 +300,7 @@ namespace CineVerCliente.ModeloVista
                         break;
                 }
             }
-        }   
+        }
 
         private void AceptarAsientos(object obj)
         {
@@ -334,7 +339,7 @@ namespace CineVerCliente.ModeloVista
                     CalcularPrecio();
                     MostrarMensajeTotalPagar = Visibility.Visible;
                 }
-            
+
             } catch (Exception ex) {
                 Notificacion.MostrarExcepcion();
             }
@@ -342,8 +347,9 @@ namespace CineVerCliente.ModeloVista
 
         private void CalcularPrecio()
         {
-            int cantidad = ContarAsientosSeleccionados();
-            
+            int cantidad = 0;
+            cantidad = ContarAsientosSeleccionados();
+
             if (promocion != null)
             {
                 if (cantidad == promocion.NumeroProductosNecesarios)
@@ -386,7 +392,7 @@ namespace CineVerCliente.ModeloVista
         {
             if (NumeroCuenta == null)
             {
-                _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, _nombrePromocion, (double)_totalPagar, new SocioDTO(), "Taquilla"));
+                _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, _nombrePromocion, (double)_totalPagar, new SocioDTO(), "Taquilla", Pelicula, Funcion));
             }
             else
             {
@@ -399,7 +405,7 @@ namespace CineVerCliente.ModeloVista
                     return;
                 }
 
-                _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, _nombrePromocion, (double)_totalPagar, resultadoSocio.socio, "Taquilla"));
+                _mainWindowModeloVista.CambiarModeloVista(new RealizarPagoModeloVista(_mainWindowModeloVista, AsientosIds, _nombrePromocion, (double)_totalPagar, resultadoSocio.socio, "Taquilla", Pelicula, Funcion));
             }
         }
 

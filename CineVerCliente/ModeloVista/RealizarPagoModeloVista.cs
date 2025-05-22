@@ -28,6 +28,8 @@ namespace CineVerCliente.ModeloVista
         private double _puntosOriginales;
         private double _totalOriginal;
         private string _tipoVenta;
+        private Pelicula Pelicula { get; set; }
+        private Funcion Funcion { get; set; }
         private List<int> AsientosIds { get; set; }
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
@@ -36,7 +38,7 @@ namespace CineVerCliente.ModeloVista
         public RealizarPagoModeloVista(MainWindowModeloVista mainWindowModeloVista, Dictionary<int, int> productosVendidos, string promocion, double totalAPagar, SocioDTO socio, string tipoVenta)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
-
+            _puntosOriginales = 0;
             AplicarPuntosComando = new ComandoModeloVista(AplicarPuntos);
             CancelarOperacionComando = new ComandoModeloVista(MostrarConfirmacionCancelar);
             ConfirmarCancelacionComando = new ComandoModeloVista(ConfirmarCancelacion);
@@ -56,7 +58,7 @@ namespace CineVerCliente.ModeloVista
             _tipoVenta = tipoVenta;
         }
 
-        public RealizarPagoModeloVista(MainWindowModeloVista mainWindowModeloVista, List<int> asientosIds, string promocion, double totalAPagar, SocioDTO socio, string tipoVenta)
+        public RealizarPagoModeloVista(MainWindowModeloVista mainWindowModeloVista, List<int> asientosIds, string promocion, double totalAPagar, SocioDTO socio, string tipoVenta, Pelicula pelicula, Funcion funcion)
         {
             _mainWindowModeloVista = mainWindowModeloVista;
 
@@ -77,6 +79,8 @@ namespace CineVerCliente.ModeloVista
             InicializarPuntos();
             _tipoVenta = tipoVenta;
             AsientosIds = asientosIds;
+            Pelicula = pelicula;
+            Funcion = funcion;
         }
 
         public void InicializarPuntos()
@@ -246,7 +250,15 @@ namespace CineVerCliente.ModeloVista
         private void ConfirmarCancelacion(object obj)
         {
             MostrarMensajeCancelarOperacion = Visibility.Collapsed;
-            //_mainWindowModeloVista.RegresarModeloVistaAnterior();
+            if (_tipoVenta == "Dulcería")
+            {
+
+               _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
+            }
+            else if (_tipoVenta == "Taquilla")
+            {
+                _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
+            }
         }
 
         private void CancelarCancelacion(object obj)
@@ -272,10 +284,19 @@ namespace CineVerCliente.ModeloVista
 
                     if (_tipoVenta == "Dulcería")
                     {
-                        var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
+                        var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos, Convert.ToDouble(PuntosAUtilizar));
                         if (resultado != null && resultado.EsExitoso)
                         {
                             Notificacion.Mostrar("Pago realizado con éxito");
+                            if (_tipoVenta == "Dulcería")
+                            {
+
+                                _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
+                            }
+                            else if (_tipoVenta == "Taquilla")
+                            {
+                                _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
+                            }
                         }
                         else
                         {
@@ -284,10 +305,19 @@ namespace CineVerCliente.ModeloVista
                     }
                     else if (_tipoVenta == "Taquilla")
                     {
-                        var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray());
+                        var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray(), Convert.ToDouble(PuntosAUtilizar));
                         if (resultado != null && resultado.EsExitoso)
                         {
                             Notificacion.Mostrar("Pago realizado con éxito");
+                            if (_tipoVenta == "Dulcería")
+                            {
+
+                                _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
+                            }
+                            else if (_tipoVenta == "Taquilla")
+                            {
+                                _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
+                            }
                         }
                         else
                         {
@@ -336,10 +366,19 @@ namespace CineVerCliente.ModeloVista
 
                 if (_tipoVenta == "Dulcería")
                 {
-                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos);
+                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos, Convert.ToDouble(PuntosAUtilizar));
                     if (resultado != null && resultado.EsExitoso)
                     {
                         Notificacion.Mostrar("Pago realizado con éxito");
+                        if (_tipoVenta == "Dulcería")
+                        {
+
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
+                        }
+                        else if (_tipoVenta == "Taquilla")
+                        {
+                            _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
+                        }
                     }
                     else
                     {
@@ -348,10 +387,19 @@ namespace CineVerCliente.ModeloVista
                 }
                 else if (_tipoVenta == "Taquilla")
                 {
-                    var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray());
+                    var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray(),Convert.ToDouble(PuntosAUtilizar));
                     if (resultado != null && resultado.EsExitoso)
                     {
                         Notificacion.Mostrar("Pago realizado con éxito");
+                        if (_tipoVenta == "Dulcería")
+                        {
+
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
+                        }
+                        else if (_tipoVenta == "Taquilla")
+                        {
+                            _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
+                        }
                     }
                     else
                     {

@@ -206,7 +206,7 @@ namespace DAO
             }
         }
 
-        public Result<string> RealizarPagoDulceria(Venta venta, Dictionary<int, int> productos)
+        public Result<string> RealizarPagoDulceria(Venta venta, Dictionary<int, int> productos, double puntosUsados)
         {
             using (CineVerEntities entities = new CineVerEntities())
             using (var transaction = entities.Database.BeginTransaction())
@@ -225,6 +225,11 @@ namespace DAO
                         if (cuentaFidelidad != null)
                         {
                             decimal puntosGanados = venta.total.GetValueOrDefault() * 0.10m;
+                            decimal puntosUsadosDecimal = Convert.ToDecimal(puntosUsados);
+
+                            cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault()
+                                                     - puntosUsadosDecimal
+                                                     + puntosGanados;
                             cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault() + puntosGanados;
                         }
 
@@ -274,7 +279,7 @@ namespace DAO
             }
         }
 
-        public Result<string> RealizarPagoBoletos(Venta venta, List<int> asientosIds)
+        public Result<string> RealizarPagoBoletos(Venta venta, List<int> asientosIds, double puntosUsados)
         {
             using (CineVerEntities entities = new CineVerEntities())
             using (var transaction = entities.Database.BeginTransaction())
@@ -293,6 +298,11 @@ namespace DAO
                         if (cuentaFidelidad != null)
                         {
                             decimal puntosGanados = venta.total.GetValueOrDefault() * 0.10m;
+                            decimal puntosUsadosDecimal = Convert.ToDecimal(puntosUsados);
+
+                            cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault()
+                                                     - puntosUsadosDecimal
+                                                     + puntosGanados;
                             cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault() + puntosGanados;
                         }
                     }

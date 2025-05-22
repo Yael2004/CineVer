@@ -173,9 +173,9 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta, List<int> asientosIds)
+        public Task<ResultDTO> RealizarPagoBoletos(VentaDTO venta, List<int> asientosIds, double puntosUsados)
         {
-            var resultado = _gestorVenta.RealizarPagoBoletos(venta, asientosIds);
+            var resultado = _gestorVenta.RealizarPagoBoletos(venta, asientosIds, puntosUsados);
 
             if (resultado.EsExitoso)
             {
@@ -187,9 +187,9 @@ namespace CineVerServicios
             }
         }
 
-        public Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos)
+        public Task<ResultDTO> RealizarPagoDulceria(VentaDTO venta, Dictionary<int, int> productos, double puntosUsados)
         {
-            var resultado = _gestorVenta.RealizarPagoDulceria(venta, productos);
+            var resultado = _gestorVenta.RealizarPagoDulceria(venta, productos, puntosUsados);
 
             if (resultado.EsExitoso)
             {
