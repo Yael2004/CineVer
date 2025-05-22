@@ -62,5 +62,6 @@ namespace Pruebas.PruebasDAO
                 return sha256.ComputeHash(contraseñaBytes);
             }
         }
+
     }
 }

@@ -26,7 +26,7 @@ namespace Pruebas.PruebasDAO
             var venta = new Venta
             {
                 idSocio = 1,
-                total = 100
+                total = 10
             };
 
             var productos = new Dictionary<int, int>
@@ -35,7 +35,7 @@ namespace Pruebas.PruebasDAO
                 { 2, 1 }
             };
 
-            var resultado = dao.RealizarPagoDulceria(venta, productos);
+            var resultado = dao.RealizarPagoDulceria(venta, productos, 0);
             Assert.IsTrue(resultado.EsExitoso, $"Error en venta de dulcería: {resultado.Error}");
         }
 
@@ -45,15 +45,15 @@ namespace Pruebas.PruebasDAO
             var venta = new Venta
             {
                 idSocio = 1,
-                total = 150
+                total = 15
             };
 
             var boletos = new List<int>
             {
-                10 
+                11
             };
 
-            var resultado = dao.RealizarPagoBoletos(venta, boletos);
+            var resultado = dao.RealizarPagoBoletos(venta, boletos, 0);
 
             Assert.IsTrue(resultado.EsExitoso, $"Error en venta de boletos: {resultado.Error}");
         }
