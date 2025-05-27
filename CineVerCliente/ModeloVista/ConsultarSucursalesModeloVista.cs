@@ -16,7 +16,7 @@ namespace CineVerCliente.ModeloVista
         private string _nombre;
         private string _estado;
         private string _ciudad;
-        private string _codigoPostal;
+        private string _estadoSucursal;
 
         private int _idSucursal;
 
@@ -77,12 +77,12 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public string CodigoPostal
+        public string EstadoSucursal
         {
-            get { return _codigoPostal; }
+            get { return _estadoSucursal; }
             set
             {
-                _codigoPostal = value;
+                _estadoSucursal = value;
                 OnPropertyChanged();
             }
         }
@@ -183,7 +183,8 @@ namespace CineVerCliente.ModeloVista
                         CodigoPostal = sucursal.CodigoPostal,
                         Numero = sucursal.NumeroEnLaCalle,
                         HoraApertura = sucursal.HoraApertura,
-                        HoraCierre = sucursal.HoraCierre
+                        HoraCierre = sucursal.HoraCierre,
+                        EstadoSucursal = sucursal.EstadoSucursal
                     });
                 }
             }

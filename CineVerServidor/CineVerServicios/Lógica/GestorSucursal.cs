@@ -26,7 +26,7 @@ namespace CineVerServicios.Lógica
                 codigoPostal = sucursalDTO.CodigoPostal,
                 horaApertura = sucursalDTO.HoraApertura,
                 horaCierre = sucursalDTO.HoraCierre,
-                estadoSucursal = "Cerrada"
+                estadoSucursal = "Abierta"
             };
 
             var resultado = sucursalDAO.AgregarSucursal(sucursal);
@@ -64,7 +64,8 @@ namespace CineVerServicios.Lógica
                         NumeroEnLaCalle = sucursal.numeroEnLaCalle,
                         CodigoPostal = sucursal.codigoPostal,
                         HoraApertura = (TimeSpan)sucursal.horaApertura,
-                        HoraCierre = (TimeSpan)sucursal.horaCierre
+                        HoraCierre = (TimeSpan)sucursal.horaCierre,
+                        EstadoSucursal = sucursal.estadoSucursal
 
                     };
                     listaSucursales.Sucursales.Add(sucursalDTO);
@@ -98,7 +99,8 @@ namespace CineVerServicios.Lógica
                 numeroEnLaCalle = sucursalDTO.NumeroEnLaCalle,
                 codigoPostal = sucursalDTO.CodigoPostal,
                 horaApertura = sucursalDTO.HoraApertura,
-                horaCierre = sucursalDTO.HoraCierre
+                horaCierre = sucursalDTO.HoraCierre,
+                estadoSucursal = sucursalDTO.EstadoSucursal
             };
 
             var resultado = sucursalDAO.ActualizarSucursal(idSucursal, sucursal);

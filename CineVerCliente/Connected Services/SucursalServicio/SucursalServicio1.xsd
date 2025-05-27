@@ -7,6 +7,7 @@
       <xs:element minOccurs="0" name="Ciudad" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="CodigoPostal" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EstadoSucursal" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HoraApertura" type="ser:duration" />
       <xs:element minOccurs="0" name="HoraCierre" type="ser:duration" />
       <xs:element minOccurs="0" name="IdSucursal" type="xs:int" />

@@ -1,6 +1,7 @@
 ﻿using CineVerCliente.EmpleadoServicio;
 using CineVerCliente.Helpers;
 using CineVerCliente.Modelo;
+using CineVerCliente.SucursalServicio;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +22,9 @@ namespace CineVerCliente.ModeloVista
         private string _apellidos;
         private DateTime _fechaNacimiento;
         private ObservableCollection<string> listaSexos = new ObservableCollection<string>();
+        private ObservableCollection<SucursalDTO> listaSucursales = new ObservableCollection<SucursalDTO>();
         private string _sexo;
+        private SucursalDTO _sucursalSeleccionada;
         private string _numeroTelefono;
         private string _correoElectronico;
         private string _calle;
@@ -122,12 +125,32 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
+        public SucursalDTO SucursalSeleccionada
+        {
+            get { return _sucursalSeleccionada; }
+            set
+            {
+                _sucursalSeleccionada = value;
+                OnPropertyChanged(nameof(SucursalSeleccionada));
+            }
+        }
+
         public ObservableCollection<string> ListaSexos
         {
             get { return listaSexos; }
             set
             {
                 listaSexos = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<SucursalDTO> ListaSucursales
+        {
+            get { return listaSucursales; }
+            set
+            {
+                listaSucursales = value;
                 OnPropertyChanged();
             }
         }
@@ -418,7 +441,30 @@ namespace CineVerCliente.ModeloVista
             AceptarCancelacionComando = new ComandoModeloVista(AceptarCancelacion);
             CancelarCancelacionComando = new ComandoModeloVista(CancelarCancelacion);
 
+            CargarSucursales();
             OcultarCampos();
+        }
+
+        private void CargarSucursales ()
+        {
+            var cliente = new SucursalServicio.SucursalServicioClient();
+
+            try
+            {
+                var respuesta = cliente.ObtenerSucursales();
+                if (respuesta.Result.EsExitoso)
+                {
+                    ListaSucursales = new ObservableCollection<SucursalDTO>(respuesta.Sucursales);
+                }
+                else
+                {
+                    Notificacion.Mostrar("Error al cargar las sucursales");
+                }
+            }
+            catch (Exception ex)
+            {
+                Notificacion.MostrarExcepcion();
+            }
         }
 
         private void SubirFoto(object obj)
@@ -491,7 +537,7 @@ namespace CineVerCliente.ModeloVista
                 Foto = _foto,
                 Contratado = true,
                 Contraseña = contraseñaHash,
-                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
+                IdSucursal = _sucursalSeleccionada.IdSucursal
             };
 
             try

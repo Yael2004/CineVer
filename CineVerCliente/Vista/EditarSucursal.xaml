@@ -102,13 +102,13 @@
 
                     <TextBox x:Name="HoraApertura"
                              Style="{StaticResource Textbox}" 
-                             Margin="298,484,516,81"
+                             Margin="218,484,596,81"
                              Text="{Binding HoraApertura, UpdateSourceTrigger=PropertyChanged}"
                              MaxLength="9"/>
 
                     <TextBox x:Name="HoraCierre"
                              Style="{StaticResource Textbox}" 
-                             Margin="540,484,274,81"
+                             Margin="417,484,397,81"
                              Text="{Binding HoraCierre, UpdateSourceTrigger=PropertyChanged}"
                              MaxLength="9"/>
 
@@ -116,18 +116,29 @@
                            HorizontalAlignment="Left"
                            FontSize="20"
                            Foreground="White" 
-                           Margin="311,440,0,116"/>
+                           Margin="231,440,0,116"/>
 
                     <Label Content="Hora de cierre"
                            HorizontalAlignment="Left"
                            FontSize="20"
                            Foreground="White" 
-                           Margin="565,440,0,116"/>
+                           Margin="442,440,0,116"/>
+
+                    <Label Content="Estado sucursal"
+                           HorizontalAlignment="Left"
+                           FontSize="20"
+                           Foreground="White" 
+                           Margin="631,440,0,116"/>
+
+                    <ComboBox Name="EstadosSucursal"
+                              ItemsSource="{Binding EstadosSucursal}" 
+                              SelectedItem="{Binding EstadoSucursal}"
+                              Margin="640,490,216,88"/>
 
                     <Button Content="Aceptar"
-                            Style="{StaticResource BotonConfirmarNaranja}" 
-                            Margin="352,544,492,10"
-                            Command="{Binding AceptarEdicionComando}"/>
+                        Style="{StaticResource BotonConfirmarNaranja}" 
+                        Margin="352,544,492,10"
+                        Command="{Binding AceptarEdicionComando}"/>
 
                     <Button Content="Gestionar salas"
                             Style="{StaticResource BotonConfirmarAmarillo}" 
@@ -142,7 +153,7 @@
                           Height="200" Width="400" 
                           Visibility="{Binding MostrarMensajeConfirmacion}"
                           Panel.ZIndex="1">
-                        
+
                         <Rectangle Style="{StaticResource RectanguloAmarillo}"
                                    Height="200"
                                    Margin="0,0,0,0"/>
@@ -170,8 +181,8 @@
                     <Label x:Name="CalleCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="314,389,611,187" Visibility="{Binding CalleCampoVacio}"/>
                     <Label x:Name="CPCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="599,300,326,276" Visibility="{Binding CPCampoVacio}"/>
                     <Label x:Name="NumeroCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="600,365,326,211" Visibility="{Binding NumeroCampoVacio}"/>
-                    <Label x:Name="HoraCierreCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="544,519,381,57" Visibility="{Binding HoraCierreCampoVacio}"/>
-                    <Label x:Name="HoraAperturaCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="298,519,627,57" Visibility="{Binding HoraAperturaCampoVacio}"/>
+                    <Label x:Name="HoraCierreCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="421,519,504,57" Visibility="{Binding HoraCierreCampoVacio}"/>
+                    <Label x:Name="HoraAperturaCampoVacio" Style="{StaticResource TextoCamposVacio}" Margin="218,519,707,57" Visibility="{Binding HoraAperturaCampoVacio}"/>
                 </Grid>
             </Grid>
         </Viewbox>

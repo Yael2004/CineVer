@@ -336,6 +336,17 @@
                         Style="{StaticResource BotonNegro}"
                         Command="{Binding CancelarCancelacionComando}"/>
                 </Grid>
+                <Label Content="Sucursal"
+                    FontSize="20"
+                    Foreground="{StaticResource Blanco}" 
+                    Margin="639,217,273,486"/>
+                <ComboBox x:Name="sucursal" HorizontalAlignment="Left"
+                    Margin="740,226,0,0"
+                    VerticalAlignment="Top" 
+                    Width="120"
+                    ItemsSource="{Binding ListaSucursales}"
+                    SelectedItem="{Binding SucursalSeleccionada, UpdateSourceTrigger=PropertyChanged}"
+                    DisplayMemberPath="Nombre"/>
             </Grid>
         </Viewbox>
     </Grid>

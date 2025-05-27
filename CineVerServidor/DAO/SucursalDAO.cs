@@ -20,7 +20,7 @@ namespace DAO
             {
                 try
                 {
-                    var sucursales = entities.Sucursal.Where(s => s.estadoSucursal == "Abierta").ToList();
+                    var sucursales = entities.Sucursal.ToList();
                     if (sucursales.Count == 0)
                     {
                         return Result<List<Sucursal>>.Fallo("No hay sucursales registradas");
@@ -100,7 +100,8 @@ namespace DAO
                         sucursalExistente.codigoPostal = sucursal.codigoPostal;
                         sucursalExistente.horaApertura = sucursal.horaApertura;
                         sucursalExistente.horaCierre = sucursal.horaCierre;
-                        
+                        sucursalExistente.estadoSucursal = sucursal.estadoSucursal;
+
                         entities.SaveChanges();
 
                         return Result<string>.Exito("Sucursal actualizada correctamente");

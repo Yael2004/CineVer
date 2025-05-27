@@ -17,5 +17,6 @@ namespace CineVerCliente.Modelo
         public string Numero { get; set; }
         public TimeSpan HoraApertura { get; set; }
         public TimeSpan HoraCierre { get; set; }
+        public string EstadoSucursal { get; set; }
     }
 }

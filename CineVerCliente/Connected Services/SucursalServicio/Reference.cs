@@ -35,6 +35,9 @@ namespace CineVerCliente.SucursalServicio {
         private string EstadoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EstadoSucursalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.TimeSpan HoraAperturaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -107,6 +110,19 @@ namespace CineVerCliente.SucursalServicio {
                 if ((object.ReferenceEquals(this.EstadoField, value) != true)) {
                     this.EstadoField = value;
                     this.RaisePropertyChanged("Estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string EstadoSucursal {
+            get {
+                return this.EstadoSucursalField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EstadoSucursalField, value) != true)) {
+                    this.EstadoSucursalField = value;
+                    this.RaisePropertyChanged("EstadoSucursal");
                 }
             }
         }

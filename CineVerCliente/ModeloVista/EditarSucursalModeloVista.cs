@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 using CineVerCliente.Helpers;
+using System.Collections.ObjectModel;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -21,6 +22,7 @@ namespace CineVerCliente.ModeloVista
         private string _numero;
         private TimeSpan _horaApertura;
         private TimeSpan _horaCierre;
+        private string _estadoSucursal;
 
         private Visibility _nombreSucursalCampoVacio;
         private Visibility _cpCampoVacio;
@@ -32,6 +34,8 @@ namespace CineVerCliente.ModeloVista
         private Visibility _horaCierreCampoVacio;
 
         private Visibility _mostrarMensajeConfirmacion = Visibility.Collapsed;
+
+        public ObservableCollection<string> _estadosSucursal;
 
         private readonly MainWindowModeloVista _mainWindowModeloVista;
 
@@ -126,6 +130,26 @@ namespace CineVerCliente.ModeloVista
             set
             {
                 _horaCierre = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string EstadoSucursal
+        {
+            get { return _estadoSucursal; }
+            set
+            {
+                _estadoSucursal = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<string> EstadosSucursal
+        {
+            get { return _estadosSucursal; }
+            set
+            {
+                _estadosSucursal = value;
                 OnPropertyChanged();
             }
         }
@@ -229,6 +253,8 @@ namespace CineVerCliente.ModeloVista
             AceptarConfirmarcionComando = new ComandoModeloVista(AceptarConfirmacion);
             CancelarConfirmacionComando = new ComandoModeloVista(CancelarConfirmacion);
 
+            EstadosSucursal = new ObservableCollection<string> { "Abierta", "Cerrada" };
+
             OcultarCamposVacios();
         }
 
@@ -248,7 +274,8 @@ namespace CineVerCliente.ModeloVista
                         Calle = Calle,
                         NumeroEnLaCalle = Numero,
                         HoraApertura = HoraApertura,
-                        HoraCierre = HoraCierre
+                        HoraCierre = HoraCierre,
+                        EstadoSucursal = EstadoSucursal
                     };
 
                     var resultado = await cliente.ActualizarSucursalAsync(IdSucursal, sucursalEditada);
@@ -297,6 +324,15 @@ namespace CineVerCliente.ModeloVista
             Numero = sucursal.Numero;
             HoraApertura = sucursal.HoraApertura;
             HoraCierre = sucursal.HoraCierre;
+            
+            if (sucursal.EstadoSucursal == "Abierta")
+            {
+                EstadoSucursal = EstadosSucursal.First();
+            }
+            else
+            {
+                EstadoSucursal = EstadosSucursal.Last();
+            }
         }
 
         private bool ValidarCampos()

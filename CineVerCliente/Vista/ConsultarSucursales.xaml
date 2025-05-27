@@ -52,7 +52,7 @@
                                         <StackPanel Grid.Column="1" Margin="20,0" VerticalAlignment="Center">
                                             <TextBlock Text="{Binding Estado, StringFormat='Estado: {0}'}" Foreground="White"/>
                                             <TextBlock Text="{Binding Ciudad, StringFormat='Ciudad: {0}'}" Foreground="White"/>
-                                            <TextBlock Text="{Binding CodigoPostal, StringFormat='Código Postal: {0}'}" Foreground="White"/>
+                                            <TextBlock Text="{Binding EstadoSucursal, StringFormat='Estado sucursal: {0}'}" Foreground="White"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">

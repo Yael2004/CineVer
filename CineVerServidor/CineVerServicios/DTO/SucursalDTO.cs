@@ -36,5 +36,8 @@ namespace CineVerServicios.DTO
 
         [DataMember]
         public TimeSpan HoraCierre { get; set; }
+
+        [DataMember]
+        public string EstadoSucursal { get; set; }
     }
 }
