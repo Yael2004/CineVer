@@ -157,7 +157,7 @@ namespace Pruebas.PruebasDAO
                 numeroDeCasa = "102",
                 codigoPostal = "06400",
                 rfc = "RARL950615HDF",
-                matriculaEmpleado = "EMP2025001",
+                matriculaEmpleado = "EMP2025005",
                 foto = null,
                 contratado = true,
                 contraseña = contra,

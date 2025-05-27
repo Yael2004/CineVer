@@ -34,6 +34,7 @@ namespace CineVerCliente.ModeloVista
         public ICommand CancelarCancelacionComando { get; }
         public ICommand SeleccionarImagenComando { get; }
 
+        private ImageSource _imagenPreview;
 
         public string NombreProducto
         {
@@ -77,32 +78,22 @@ namespace CineVerCliente.ModeloVista
 
         public byte[] ImagenProducto
         {
-            get { return _imagenProducto; }
+            get => _imagenProducto;
             set
             {
                 _imagenProducto = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(ImagenProductoPreview));
+                OnPropertyChanged(nameof(ImagenProducto));
+                ImagenProductoPreview = CargarImagenPreview(_imagenProducto);
             }
         }
 
         public ImageSource ImagenProductoPreview
         {
-            get
+            get => _imagenPreview;
+            set
             {
-                if (_imagenProducto == null || _imagenProducto.Length == 0)
-                    return null;
-
-                var image = new BitmapImage();
-                using (var ms = new MemoryStream(_imagenProducto))
-                {
-                    image.BeginInit();
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.StreamSource = ms;
-                    image.EndInit();
-                    image.Freeze();
-                }
-                return image;
+                _imagenPreview = value;
+                OnPropertyChanged(nameof(ImagenProductoPreview));
             }
         }
 
@@ -206,5 +197,31 @@ namespace CineVerCliente.ModeloVista
         {
             MostrarMensajeCancelarOperacion = Visibility.Collapsed;
         }
+
+        private ImageSource CargarImagenPreview(byte[] datosImagen)
+        {
+            if (datosImagen == null || datosImagen.Length == 0)
+                return null;
+
+            try
+            {
+                using (var stream = new MemoryStream(datosImagen))
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = stream;
+                    image.EndInit();
+                    image.Freeze();
+                    return image;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error cargando imagen: {ex.Message}");
+                return null;
+            }
+        }
+
     }
 }

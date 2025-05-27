@@ -59,7 +59,14 @@
                         FontSize="20"
                         Foreground="White" Margin="321,336,0,220"/>
 
-                        <Image Source="{Binding ImagenProductoPreview}" Margin="82,203,482,204"/>
+                        <Viewbox MaxWidth="200" MaxHeight="200" 
+                                 Margin="85,205,482,203"
+                                 Stretch="Uniform">
+                            <Image Source="{Binding ImagenProductoPreview}" 
+                                   Stretch="Uniform"
+                                   HorizontalAlignment="Center"/>
+                        </Viewbox>
+
                         <Button Content=""
                                 Background="Transparent"
                                 Margin="82,205,482,201"
