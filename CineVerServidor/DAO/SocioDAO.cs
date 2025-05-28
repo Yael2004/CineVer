@@ -86,6 +86,16 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch (Exception ex)
+                {
+                    Exception currentEx = ex;
+                    while (currentEx != null)
+                    {
+                        Console.WriteLine("Excepción: " + currentEx.Message);
+                        currentEx = currentEx.InnerException;
+                    }
+                    return Result<string>.Fallo(ex.Message);
+                }
             }
         }
 

@@ -273,6 +273,12 @@ namespace DAO
                 }
                 catch (Exception ex)
                 {
+                    Exception currentEx = ex;
+                    while (currentEx != null)
+                    {
+                        Console.WriteLine("Excepción: " + currentEx.Message);
+                        currentEx = currentEx.InnerException;
+                    }
                     transaction.Rollback();
                     return Result<string>.Fallo(ex.Message);
                 }

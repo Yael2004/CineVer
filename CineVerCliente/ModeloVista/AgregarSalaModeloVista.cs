@@ -214,9 +214,9 @@ namespace CineVerCliente.ModeloVista
                         char letra = (char)('A' + i - 1);
                         string letraColumna = letra.ToString();
                         asientoDTO.letraColumna = letraColumna;
-                        _filaServicio.ObtenerIdFila(idSala, fila.NumeroFila);
+                        int idFila = _filaServicio.ObtenerIdFila(idSala, fila.NumeroFila);
                         asientoDTO.estado = "DISPONIBLE";
-                        asientoDTO.idFila = fila.NumeroFila;
+                        asientoDTO.idFila = idFila;
                         _asientoServicio.AgregarAsiento(asientoDTO);
                     }
                 }

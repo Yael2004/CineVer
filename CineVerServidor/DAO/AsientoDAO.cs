@@ -69,6 +69,16 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch(Exception e)
+                {
+                    Exception currentEx = e;
+                    while (currentEx != null)
+                    {
+                        Console.WriteLine("Excepción: " + currentEx.Message);
+                        currentEx = currentEx.InnerException;
+                    }
+                    return Result<string>.Fallo(e.Message);
+                }
             }
         }
         public Result<string> EditarAsiento(Asiento asientoEditado, Asiento asientoOriginal)

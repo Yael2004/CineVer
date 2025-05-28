@@ -1062,5 +1062,17 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\FondoLogin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\FondoLogin.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Imagenes\Fondos\FondoLogin2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Vista\FondoLogin2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,10 +11,10 @@
         <Viewbox Stretch="Fill">
             <Grid>
                 <Grid Background="{StaticResource Blanco}"/>
-                <Grid Background="{StaticResource Fondo_Dulceria}" Margin="0,0,0,106"/>
+                <Grid Background="{StaticResource Fondo_Dulceria}" Margin="0,0,0,30"/>
 
                 <Grid Margin="0,0,108,72">
-                    <Grid Background="{StaticResource Negro}" Margin="147,71,28,-71">
+                    <Grid Background="#dF1E1E1E" Margin="147,71,28,-71" >
                         <Label Content="Agregar producto de dulcería"
                         HorizontalAlignment="Center"
                         FontSize="20"
@@ -72,10 +72,10 @@
                                 Margin="82,205,482,201"
                                 Command="{Binding SeleccionarImagenComando}"
                                 ToolTip="Seleccionar imagen"/>
-                        <TextBox Text="{Binding NombreProducto}" Margin="411,147,58,415" TextChanged="TextBox_TextChanged"/>
-                        <TextBox Text="{Binding CantidadInventario}" Margin="329,229,338,333" TextChanged="TextBox_TextChanged"/>
-                        <TextBox Text="{Binding CostoUnitario}" Margin="329,303,338,259" TextChanged="TextBox_TextChanged"/>
-                        <TextBox Text="{Binding PrecioVentaUnitario}" Margin="329,377,338,185" TextChanged="TextBox_TextChanged"/>
+                        <TextBox Text="{Binding NombreProducto}" Margin="411,147,58,415" TextChanged="TextBox_TextChanged" Style="{StaticResource Textbox}"/>
+                        <TextBox Text="{Binding CantidadInventario}" Margin="329,229,338,333" TextChanged="TextBox_TextChanged" Style="{StaticResource Textbox}"/>
+                        <TextBox Text="{Binding CostoUnitario}" Margin="329,303,338,259" TextChanged="TextBox_TextChanged" Style="{StaticResource Textbox}"/>
+                        <TextBox Text="{Binding PrecioVentaUnitario}" Margin="329,377,338,185" TextChanged="TextBox_TextChanged" Style="{StaticResource Textbox}"/>
 
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Visibility="{Binding MostrarMensajeCancelarOperacion}">
                             <Rectangle Style="{StaticResource RectanguloAmarillo}"

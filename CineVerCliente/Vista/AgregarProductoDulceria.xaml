@@ -16,9 +16,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Border Background="White" Padding="20" Margin="0,443,0,0" Grid.RowSpan="3"/>
+                <Border Background="White" Padding="20" Margin="0,570,0,0" Grid.RowSpan="3"/>
 
-                <Grid Grid.Row="1" Margin="150,52,150,0" Background="{StaticResource Negro}" Grid.RowSpan="2">
+                <Grid Grid.Row="1" Margin="150,52,150,0" Background="#dF1E1E1E" Grid.RowSpan="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>

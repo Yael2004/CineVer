@@ -95,6 +95,18 @@ namespace DAO
                 {
                     return Result<string>.Fallo(sqlEx.Message);
                 }
+                catch(Exception e)
+                {
+                    
+                    while (e != null)
+                    {
+                        Console.WriteLine("Excepción: " + e.Message);
+                        e = e.InnerException;
+                    }
+
+                    return Result<string>.Fallo(e.Message);
+                    
+                }
             }
         }
 
@@ -217,6 +229,11 @@ namespace DAO
                 catch (SqlException sqlEx)
                 {
                     return Result<bool>.Fallo(sqlEx.Message);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.InnerException.Message);
+                    return Result<bool>.Fallo(e.Message);
                 }
             }
         }

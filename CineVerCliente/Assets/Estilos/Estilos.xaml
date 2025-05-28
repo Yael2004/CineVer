@@ -10,7 +10,7 @@
     <SolidColorBrush x:Key="Azul" Color="#441FEC"/>
 
     <ImageBrush x:Key="Fondo_Promociones"
-            ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Promociones.png"
+            ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/FondoFunciones.jpg"
             Stretch="UniformToFill"/>
 
     <ImageBrush x:Key="Fondo_Dulceria"
@@ -22,7 +22,7 @@
                 Stretch="UniformToFill"/>
 
     <ImageBrush x:Key="Fondo_Boleto"
-                ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/Fondo_Boleto.png"
+                ImageSource="pack://application:,,,/Assets/Imagenes/Fondos/FondoLogin.jpg"
                 Stretch="UniformToFill"/>
 
     <ImageBrush x:Key="Fondo_CorteCaja"

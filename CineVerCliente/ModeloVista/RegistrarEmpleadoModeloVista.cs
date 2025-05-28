@@ -491,7 +491,7 @@ namespace CineVerCliente.ModeloVista
                 Foto = _foto,
                 Contratado = true,
                 Contraseña = contraseñaHash,
-                IdSucursal = UsuarioEnLinea.Instancia.IdSucursal
+                IdSucursal = 1
             };
 
             try

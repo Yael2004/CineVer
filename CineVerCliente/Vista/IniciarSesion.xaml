@@ -3,76 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista" d:DataContext="{d:DesignInstance Type=vistaModelo:IniciarSesionModeloVista}"
+             xmlns:vistaModelo="clr-namespace:CineVerCliente.ModeloVista"
+             d:DataContext="{d:DesignInstance Type=vistaModelo:IniciarSesionModeloVista}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Viewbox Stretch="Fill">
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <Viewbox Stretch="Fill">
+        <Grid Height="600" Width="1000">
+            <!-- Imagen de fondo -->
+            <Image Source="/Vista/FondoLogin2.jpg" Stretch="UniformToFill"/>
+
+            <!-- Panel de contenido -->
             <Grid>
-                <Grid Background="{StaticResource Blanco}"/>
-                <Grid Background="{StaticResource Fondo_Loggin}" Margin="0,0,603,0"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-                <Grid Margin="445,0,0,0">
-                    <Grid Background="{StaticResource Amarillo}"/>
-                </Grid>
+                <!-- Panel derecho con login -->
+                <Border Grid.Column="1"
+                    Background="#DF1E1E1E"
+                    Padding="20"
+                    CornerRadius="12"
+                    Margin="32">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
 
-                <Label Content="Matrícula de empleado"
-                    FontSize="20"
-                    Foreground="{StaticResource Blanco}" 
-                    Margin="666,194,218,521"/>
+                        <!-- Imagen encima del título -->
+                        <Image Source="/Vista/cinever logo.png"
+                           Width="100"
+                           Height="100"
+                           Margin="0,0,0,10"
+                           HorizontalAlignment="Center"/>
 
-                <Label Content="Contraseña"
-                    FontSize="20"
-                    Foreground="{StaticResource Blanco}" 
-                    Margin="714,403,267,311"/>
+                        <TextBlock Text="Iniciar sesión"
+                               Foreground="White"
+                               FontSize="36"
+                               FontWeight="Bold"
+                               Margin="0,0,0,30"
+                               HorizontalAlignment="Center"/>
 
-                <Label Content="Iniciar sesión"
-                    HorizontalAlignment="Left"
-                    FontSize="40"
-                    Foreground="{StaticResource Blanco}" 
-                    Margin="641,19,0,680"/>
+                        <!-- Matrícula -->
+                        <TextBlock Text="Matrícula de empleado"
+                               Foreground="White"
+                               FontSize="14"
+                               Margin="0,0,0,5" />
+                        <TextBox Name="Matricula"
+                             Style="{StaticResource Textbox}" 
+                             MaxLength="60"
+                             PreviewTextInput="CampoAlfanumerico"
+                             Text="{Binding Matricula, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0,0,0,15" />
+                        <Label x:Name="MatriculaCampoVacio"
+                           Style="{StaticResource TextoCamposVacio}"
+                           Visibility="{Binding MatriculaCampoVacio}"
+                           Margin="0,0,0,5" />
 
-                <TextBox Name="Matricula"
-                    Style="{StaticResource Textbox}" 
-                    Margin="503,259,57,468"
-                    MaxLength="60"
-                    PreviewTextInput="CampoAlfanumerico"
-                    Text="{Binding Matricula, UpdateSourceTrigger=PropertyChanged}"/>
+                        <!-- Contraseña -->
+                        <TextBlock Text="Contraseña"
+                               Foreground="White"
+                               FontSize="14"
+                               Margin="0,0,0,5" />
+                        <PasswordBox Name="Contrasenia"
+                                 Style="{StaticResource PasswordBox}"
+                                 MaxLength="60"
+                                 PreviewTextInput="ContraseñaValida"
+                                 PasswordChanged="PasswordBox_PasswordChanged"
+                                 Margin="0,0,0,15" />
+                        <Label x:Name="ContraseñaCampoVacio"
+                           Style="{StaticResource TextoCamposVacio}"
+                           Visibility="{Binding ContraseñaCampoVacio}"
+                           Margin="0,0,0,5" />
 
-                <PasswordBox Name="Contrasenia"
-                    Style="{StaticResource PasswordBox}"
-                    Margin="503,456,57,271"
-                    MaxLength="60"
-                    PreviewTextInput="ContraseñaValida"
-                    PasswordChanged="PasswordBox_PasswordChanged"/>
+                        <!-- Error -->
+                        <Label x:Name="DatosIncorrectos"
+                           Content="La matrícula o contraseña son incorrectos"
+                           FontSize="12"
+                           Foreground="{StaticResource Rojo}"
+                           Visibility="{Binding DatosIncorrectos}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,15" />
 
-                <Button Content="Iniciar sesión"
-                    Style="{StaticResource BotonConfirmarBlanco}" 
-                    Margin="659,593,211,111"
-                    Command="{Binding IniciarSesionComando}"/>
+                        <!-- Botones alineados verticalmente -->
+                        <Button Content="Iniciar sesión"
+                            Style="{StaticResource BotonConfirmarBlanco}"
+                            Command="{Binding IniciarSesionComando}"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"/>
 
-                <Button Content="Registrarse"
-                    Style="{StaticResource BotonNegro}" 
-                    Margin="698,672,250,46"
-                    Command="{Binding RegistrarseComando}"/>
-
-                <Label x:Name="MatriculaCampoVacio" 
-                    Style="{StaticResource TextoCamposVacio}" 
-                    Margin="745,306,300,420"
-                    Visibility="{Binding MatriculaCampoVacio}"/>
-
-                <Label x:Name="ContraseñaCampoVacio"
-                    Style="{StaticResource TextoCamposVacio}" 
-                    Margin="746,507,300,222" 
-                    Visibility="{Binding ContraseñaCampoVacio}"/>
-
-                <Label x:Name="DatosIncorrectos"
-                    Content="La matrícula o constraseña son incorrectos"
-                    FontSize="8"
-                    Foreground="{StaticResource Rojo}"
-                    Margin="694,561,246,174"
-                    Visibility="{Binding DatosIncorrectos}"/>
+                        <Button Content="Registrarse"
+                            Style="{StaticResource BotonNegro}"
+                            Command="{Binding RegistrarseComando}"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
             </Grid>
-        </Viewbox>
-    </Grid>
+        </Grid>
+    </Viewbox>
 </UserControl>

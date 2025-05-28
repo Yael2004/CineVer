@@ -70,6 +70,7 @@ namespace DAO
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     return Result<string>.Fallo(ex.Message);
                 }
             }
@@ -95,6 +96,12 @@ namespace DAO
                 }
                 catch (Exception ex)
                 {
+                    Exception currentEx = ex;
+                    while (currentEx != null)
+                    {
+                        Console.WriteLine("Excepción: " + currentEx.Message);
+                        currentEx = currentEx.InnerException;
+                    }
                     return Result<string>.Fallo(ex.Message);
                 }
             }

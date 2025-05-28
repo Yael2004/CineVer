@@ -17,9 +17,9 @@
         <Viewbox Stretch="Fill">
             <Grid Height="600" Width="1000">
                 <Grid Background="{StaticResource Blanco}"/>
-                <Grid Background="{StaticResource Fondo_Boleto}" Margin="0,0,0,106"/>
+                <Grid Background="{StaticResource Fondo_Boleto}" Margin="0,0,0,30"/>
 
-                <Grid Background="{StaticResource Negro}"
+                <Grid Background="#dF1E1E1E"
                         Width="600"
                         Height="450"
                         HorizontalAlignment="Center"

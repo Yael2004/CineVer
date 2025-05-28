@@ -152,7 +152,7 @@ namespace CineVerCliente.ModeloVista
                 ProductoDulceriaDTO nuevoProducto = new ProductoDulceriaDTO
                 {
                     Nombre = NombreProducto,
-                    IdSucursal = 2,
+                    IdSucursal = 1,
                     CantidadInventario = CantidadInventario,
                     CostoUnitario = (decimal)CostoUnitario,
                     PrecioVentaUnitario = (decimal)PrecioVentaUnitario,

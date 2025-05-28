@@ -135,8 +135,8 @@
           <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="cantidadInventario" Type="int" />
-          <Property Name="costoUnitario" Type="decimal" Precision="3" Scale="2" />
-          <Property Name="precioVenta" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="costoUnitario" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="precioVenta" Type="decimal" Precision="6" Scale="2" />
           <Property Name="imagen" Type="varbinary(max)" />
           <Property Name="idSucursal" Type="int" />
         </EntityType>
@@ -210,7 +210,7 @@
           <Property Name="idEmpleado" Type="int" />
           <Property Name="idSocio" Type="int" />
           <Property Name="idSucursal" Type="int" />
-          <Property Name="total" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="total" Type="decimal" Precision="8" Scale="2" />
           <Property Name="metodoPago" Type="varchar" MaxLength="30" />
           <Property Name="fecha" Type="datetime" />
           <Property Name="tipoVenta" Type="varchar" MaxLength="30" />
@@ -763,8 +763,8 @@
           <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cantidadInventario" Type="Int32" />
-          <Property Name="costoUnitario" Type="Decimal" Precision="3" Scale="2" />
-          <Property Name="precioVenta" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="costoUnitario" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="precioVenta" Type="Decimal" Precision="6" Scale="2" />
           <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idSucursal" Type="Int32" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_ProductoDulceria_Sucursal" FromRole="ProductoDulceria" ToRole="Sucursal" />
@@ -854,7 +854,7 @@
           <Property Name="idEmpleado" Type="Int32" />
           <Property Name="idSocio" Type="Int32" />
           <Property Name="idSucursal" Type="Int32" />
-          <Property Name="total" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="total" Type="Decimal" Precision="8" Scale="2" />
           <Property Name="metodoPago" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="tipoVenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />

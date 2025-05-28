@@ -134,7 +134,7 @@ namespace CineVerCliente.ModeloVista
 
                         UsuarioEnLinea.Instancia.EstablecerDatosUsuarioEnSesion(empleadoConsultado);
 
-                        _mainWindowModeloVista.CambiarModeloVista(new ConsultarFuncionesModeloVista(_mainWindowModeloVista));
+                        _mainWindowModeloVista.CambiarModeloVista(new MenuPrincipalModeloVista(_mainWindowModeloVista));
                         _mainWindowModeloVista.CrearMenus();
                     }
                     else
