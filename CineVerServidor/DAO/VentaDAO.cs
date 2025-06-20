@@ -1,9 +1,12 @@
 ﻿using CineVerEntidades;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,19 +18,23 @@ namespace DAO
     {
         public VentaDAO() { }
 
-        public Result<string> CambiarEstadoAsiento(int idAsiento, string nuevoEstado)
+        public Result<string> CambiarEstadoAsiento(int idAsiento, int idFuncion, string nuevoEstado)
         {
             using (CineVerEntities entities = new CineVerEntities())
             {
                 try
                 {
-                    var asiento = entities.Asiento.Find(idAsiento);
-                    if (asiento == null)
+                    var asientoFuncion = entities.AsientoFuncion
+                        .FirstOrDefault(af => af.idAsiento == idAsiento && af.idFuncion == idFuncion);
+
+                    if (asientoFuncion == null)
                     {
-                        return Result<string>.Fallo("Asiento no encontrado");
+                        return Result<string>.Fallo("Asiento no encontrado para esta función");
                     }
-                    asiento.estado = nuevoEstado;
+
+                    asientoFuncion.estado = nuevoEstado;
                     entities.SaveChanges();
+
                     return Result<string>.Exito("Estado del asiento actualizado correctamente");
                 }
                 catch (Exception ex)
@@ -36,6 +43,7 @@ namespace DAO
                 }
             }
         }
+
 
         public Result<List<Venta>> ObtenerVentasPorAnio(int anio, int idSucursal)
         {
@@ -164,7 +172,7 @@ namespace DAO
                 {
                     var fechaHoy = DateTime.Now.Date;
                     var ventas = entities.Venta
-                        .Where(v => DbFunctions.TruncateTime(v.fecha) == fechaHoy && v.idSucursal == idSucursal && v.tipoVenta.Contains("Dulce"))
+                        .Where(v => DbFunctions.TruncateTime(v.fecha) == fechaHoy && v.idSucursal == idSucursal && v.tipoVenta == "Dulcería")
                         .ToList();
 
                     if (ventas.Count == 0)
@@ -214,14 +222,24 @@ namespace DAO
                 try
                 {
                     venta.fecha = DateTime.Now;
+
+                    if (venta.idSocio == 0)
+                    {
+                        venta.idSocio = null;
+                    }
+
                     entities.Venta.Add(venta);
                     entities.SaveChanges();
 
-                    if (venta.idSocio != 0)
-                    {
-                        var cuentaFidelidad = entities.CuentaFidelidad
-                            .FirstOrDefault(c => c.idSocio == venta.idSocio);
+                    int nuevoId = venta.idVenta;
+                    string folioGenerado = nuevoId.ToString().PadLeft(8, '0');
+                    venta.folioVenta = folioGenerado;
 
+                    entities.SaveChanges();
+
+                    if (venta.idSocio.HasValue)
+                    {
+                        var cuentaFidelidad = entities.CuentaFidelidad.FirstOrDefault(c => c.idSocio == venta.idSocio);
                         if (cuentaFidelidad != null)
                         {
                             decimal puntosGanados = venta.total.GetValueOrDefault() * 0.10m;
@@ -230,9 +248,7 @@ namespace DAO
                             cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault()
                                                      - puntosUsadosDecimal
                                                      + puntosGanados;
-                            cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault() + puntosGanados;
                         }
-
                     }
 
                     foreach (var item in productos)
@@ -244,13 +260,13 @@ namespace DAO
                         if (producto == null)
                         {
                             transaction.Rollback();
-                            return Result<string>.Fallo($"Producto con ID {idProducto} no encontrado");
+                            return Result<string>.Fallo($"Producto con ID {idProducto} no encontrado. ¡Ups!");
                         }
 
                         if (producto.cantidadInventario < cantidadVendida)
                         {
                             transaction.Rollback();
-                            return Result<string>.Fallo($"Inventario insuficiente para el producto con ID {idProducto}");
+                            return Result<string>.Fallo($"Inventario insuficiente para el producto con ID {idProducto}. ¡Necesitamos más stock!");
                         }
 
                         producto.cantidadInventario -= cantidadVendida;
@@ -259,22 +275,12 @@ namespace DAO
                     entities.SaveChanges();
                     transaction.Commit();
 
-                    return Result<string>.Exito("Venta registrada correctamente");
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    transaction.Rollback();
-                    return Result<string>.Fallo(ex.Message);
-                }
-                catch (SqlException sqlEx)
-                {
-                    transaction.Rollback();
-                    return Result<string>.Fallo(sqlEx.Message);
+                    return Result<string>.Exito($"Venta registrada correctamente con folio {venta.folioVenta}");
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    return Result<string>.Fallo(ex.Message);
+                    return Result<string>.Fallo($"¡Error mágico! {ex.Message}");
                 }
             }
         }
@@ -287,14 +293,25 @@ namespace DAO
                 try
                 {
                     venta.fecha = DateTime.Now;
+
+                    if (venta.idSocio == 0)
+                    {
+                        venta.idSocio = null;
+                    }
+
                     entities.Venta.Add(venta);
                     entities.SaveChanges();
 
-                    if (venta.idSocio != 0)
+                    int nuevoId = venta.idVenta;
+                    string folioGenerado = nuevoId.ToString().PadLeft(8, '0');
+                    venta.folioVenta = folioGenerado;
+
+                    entities.SaveChanges();
+
+                    if (venta.idSocio.HasValue)
                     {
                         var cuentaFidelidad = entities.CuentaFidelidad
                             .FirstOrDefault(c => c.idSocio == venta.idSocio);
-
                         if (cuentaFidelidad != null)
                         {
                             decimal puntosGanados = venta.total.GetValueOrDefault() * 0.10m;
@@ -303,48 +320,124 @@ namespace DAO
                             cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault()
                                                      - puntosUsadosDecimal
                                                      + puntosGanados;
-                            cuentaFidelidad.puntos = cuentaFidelidad.puntos.GetValueOrDefault() + puntosGanados;
                         }
                     }
 
+                    List<Asiento> asientos = new List<Asiento>();
+
                     foreach (int idBoleto in asientosIds)
                     {
-                        var boleto = entities.Asiento.Find(idBoleto);
-                        if (boleto == null)
+                        var asientoFuncion = entities.AsientoFuncion
+                            .FirstOrDefault(af => af.idAsiento == idBoleto && af.idFuncion == venta.idFuncion);
+
+                        if (asientoFuncion == null)
                         {
                             transaction.Rollback();
-                            return Result<string>.Fallo($"Boleto con ID {idBoleto} no encontrado");
+                            return Result<string>.Fallo($"El asiento con ID {idBoleto} no está registrado para esta función.");
                         }
 
-                        if (boleto.estado == "OCUPADO")
+                        if (asientoFuncion.estado == "OCUPADO")
                         {
                             transaction.Rollback();
-                            return Result<string>.Fallo($"El boleto con ID {idBoleto} ya está ocupado");
+                            return Result<string>.Fallo($"El asiento con ID {idBoleto} ya está ocupado. ¡Elige otro, senpai!");
                         }
 
-                        boleto.estado = "OCUPADO";
+                        asientoFuncion.estado = "OCUPADO";
+
+                        var asiento = entities.Asiento.FirstOrDefault(a => a.idAsiento == idBoleto);
+                        if (asiento != null)
+                        {
+                            asientos.Add(asiento);
+                        }
                     }
 
                     entities.SaveChanges();
                     transaction.Commit();
 
-                    return Result<string>.Exito("Boletos pagados y registrados correctamente");
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    transaction.Rollback();
-                    return Result<string>.Fallo(ex.Message);
-                }
-                catch (SqlException sqlEx)
-                {
-                    transaction.Rollback();
-                    return Result<string>.Fallo(sqlEx.Message);
+                    var resultadoPDF = GenerarPDFBoletos(venta, asientos);
+
+                    if (!resultadoPDF.EsExitoso)
+                        return Result<string>.Fallo($"La venta se realizó pero no se pudo generar el PDF: {resultadoPDF.Error}");
+
+                    return Result<string>.Exito($"Boletos pagados y registrados exitosamente con folio {venta.folioVenta} 🎉");
                 }
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    return Result<string>.Fallo(ex.Message);
+                    return Result<string>.Fallo($"¡Error mágico! {ex.Message}");
                 }
+            }
+        }
+
+        public Result<string> GenerarPDFBoletos(Venta venta, List<Asiento> asientos)
+        {
+            try
+            {
+                string documentos = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                string carpeta = Path.Combine(documentos, "CineBoletos");
+                Directory.CreateDirectory(carpeta);
+
+                string nombreArchivo = $"Boleto_{venta.folioVenta}.pdf";
+                string rutaArchivo = Path.Combine(carpeta, nombreArchivo);
+
+                using (var entities = new CineVerEntities())
+                using (FileStream fs = new FileStream(rutaArchivo, FileMode.Create, FileAccess.Write, FileShare.None))
+                using (Document doc = new Document(PageSize.A4, 50, 50, 60, 60))
+                {
+                    PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+
+                    doc.Open();
+
+                    var fuenteTitulo = FontFactory.GetFont("Arial", 20, Font.BOLD, BaseColor.ORANGE);
+                    var fuenteSeccion = FontFactory.GetFont("Arial", 14, Font.BOLD, BaseColor.DARK_GRAY);
+                    var fuenteTexto = FontFactory.GetFont("Arial", 12, Font.NORMAL, BaseColor.BLACK);
+
+                    var funcion = entities.Función
+                        .Include("Película")
+                        .Include("Sala")
+                        .FirstOrDefault(f => f.idFuncion == venta.idFuncion);
+
+                    string nombrePeli = funcion?.Película?.nombre ?? "Película desconocida";
+                    string nombreSala = funcion?.Sala?.nombre ?? $"Sala #{funcion?.idSala}";
+                    string fechaFuncion = funcion?.fecha?.ToString("dd/MM/yyyy") ?? "Fecha no disponible";
+                    string horaFuncion = funcion?.horaInicio?.ToString(@"hh\:mm") ?? "Hora desconocida";
+                    string fechaVenta = venta.fecha?.ToString("dd/MM/yyyy HH:mm") ?? "Fecha desconocida";
+
+                    var titulo = new Paragraph("Boleto de CineVer", fuenteTitulo) { Alignment = Element.ALIGN_CENTER };
+                    doc.Add(titulo);
+                    doc.Add(new Paragraph("¡Gracias por tu compra, disfruta la función!", fuenteTexto) { Alignment = Element.ALIGN_CENTER });
+                    doc.Add(new Paragraph("\n"));
+
+                    doc.Add(new Paragraph("Detalles de la función", fuenteSeccion));
+                    doc.Add(new Paragraph(" "));
+                    doc.Add(new Paragraph($"Película: {nombrePeli}", fuenteTexto));
+                    doc.Add(new Paragraph($"Sala: {nombreSala}", fuenteTexto));
+                    doc.Add(new Paragraph($"Fecha: {fechaFuncion}", fuenteTexto));
+                    doc.Add(new Paragraph($"Hora: {horaFuncion}", fuenteTexto));
+                    doc.Add(new Paragraph($"Folio: {venta.folioVenta}", fuenteTexto));
+                    doc.Add(new Paragraph($"Total pagado: ${venta.total:F2}", fuenteTexto));
+                    doc.Add(new Paragraph($"Fecha de compra: {fechaVenta}", fuenteTexto));
+                    doc.Add(new Paragraph(" "));
+
+                    doc.Add(new Paragraph("Asientos asignados", fuenteSeccion));
+                    foreach (var asiento in asientos)
+                    {
+                        int numeroFila = (int)asiento.Fila.númeroFila;
+                        string asientoTexto = $"{asiento.letraColumna}{numeroFila}";
+                        doc.Add(new Paragraph($"• Asiento: {asientoTexto}", fuenteTexto));
+                    }
+
+                    doc.Add(new Paragraph("\n──────────────────────────────", fuenteTexto));
+                    doc.Add(new Paragraph("✨ ¡Te esperamos con palomitas y mucha emoción!", fuenteTexto) { Alignment = Element.ALIGN_CENTER });
+
+                    doc.Close();
+                }
+
+                return Result<string>.Exito($"PDF generado en: {rutaArchivo}");
+            }
+            catch (Exception ex)
+            {
+                return Result<string>.Fallo($"Ocurrió un error al generar el PDF: {ex.Message}");
             }
         }
 

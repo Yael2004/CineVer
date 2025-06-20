@@ -204,6 +204,7 @@ namespace CineVerCliente.ModeloVista
             CancelarComando = new ComandoModeloVista(Cancelar);
 
             VerPrimeraVista = Visibility.Visible;
+            VerSegundaVista = Visibility.Collapsed;
             MostrarMensajeConfirmar = Visibility.Collapsed;
 
             MontoFinalDiaCampoVacio = Visibility.Hidden;
@@ -230,6 +231,8 @@ namespace CineVerCliente.ModeloVista
                     };
 
                     var resultado = clienteCorteCaja.GuardarCorteCaja(corteCaja);
+
+                    _mainWindowModeloVista.CambiarModeloVista(new MenuPrincipalModeloVista(_mainWindowModeloVista));
 
                     if (resultado.EsExitoso)
                     {

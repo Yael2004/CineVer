@@ -62,6 +62,52 @@ namespace DAO
             }
         }
 
+        public Result<List<Fila>> ObtenerAsientosPorFuncion(int idSala, int idFuncion)
+        {
+            using (CineVerEntities entities = new CineVerEntities())
+            {
+                try
+                {
+                    var filas = entities.Fila
+                        .Include("Asiento")
+                        .Where(f => f.idSala == idSala)
+                        .ToList();
+
+                    if (filas.Count == 0)
+                        return Result<List<Fila>>.Fallo("No hay filas registradas");
+
+                    foreach (var fila in filas)
+                    {
+                        foreach (var asiento in fila.Asiento)
+                        {
+                            var af = entities.AsientoFuncion
+                                .FirstOrDefault(a => a.idAsiento == asiento.idAsiento && a.idFuncion == idFuncion);
+
+                            if (af != null)
+                            {
+                                asiento.estado = af.estado;
+                            }
+                            else
+                            {
+                                asiento.estado = "DESCONOCIDO";
+                            }
+                        }
+                    }
+
+                    return Result<List<Fila>>.Exito(filas);
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    return Result<List<Fila>>.Fallo(ex.Message);
+                }
+                catch (SqlException sqlEx)
+                {
+                    return Result<List<Fila>>.Fallo(sqlEx.Message);
+                }
+            }
+        }
+
+
         public Result<string> AgregarSucursal(Sucursal sucursal)
         {
             using (CineVerEntities entities = new CineVerEntities())

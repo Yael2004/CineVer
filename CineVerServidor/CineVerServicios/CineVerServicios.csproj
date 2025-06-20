@@ -71,6 +71,7 @@
     <Compile Include="AsientoServicio.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CorteCajaServicio.cs" />
+    <Compile Include="DTO\AsientoFuncionDTO.cs" />
     <Compile Include="DTO\CorteCajaDTO.cs" />
     <Compile Include="DTO\CorteCajaInicioFinDTO.cs" />
     <Compile Include="CuentaFidelidadServicio.cs" />

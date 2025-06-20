@@ -270,59 +270,57 @@ namespace CineVerCliente.ModeloVista
         {
             try
             {
-                if (Socio.IdSocio > 0)
+                var venta = new VentaDTO
                 {
-                    var venta = new VentaDTO
-                    {
-                        IdEmpleado = UsuarioEnLinea.Instancia.IdEmpleado, 
-                        IdSocio = Socio.IdSocio, 
-                        IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,    
-                        Total = decimal.Parse(CantidadAPagar),
-                        MetodoPago = "Efectivo",    
-                        TIpoVenta = _tipoVenta
-                    };
+                    IdEmpleado = UsuarioEnLinea.Instancia.IdEmpleado, 
+                    IdSocio = Socio.IdSocio, 
+                    IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,    
+                    Total = decimal.Parse(CantidadAPagar),
+                    MetodoPago = "Efectivo",    
+                    TIpoVenta = _tipoVenta
+                };
 
-                    if (_tipoVenta == "Dulcería")
+                if (_tipoVenta == "Dulcería")
+                {
+                    var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos, Convert.ToDouble(PuntosAUtilizar));
+                    if (resultado != null && resultado.EsExitoso)
                     {
-                        var resultado = await VentaServicioCliente.RealizarPagoDulceriaAsync(venta, ProductosVendidos, Convert.ToDouble(PuntosAUtilizar));
-                        if (resultado != null && resultado.EsExitoso)
+                        Notificacion.Mostrar("Pago realizado con éxito");
+                        if (_tipoVenta == "Dulcería")
                         {
-                            Notificacion.Mostrar("Pago realizado con éxito");
-                            if (_tipoVenta == "Dulcería")
-                            {
 
-                                _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
-                            }
-                            else if (_tipoVenta == "Taquilla")
-                            {
-                                _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
-                            }
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
                         }
-                        else
+                        else if (_tipoVenta == "Taquilla")
                         {
-                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                            _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
                         }
                     }
-                    else if (_tipoVenta == "Taquilla")
+                    else
                     {
-                        var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray(), Convert.ToDouble(PuntosAUtilizar));
-                        if (resultado != null && resultado.EsExitoso)
+                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                    }
+                }
+                else if (_tipoVenta == "Taquilla")
+                {
+                    venta.idFuncion = Funcion.Id;
+                    var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray(), Convert.ToDouble(PuntosAUtilizar));
+                    if (resultado != null && resultado.EsExitoso)
+                    {
+                        Notificacion.Mostrar("Pago realizado con éxito");
+                        if (_tipoVenta == "Dulcería")
                         {
-                            Notificacion.Mostrar("Pago realizado con éxito");
-                            if (_tipoVenta == "Dulcería")
-                            {
 
-                                _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
-                            }
-                            else if (_tipoVenta == "Taquilla")
-                            {
-                                _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
-                            }
+                            _mainWindowModeloVista.CambiarModeloVista(new RealizarVentaDulceriaModeloVista(_mainWindowModeloVista));
                         }
-                        else
+                        else if (_tipoVenta == "Taquilla")
                         {
-                            Notificacion.Mostrar("Ha ocurrido un error inesperado");
+                            _mainWindowModeloVista.CambiarModeloVista(new VenderBoletoModeloVista(_mainWindowModeloVista, Pelicula, Funcion));
                         }
+                    }
+                    else
+                    {
+                        Notificacion.Mostrar("Ha ocurrido un error inesperado");
                     }
                 }
             }
@@ -361,7 +359,7 @@ namespace CineVerCliente.ModeloVista
                     IdSucursal = UsuarioEnLinea.Instancia.IdSucursal,
                     Total = decimal.Parse(CantidadAPagar),
                     MetodoPago = "Tarjeta",
-                    TIpoVenta = _tipoVenta,
+                    TIpoVenta = _tipoVenta
                 };
 
                 if (_tipoVenta == "Dulcería")
@@ -387,6 +385,7 @@ namespace CineVerCliente.ModeloVista
                 }
                 else if (_tipoVenta == "Taquilla")
                 {
+                    venta.idFuncion = Funcion.Id;
                     var resultado = await VentaServicioCliente.RealizarPagoBoletosAsync(venta, AsientosIds.ToArray(),Convert.ToDouble(PuntosAUtilizar));
                     if (resultado != null && resultado.EsExitoso)
                     {

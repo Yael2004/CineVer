@@ -20,7 +20,7 @@ namespace DAO
             {
                 try
                 {
-                    var empleados = entities.Empleado.Where(e => e.contratado == true).ToList();
+                    var empleados = entities.Empleado.Where(e => e.contratado == true && e.rol != "admin").ToList();
 
                     if (empleados.Count == 0)
                     {

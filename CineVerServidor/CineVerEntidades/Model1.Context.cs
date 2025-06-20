@@ -45,8 +45,14 @@ namespace CineVerEntidades
         public virtual DbSet<Sucursal> Sucursal { get; set; }
         public virtual DbSet<Venta> Venta { get; set; }
         public virtual DbSet<VentaEnDulceria> VentaEnDulceria { get; set; }
+        public virtual DbSet<AsientoFuncion> AsientoFuncion { get; set; }
     
-        public virtual int InsertarVentaConFolio(Nullable<int> idEmpleado, Nullable<int> idSocio, Nullable<int> idSucursal, Nullable<decimal> total, string metodoPago, Nullable<System.DateTime> fecha, string tipoVenta)
+        public virtual int GenerarFolioVenta(ObjectParameter nuevoFolio)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GenerarFolioVenta", nuevoFolio);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> InsertarVentaConFolio(Nullable<int> idEmpleado, Nullable<int> idSocio, Nullable<int> idSucursal, Nullable<decimal> total, string metodoPago, Nullable<System.DateTime> fecha, string tipoVenta)
         {
             var idEmpleadoParameter = idEmpleado.HasValue ?
                 new ObjectParameter("idEmpleado", idEmpleado) :
@@ -76,7 +82,7 @@ namespace CineVerEntidades
                 new ObjectParameter("tipoVenta", tipoVenta) :
                 new ObjectParameter("tipoVenta", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("InsertarVentaConFolio", idEmpleadoParameter, idSocioParameter, idSucursalParameter, totalParameter, metodoPagoParameter, fechaParameter, tipoVentaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("InsertarVentaConFolio", idEmpleadoParameter, idSocioParameter, idSucursalParameter, totalParameter, metodoPagoParameter, fechaParameter, tipoVentaParameter);
         }
     }
 }

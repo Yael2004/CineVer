@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows;
 using CineVerCliente.DulceriaServicio;
 using CineVerCliente.VentaServicio;
+using CineVerCliente.Modelo;
 
 namespace CineVerCliente.ModeloVista
 {
@@ -296,7 +297,7 @@ namespace CineVerCliente.ModeloVista
         {
             try
             {
-                var respuesta = VentaServicioClient.ObtenerPromociones(2);
+                var respuesta = VentaServicioClient.ObtenerPromociones(UsuarioEnLinea.Instancia.IdSucursal);
                 if (respuesta == null || !respuesta.Result.EsExitoso)
                 {
                     Notificacion.Mostrar("Ha ocurrido un error inesperado");

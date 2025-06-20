@@ -86,6 +86,27 @@ namespace DAO
                 {
                     entities.Función.Add(funcion);
                     entities.SaveChanges();
+
+                    var filas = entities.Fila.Include("Asiento")
+                                             .Where(f => f.idSala == funcion.idSala)
+                                             .ToList();
+
+                    foreach (var fila in filas)
+                    {
+                        foreach (var asiento in fila.Asiento)
+                        {
+                            var asientoFuncion = new AsientoFuncion
+                            {
+                                idFuncion = funcion.idFuncion,
+                                idAsiento = asiento.idAsiento,
+                                estado = "DISPONIBLE"
+                            };
+
+                            entities.AsientoFuncion.Add(asientoFuncion);
+                        }
+                    }
+
+                    entities.SaveChanges();
                     return Result<string>.Exito("Función agregada con éxito");
                 }
                 catch (DbEntityValidationException ex)
@@ -102,6 +123,8 @@ namespace DAO
                 }
             }
         }
+
+
         public Result<string> EditarFuncion(Función funcionOriginal,Función funcionEditada)
         {
             using (CineVerEntities entities = new CineVerEntities())
@@ -113,6 +136,7 @@ namespace DAO
                     funcionInsertar.idSala = funcionEditada.idSala;
                     funcionInsertar.idPelicula = funcionEditada.idPelicula;
                     funcionInsertar.precioBoleto = funcionEditada.precioBoleto;
+                    funcionInsertar.fecha = funcionEditada.fecha;
                     entities.SaveChanges();
                     return Result<string>.Exito("Función editada con éxito");
                 }
@@ -132,20 +156,44 @@ namespace DAO
             {
                 try
                 {
+                    var boletosAsociados = entities.Venta.Any(b => b.idFuncion == funcion.idFuncion);
+                    if (boletosAsociados)
+                    {
+                        return Result<string>.Fallo("No se puede eliminar la función porque tiene boletos asociados");
+                    }
+
+                    var asientosRelacionados = entities.AsientoFuncion
+                        .Where(af => af.idFuncion == funcion.idFuncion)
+                        .ToList();
+
+                    entities.AsientoFuncion.RemoveRange(asientosRelacionados);
+
                     var funcionEliminar = entities.Función.Find(funcion.idFuncion);
-                    entities.Función.Remove(funcionEliminar);
-                    entities.SaveChanges();
-                    return Result<string>.Exito("Función eliminada con éxito");
+                    if (funcionEliminar != null)
+                    {
+                        entities.Función.Remove(funcionEliminar);
+                        entities.SaveChanges();
+                        return Result<string>.Exito("Función eliminada exitosamente");
+                    }
+                    else
+                    {
+                        return Result<string>.Fallo("No se encontró la función para eliminarla");
+                    }
                 }
                 catch (DbEntityValidationException ex)
                 {
-                    return Result<string>.Fallo(ex.Message);
+                    return Result<string>.Fallo($"Validación fallida: {ex.Message}");
                 }
                 catch (SqlException sqlEx)
                 {
-                    return Result<string>.Fallo(sqlEx.Message);
+                    return Result<string>.Fallo($"Error SQL: {sqlEx.Message}");
+                }
+                catch (Exception ex)
+                {
+                    return Result<string>.Fallo($"Error inesperado: {ex.Message}");
                 }
             }
         }
+
     }
 }

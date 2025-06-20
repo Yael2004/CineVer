@@ -414,7 +414,7 @@ namespace CineVerCliente.ModeloVista
                 SalasMenu = Visibility.Collapsed;
                 SesionMenu = Visibility.Collapsed;
             }
-            else if (rol.Equals("Gerente"))
+            else if (rol.Equals("admin"))
             {
                 PromocionesMenu = Visibility.Visible;
                 EmpleadosMenu = Visibility.Visible;
@@ -424,6 +424,20 @@ namespace CineVerCliente.ModeloVista
                 BoletosMenu = Visibility.Visible;
                 FuncionesMenu = Visibility.Visible;
                 SucursalesMenu = Visibility.Visible;
+                SalasMenu = Visibility.Visible;
+                SesionMenu = Visibility.Visible;
+                CarteleraMenu = Visibility.Visible;
+            }
+            else if (rol.Equals("Gerente"))
+            {
+                PromocionesMenu = Visibility.Visible;
+                EmpleadosMenu = Visibility.Visible;
+                SociosMenu = Visibility.Visible;
+                DulceriaMenu = Visibility.Visible;
+                VentasMenu = Visibility.Visible;
+                BoletosMenu = Visibility.Visible;
+                FuncionesMenu = Visibility.Visible;
+                SucursalesMenu = Visibility.Collapsed;
                 SalasMenu = Visibility.Visible;
                 SesionMenu = Visibility.Visible;
                 CarteleraMenu = Visibility.Visible;

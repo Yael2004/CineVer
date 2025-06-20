@@ -29,6 +29,15 @@
           <Property Name="idAsiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="30" />
         </EntityType>
+        <EntityType Name="AsientoFuncion">
+          <Key>
+            <PropertyRef Name="idAsientoFuncion" />
+          </Key>
+          <Property Name="idAsientoFuncion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idFuncion" Type="int" Nullable="false" />
+          <Property Name="idAsiento" Type="int" Nullable="false" />
+          <Property Name="estado" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Boleto">
           <Key>
             <PropertyRef Name="idBoleto" />
@@ -59,7 +68,7 @@
           </Key>
           <Property Name="idCuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idSocio" Type="int" />
-          <Property Name="puntos" Type="decimal" Precision="4" Scale="2" />
+          <Property Name="puntos" Type="decimal" Precision="6" Scale="2" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -135,8 +144,8 @@
           <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="cantidadInventario" Type="int" />
-          <Property Name="costoUnitario" Type="decimal" Precision="3" Scale="2" />
-          <Property Name="precioVenta" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="costoUnitario" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="precioVenta" Type="decimal" Precision="5" Scale="2" />
           <Property Name="imagen" Type="varbinary(max)" />
           <Property Name="idSucursal" Type="int" />
         </EntityType>
@@ -215,6 +224,7 @@
           <Property Name="fecha" Type="datetime" />
           <Property Name="tipoVenta" Type="varchar" MaxLength="30" />
           <Property Name="folioVenta" Type="varchar" MaxLength="8" />
+          <Property Name="idFuncion" Type="int" />
         </EntityType>
         <EntityType Name="VentaEnDulceria">
           <Key>
@@ -225,6 +235,30 @@
           <Property Name="cantidad" Type="int" />
           <Property Name="idVentaDulceria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <Association Name="FK__AsientoFu__idAsi__19DFD96B">
+          <End Role="Asiento" Type="Self.Asiento" Multiplicity="1" />
+          <End Role="AsientoFuncion" Type="Self.AsientoFuncion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiento">
+              <PropertyRef Name="idAsiento" />
+            </Principal>
+            <Dependent Role="AsientoFuncion">
+              <PropertyRef Name="idAsiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AsientoFu__idFun__18EBB532">
+          <End Role="Función" Type="Self.Función" Multiplicity="1" />
+          <End Role="AsientoFuncion" Type="Self.AsientoFuncion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Función">
+              <PropertyRef Name="idFuncion" />
+            </Principal>
+            <Dependent Role="AsientoFuncion">
+              <PropertyRef Name="idFuncion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ActorEnPelicula_Actor">
           <End Role="Actor" Type="Self.Actor" Multiplicity="0..1" />
           <End Role="ActorEnPelicula" Type="Self.ActorEnPelicula" Multiplicity="*" />
@@ -489,19 +523,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GenerarFolioVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NuevoFolio" Type="varchar" Mode="InOut" />
+        </Function>
         <Function Name="InsertarVentaConFolio" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idEmpleado" Type="int" Mode="In" />
           <Parameter Name="idSocio" Type="int" Mode="In" />
           <Parameter Name="idSucursal" Type="int" Mode="In" />
           <Parameter Name="total" Type="decimal" Mode="In" />
-          <Parameter Name="metodoPago" Type="varchar" Mode="In" />
+          <Parameter Name="metodoPago" Type="nvarchar" Mode="In" />
           <Parameter Name="fecha" Type="datetime" Mode="In" />
-          <Parameter Name="tipoVenta" Type="varchar" Mode="In" />
+          <Parameter Name="tipoVenta" Type="nvarchar" Mode="In" />
         </Function>
         <EntityContainer Name="CineVerModelStoreContainer">
           <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActorEnPelicula" EntityType="Self.ActorEnPelicula" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Asiento" EntityType="Self.Asiento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AsientoFuncion" EntityType="Self.AsientoFuncion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Boleto" EntityType="Self.Boleto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CorteCaja" EntityType="Self.CorteCaja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CuentaFidelidad" EntityType="Self.CuentaFidelidad" Schema="dbo" store:Type="Tables" />
@@ -517,6 +555,14 @@
           <EntitySet Name="Sucursal" EntityType="Self.Sucursal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VentaEnDulceria" EntityType="Self.VentaEnDulceria" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AsientoFu__idAsi__19DFD96B" Association="Self.FK__AsientoFu__idAsi__19DFD96B">
+            <End Role="Asiento" EntitySet="Asiento" />
+            <End Role="AsientoFuncion" EntitySet="AsientoFuncion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AsientoFu__idFun__18EBB532" Association="Self.FK__AsientoFu__idFun__18EBB532">
+            <End Role="Función" EntitySet="Función" />
+            <End Role="AsientoFuncion" EntitySet="AsientoFuncion" />
+          </AssociationSet>
           <AssociationSet Name="FK_ActorEnPelicula_Actor" Association="Self.FK_ActorEnPelicula_Actor">
             <End Role="Actor" EntitySet="Actor" />
             <End Role="ActorEnPelicula" EntitySet="ActorEnPelicula" />
@@ -638,6 +684,7 @@
           <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Fila" Relationship="Self.FK_Asiento_Fila" FromRole="Asiento" ToRole="Fila" />
           <NavigationProperty Name="Boleto" Relationship="Self.FK_Boleto_Asiento" FromRole="Asiento" ToRole="Boleto" />
+          <NavigationProperty Name="AsientoFuncion" Relationship="CineVerModel.FK__AsientoFu__idAsi__19DFD96B" FromRole="Asiento" ToRole="AsientoFuncion" />
         </EntityType>
         <EntityType Name="Boleto">
           <Key>
@@ -673,7 +720,7 @@
           </Key>
           <Property Name="idCuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idSocio" Type="Int32" />
-          <Property Name="puntos" Type="Decimal" Precision="4" Scale="2" />
+          <Property Name="puntos" Type="Decimal" Precision="6" Scale="2" />
           <NavigationProperty Name="Socio" Relationship="Self.FK_CuentaFidelidad_Socio" FromRole="CuentaFidelidad" ToRole="Socio" />
         </EntityType>
         <EntityType Name="Empleado">
@@ -726,6 +773,7 @@
           <NavigationProperty Name="Boleto" Relationship="Self.FK_Boleto_Función" FromRole="Función" ToRole="Boleto" />
           <NavigationProperty Name="Película" Relationship="Self.FK_Función_Película" FromRole="Función" ToRole="Película" />
           <NavigationProperty Name="Sala" Relationship="Self.FK_Función_Sala" FromRole="Función" ToRole="Sala" />
+          <NavigationProperty Name="AsientoFuncion" Relationship="CineVerModel.FK__AsientoFu__idFun__18EBB532" FromRole="Función" ToRole="AsientoFuncion" />
         </EntityType>
         <EntityType Name="Gasto">
           <Key>
@@ -751,10 +799,10 @@
           <Property Name="director" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="idSucursal" Type="Int32" />
           <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="poster" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="ActorEnPelicula" Relationship="Self.FK_ActorEnPelicula_Película" FromRole="Película" ToRole="ActorEnPelicula" />
           <NavigationProperty Name="Función" Relationship="Self.FK_Función_Película" FromRole="Película" ToRole="Función" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_Película_Sucursal" FromRole="Película" ToRole="Sucursal" />
-          <Property Name="poster" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="ProductoDulceria">
           <Key>
@@ -763,8 +811,8 @@
           <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cantidadInventario" Type="Int32" />
-          <Property Name="costoUnitario" Type="Decimal" Precision="3" Scale="2" />
-          <Property Name="precioVenta" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="costoUnitario" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="precioVenta" Type="Decimal" Precision="5" Scale="2" />
           <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="idSucursal" Type="Int32" />
           <NavigationProperty Name="Sucursal" Relationship="Self.FK_ProductoDulceria_Sucursal" FromRole="ProductoDulceria" ToRole="Sucursal" />
@@ -859,6 +907,7 @@
           <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="tipoVenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="folioVenta" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="idFuncion" Type="Int32" />
           <NavigationProperty Name="Boleto" Relationship="Self.FK_Boleto_Venta" FromRole="Venta" ToRole="Boleto" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK_Venta_Empleado" FromRole="Venta" ToRole="Empleado" />
           <NavigationProperty Name="Socio" Relationship="Self.FK_Venta_Socio" FromRole="Venta" ToRole="Socio" />
@@ -1245,7 +1294,10 @@
             <End Role="Sucursal" EntitySet="Sucursal" />
             <End Role="Venta" EntitySet="Venta" />
           </AssociationSet>
-          <FunctionImport Name="InsertarVentaConFolio">
+          <FunctionImport Name="GenerarFolioVenta">
+          <Parameter Name="NuevoFolio" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertarVentaConFolio" ReturnType="Collection(Int32)">
             <Parameter Name="idEmpleado" Mode="In" Type="Int32" />
             <Parameter Name="idSocio" Mode="In" Type="Int32" />
             <Parameter Name="idSucursal" Mode="In" Type="Int32" />
@@ -1254,7 +1306,51 @@
             <Parameter Name="fecha" Mode="In" Type="DateTime" />
             <Parameter Name="tipoVenta" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="AsientoFuncion" EntityType="CineVerModel.AsientoFuncion" />
+          <AssociationSet Name="FK__AsientoFu__idAsi__19DFD96B" Association="CineVerModel.FK__AsientoFu__idAsi__19DFD96B">
+            <End Role="Asiento" EntitySet="Asiento" />
+            <End Role="AsientoFuncion" EntitySet="AsientoFuncion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AsientoFu__idFun__18EBB532" Association="CineVerModel.FK__AsientoFu__idFun__18EBB532">
+            <End Role="Función" EntitySet="Función" />
+            <End Role="AsientoFuncion" EntitySet="AsientoFuncion" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AsientoFuncion">
+          <Key>
+            <PropertyRef Name="idAsientoFuncion" />
+          </Key>
+          <Property Name="idAsientoFuncion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idFuncion" Type="Int32" Nullable="false" />
+          <Property Name="idAsiento" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Asiento" Relationship="CineVerModel.FK__AsientoFu__idAsi__19DFD96B" FromRole="AsientoFuncion" ToRole="Asiento" />
+          <NavigationProperty Name="Función" Relationship="CineVerModel.FK__AsientoFu__idFun__18EBB532" FromRole="AsientoFuncion" ToRole="Función" />
+        </EntityType>
+        <Association Name="FK__AsientoFu__idAsi__19DFD96B">
+          <End Type="CineVerModel.Asiento" Role="Asiento" Multiplicity="1" />
+          <End Type="CineVerModel.AsientoFuncion" Role="AsientoFuncion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Asiento">
+              <PropertyRef Name="idAsiento" />
+            </Principal>
+            <Dependent Role="AsientoFuncion">
+              <PropertyRef Name="idAsiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AsientoFu__idFun__18EBB532">
+          <End Type="CineVerModel.Función" Role="Función" Multiplicity="1" />
+          <End Type="CineVerModel.AsientoFuncion" Role="AsientoFuncion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Función">
+              <PropertyRef Name="idFuncion" />
+            </Principal>
+            <Dependent Role="AsientoFuncion">
+              <PropertyRef Name="idFuncion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1384,7 +1480,6 @@
           <EntitySetMapping Name="Película">
             <EntityTypeMapping TypeName="CineVerModel.Película">
               <MappingFragment StoreEntitySet="Película">
-                <ScalarProperty Name="poster" ColumnName="poster" />
                 <ScalarProperty Name="idPelicula" ColumnName="idPelicula" />
                 <ScalarProperty Name="genero" ColumnName="genero" />
                 <ScalarProperty Name="duracion" ColumnName="duracion" />
@@ -1392,6 +1487,7 @@
                 <ScalarProperty Name="director" ColumnName="director" />
                 <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="poster" ColumnName="poster" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1486,6 +1582,7 @@
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="tipoVenta" ColumnName="tipoVenta" />
                 <ScalarProperty Name="folioVenta" ColumnName="folioVenta" />
+                <ScalarProperty Name="idFuncion" ColumnName="idFuncion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1499,7 +1596,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GenerarFolioVenta" FunctionName="CineVerModel.Store.GenerarFolioVenta" />
           <FunctionImportMapping FunctionImportName="InsertarVentaConFolio" FunctionName="CineVerModel.Store.InsertarVentaConFolio" />
+          <EntitySetMapping Name="AsientoFuncion">
+            <EntityTypeMapping TypeName="CineVerModel.AsientoFuncion">
+              <MappingFragment StoreEntitySet="AsientoFuncion">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idAsiento" ColumnName="idAsiento" />
+                <ScalarProperty Name="idFuncion" ColumnName="idFuncion" />
+                <ScalarProperty Name="idAsientoFuncion" ColumnName="idAsientoFuncion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

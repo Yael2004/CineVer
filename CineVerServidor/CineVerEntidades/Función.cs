@@ -18,6 +18,7 @@ namespace CineVerEntidades
         public Función()
         {
             this.Boleto = new HashSet<Boleto>();
+            this.AsientoFuncion = new HashSet<AsientoFuncion>();
         }
     
         public int idFuncion { get; set; }
@@ -31,5 +32,7 @@ namespace CineVerEntidades
         public virtual ICollection<Boleto> Boleto { get; set; }
         public virtual Película Película { get; set; }
         public virtual Sala Sala { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AsientoFuncion> AsientoFuncion { get; set; }
     }
 }

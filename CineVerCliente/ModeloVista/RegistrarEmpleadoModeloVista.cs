@@ -20,7 +20,7 @@ namespace CineVerCliente.ModeloVista
         private string _rol;
         private string _nombre;
         private string _apellidos;
-        private DateTime _fechaNacimiento;
+        private DateTime _fechaNacimiento = DateTime.Today;
         private ObservableCollection<string> listaSexos = new ObservableCollection<string>();
         private ObservableCollection<SucursalDTO> listaSucursales = new ObservableCollection<SucursalDTO>();
         private string _sexo;

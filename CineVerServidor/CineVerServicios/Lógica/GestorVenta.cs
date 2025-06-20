@@ -338,7 +338,8 @@ namespace CineVerServicios.Lógica
                 metodoPago = venta.MetodoPago,
                 fecha = DateTime.Now,
                 tipoVenta = venta.TIpoVenta,
-                folioVenta = venta.FolioVenta
+                folioVenta = venta.FolioVenta,
+                idFuncion = venta.idFuncion
             };
             var resultado = ventaDAO.RealizarPagoBoletos(ventaEntity, asientosIds, puntosUsados);
             if (!resultado.EsExitoso)

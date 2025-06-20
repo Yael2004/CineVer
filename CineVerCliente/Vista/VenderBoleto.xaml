@@ -60,7 +60,7 @@
                            FontSize="15"
                            HorizontalAlignment="Left"/>
 
-                    <Label Content="1"
+                    <Label Content="{Binding NumeroSala}"
                            Foreground="{StaticResource Blanco}" 
                            Margin="383,135,0,280"
                            FontSize="15"
@@ -153,7 +153,8 @@
                     <Button Style="{StaticResource BotonConfirmarBlanco}"
                         Content="Regresar"
                         Height="40"
-                        Width="100" Margin="468,388,32,22"/>
+                        Width="100" Margin="468,388,32,22"
+                        Command="{Binding RegresarComando}"/>
 
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" 
                            Height="250" Width="400" 

@@ -5,7 +5,7 @@
     <SolidColorBrush x:Key="Naranja" Color="#FF7315"/>
     <SolidColorBrush x:Key="Rojo" Color="#EC221F"/>
     <SolidColorBrush x:Key="Blanco" Color="#FFFFFF"/>
-    <SolidColorBrush x:Key="Negro" Color="#232020"/>
+    <SolidColorBrush x:Key="Negro" Color="#333333"/>
     <SolidColorBrush x:Key="Toronja" Color="#FFA053"/>
     <SolidColorBrush x:Key="Azul" Color="#441FEC"/>
 

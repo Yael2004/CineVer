@@ -588,6 +588,12 @@ namespace CineVerCliente.SucursalServicio {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFila", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFilaResponse")]
         System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasAsientosDTO> ObtenerAsientosPorFilaAsync(int idSala);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFuncion", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFuncionResponse")]
+        CineVerCliente.SucursalServicio.ListaFilasAsientosDTO ObtenerAsientosPorFuncion(int idSala, int idFuncion);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFuncion", ReplyAction="http://tempuri.org/ISucursalServicio/ObtenerAsientosPorFuncionResponse")]
+        System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasAsientosDTO> ObtenerAsientosPorFuncionAsync(int idSala, int idFuncion);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -655,6 +661,14 @@ namespace CineVerCliente.SucursalServicio {
         
         public System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasAsientosDTO> ObtenerAsientosPorFilaAsync(int idSala) {
             return base.Channel.ObtenerAsientosPorFilaAsync(idSala);
+        }
+        
+        public CineVerCliente.SucursalServicio.ListaFilasAsientosDTO ObtenerAsientosPorFuncion(int idSala, int idFuncion) {
+            return base.Channel.ObtenerAsientosPorFuncion(idSala, idFuncion);
+        }
+        
+        public System.Threading.Tasks.Task<CineVerCliente.SucursalServicio.ListaFilasAsientosDTO> ObtenerAsientosPorFuncionAsync(int idSala, int idFuncion) {
+            return base.Channel.ObtenerAsientosPorFuncionAsync(idSala, idFuncion);
         }
     }
 }

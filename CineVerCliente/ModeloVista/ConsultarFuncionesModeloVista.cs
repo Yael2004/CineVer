@@ -212,6 +212,7 @@ namespace CineVerCliente.ModeloVista
 
                 var funcion = new Funcion
                 {
+                    Id = funcionVista.Funcion.idFuncion,
                     Fecha = (DateTime)funcionVista.Funcion.fecha,
                     HoraInicio = (TimeSpan)funcionVista.Funcion.horaInicio,
                     Precio = (decimal)funcionVista.Funcion.precioBoleto,

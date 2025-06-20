@@ -18,7 +18,7 @@ namespace CineVerCliente.ModeloVista
     {
         private string _nombre;
         private string _apellidos;
-        private DateTime _fechaNacimiento;
+        private DateTime _fechaNacimiento = DateTime.Today;
         private ObservableCollection<string> listaSexos = new ObservableCollection<string>();
         private string _sexo;
         private string _numeroTelefono;

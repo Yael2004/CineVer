@@ -51,11 +51,6 @@
                     Margin="659,593,211,111"
                     Command="{Binding IniciarSesionComando}"/>
 
-                <Button Content="Registrarse"
-                    Style="{StaticResource BotonNegro}" 
-                    Margin="698,672,250,46"
-                    Command="{Binding RegistrarseComando}"/>
-
                 <Label x:Name="MatriculaCampoVacio" 
                     Style="{StaticResource TextoCamposVacio}" 
                     Margin="745,306,300,420"

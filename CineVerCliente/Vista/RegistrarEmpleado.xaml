@@ -115,7 +115,7 @@
                 <TextBox Name="Nombre"
                     Style="{StaticResource Textbox}" 
                     Margin="369,107,175,610"
-                    MaxLength="60"
+                    MaxLength="40"
                     PreviewTextInput="SoloLetras"
                     Text="{Binding Nombre, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -147,7 +147,7 @@
                 <TextBox Name="Telefono"
                     Style="{StaticResource Textbox}"
                     Margin="369,311,175,406"
-                    MaxLength="60"
+                    MaxLength="10"
                     PreviewTextInput="SoloNumeros"
                     Text="{Binding NumeroTelefono, UpdateSourceTrigger=PropertyChanged}"/>
 
@@ -168,28 +168,28 @@
                 <TextBox Name="NumeroCasa"
                     Style="{StaticResource Textbox}" 
                     Margin="369,479,175,238"
-                    MaxLength="60"
+                    MaxLength="4"
                     PreviewTextInput="SoloNumeros"
                     Text="{Binding NumeroCasa, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="CodigoPostal"
                     Style="{StaticResource Textbox}" 
                     Margin="369,533,175,184"
-                    MaxLength="60"
+                    MaxLength="5"
                     PreviewTextInput="SoloNumeros"
                     Text="{Binding CodigoPostal, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="RFC"
                     Style="{StaticResource Textbox}" 
                     Margin="152,589,606,129"
-                    MaxLength="60"
+                    MaxLength="13"
                     PreviewTextInput="CampoAlfanumerico"
                     Text="{Binding RFC, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBox Name="NSS"
                     Style="{StaticResource Textbox}" 
                     Margin="583,589,175,129"
-                    MaxLength="60"
+                    MaxLength="11"
                     PreviewTextInput="SoloNumeros"
                     Text="{Binding NSS, UpdateSourceTrigger=PropertyChanged}"/>
 

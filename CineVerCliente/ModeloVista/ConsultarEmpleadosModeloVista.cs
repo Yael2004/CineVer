@@ -193,7 +193,8 @@ namespace CineVerCliente.ModeloVista
                         CodigoPostal = empleado.CodigoPostal,
                         RFC = empleado.RFC,
                         Nss = empleado.Nss,
-                        FechaNacimiento = empleado.FechaNacimiento
+                        FechaNacimiento = empleado.FechaNacimiento,
+                        Foto = empleado.Foto
                     });
                 }
 

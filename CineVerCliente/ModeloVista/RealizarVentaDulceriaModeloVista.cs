@@ -216,7 +216,7 @@ namespace CineVerCliente.ModeloVista
         {
             try
             {
-                var promociones = VentaServicioCliente.ObtenerPromocionesDulceria(2);
+                var promociones = VentaServicioCliente.ObtenerPromocionesDulceria(UsuarioEnLinea.Instancia.IdSucursal);
                 if (promociones != null)
                 {
                     foreach (var promocion in promociones.Promociones)

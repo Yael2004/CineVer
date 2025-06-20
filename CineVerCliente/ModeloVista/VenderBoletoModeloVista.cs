@@ -23,7 +23,7 @@ namespace CineVerCliente.ModeloVista
 
         private string _nombrePelicula;
         private DateTime _fechaFuncion;
-        private int _numeroSala;
+        private string _numeroSala;
         private string _hora;
         private string _numeroCuenta;
         private string _mensajeTotalPagar;
@@ -82,7 +82,7 @@ namespace CineVerCliente.ModeloVista
             }
         }
 
-        public int NumeroSala
+        public string NumeroSala
         {
             get { return _numeroSala; }
             set
@@ -212,6 +212,7 @@ namespace CineVerCliente.ModeloVista
             ProcederPagoComando = new ComandoModeloVista(ProcederPago);
             CancelarPagoComando = new ComandoModeloVista(CancelarPago);
             CrearCuentaComando = new ComandoModeloVista(CrearCuenta);
+            RegresarComando = new ComandoModeloVista(RegresarFunciones);
 
             Asientos = new ObservableCollection<Modelo.Asiento>();
             AsientosAgrupados = new ObservableCollection<ObservableCollection<Modelo.Asiento>>();
@@ -225,22 +226,21 @@ namespace CineVerCliente.ModeloVista
             clienteVenta = new VentaServicioClient();
             _precio = funcion.Precio;
 
-            CargarDatos(pelicula, funcion);
-            CargarFilas(funcion.IdSala);
-
-            InicializarPromocion();
-
             _mainWindowModeloVista = mainWindowModeloVista;
 
             Pelicula = pelicula;
             Funcion = funcion;
+
+            CargarDatos(pelicula, funcion);
+            CargarFilas(funcion.IdSala);
+            InicializarPromocion();
         }
 
         private void CargarFilas(int idSala)
         {
             try {
                 var cliente = new SucursalServicio.SucursalServicioClient();
-                var resultado = cliente.ObtenerAsientosPorFila(idSala);
+                var resultado = cliente.ObtenerAsientosPorFuncion(idSala, Funcion.Id);
 
                 Asientos.Clear();
 
@@ -368,10 +368,27 @@ namespace CineVerCliente.ModeloVista
 
         private void CargarDatos(Pelicula pelicula, Funcion funcion)
         {
+            try
+            {
+                var cliente = new SalaServicio.SalaServicioClient();
+                var resultado = cliente.ObtenerSalaPorID(funcion.IdSala);
+
+                NumeroSala = resultado.nombre;
+            } 
+            catch (Exception ex)
+            {
+                Notificacion.MostrarExcepcion();
+            }
+
             NombrePelicula = pelicula.Nombre;
             FechaFuncion = funcion.Fecha;
             Hora = funcion.HoraInicio.ToString(@"hh\:mm");
             Poster = pelicula.Poster;
+        }
+
+        private void RegresarFunciones(object obj)
+        {
+            _mainWindowModeloVista.CambiarModeloVista(new ConsultarFuncionesModeloVista(_mainWindowModeloVista));
         }
 
         private void ComprarComoInvitado(object obj)
@@ -442,7 +459,7 @@ namespace CineVerCliente.ModeloVista
             }
             catch (Exception)
             {
-                Notificacion.MostrarExcepcion();
+                Promocion = "No hay promociones disponibles hoy.";
             }
         }
 

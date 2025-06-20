@@ -118,7 +118,7 @@
                            FontSize="20"
                            Foreground="White" Margin="565,440,0,116"/>
 
-                        <Button Content="Siguiente"
+                        <Button Content="Agregar"
                             Style="{StaticResource BotonConfirmarAmarillo}" Margin="310,544,528,10"
                             Command="{Binding SiguienteComando}"/>
 

@@ -140,13 +140,9 @@
                         Margin="352,544,492,10"
                         Command="{Binding AceptarEdicionComando}"/>
 
-                    <Button Content="Gestionar salas"
-                            Style="{StaticResource BotonConfirmarAmarillo}" 
-                            Margin="502,544,339,10"/>
-
                     <Button Content="Cancelar"
                             Style="{StaticResource BotonCancelar}" 
-                            Margin="672,544,203,10"
+                            Margin="535,544,326,10"
                             Command="{Binding CancelarEdicionComando}"/>
 
                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center" 

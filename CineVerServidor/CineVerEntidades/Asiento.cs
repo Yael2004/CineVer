@@ -18,6 +18,7 @@ namespace CineVerEntidades
         public Asiento()
         {
             this.Boleto = new HashSet<Boleto>();
+            this.AsientoFuncion = new HashSet<AsientoFuncion>();
         }
     
         public Nullable<int> idFila { get; set; }
@@ -28,5 +29,7 @@ namespace CineVerEntidades
         public virtual Fila Fila { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Boleto> Boleto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AsientoFuncion> AsientoFuncion { get; set; }
     }
 }

@@ -255,7 +255,16 @@ namespace CineVerCliente.ModeloVista
                 pelicula.idSucursal = UsuarioEnLinea.Instancia.IdSucursal;
                 pelicula.genero = Genero;
                 pelicula.nombre = Titulo;
-                pelicula.poster = File.Exists(Poster) ? File.ReadAllBytes(Poster) : null;
+
+                if (!string.IsNullOrEmpty(Poster) && File.Exists(Poster))
+                {
+                    pelicula.poster = File.ReadAllBytes(Poster);
+                }
+                else
+                {
+                    pelicula.poster = PeliculaOriginal.poster;
+                }
+
                 PelículaServicioClient peliculaServicio = new PelículaServicioClient();
                 string mensaje = peliculaServicio.EditarPelicula(pelicula, PeliculaOriginal);
                 Notificacion.Mostrar(mensaje);

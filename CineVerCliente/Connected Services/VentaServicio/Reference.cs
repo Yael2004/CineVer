@@ -49,6 +49,9 @@ namespace CineVerCliente.VentaServicio {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private decimal TotalField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idFuncionField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -172,6 +175,19 @@ namespace CineVerCliente.VentaServicio {
                 if ((this.TotalField.Equals(value) != true)) {
                     this.TotalField = value;
                     this.RaisePropertyChanged("Total");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idFuncion {
+            get {
+                return this.idFuncionField;
+            }
+            set {
+                if ((this.idFuncionField.Equals(value) != true)) {
+                    this.idFuncionField = value;
+                    this.RaisePropertyChanged("idFuncion");
                 }
             }
         }

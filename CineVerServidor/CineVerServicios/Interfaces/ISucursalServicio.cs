@@ -25,5 +25,7 @@ namespace CineVerServicios.Interfaces
         Task<ListaSucursalesDTO> ObtenerSucursales();
         [OperationContract]
         Task<ListaFilasAsientosDTO> ObtenerAsientosPorFila(int idSala);
+        [OperationContract]
+        Task<ListaFilasAsientosDTO> ObtenerAsientosPorFuncion(int idSala, int idFuncion);
     }
 }
